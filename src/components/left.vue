@@ -1,16 +1,27 @@
 <template>
   <div id="left">
-      <div class="list-admin c-3f active">
-        首页
+      <div class="list-admin c-3f active" @click="toUrl('users')">
+         用户管理
       </div>
-
-      <div class="list-admin c-3f ">
-        首页
+      <div class="list-admin-items">
+        <router-link to="users" >查看用户信息</router-link>
+        <router-link to="add_user" class="active" >添加用户</router-link>
       </div>
   </div>
 </template>
 <script>
-  export default {}
+  export default
+  {
+      methods:
+      {
+        toUrl:function(uri)
+        {
+          this.$router.push(uri);
+        },
+
+      }
+
+  }
 </script>
 
 <style scoped>
@@ -28,6 +39,8 @@
     padding-top: 55px;
     padding-left:4px;
     padding-right:4px;
+    color: #fff;
+    z-index: 2;
   }
 
   #left > .list-group, #left > .list-group > li {
@@ -65,6 +78,29 @@
     border-bottom: 1px solid #222
   }
   #left>.active
+  {
+    background: #777;
+  }
+  .list-admin-items
+  {
+
+    border-bottom: 1px solid #fff;
+  }
+  .list-admin-items>a
+  {
+    display: block;
+    width: 100%;
+    padding-left:35px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #fff;
+    text-decoration: none!important;
+  }
+  .list-admin-items>a:hover
+  {
+    text-decoration: none!important;
+  }
+  .list-admin-items>.active
   {
     background: #777;
   }
