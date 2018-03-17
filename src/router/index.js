@@ -5,6 +5,7 @@ import test from '../components/test';
 import index from '../components/index';
 import users from '../components/user_manager';
 import add_user from '../components/add_user';
+import recharge from '../components/recharge'
 
 
 Vue.use(Router)
@@ -33,6 +34,11 @@ export default new Router({
           name:'add_user',
           component:add_user,
         },
+        {
+          path:'recharge',
+          name:'recharge',
+          component:recharge,
+        }
       ],
     }
     ,

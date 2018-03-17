@@ -1,12 +1,17 @@
 <template>
   <div id="left">
-      <div class="list-admin c-3f active" @click="toUrl('users')">
+      <div class="list-admin c-3f " @click="toUrl('users')">
          用户管理
       </div>
       <div class="list-admin-items">
         <router-link to="users" >查看用户信息</router-link>
-        <router-link to="add_user" class="active" >添加用户</router-link>
+        <router-link to="add_user"  >添加用户</router-link>
       </div>
+
+
+    <div class="list-admin c-3f active" @click="toUrl('recharge')">
+       充值
+    </div>
   </div>
 </template>
 <script>
