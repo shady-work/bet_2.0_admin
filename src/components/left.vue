@@ -5,12 +5,36 @@
       </div>
       <div class="list-admin-items">
         <router-link to="users" >查看用户信息</router-link>
-        <router-link to="add_user"  >添加用户</router-link>
+        <router-link to="user_money" class="active" >查看用户金额</router-link>
+        <router-link to="add_user" >添加用户</router-link>
       </div>
 
 
-    <div class="list-admin c-3f active" @click="toUrl('recharge')">
+    <div class="list-admin c-3f " @click="toUrl('recharge')">
        充值
+    </div>
+
+    <div class="list-admin c-3f " @click="toUrl('withdraw')">
+       提现
+    </div>
+
+    <div class="list-admin c-3f " @click="toUrl('withdraw')">
+       重庆时时彩
+    </div>
+      <div class="list-admin-items">
+        <router-link to="cqssc" >用户注额列表</router-link>
+      </div>
+      <div class="list-admin-items">
+        <router-link to="cqssc_odds" >赔率列表</router-link>
+      </div>
+    <div class="list-admin-items">
+      <router-link to="cqssc_odds_user" >用户赔率列表</router-link>
+    </div>
+    <div class="list-admin-items">
+      <router-link to="cqssc_history" >开奖历史</router-link>
+    </div>
+    <div class="list-admin-items">
+      <router-link to="cqssc_history_bet" >下注历史</router-link>
     </div>
   </div>
 </template>

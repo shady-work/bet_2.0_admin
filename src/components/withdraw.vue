@@ -1,12 +1,12 @@
 <template>
-  <div id="recharge">
-     <h2 v-show='one_user_recharge'>当前正在查看shady的充值记录，<button class="btn btn-info">返回查看所有人充值记录</button></h2>
+  <div id="withdraw">
+     <h2 v-show='one_user_recharge'>当前正在查看shady的提现记录，<button class="btn btn-info">返回查看所有人提现记录</button></h2>
       <table class="table table-hover table-bordered table-striped text-center">
           <thead>
             <tr >
               <td>序号</td>
               <td>用户名/昵称</td>
-              <td>充值金额</td>
+              <td>提现金额</td>
               <td>状态</td>
               <td>时间</td>
               <td  v-show='!one_user_recharge'>操作</td>
@@ -23,8 +23,8 @@
                 </td>
                 <td>
                   <b v-if="v.tp_stu==1" class="text-warning">待审核</b>
-                  <b v-if="v.tp_stu==0" class="text-danger">充值不通过</b>
-                  <b class="text-info"  v-if="v.tp_stu==2" >充值通过</b>
+                  <b v-if="v.tp_stu==0" class="text-danger">提现不通过</b>
+                  <b class="text-info"  v-if="v.tp_stu==2" >提现通过</b>
                 </td>
                 <td>{{v.tp_time}}</td>
                 <td v-if="v.tp_stu==1">
@@ -45,27 +45,27 @@
 export default {
   data: function() {
     return {
-      list: [], //recharge list
-      list_all_back_up: [], //all recharge lit back up;
-      one_user_recharge: false //some one's recharge list
+      list: [], //withdraws list
+      list_all_back_up: [], //all withdraws lit back up;
+      one_user_recharge: false //some one's withdraws list
     };
   },
   methods: {
     /*
-     *load all recharge records
+     *load all withdraws records
      *@augments
      */
     get_recharge_list: function() {
-      this.$http.get(this.api + "/admin/topups").then(function(res) {
+      this.$http.get(this.api + "/admin/withdraws").then(function(res) {
         if (res.data.status == 200) {
-          this.list = res.data.data.topups;
-          this.list_all_back_up = res.data.data.topups;
+          this.list = res.data.data.withdraws;
+          this.list_all_back_up = res.data.data.withdraws;
         }
       });
     },
     delete_one: function(recharge_id) {
       this.$http
-        .delete(this.api + "/admin/topups/" + recharge_id)
+        .delete(this.api + "/admin/withdraws/" + recharge_id)
         .then(function(res) {
           console.log(res.data);
           if (res.data.status == 201) {
@@ -78,10 +78,10 @@ export default {
     },
     review_recharge: function(rechagre_id, review_state) {
       this.$http
-        .put(this.api + "/admin/topups/" + rechagre_id, { pass: review_state })
+        .put(this.api + "/admin/withdraws/" + rechagre_id, { pass: review_state })
         .then(function(res) {
           console.log(res.data);
-          if (res.data.status == 200) {
+          if (res.data.status == 201) {
             alert(res.data.msg);
           } else {
             alert("review failed!");
@@ -92,6 +92,8 @@ export default {
   },
   created: function() {
     this.get_recharge_list();
+
+    
   }
 };
 </script>

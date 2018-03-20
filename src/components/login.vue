@@ -56,6 +56,7 @@
                 {
                    //login success
                    alert(res.data.msg);
+                   window.localStorage.token = res.data.data.token;
                    window.sessionStorage.admin_id = res.data.data.user_id;
                    window.sessionStorage.isLogin_admin = 'ok';
                    this.$set(this.$store.state,'admin_id',res.data.data.user_id);

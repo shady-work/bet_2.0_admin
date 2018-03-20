@@ -50,6 +50,7 @@
     box-sizing: border-box;
     padding-left: 200px;
     padding-top: 50px;
+    overflow:scroll;
 
   }
   #user

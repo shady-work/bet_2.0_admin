@@ -17,6 +17,7 @@ Vue.http.interceptors.push(function(request, next)
   //拦截器
   // 跨域携带cookie
   request.credentials = true;
+  request.headers.set('Authorization', 'bearer ' + window.localStorage.token);
   next();
 });
 Vue.http.options.emulateJSON = true;//vue-resource的处理方案
