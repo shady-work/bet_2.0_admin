@@ -13,6 +13,7 @@ import cqssc_odds from '../components/cqssc_odds'
 import cqssc_odds_user from '../components/cqssc_odds_user'
 import cqssc_history from '../components/cqssc_history'
 import cqssc_history_bet from '../components/cqssc_history_bet'
+import cqssc_turntable from '../components/cqssc_turntable'
 
 
 Vue.use(Router)
@@ -80,6 +81,11 @@ export default new Router({
           path:'cqssc_history_bet',  //cqssc_history_bet page
           name:'cqssc_history_bet',
           component:cqssc_history_bet,
+        },
+        {
+          path:'cqssc_turntable',  //cqssc_turntable page
+          name:'cqssc_turntable',
+          component:cqssc_turntable,
         },
 
       ],

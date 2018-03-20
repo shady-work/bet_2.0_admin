@@ -27,15 +27,18 @@
       <div class="list-admin-items">
         <router-link to="cqssc_odds" >赔率列表</router-link>
       </div>
-    <div class="list-admin-items">
-      <router-link to="cqssc_odds_user" >用户赔率列表</router-link>
-    </div>
-    <div class="list-admin-items">
-      <router-link to="cqssc_history" >开奖历史</router-link>
-    </div>
-    <div class="list-admin-items">
-      <router-link to="cqssc_history_bet" >下注历史</router-link>
-    </div>
+      <div class="list-admin-items">
+        <router-link to="cqssc_odds_user" >用户赔率列表</router-link>
+      </div>
+      <div class="list-admin-items">
+        <router-link to="cqssc_history" >开奖历史</router-link>
+      </div>
+      <div class="list-admin-items">
+        <router-link to="cqssc_history_bet" >下注历史</router-link>
+      </div>
+      <div class="list-admin-items">
+        <router-link to="cqssc_turntable" >转盘列表</router-link>
+      </div>
   </div>
 </template>
 <script>
