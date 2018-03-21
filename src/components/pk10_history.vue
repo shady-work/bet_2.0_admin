@@ -11,26 +11,30 @@
                <td>第三球</td>
                <td>第四球</td>
                <td>第五球</td>
-               <td>总和</td>
-               <td>前三</td>
-               <td>中三</td>
-               <td>后三</td>
+               <td>第六球</td>
+               <td>第七球</td>
+               <td>第八球</td>
+               <td>第九球</td>
+               <td>第十球</td>
+               <td>冠亚军</td>
                <td>后开奖时间</td>
              </tr>
            </thead>
           <tbody>
               <tr v-for="(v,k) in history_codes">
                 <td>{{v.expect}}</td>
-                <td><b v-for="code in v.open_codes">{{code}}</b></td>
+                <td><b>{{v.opencode}}</b></td>
                 <td>{{v.details.ball_1}}</td>
                 <td>{{v.details.ball_2}}</td>
                 <td>{{v.details.ball_3}}</td>
                 <td>{{v.details.ball_4}}</td>
                 <td>{{v.details.ball_5}}</td>
-                <td>{{v.details.dragon_and_tiger}}</td>
-                <td>{{v.details.front_3}}</td>
-                <td>{{v.details.medium_3}}</td>
-                <td>{{v.details.end_3}}</td>
+                <td>{{v.details.ball_6}}</td>
+                <td>{{v.details.ball_7}}</td>
+                <td>{{v.details.ball_8}}</td>
+                <td>{{v.details.ball_9}}</td>
+                <td>{{v.details.ball_10}}</td>
+                <td>{{get_result(v.open_codes[0],v.open_codes[0])}}</td>
                 <td>{{v.opentime}}</td>
               </tr>
           </tbody>
@@ -57,7 +61,7 @@
 <script>
 export default
 {
-    name:'cqssc_history',
+    name:'pk10_history',
     data()
     {
       return{
@@ -78,9 +82,9 @@ export default
     {
         get_all_history:function(page = 1,per_page = 15)
         {
-            this.$http.get(`${this.api}/admin/ssc/history/lottery/page/${page}/per_page/${per_page}`)
+            this.$http.get(`${this.api}/admin/pk10/history/lottery/page/${page}/per_page/${per_page}`)
               .then(function(res){
-                   if(res.data.status == 200)
+                if(res.data.status == 200)
                    {
                       this.history_codes = res.data.data.list;
                       this.hasPrev = res.data.data.hasPrev;
@@ -144,19 +148,29 @@ export default
                 }
                 else
                 {
-                  console.log('the codes of cqssc\'s history was load failed');
+                  console.log('the codes of pk10c\'s history was load failed');
                 }
               });
           }
         },
+        get_result:function(first,second)
+        {
+            let no1 = parseInt(first);
+            let no2 = parseInt(second);
+            let str = '';
+            str += (no1+no2) + '  |   ';
+            str += (no1+no2)>11?'大':'小';
+            return str;
+        }
     },
 };
 </script>
 
 <style scoped>
   .table {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     margin-top: 50px;
+    font-size:12px;
   }
 </style>

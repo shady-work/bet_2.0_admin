@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(v,k) in list" class="text-center">
+                <tr v-for="(v,k) in list" class="text-center" v-if="v.user">
                         <td>{{k+1}}</td>
                         <td>{{v.user.username}}</td>
                         <td>{{v.user.nickname}}</td>
@@ -32,11 +32,11 @@
                         <td>{{v.trad_max}}</td>
                         <td>{{v.trad_url?v.trad_url:'尚未设定'}}</td>
                         <td>
-                            <!-- <button class="btn btn-danger" @click="delete_rule(v.id)">删除</button> -->
+
                             <button class="btn btn-primary" @click="edit_one(v.id)">
                                     编辑
                             </button>
-                            
+
                         </td>
                 </tr>
             </tbody>

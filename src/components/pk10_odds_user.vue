@@ -6,7 +6,7 @@
         <td>序号</td>
         <td>用户名</td>
         <td>昵称</td>
-        <td>所选盘口</td>
+        <td>默认盘口</td>
         <td>操作</td>
       </tr>
       </thead>
@@ -21,7 +21,6 @@
           </select>
         </td>
         <td>
-          <button class="btn btn-danger" @click="delete_handicap(v.id)">删除</button>
           <button class="btn btn-info" @click="add_hancicap(v.ratewin_name,v.id)">添加</button>
           <button class="btn btn-primary" @click="change_handicap(v.ratewin_name,v.id)">修改</button>
         </td>
@@ -47,7 +46,6 @@
         </div>
 
         <div class="panel-footer">
-          <!--<button class="btn btn-primary pull-right" @click="do_add()">添加</button>-->
           <button class="btn btn-info pull-right mr10" @click="isShow = false">取消</button>
           <div class="clearfix"></div>
         </div>
@@ -60,7 +58,7 @@
 
 <script>
   export default {
-    name: 'cqssc_odds_user',
+    name: 'pk10_odds_user',
     data: function () {
       return {
         list: [],
@@ -77,7 +75,7 @@
     },
     methods: {
       get_all_handicap: function () {
-        this.$http.get(`${this.api}/admin/ssc/odds`)
+        this.$http.get(`${this.api}/admin/pk10/odds`)
           .then(function (res) {
             if (res.data.status == 200) {
                 for(let i = 0;i<res.data.data.odds_list.length;i++)
@@ -91,9 +89,8 @@
           })
       },
       get_all: function () {
-        this.$http.get(`${this.api}/admin/ssc/ratelist`)
+        this.$http.get(`${this.api}/admin/pk10/ratelist`)
           .then(function (res) {
-            console.log(res.data);
             if (res.data.status == 200) {
               this.list = res.data.data.ratelist;
             }
@@ -103,7 +100,7 @@
           });
       },
       change_handicap:function(val,handicap_id){
-          this.$http.put(`${this.api}/admin/ssc/ratelist/${handicap_id}`,{"ratewin_name":val,sel:1})
+          this.$http.put(`${this.api}/admin/pk10/ratelist/${handicap_id}`,{"ratewin_name":val,sel:1})
             .then(function(res)
             {
                 if(res.data.status == 201)
@@ -118,7 +115,7 @@
             });
       },
       delete_handicap:function(handicap_id){
-        this.$http.put(`${this.api}/admin/ssc/ratelist/${handicap_id}`)
+        this.$http.put(`${this.api}/admin/pk10/ratelist/${handicap_id}`)
           .then(function(res)
           {
             console.log(res.data);
@@ -130,7 +127,6 @@
             else
             {
               alert('删除失败');
-
             }
           });
       },
@@ -152,21 +148,21 @@
         this.user_id = user_id;
       },
       do_add:function(handicap_id){
-         this.$http.post(`${this.api}/admin/ssc/ratelist/`,{
+         this.$http.post(`${this.api}/admin/pk10/ratelist/`,{
            user_id:this.user_id,
            ratewin_name:handicap_id,
            sel:0,
          }).then(function(res){
-           if(res.data.status == 200)
-           {
-             alert(res.data.msg);
-             return;
-           }
-           else
-           {
-             alert(res.data.msg);
-             return;
-           }
+            if(res.data.status == 200)
+            {
+              alert(res.data.msg);
+              return;
+            }
+            else
+            {
+              alert(res.data.msg);
+              return;
+            }
          });
       }
     },

@@ -165,7 +165,7 @@
 <script>
 export default
 {
-    name:'cqssc_history',
+    name:'pk10_history',
     data()
     {
       return{
@@ -226,9 +226,9 @@ export default
     {
         get_all_history:function(page = 1,per_page = 15)
         {
-            this.$http.get(`${this.api}/admin/ssc/history/order/page/${page}/per_page/${per_page}`)
+            this.$http.get(`${this.api}/admin/pk10/history/order/page/${page}/per_page/${per_page}`)
               .then(function(res){
-                   if(res.data.status == 200)
+                if(res.data.status == 200)
                    {
                       this.history_codes = res.data.data.list;
                       this.hasPrev = res.data.data.hasPrev;

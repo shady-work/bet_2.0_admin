@@ -4,7 +4,7 @@ import App from './App';
 import router from './router';
 import vuex from 'vuex';
 import VueResource from 'vue-resource';/*引入资源请求插件*/
-import $ from './assets/js/jquery.min.js';
+import './assets/js/jquery.min.js';
 import './assets/js/bootstrap';
 
 

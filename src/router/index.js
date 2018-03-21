@@ -14,7 +14,21 @@ import cqssc_odds_user from '../components/cqssc_odds_user'
 import cqssc_history from '../components/cqssc_history'
 import cqssc_history_bet from '../components/cqssc_history_bet'
 import cqssc_turntable from '../components/cqssc_turntable'
-
+import pk10 from '../components/pk10'
+import pk10_odds from '../components/pk10_odds'
+import pk10_odds_user from '../components/pk10_odds_user'
+import pk10_history from '../components/pk10_history'
+import pk10_history_bet from '../components/pk10_history_bet'
+import pcegg from '../components/pcegg'
+import pcegg_history from '../components/pcegg_history'
+import pcegg_history_bet from '../components/pcegg_history_bet'
+import pcegg_odds from '../components/pcegg_odds'
+import pcegg_odds_user from '../components/pcegg_odds_user'
+import cake from '../components/cake'
+import cake_history from '../components/cake_history'
+import cake_history_bet from '../components/cake_history_bet'
+import cake_odds from '../components/cake_odds'
+import cake_odds_user from '../components/cake_odds_user'
 
 Vue.use(Router)
 
@@ -86,6 +100,81 @@ export default new Router({
           path:'cqssc_turntable',  //cqssc_turntable page
           name:'cqssc_turntable',
           component:cqssc_turntable,
+        },
+        {
+          path:'pk10',  //pk10 page
+          name:'pk10',
+          component:pk10,
+        },
+        {
+          path:'pk10_odds',  //pk10_odds page
+          name:'pk10_odds',
+          component:pk10_odds,
+        },
+        {
+          path:'pk10_odds_user',  //pk10_odds_user page
+          name:'pk10_odds_user',
+          component:pk10_odds_user,
+        },
+        {
+          path:'pk10_history',  //pk10_history page
+          name:'pk10_history',
+          component:pk10_history,
+        },
+        {
+          path:'pk10_history_bet',  //pk10_history_bet page
+          name:'pk10_history_bet',
+          component:pk10_history_bet,
+        },
+        {
+          path:'pcegg',  //pcegg page
+          name:'pcegg',
+          component:pcegg,
+        },
+        {
+          path:'pcegg_history',  //pcegg_history page
+          name:'pcegg_history',
+          component:pcegg_history,
+        },
+        {
+          path:'pcegg_history_bet',  //pcegg_history_bet page
+          name:'pcegg_history_bet',
+          component:pcegg_history_bet,
+        },
+        {
+          path:'pcegg_odds',  //pcegg_odds page
+          name:'pcegg_odds',
+          component:pcegg_odds,
+        },
+        {
+          path:'pcegg_odds_user',  //pcegg_odds_user page
+          name:'pcegg_odds_user',
+          component:pcegg_odds_user,
+        },
+        {
+          path:'cake',  //cake page
+          name:'cake',
+          component:cake,
+        },
+        {
+          path:'cake_history',  //cake_history page
+          name:'cake_history',
+          component:cake_history,
+        },
+        {
+          path:'cake_history_bet',  //cake_history_bet page
+          name:'cake_history_bet',
+          component:cake_history_bet,
+        },
+        {
+          path:'cake_odds',  //cake_odds page
+          name:'cake_odds',
+          component:cake_odds,
+        },
+        {
+          path:'cake_odds_user',  //cake_odds_user page
+          name:'cake_odds_user',
+          component:cake_odds_user,
         },
 
       ],

@@ -1,59 +1,171 @@
 <template>
   <div id="left">
-      <div class="list-admin c-3f " @click="toUrl('users')">
+      <!--用户管理-->
+      <div class="list-admin c-3f " @click="showUsers()">
          用户管理
       </div>
-      <div class="list-admin-items">
-        <router-link to="users" >查看用户信息</router-link>
-        <router-link to="user_money" class="active" >查看用户金额</router-link>
-        <router-link to="add_user" >添加用户</router-link>
+      <div class="items" id="users" style="display:none;">
+        <div class="list-admin-items">
+          <router-link to="users" >查看用户信息</router-link>
+          <router-link to="user_money" class="active" >查看用户金额</router-link>
+          <router-link to="add_user" >添加用户</router-link>
+        </div>
       </div>
-
-
-    <div class="list-admin c-3f " @click="toUrl('recharge')">
+      <!--充值-->
+      <div class="list-admin c-3f " @click="toUrl('recharge')">
        充值
-    </div>
-
-    <div class="list-admin c-3f " @click="toUrl('withdraw')">
+      </div>
+      <!--提现-->
+      <div class="list-admin c-3f " @click="toUrl('withdraw')">
        提现
-    </div>
+      </div>
+      <!--重庆时时彩-->
+      <div class="list-admin c-3f show-cqssc" @click="showitems_cqssc()" >
+         重庆时时彩
+      </div>
+      <div class="items-cqssc" id="cq" style="display:none;">
+          <div class="list-admin-items">
+            <router-link to="cqssc" >用户注额列表</router-link>
+          </div>
+          <div class="list-admin-items">
+            <router-link to="cqssc_odds" >赔率列表</router-link>
+          </div>
+          <div class="list-admin-items">
+            <router-link to="cqssc_odds_user" >用户赔率列表</router-link>
+          </div>
+          <div class="list-admin-items">
+            <router-link to="cqssc_history" >开奖历史</router-link>
+          </div>
+          <div class="list-admin-items">
+            <router-link to="cqssc_history_bet" >下注历史</router-link>
+          </div>
+          <div class="list-admin-items">
+            <router-link to="cqssc_turntable" >转盘列表</router-link>
+          </div>
+      </div>
 
-    <div class="list-admin c-3f " @click="toUrl('withdraw')">
-       重庆时时彩
-    </div>
-      <div class="list-admin-items">
-        <router-link to="cqssc" >用户注额列表</router-link>
+      <!--北京pk10-->
+      <div class="list-admin c-3f " @click="showitems_pk10()" >
+        北京赛车pk10
       </div>
-      <div class="list-admin-items">
-        <router-link to="cqssc_odds" >赔率列表</router-link>
+      <div class="items" id="pk10" style="display:none;">
+        <div class="list-admin-items">
+          <router-link to="pk10" >用户注额列表</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="pk10_odds" >赔率列表</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="pk10_odds_user" >用户赔率列表</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="pk10_history" >开奖历史</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="pk10_history_bet" >下注历史</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="cqssc_turntable" >转盘列表</router-link>
+        </div>
       </div>
-      <div class="list-admin-items">
-        <router-link to="cqssc_odds_user" >用户赔率列表</router-link>
+
+      <!--pc蛋蛋-->
+      <div class="list-admin c-3f " @click="showitems_pcegg()" >
+        PC蛋蛋
       </div>
-      <div class="list-admin-items">
-        <router-link to="cqssc_history" >开奖历史</router-link>
+      <div class="items" id="pcegg" style="display:none;">
+        <div class="list-admin-items">
+          <router-link to="pcegg" >用户注额列表</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="pcegg_odds" >赔率列表</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="pcegg_odds_user" >用户赔率列表</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="pcegg_history" >开奖历史</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="pcegg_history_bet" >下注历史</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="cqssc_turntable" >转盘列表</router-link>
+        </div>
       </div>
-      <div class="list-admin-items">
-        <router-link to="cqssc_history_bet" >下注历史</router-link>
+
+
+      <!--cake_no-->
+      <div class="list-admin c-3f " @click="showitems_cake()" >
+        加拿大28
       </div>
-      <div class="list-admin-items">
-        <router-link to="cqssc_turntable" >转盘列表</router-link>
+      <div class="items" id="cake" style="display:none;">
+        <div class="list-admin-items">
+          <router-link to="cake" >用户注额列表</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="cake_odds" >赔率列表</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="cake_odds_user" >用户赔率列表</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="cake_history" >开奖历史</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="cake_history_bet" >下注历史</router-link>
+        </div>
+        <div class="list-admin-items">
+          <router-link to="cqssc_turntable" >转盘列表</router-link>
+        </div>
       </div>
+
+
+
   </div>
 </template>
 <script>
+  import '../assets/js/jquery.min.js';
   export default
   {
+      data()
+      {
+         return{
+           isShowCqssc:false,
+         }
+
+      },
       methods:
       {
         toUrl:function(uri)
         {
           this.$router.push(uri);
         },
-
+        showitems_cqssc:function()
+        {
+            $('#cq').slideToggle(100);
+        },
+        showUsers:function()
+        {
+           $('#users').slideToggle(100);
+        },
+        showitems_pk10:function ()
+        {
+          $('#pk10').slideToggle(100);
+        },
+        showitems_pcegg:function ()
+        {
+          $('#pcegg').slideToggle(100);
+        },
+        showitems_cake:function ()
+        {
+          $('#cake').slideToggle(100);
+        },
+        //
       }
 
-  }
+  };
+
 </script>
 
 <style scoped>
@@ -98,16 +210,20 @@
   .c-3f
   {
     color: #fff;
-
   }
   .list-admin
   {
-    height: 35px;
-    line-height: 35px;
+    height: 45px;
+    line-height: 45px;
     text-indent:25px;
     font-weight: 700;
-    font-size: 14px;
-    border-bottom: 1px solid #222
+    font-size: 16px;
+    border-bottom: 1px solid #222;
+    cursor:pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
   #left>.active
   {
@@ -115,8 +231,11 @@
   }
   .list-admin-items
   {
-
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid gray;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
   .list-admin-items>a
   {
@@ -127,6 +246,12 @@
     padding-bottom: 5px;
     color: #fff;
     text-decoration: none!important;
+    height:40px;
+    line-height:30px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
   .list-admin-items>a:hover
   {

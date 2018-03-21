@@ -1,6 +1,5 @@
 <template>
     <div id="cqssc_history">
-
         <table class="table table-bordered table-hover table-striped text-center">
            <thead>
              <tr>
@@ -165,7 +164,7 @@
 <script>
 export default
 {
-    name:'cqssc_history',
+    name:'pcegg_history_bet',
     data()
     {
       return{
@@ -226,9 +225,9 @@ export default
     {
         get_all_history:function(page = 1,per_page = 15)
         {
-            this.$http.get(`${this.api}/admin/ssc/history/order/page/${page}/per_page/${per_page}`)
+            this.$http.get(`${this.api}/admin/egg/history/order/page/${page}/per_page/${per_page}`)
               .then(function(res){
-                   if(res.data.status == 200)
+                if(res.data.status == 200)
                    {
                       this.history_codes = res.data.data.list;
                       this.hasPrev = res.data.data.hasPrev;
