@@ -21,7 +21,7 @@
               {{v.ssc_ratelist[key]?v.ssc_ratelist[key]:(v.ssc_ratelist[key]={})}}
             </div>
             <input type="checkbox"   v-model="list[k].ssc_ratelist[key].ratewin_name" v-bind:value="val"   >
-          
+
             {{val}}盘
           </div>
         </td>

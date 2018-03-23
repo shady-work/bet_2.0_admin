@@ -1,6 +1,73 @@
+
+<style scoped>
+  #users
+  {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+  }
+  .table
+  {
+    width: 80%;
+    margin:0 auto;
+    margin-top: 10px;
+  }
+  #myModal>.panel
+  {
+    width: 600px;
+    margin-top: 50px;
+  }
+  #search
+  {
+    height:40px;
+    width: 80%;
+    margin:0 auto;
+    margin-top: 15px;
+  }
+
+  #search>.search-input
+  {
+    width: 220px;
+  }
+  #user-type,#user-type-1
+  {
+    width: 150px;
+  }
+  .user-type-str
+  {
+    height: 34px;
+    line-height: 34px;
+    font-size: 13px;
+  }
+</style>
+
 <template>
    <div id="users">
-       <div id="search"></div>
+       <div id="search">
+         <input type="text" class="form-control search-input pull-left" v-model="username" placeholder="请输入用户名">
+         <div class="user-type-str pull-left ml10">用户类型</div>
+         <select v-model="type" class="form-control pull-left ml10" id="user-type">
+           <option v-bind:value="null">不限</option>
+           <option v-bind:value="3">管理</option>
+           <option v-bind:value="2">代理</option>
+           <option v-bind:value="1">推广</option>
+           <option v-bind:value="0">会员</option>
+
+         </select>
+         <div class="user-type-str pull-left ml10">是否禁用</div>
+         <select v-model="status" class="form-control pull-left ml10" id="user-type-1">
+           <option v-bind:value="null">不限</option>
+           <option v-bind:value="1">启用</option>
+           <option v-bind:value="0">禁用</option>
+         </select>
+         <button class="btn btn-success ml10 pull-left " @click="search_user">查找</button>
+         <div class="clearfix"></div>
+       </div>
+
+
+
+
         <table class="table table-bordered  table-hover text-center table-striped">
           <thead>
             <tr class=" active">
@@ -28,9 +95,9 @@
                   <b class="text-info" v-if="v.status == 1">可用</b>
               </td>
               <td>
-                  <b v-if="v.type == 0">普通用户</b>
-                  <b v-if="v.type == 1">代理</b>
-                  <b v-if="v.type == 2">经理</b>
+                  <b v-if="v.type == 0">会员</b>
+                  <b v-if="v.type == 1">推广</b>
+                  <b v-if="v.type == 2">代理</b>
                   <b v-if="v.type == 3">管理</b>
               </td>
               <td>
@@ -62,42 +129,42 @@
      <br>
      <br>
 
-       <!--修改用户信息-->
-       <div id="myModal" v-show="isShow" @click="close()">
-           <div class="panel panel-info center-block" @click="stop_cancel()">
+     <!--修改用户信息-->
+     <div id="myModal" v-show="isShow" @click="close()">
+         <div class="panel panel-info center-block" @click="stop_cancel()">
 
-             <div class="panel-heading">修改用户信息</div>
+           <div class="panel-heading">修改用户信息</div>
 
-             <div class="panel-body form-horizontal">
+           <div class="panel-body form-horizontal">
 
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">昵称</label>
-                  <div class="col-sm-10">
-                    <input type="text" v-model="nickname" class="form-control" id="inputEmail3" placeholder="请输入">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label  class="col-sm-2 control-label">类型</label>
-                  <div class=" col-sm-10">
-                    <select class="form-control" v-model="user_type">
-                      <option v-bind:value="0">普通用户</option>
-                      <option v-bind:value="1">代理</option>
-                      <option v-bind:value="2">经理</option>
-                      <option v-bind:value="3">管理</option>
-                    </select>
-                  </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">昵称</label>
+                <div class="col-sm-10">
+                  <input type="text" v-model="nickname" class="form-control" id="inputEmail3" placeholder="请输入">
                 </div>
               </div>
 
-             <div class="panel-footer">
-               <button class="btn btn-primary pull-right" @click="do_edit()">修改</button>
-               <button class="btn btn-info pull-right mr10" @click="isShow = false">取消</button>
-               <div class="clearfix"></div>
-             </div>
+              <div class="form-group">
+                <label  class="col-sm-2 control-label">类型</label>
+                <div class=" col-sm-10">
+                  <select class="form-control" v-model="user_type">
+                    <option v-bind:value="0">普通用户</option>
+                    <option v-bind:value="1">代理</option>
+                    <option v-bind:value="2">经理</option>
+                    <option v-bind:value="3">管理</option>
+                  </select>
+                </div>
+              </div>
+            </div>
 
+           <div class="panel-footer">
+             <button class="btn btn-primary pull-right" @click="do_edit()">修改</button>
+             <button class="btn btn-info pull-right mr10" @click="isShow = false">取消</button>
+             <div class="clearfix"></div>
            </div>
-       </div>
+
+         </div>
+     </div>
 
 
    </div>
@@ -121,6 +188,12 @@
             hasPrev:false,
             nextPageUrl:'',
             prevPageUrl:'',
+            type:null,
+            agent:null,
+            manager:null,
+            username:null,
+            nickname_s:null,
+            status:null,
         };
         return data;
      },
@@ -291,7 +364,72 @@
               return;
             }
           });
-        }
+        },
+       /**
+        * search user
+        * @param1 type:用户类型 0 1 2 3
+        * @param2 agent 查看指定推广下面的用户
+        * @param3 manager 查找指定代理下的用户列表
+        * @param4  username: 根据用户名模糊查询
+        * @param5  nickname: 可 根据昵称模糊查询
+        */
+        search_user:function()
+        {
+            console.log("type:" + this.type + '\n');
+            console.log("agent:" + this.agent + '\n');
+            console.log("manager:" + this.manager + '\n');
+            console.log("username:" + this.username + '\n');
+            console.log("nickname_s:" + this.nickname_s + '\n');
+            console.log("status:" + this.status + '\n');
+            console.log("--------------------------\n");
+           return;
+            this.users = [];
+            let url = this.search_url(
+            {
+              type:this.type,
+              agent:this.agent,
+              manager:this.manager,
+              username:this.username,
+              nickname_s:this.nickname_s,
+            });
+            this.$http.get(url).then(function(res){
+                console.log(res.data);
+                if(res.data.status == 200)
+                {
+                  this.users = res.data.data.list;
+                  this.hasPrev = res.data.data.hasPrev;
+                  this.hasNext = res.data.data.hasNext;
+                  this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
+                  this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
+                  if(this.users.length<1)
+                  {
+                     alert('没有符合条件的数据.');
+                  }
+                }
+            });
+        },
+
+
+       /**
+        *
+        * @param maps
+        * @returns {string}
+        */
+       search_url:function(maps={type:null,agent:null,manager:null,username:null,nickname:null,status:null})
+         {
+              let url = `${this.api}/admin/users?`;
+              let keys = Object.keys(maps);
+              for(let i = 0;i<keys.length;i++)
+              {
+                  if(maps[keys[i]] != null)
+                  {
+                    url += keys[i] + '=' + maps[keys[i]] + '&';
+                  }
+              }
+              return url;
+         },
+
+
      },//end of methods
      created:function()
      {
@@ -300,24 +438,3 @@
 
   }
 </script>
-
-<style scoped>
-  #users
-  {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    font-size: 12px;
-  }
-  .table
-  {
-    width: 80%;
-    margin:0 auto;
-    margin-top: 50px;
-  }
-  #myModal>.panel
-  {
-    width: 600px;
-    margin-top: 50px;
-  }
-</style>

@@ -1,6 +1,9 @@
 <template>
   <div id="withdraw">
-     <h2 v-show='one_user_recharge'>当前正在查看shady的提现记录，<button class="btn btn-info">返回查看所有人提现记录</button></h2>
+      <ul class="nav nav-tabs my-nav  nav-justified">
+        <li role="presentation"><a href="#/recharge">充值</a></li>
+        <li role="presentation"  class="active" ><a >提现</a></li>
+      </ul>
       <table class="table table-hover table-bordered table-striped text-center">
           <thead>
             <tr >
@@ -97,12 +100,18 @@ export default {
   }
 };
 </script>
-
 <style scoped>
-.table
+  .table
   {
     width: 80%;
     margin:0 auto;
-    margin-top: 50px;
+    margin-top: 10px;
+  }
+  .my-nav
+  {
+    width:80%;
+    margin:0 auto;
+    margin-top: 10px;
   }
 </style>
+

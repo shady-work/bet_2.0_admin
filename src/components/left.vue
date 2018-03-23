@@ -12,12 +12,12 @@
       </div>
       <!--充值-->
       <div class="list-admin c-3f " @click="toUrl('recharge')">
-       充值
+        资金明细
       </div>
       <!--提现-->
-      <div class="list-admin c-3f " @click="toUrl('withdraw')">
-       提现
-      </div>
+      <!--<div class="list-admin c-3f " @click="toUrl('withdraw')">-->
+       <!--提现-->
+      <!--</div>-->
       <!--重庆时时彩-->
       <div class="list-admin c-3f show-cqssc" @click="showitems_cqssc()" >
          重庆时时彩
@@ -119,8 +119,13 @@
         </div>
       </div>
 
-      <div class="list-admin c-3f "  >
+      <div class="list-admin c-3f"  @click="toUrl('watch_order')">
         watch_order
+      </div>
+
+
+      <div class="list-admin c-3f"  @click="toUrl('articles')">
+        articles
       </div>
 
 
