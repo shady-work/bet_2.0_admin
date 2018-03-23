@@ -1,22 +1,27 @@
 <template>
    <div id="users">
+       <div id="search"></div>
         <table class="table table-bordered  table-hover text-center table-striped">
           <thead>
             <tr class=" active">
-              <td class="h3">序号</td>
-              <td class="h3">用户名</td>
-              <td class="h3">昵称</td>
-              <td class="h3">用户加入时间</td>
-              <td class="h3">是否可用</td>
-              <td class="h3">用户类型</td>
-              <td class="h3">操作</td>
+              <td >用户ID</td>
+              <td >用户名</td>
+              <td >昵称</td>
+              <td >现金额度</td>
+              <td >信用额度</td>
+              <td >用户加入时间</td>
+              <td >是否可用</td>
+              <td >用户类型</td>
+              <td >操作</td>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(v,k,index) in users" class="">
-              <td>{{k}}</td>
+            <tr v-for="(v,k,index) in users" >
+              <td>{{v.user_id}}</td>
               <td>{{v.username}}</td>
               <td>{{v.nickname}}</td>
+              <td>{{v.money.cash_money}}</td>
+              <td>{{v.money.credit_money}}</td>
               <td>{{v.ctime}}</td>
               <td>
                   <b class="text-danger" v-if="v.status != 1">禁用</b>
@@ -29,13 +34,33 @@
                   <b v-if="v.type == 3">管理</b>
               </td>
               <td>
-                <button v-if="v.status == 1"  class="btn btn-danger"  @click="user_disabled(v.id)">禁用</button>
-                <button v-if="v.status == 0"  class="btn btn-info"  @click="user_open(v.id)">启用</button>
-                <button class="btn btn-primary" @click="user_edit(v.nickname,v.type,v.id)">修改</button>
+                <button v-if="v.status == 1"  class="btn btn-danger btn-sm"  @click="user_disabled(v.user_id)">禁用</button>
+                <button v-if="v.status == 0"  class="btn btn-info btn-sm"  @click="user_open(v.user_id)">启用</button>
+                <button class="btn btn-primary btn-sm" @click="user_edit(v.nickname,v.type,v.user_id)">修改</button>
               </td>
             </tr>
           </tbody>
         </table>
+
+       <div class="row mt15">
+         <div class="col-md-5"></div>
+         <div class="col-md-3">
+           <button class="btn btn-primary" @click="prevPage()">
+             上一页
+           </button>
+
+           <button class="btn btn-info"  @click="nextPage()">
+             下一页
+           </button>
+
+           <span>当前第{{page}}页</span>
+           <br>
+           <br>
+         </div>
+         <div class="col-md-4"></div>
+       </div>
+     <br>
+     <br>
 
        <!--修改用户信息-->
        <div id="myModal" v-show="isShow" @click="close()">
@@ -90,6 +115,12 @@
             nickname:'',
             isShow:false,
             user_id:false,
+            page:1,
+            per_page:15,
+            hasNext:false,
+            hasPrev:false,
+            nextPageUrl:'',
+            prevPageUrl:'',
         };
         return data;
      },
@@ -102,9 +133,14 @@
         {
             this.$http.get(`${this.api}/admin/users`).then(function(res)
             {
-               if(res.data.status == 200)
+
+              if(res.data.status == 200)
                {
-                 this.users = res.data.data.user;
+                 this.users = res.data.data.list;
+                 this.hasPrev = res.data.data.hasPrev;
+                 this.hasNext = res.data.data.hasNext;
+                 this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
+                 this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
                }
                else
                {
@@ -112,6 +148,60 @@
                }
             });
         },
+       prevPage:function()
+       {
+         if(this.prevPageUrl == '')
+         {
+           alert('没有上一页了');
+           return;
+         }
+         else
+         {
+           this.page--;
+           this.$http.get(`${this.api}${this.prevPageUrl}`)
+             .then(function(res){
+               if(res.data.status == 200)
+               {
+                 this.users = res.data.data.list;
+                 this.hasPrev = res.data.data.hasPrev;
+                 this.hasNext = res.data.data.hasNext;
+                 this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
+                 this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
+               }
+               else
+               {
+                 console.log('the codes of cqssc\'s history was load failed');
+               }
+             });
+         }
+       },
+       nextPage:function()
+       {
+         if(this.nextPageUrl == '')
+         {
+           alert('没有下一页了');
+           return;
+         }
+         else
+         {
+           this.page++;
+           this.$http.get(`${this.api}${this.nextPageUrl}`)
+             .then(function(res){
+               if(res.data.status == 200)
+               {
+                 this.users = res.data.data.list;
+                 this.hasPrev = res.data.data.hasPrev;
+                 this.hasNext = res.data.data.hasNext;
+                 this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
+                 this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
+               }
+               else
+               {
+                 console.log('the codes of pk10c\'s history was load failed');
+               }
+             });
+         }
+       },
        /**
         * 禁用用户
         * @param user_id
@@ -133,6 +223,7 @@
             }
           });
         },
+
        /**
         * open user
         * @param user_id
@@ -184,7 +275,7 @@
         */
         do_edit:function(user_id)
         {
-          this.$http.put(`${this.api}/admin/users/${this.user_id}`,{nickname:this.nickname}).then(function(res)
+          this.$http.put(`${this.api}/admin/users/${this.user_id}`,{nickname:this.nickname,type:this.user_type}).then(function(res)
           {
             if(res.data.status == 201)
             {
@@ -216,7 +307,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    font-size: 12px;
   }
   .table
   {

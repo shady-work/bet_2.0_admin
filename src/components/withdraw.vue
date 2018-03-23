@@ -37,7 +37,7 @@
                 </td>
             </tr>
           </tbody>
-          
+
       </table>
   </div>
 </template>
@@ -93,7 +93,7 @@ export default {
   created: function() {
     this.get_recharge_list();
 
-    
+
   }
 };
 </script>

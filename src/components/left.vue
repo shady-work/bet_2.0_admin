@@ -7,7 +7,6 @@
       <div class="items" id="users" style="display:none;">
         <div class="list-admin-items">
           <router-link to="users" >查看用户信息</router-link>
-          <router-link to="user_money" class="active" >查看用户金额</router-link>
           <router-link to="add_user" >添加用户</router-link>
         </div>
       </div>
@@ -120,6 +119,9 @@
         </div>
       </div>
 
+      <div class="list-admin c-3f "  >
+        watch_order
+      </div>
 
 
   </div>

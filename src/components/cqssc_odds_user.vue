@@ -13,47 +13,24 @@
       <tbody>
       <tr v-for="(v,k) in list">
         <td>{{k}}</td>
-        <td>{{v.user.username}}</td>
-        <td>{{v.user.nickname}}</td>
+        <td>{{v.username}}</td>
+        <td>{{v.nickname}}</td>
         <td>
-          <select  class="form-control" v-model="v.ratewin_name">
-            <option v-for="(val,key) in all_handicap" v-bind:value="val">{{val}}</option>
-          </select>
+          <div v-for="(val,key) in all_handicap">
+            <div class="hide">
+              {{v.ssc_ratelist[key]?v.ssc_ratelist[key]:(v.ssc_ratelist[key]={})}}
+            </div>
+            <input type="checkbox"   v-model="list[k].ssc_ratelist[key].ratewin_name" v-bind:value="val"   >
+          
+            {{val}}盘
+          </div>
         </td>
         <td>
-          <button class="btn btn-danger" @click="delete_handicap(v.id)">删除</button>
-          <button class="btn btn-info" @click="add_hancicap(v.ratewin_name,v.id)">添加</button>
-          <button class="btn btn-primary" @click="change_handicap(v.ratewin_name,v.id)">修改</button>
+          <button class="btn btn-primary" @click="change_handicap(v.user_id,k)">修改</button>
         </td>
       </tr>
       </tbody>
     </table>
-
-
-
-    <div id="myModal" v-show="isShow" @click="close()">
-      <div class="panel panel-info center-block" @click="stop_cancel()">
-
-        <div class="panel-heading">添加盘口</div>
-
-        <div class="panel-body form-horizontal">
-
-          <div class="form-group" >
-            <button  v-for="(val,key) in all_handicap" class="btn btn-warning center-block" v-if="val != user_has_handicap" @click="do_add(val)">
-                添加{{val}}盘
-            </button>
-          </div>
-
-        </div>
-
-        <div class="panel-footer">
-          <!--<button class="btn btn-primary pull-right" @click="do_add()">添加</button>-->
-          <button class="btn btn-info pull-right mr10" @click="isShow = false">取消</button>
-          <div class="clearfix"></div>
-        </div>
-
-      </div>
-    </div>
 
   </div>
 </template>
@@ -69,17 +46,44 @@
         user_has_handicap:'',
         user_id:0,
         ratewin_name:'',
+        user_choose:[],
+        num:0,
       };
     },
     created: function () {
-      this.get_all();
+
       this.get_all_handicap();
     },
     methods: {
+      test:function(){
+         console.log(1);
+      },
+      my_filter:function(center,all_data,k){
+         //console.log(center);
+         //console.log(all_data);
+        for(let i = 0 ;i<all_data.length;i++)
+        {
+
+             if(JSON.stringify(all_data[i]) != "{}")
+             {
+
+               if(center == all_data[i].ratewin_name)
+               {
+                 this.num = i;
+                 break;
+               }
+
+             }
+
+
+        }
+          return true;
+      },
       get_all_handicap: function () {
         this.$http.get(`${this.api}/admin/ssc/odds`)
           .then(function (res) {
             if (res.data.status == 200) {
+              this.all_handicap = [];
                 for(let i = 0;i<res.data.data.odds_list.length;i++)
                 {
                    this.all_handicap.push((res.data.data.odds_list[i].name).toUpperCase());
@@ -88,41 +92,94 @@
             else {
               console.log(`盘口加载失败`);
             }
-          })
+          }).then(function(){
+          this.get_all();
+        });
       },
       get_all: function () {
         this.$http.get(`${this.api}/admin/ssc/ratelist`)
           .then(function (res) {
             console.log(res.data);
             if (res.data.status == 200) {
-              this.list = res.data.data.ratelist;
+              this.list = res.data.data.list;
+              for(let i = 0 ; i<this.list.length;i++)
+              {
+                this.list[i].oldpk = [];
+                for (let j = 0;j<this.all_handicap.length;j++)
+                {
+                    if(this.list[i].ssc_ratelist[j] && this.list[i].ssc_ratelist[j].ratewin_name)
+                    {
+                      this.list[i].oldpk.push(this.list[i].ssc_ratelist[j].ratewin_name);
+                    }
+                    else
+                    {
+                      this.list[i].oldpk.push(false);
+                    }
+                }
+
+              }
             }
             else {
               console.log(`加载失败`);
             }
           });
       },
-      change_handicap:function(val,handicap_id){
-          this.$http.put(`${this.api}/admin/ssc/ratelist/${handicap_id}`,{"ratewin_name":val,sel:1})
-            .then(function(res)
-            {
-                if(res.data.status == 201)
-                {
-                  alert(res.data.msg);
-                  return;
-                }
-                else
-                {
-                  alert('修改失败');
-                }
-            });
+      change_handicap:function(user_id,index){
+
+        for(let i = 0;i<this.list[index].ssc_ratelist.length;i++)
+        {
+
+          if(this.list[index].oldpk[i])
+          {
+             if(this.list[index].ssc_ratelist[i].ratewin_name === false)
+             {
+                  this.delete_handicap(this.list[index].ssc_ratelist[i].id);
+             }
+          }
+          if(this.list[index].ssc_ratelist[i].ratewin_name === true)
+          {
+               if(this.list[index].oldpk[i])
+               {
+                  console.log('以前就有的');
+               }
+               else
+               {
+                   this.$http.post(`${this.api}/admin/ssc/ratelist`,
+                   {
+                     "ratewin_name":this.all_handicap[i],
+                     sel:0,
+                     user_id:user_id
+                   })
+                   .then(function(res)
+                   {
+                     if(res.data.status == 201)
+                     {
+                       alert(this.all_handicap[i]+"盘:"+res.data.msg);
+                       return;
+                     }
+                     else
+                     {
+                       alert(this.all_handicap[i]+"盘:"+res.data.msg);
+                     }
+                   });
+               }
+          }
+         /* var that = this;
+          setTimeout(function(){
+            that.$router.go(0);
+          },500);*/
+
+
+        }
+
+        return;
       },
       delete_handicap:function(handicap_id){
-        this.$http.put(`${this.api}/admin/ssc/ratelist/${handicap_id}`)
+        this.$http.delete(`${this.api}/admin/ssc/ratelist/${handicap_id}`)
           .then(function(res)
           {
             console.log(res.data);
-            if(res.data.status == 201)
+            if(res.data.status == 200)
             {
               alert(res.data.msg);
               return;

@@ -29,6 +29,7 @@ import cake_history from '../components/cake_history'
 import cake_history_bet from '../components/cake_history_bet'
 import cake_odds from '../components/cake_odds'
 import cake_odds_user from '../components/cake_odds_user'
+import watch_order from '../components/watch_order'
 
 Vue.use(Router)
 
@@ -176,7 +177,11 @@ export default new Router({
           name:'cake_odds_user',
           component:cake_odds_user,
         },
-
+        {
+          path:'watch_order',  //watch_order page
+          name:'watch_order',
+          component:watch_order,
+        },
       ],
     }
     ,

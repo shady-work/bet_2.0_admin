@@ -77,6 +77,7 @@
       get_all_handicap: function () {
         this.$http.get(`${this.api}/admin/cake/odds`)
           .then(function (res) {
+
             if (res.data.status == 200) {
                 for(let i = 0;i<res.data.data.odds_list.length;i++)
                 {
@@ -91,6 +92,7 @@
       get_all: function () {
         this.$http.get(`${this.api}/admin/cake/ratelist`)
           .then(function (res) {
+
             if (res.data.status == 200) {
               this.list = res.data.data.ratelist;
             }

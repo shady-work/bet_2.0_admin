@@ -37,8 +37,27 @@
                 </td>
             </tr>
           </tbody>
-          
+
       </table>
+
+
+    <div class="row mt15">
+      <div class="col-md-5"></div>
+      <div class="col-md-3">
+        <button class="btn btn-primary" @click="prevPage()">
+          上一页
+        </button>
+
+        <button class="btn btn-info"  @click="nextPage()">
+          下一页
+        </button>
+
+        <span>当前第{{page}}页</span>
+        <br>
+        <br>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -47,7 +66,13 @@ export default {
     return {
       list: [], //recharge list
       list_all_back_up: [], //all recharge lit back up;
-      one_user_recharge: false //some one's recharge list
+      one_user_recharge: false, //some one's recharge list
+      page:1,
+      per_page:15,
+      hasNext:false,
+      hasPrev:false,
+      nextPageUrl:'',
+      prevPageUrl:'',
     };
   },
   methods: {
@@ -60,6 +85,10 @@ export default {
         if (res.data.status == 200) {
           this.list = res.data.data.topups;
           this.list_all_back_up = res.data.data.topups;
+          this.hasPrev = res.data.data.hasPrev;
+          this.hasNext = res.data.data.hasNext;
+          this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
+          this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
         }
       });
     },
@@ -75,6 +104,60 @@ export default {
           }
           this.get_recharge_list();
         });
+    },
+    prevPage:function()
+    {
+      if(this.prevPageUrl == '')
+      {
+        alert('没有上一页了');
+        return;
+      }
+      else
+      {
+        this.page--;
+        this.$http.get(`${this.api}${this.prevPageUrl}`)
+          .then(function(res){
+            if(res.data.status == 200)
+            {
+              this.list = res.data.data.topups;
+              this.hasPrev = res.data.data.hasPrev;
+              this.hasNext = res.data.data.hasNext;
+              this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
+              this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
+            }
+            else
+            {
+              console.log('the codes of cqssc\'s history was load failed');
+            }
+          });
+      }
+    },
+    nextPage:function()
+    {
+      if(this.nextPageUrl == '')
+      {
+        alert('没有下一页了');
+        return;
+      }
+      else
+      {
+        this.page++;
+        this.$http.get(`${this.api}${this.nextPageUrl}`)
+          .then(function(res){
+            if(res.data.status == 200)
+            {
+              this.list = res.data.data.topups;
+              this.hasPrev = res.data.data.hasPrev;
+              this.hasNext = res.data.data.hasNext;
+              this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
+              this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
+            }
+            else
+            {
+              console.log('the codes of pk10c\'s history was load failed');
+            }
+          });
+      }
     },
     review_recharge: function(rechagre_id, review_state) {
       this.$http

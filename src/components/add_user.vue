@@ -18,6 +18,19 @@
        </div>
 
        <div class="form-group">
+         <label  class="col-sm-2 control-label">现金额度</label>
+         <div class="col-sm-10">
+           <input type="text" class="form-control"  placeholder="请输入" v-model="cash_money">
+         </div>
+       </div>
+       <div class="form-group">
+         <label  class="col-sm-2 control-label">信用额度</label>
+         <div class="col-sm-10">
+           <input type="text"  class="form-control"  placeholder="请输入" v-model="credit_money">
+         </div>
+       </div>
+
+       <div class="form-group">
          <label  class="col-sm-2 control-label">登录密码</label>
          <div class="col-sm-10">
            <input type="text" v-model="pwd_1" class="form-control"  placeholder="请输入">
@@ -42,6 +55,23 @@
          </div>
        </div>
 
+       <div class="form-group">
+         <label  class="col-sm-2 control-label">选择彩种</label>
+         <div class="col-sm-10">
+           <label class="checkbox-inline">
+             <input type="checkbox" id="inlineCheckbox1" value="cqssc"   v-model="lotteries"> 重庆时时彩
+           </label>
+           <label class="checkbox-inline">
+             <input type="checkbox" id="inlineCheckbox2" value="bjpk10" v-model="lotteries"> 北京赛车PK10
+           </label>
+           <label class="checkbox-inline">
+             <input type="checkbox" id="inlineCheckbox3" value="pcegg" v-model="lotteries"> PC蛋蛋
+           </label>
+           <label class="checkbox-inline">
+             <input type="checkbox" id="inlineCheckbox4" value="cakeno28" v-model="lotteries"> 加拿大28
+           </label>
+         </div>
+       </div>
        <button class="btn btn-primary btn-lg center-block" @click="add_user()">添加</button>
      </div>
    </div>
@@ -59,6 +89,9 @@
           pwd_1:'',
           pwd_2:'',
           user_type:0,
+          cash_money:10000,
+          credit_money:10000,
+          lotteries:['cqssc'],
         };
         return data;
      },
@@ -69,8 +102,16 @@
            let check = this.check();
            if(check)
            {
-             this.$http.post(this.api + '/admin/users',{username:this.username,nickname:this.nickname,pwd_1:this.pwd_1,pwd_2:this.pwd_2,type:this.type}).then(function(res){
-               console.log(res.data);
+             this.$http.post(this.api + '/admin/users',
+               {  username:this.username,
+                  nickname:this.nickname,
+                  pwd_1:this.pwd_1,
+                  pwd_2:this.pwd_2,
+                  type:this.user_type,
+                  lotteries:this.lotteries,
+                  cash_money:this.cash_money,
+                  credit_money:this.credit_money,
+               }).then(function(res){
                if(res.data.status == 200)
                {
                   alert(res.data.msg);
@@ -117,6 +158,7 @@
             console.log('pwd_2 is wrong');
             return false;
           }
+          if(this.cash_money == '')
 
           return true;
         }
@@ -142,5 +184,16 @@
   {
     width: 80%;
     margin:0 auto;
+  }
+  #inlineCheckbox1,#inlineCheckbox2,#inlineCheckbox3,#inlineCheckbox4
+  {
+    width:25px;
+    height:25px;
+    margin-left:-30px;
+    margin-top:-6px;
+  }
+  .checkbox-inline
+  {
+    margin-right:20px;
   }
 </style>

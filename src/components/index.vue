@@ -50,7 +50,8 @@
     box-sizing: border-box;
     padding-left: 200px;
     padding-top: 50px;
-    overflow:scroll;
+    overflow:auto;
+    overflow-x: hidden;
 
   }
   #user
