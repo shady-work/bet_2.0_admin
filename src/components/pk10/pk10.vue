@@ -37,7 +37,24 @@
       </tr>
       </tbody>
     </table>
+    <div class="row mt15">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <span>当前第 {{page}} 页</span>
+        <span>共 {{pageNum}} 页，</span>
+        <button class="btn btn-primary btn-xs" v-if="hasPrev" @click="prevPage()">
+          上一页
+        </button>
 
+        <button class="btn btn-info btn-xs" v-if="hasNext" @click="nextPage()">
+          下一页
+        </button>
+        <span>共 {{sum}} 条</span>
+        <br>
+        <br>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
     <div id="myModal" v-show="isShow" @click="close()">
       <div class="panel panel-info center-block" @click="stop_cancel()">
         <div class="panel-heading">修改用户注额</div>
@@ -128,7 +145,15 @@
         trad_url: "",
         trad_win: "",
         isShow: false,
-        one_id: ""
+        one_id: "",
+        page:1,
+        per_page:15,
+        hasNext:false,
+        hasPrev:false,
+        nextPageUrl:'',
+        prevPageUrl:'',
+        sum:0,
+        pageNum:0,
       };
     },
     created() {
@@ -140,8 +165,68 @@
         this.$http.get(this.api + "/admin/pk10/user").then(function (res) {
           if (res.data.status == 200) {
             this.list = res.data.data.list;
+            this.hasPrev = res.data.data.hasPrev;
+            this.hasNext = res.data.data.hasNext;
+            this.sum = res.data.data.sum;
+            this.pageNum = res.data.data.pageNum;
+            this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
+            this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
           }
         });
+      },
+      prevPage:function()
+      {
+        if(this.prevPageUrl == '')
+        {
+          alert('没有上一页了');
+          return;
+        }
+        else
+        {
+          this.page--;
+          this.$http.get(`${this.api}${this.prevPageUrl}`)
+            .then(function(res){
+              if(res.data.status == 200)
+              {
+                this.list = res.data.data.list;
+                this.hasPrev = res.data.data.hasPrev;
+                this.hasNext = res.data.data.hasNext;
+                this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
+                this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
+              }
+              else
+              {
+                console.log('the codes of cqssc\'s history was load failed');
+              }
+            });
+        }
+      },
+      nextPage:function()
+      {
+        if(this.nextPageUrl == '')
+        {
+          alert('没有下一页了');
+          return;
+        }
+        else
+        {
+          this.page++;
+          this.$http.get(`${this.api}${this.nextPageUrl}`)
+            .then(function(res){
+              if(res.data.status == 200)
+              {
+                this.list = res.data.data.list;
+                this.hasPrev = res.data.data.hasPrev;
+                this.hasNext = res.data.data.hasNext;
+                this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
+                this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
+              }
+              else
+              {
+                console.log('the codes of pk10c\'s history was load failed');
+              }
+            });
+        }
       },
       /**@augments rule_id   load someone's cqssc rule,show the edit DIV */
       edit_one: function (rule_id) {

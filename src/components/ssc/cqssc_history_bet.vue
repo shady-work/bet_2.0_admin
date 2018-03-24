@@ -30,24 +30,29 @@
                 <td>{{v.status}}</td>
                 <td>{{v.update_time}}</td>
                 <td>
-                  <button class="btn btn-primary" @click="show_details(v)">查看详情</button>
+                  <button class="btn btn-primary btn-sm" @click="show_details(v)">查看详情</button>
                 </td>
               </tr>
           </tbody>
         </table>
-        <div class="row mt15">
-            <div class="col-md-5"></div>
-            <div class="col-md-3">
-              <button class="btn btn-primary" @click="prevPage()">
-                 上一页
-              </button>
-              <button class="btn btn-info"  @click="nextPage()">
-                下一页
-              </button>
-               <span>当前第{{page}}页</span>
-            </div>
-            <div class="col-md-4"></div>
+      <div class="row mt15">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <span>当前第 {{page}} 页</span>
+          <span>共 {{pageNum}} 页，</span>
+          <button class="btn btn-primary btn-xs" v-if="hasPrev" @click="prevPage()">
+            上一页
+          </button>
+
+          <button class="btn btn-info btn-xs" v-if="hasNext" @click="nextPage()">
+            下一页
+          </button>
+          <span>共 {{sum}} 条</span>
+          <br>
+          <br>
         </div>
+        <div class="col-md-4"></div>
+      </div>
 
 
       <div id="myModal" v-show="isShow" @click="close()">
@@ -165,7 +170,7 @@
 <script>
 export default
 {
-    name:'pk10_history',
+    name:'cqssc_history',
     data()
     {
       return{
@@ -216,6 +221,8 @@ export default
           update_time:'',
           username:'',
           win:'',
+        sum:0,
+        pageNum:0,
       }
     },
     created()
@@ -226,13 +233,15 @@ export default
     {
         get_all_history:function(page = 1,per_page = 15)
         {
-            this.$http.get(`${this.api}/admin/pk10/history/order/page/${page}/per_page/${per_page}`)
+            this.$http.get(`${this.api}/admin/ssc/history/order`)
               .then(function(res){
-                if(res.data.status == 200)
+                   if(res.data.status == 200)
                    {
                       this.history_codes = res.data.data.list;
                       this.hasPrev = res.data.data.hasPrev;
                       this.hasNext = res.data.data.hasNext;
+                      this.sum = res.data.data.sum;
+                      this.pageNum = res.data.data.pageNum;
                       this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
                       this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
                    }
@@ -257,9 +266,12 @@ export default
                 .then(function(res){
                   if(res.data.status == 200)
                   {
+                    this.history_codes = [];
                     this.history_codes = res.data.data.list;
                     this.hasPrev = res.data.data.hasPrev;
                     this.hasNext = res.data.data.hasNext;
+                    this.sum = res.data.data.sum;
+                    this.pageNum = res.data.data.pageNum;
                     this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
                     this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
                   }
@@ -284,11 +296,15 @@ export default
               .then(function(res){
                 if(res.data.status == 200)
                 {
+                  this.history_codes = [];
                   this.history_codes = res.data.data.list;
                   this.hasPrev = res.data.data.hasPrev;
                   this.hasNext = res.data.data.hasNext;
+                  this.sum = res.data.data.sum;
+                  this.pageNum = res.data.data.pageNum;
                   this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
                   this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
+                  console.log(`${ this.nextPageUrl}`);
                 }
                 else
                 {
@@ -358,6 +374,7 @@ export default
     width: 80%;
     margin: 0 auto;
     margin-top: 20px;
+
   }
   #myModal>.panel
   {

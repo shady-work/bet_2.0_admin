@@ -120,12 +120,12 @@
       </div>
 
       <div class="list-admin c-3f"  @click="toUrl('watch_order')">
-        watch_order
+        实时订单
       </div>
 
 
       <div class="list-admin c-3f"  @click="toUrl('articles')">
-        articles
+        充值链接管理
       </div>
 
 

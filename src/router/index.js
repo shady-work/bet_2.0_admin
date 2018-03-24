@@ -8,28 +8,29 @@ import add_user from '../components/add_user';
 import recharge from '../components/recharge'
 import withdraw from '../components/withdraw'
 import user_money from '../components/user_money'
-import cqssc from '../components/cqssc'
-import cqssc_odds from '../components/cqssc_odds'
-import cqssc_odds_user from '../components/cqssc_odds_user'
-import cqssc_history from '../components/cqssc_history'
-import cqssc_history_bet from '../components/cqssc_history_bet'
-import cqssc_turntable from '../components/cqssc_turntable'
-import pk10 from '../components/pk10'
-import pk10_odds from '../components/pk10_odds'
-import pk10_odds_user from '../components/pk10_odds_user'
-import pk10_history from '../components/pk10_history'
-import pk10_history_bet from '../components/pk10_history_bet'
-import pcegg from '../components/pcegg'
-import pcegg_history from '../components/pcegg_history'
-import pcegg_history_bet from '../components/pcegg_history_bet'
-import pcegg_odds from '../components/pcegg_odds'
-import pcegg_odds_user from '../components/pcegg_odds_user'
-import cake from '../components/cake'
-import cake_history from '../components/cake_history'
-import cake_history_bet from '../components/cake_history_bet'
-import cake_odds from '../components/cake_odds'
-import cake_odds_user from '../components/cake_odds_user'
+import cqssc from '../components/ssc/cqssc'
+import cqssc_odds from '../components/ssc/cqssc_odds'
+import cqssc_odds_user from '../components/ssc/cqssc_odds_user'
+import cqssc_history from '../components/ssc/cqssc_history'
+import cqssc_history_bet from '../components/ssc/cqssc_history_bet'
+import cqssc_turntable from '../components/ssc/cqssc_turntable'
+import pk10 from '../components/pk10/pk10'
+import pk10_odds from '../components/pk10/pk10_odds'
+import pk10_odds_user from '../components/pk10/pk10_odds_user'
+import pk10_history from '../components/pk10/pk10_history'
+import pk10_history_bet from '../components/pk10/pk10_history_bet'
+import pcegg from '../components/egg/pcegg'
+import pcegg_history from '../components/egg/pcegg_history'
+import pcegg_history_bet from '../components/egg/pcegg_history_bet'
+import pcegg_odds from '../components/egg/pcegg_odds'
+import pcegg_odds_user from '../components/egg/pcegg_odds_user'
+import cake from '../components/cake/cake'
+import cake_history from '../components/cake/cake_history'
+import cake_history_bet from '../components/cake/cake_history_bet'
+import cake_odds from '../components/cake/cake_odds'
+import cake_odds_user from '../components/cake/cake_odds_user'
 import watch_order from '../components/watch_order'
+import articles from '../components/articles'
 
 Vue.use(Router)
 
@@ -181,6 +182,11 @@ export default new Router({
           path:'watch_order',  //watch_order page
           name:'watch_order',
           component:watch_order,
+        },
+        {
+          path:'articles',  //articles page
+          name:'articles',
+          component:articles,
         },
       ],
     }

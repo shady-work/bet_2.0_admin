@@ -60,22 +60,23 @@
 
 
     <div class="row mt15">
-      <div class="col-md-5"></div>
-      <div class="col-md-3">
-        <button class="btn btn-primary" @click="prevPage()">
-          上一页
-        </button>
+             <div class="col-md-4"></div>
+             <div class="col-md-4">
+               <span>当前第 {{page}} 页</span>
+               <span>共 {{pageNum}} 页，</span>
+               <button class="btn btn-primary btn-xs" v-if="hasPrev" @click="prevPage()">
+                 上一页
+               </button>
 
-        <button class="btn btn-info"  @click="nextPage()">
-          下一页
-        </button>
-
-        <span>当前第{{page}}页</span>
-        <br>
-        <br>
-      </div>
-      <div class="col-md-4"></div>
-    </div>
+               <button class="btn btn-info btn-xs" v-if="hasNext" @click="nextPage()">
+                 下一页
+               </button>
+               <span>共 {{sum}} 条</span>
+               <br>
+               <br>
+             </div>
+             <div class="col-md-4"></div>
+           </div>
   </div>
 </template>
 <script>
@@ -91,6 +92,8 @@ export default {
       hasPrev:false,
       nextPageUrl:'',
       prevPageUrl:'',
+       sum:0,
+                  pageNum:0,
     };
   },
   methods: {
@@ -101,12 +104,14 @@ export default {
     get_recharge_list: function() {
       this.$http.get(this.api + "/admin/topups").then(function(res) {
         if (res.data.status == 200) {
-          this.list = res.data.data.topups;
-          this.list_all_back_up = res.data.data.topups;
-          this.hasPrev = res.data.data.hasPrev;
-          this.hasNext = res.data.data.hasNext;
-          this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
-          this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
+          this.list = res.data.data.topups.list;
+          this.list_all_back_up = res.data.data.topups.list;
+          this.hasPrev = res.data.data.topups.hasPrev;
+          this.hasNext = res.data.data.topups.hasNext;
+          this.sum = res.data.data.topups.sum;
+          this.pageNum = res.data.data.topups.pageNum;
+          this.prevPageUrl = this.hasPrev? res.data.data.topups.prevPageUrl:'';
+          this.nextPageUrl = this.hasNext? res.data.data.topups.nextPageUrl:'';
         }
       });
     },

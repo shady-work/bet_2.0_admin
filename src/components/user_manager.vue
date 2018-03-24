@@ -110,17 +110,18 @@
         </table>
 
        <div class="row mt15">
-         <div class="col-md-5"></div>
-         <div class="col-md-3">
-           <button class="btn btn-primary" @click="prevPage()">
+         <div class="col-md-4"></div>
+         <div class="col-md-4">
+           <span>当前第 {{page}} 页</span>
+           <span>共 {{pageNum}} 页，</span>
+           <button class="btn btn-primary btn-xs" v-if="hasPrev" @click="prevPage()">
              上一页
            </button>
 
-           <button class="btn btn-info"  @click="nextPage()">
+           <button class="btn btn-info btn-xs" v-if="hasNext" @click="nextPage()">
              下一页
            </button>
-
-           <span>当前第{{page}}页</span>
+           <span>共 {{sum}} 条</span>
            <br>
            <br>
          </div>
@@ -194,6 +195,8 @@
             username:null,
             nickname_s:null,
             status:null,
+            sum:0,
+            pageNum:0,
         };
         return data;
      },
@@ -212,6 +215,8 @@
                  this.users = res.data.data.list;
                  this.hasPrev = res.data.data.hasPrev;
                  this.hasNext = res.data.data.hasNext;
+                 this.sum = res.data.data.sum;
+                 this.pageNum = res.data.data.pageNum;
                  this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
                  this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
                }
@@ -375,14 +380,14 @@
         */
         search_user:function()
         {
-            console.log("type:" + this.type + '\n');
+            /*console.log("type:" + this.type + '\n');
             console.log("agent:" + this.agent + '\n');
             console.log("manager:" + this.manager + '\n');
             console.log("username:" + this.username + '\n');
             console.log("nickname_s:" + this.nickname_s + '\n');
             console.log("status:" + this.status + '\n');
             console.log("--------------------------\n");
-           return;
+           return;*/
             this.users = [];
             let url = this.search_url(
             {
@@ -391,6 +396,7 @@
               manager:this.manager,
               username:this.username,
               nickname_s:this.nickname_s,
+              status:this.status,
             });
             this.$http.get(url).then(function(res){
                 console.log(res.data);

@@ -32,11 +32,9 @@
                         <td>{{v.trad_max}}</td>
                         <td>{{v.trad_url?v.trad_url:'尚未设定'}}</td>
                         <td>
-
                             <button class="btn btn-primary" @click="edit_one(v.id)">
                                     编辑
                             </button>
-
                         </td>
                 </tr>
             </tbody>
@@ -118,19 +116,19 @@
            </div>
         </div>
 
-
       <div class="row mt15">
-        <div class="col-md-5"></div>
-        <div class="col-md-3">
-          <button class="btn btn-primary" @click="prevPage()">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <span>当前第 {{page}} 页</span>
+          <span>共 {{pageNum}} 页，</span>
+          <button class="btn btn-primary btn-xs" v-if="hasPrev" @click="prevPage()">
             上一页
           </button>
 
-          <button class="btn btn-info"  @click="nextPage()">
+          <button class="btn btn-info btn-xs" v-if="hasNext" @click="nextPage()">
             下一页
           </button>
-
-          <span>当前第{{page}}页</span>
+          <span>共 {{sum}} 条</span>
           <br>
           <br>
         </div>
@@ -161,6 +159,8 @@ export default {
       hasPrev:false,
       nextPageUrl:'',
       prevPageUrl:'',
+      sum:0,
+      pageNum:0,
     };
   },
   created() {
@@ -175,6 +175,8 @@ export default {
           this.list = res.data.data.list;
           this.hasPrev = res.data.data.hasPrev;
           this.hasNext = res.data.data.hasNext;
+          this.sum = res.data.data.sum;
+          this.pageNum = res.data.data.pageNum;
           this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
           this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
         }
@@ -289,12 +291,7 @@ export default {
           }
         });
     }
-    // delete_rule:function(rule_id){
-    //     this.$http.delete(`${this.api}/admin/ssc/user/${rule_id}`)
-    //     .then(function(res){
-    //         console.log(res.data);
-    //     });
-    // },
+
   } //end methods
 };
 </script>
@@ -307,6 +304,6 @@ export default {
 .table {
   width: 80%;
   margin: 0 auto;
-  margin-top: 50px;
+
 }
 </style>

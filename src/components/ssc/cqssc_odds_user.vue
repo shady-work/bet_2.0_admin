@@ -16,7 +16,7 @@
         <td>{{v.username}}</td>
         <td>{{v.nickname}}</td>
         <td>
-          <div v-for="(val,key) in all_handicap">
+          <div v-for="(val,key) in all_handicap" class="pull-left ml10">
             <div class="hide">
               {{v.ssc_ratelist[key]?v.ssc_ratelist[key]:(v.ssc_ratelist[key]={})}}
             </div>
@@ -31,7 +31,24 @@
       </tr>
       </tbody>
     </table>
+    <div class="row mt15">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <span>当前第 {{page}} 页</span>
+        <span>共 {{pageNum}} 页，</span>
+        <button class="btn btn-primary btn-xs" v-if="hasPrev" @click="prevPage()">
+          上一页
+        </button>
 
+        <button class="btn btn-info btn-xs" v-if="hasNext" @click="nextPage()">
+          下一页
+        </button>
+        <span>共 {{sum}} 条</span>
+        <br>
+        <br>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
   </div>
 </template>
 
@@ -48,6 +65,14 @@
         ratewin_name:'',
         user_choose:[],
         num:0,
+        page:1,
+        per_page:15,
+        hasNext:false,
+        hasPrev:false,
+        nextPageUrl:'',
+        prevPageUrl:'',
+        sum:0,
+        pageNum:0,
       };
     },
     created: function () {
@@ -58,27 +83,7 @@
       test:function(){
          console.log(1);
       },
-      my_filter:function(center,all_data,k){
-         //console.log(center);
-         //console.log(all_data);
-        for(let i = 0 ;i<all_data.length;i++)
-        {
 
-             if(JSON.stringify(all_data[i]) != "{}")
-             {
-
-               if(center == all_data[i].ratewin_name)
-               {
-                 this.num = i;
-                 break;
-               }
-
-             }
-
-
-        }
-          return true;
-      },
       get_all_handicap: function () {
         this.$http.get(`${this.api}/admin/ssc/odds`)
           .then(function (res) {
@@ -118,6 +123,12 @@
                 }
 
               }
+              this.hasPrev = res.data.data.hasPrev;
+              this.hasNext = res.data.data.hasNext;
+              this.sum = res.data.data.sum;
+              this.pageNum = res.data.data.pageNum;
+              this.prevPageUrl = this.hasPrev? res.data.data.prevPageUrl:'';
+              this.nextPageUrl = this.hasNext? res.data.data.nextPageUrl:'';
             }
             else {
               console.log(`加载失败`);
@@ -225,7 +236,97 @@
              return;
            }
          });
-      }
+      },
+      prevPage:function()
+      {
+        if(this.prevPageUrl == '')
+        {
+          alert('没有上一页了');
+          return;
+        }
+        else
+        {
+          this.page--;
+          this.$http.get(`${this.api}${this.prevPageUrl}`)
+            .then(function(res){
+              if(res.data.status == 200)
+              {
+                this.list = res.data.data.list;
+                for(let i = 0 ; i<this.list.length;i++)
+                {
+                  this.list[i].oldpk = [];
+                  for (let j = 0;j<this.all_handicap.length;j++)
+                  {
+                    if(this.list[i].ssc_ratelist[j] && this.list[i].ssc_ratelist[j].ratewin_name)
+                    {
+                      this.list[i].oldpk.push(this.list[i].ssc_ratelist[j].ratewin_name);
+                    }
+                    else
+                    {
+                      this.list[i].oldpk.push(false);
+                    }
+                  }
+
+                }
+                this.hasPrev = res.data.data.hasPrev;
+                this.hasNext = res.data.data.hasNext;
+                this.sum = res.data.data.sum;
+                this.pageNum = res.data.data.pageNum;
+                this.prevPageUrl = this.hasPrev? res.data.data.prevPageUrl:'';
+                this.nextPageUrl = this.hasNext? res.data.data.nextPageUrl:'';
+              }
+              else
+              {
+                console.log('the codes of cqssc\'s history was load failed');
+              }
+            });
+        }
+      },
+      nextPage:function()
+      {
+        if(this.nextPageUrl == '')
+        {
+          alert('没有下一页了');
+          return;
+        }
+        else
+        {
+          this.page++;
+          this.$http.get(`${this.api}${this.nextPageUrl}`)
+            .then(function(res){
+              if(res.data.status == 200)
+              {
+                this.list = res.data.data.list;
+                for(let i = 0 ; i<this.list.length;i++)
+                {
+                  this.list[i].oldpk = [];
+                  for (let j = 0;j<this.all_handicap.length;j++)
+                  {
+                    if(this.list[i].ssc_ratelist[j] && this.list[i].ssc_ratelist[j].ratewin_name)
+                    {
+                      this.list[i].oldpk.push(this.list[i].ssc_ratelist[j].ratewin_name);
+                    }
+                    else
+                    {
+                      this.list[i].oldpk.push(false);
+                    }
+                  }
+
+                }
+                this.hasPrev = res.data.data.hasPrev;
+                this.hasNext = res.data.data.hasNext;
+                this.sum = res.data.data.sum;
+                this.pageNum = res.data.data.pageNum;
+                this.prevPageUrl = this.hasPrev? res.data.data.prevPageUrl:'';
+                this.nextPageUrl = this.hasNext? res.data.data.nextPageUrl:'';
+              }
+              else
+              {
+                console.log('the codes of pk10c\'s history was load failed');
+              }
+            });
+        }
+      },
     },
   }
 </script>
