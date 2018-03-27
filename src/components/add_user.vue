@@ -1,6 +1,6 @@
 <template>
    <div id="users">
-     <div class="form-horizontal">
+     <div class="form-horizontal" v-show="next_step">
         <h2>添加用户</h2>
 
        <div class="form-group">
@@ -68,11 +68,66 @@
              <input type="checkbox" id="inlineCheckbox3" value="pcegg" v-model="lotteries"> PC蛋蛋
            </label>
            <label class="checkbox-inline">
-             <input type="checkbox" id="inlineCheckbox4" value="cakeno28" v-model="lotteries"> 加拿大28
+             <input type="checkbox" id="inlineCheckbox4" value="cakeno" v-model="lotteries"> 加拿大28
            </label>
          </div>
        </div>
        <button class="btn btn-primary btn-lg center-block" @click="add_user()">添加</button>
+     </div>
+
+
+     <div class="form-horizontal" v-show="!next_step">
+       <h2>完善用户配置</h2>
+
+       <div class="form-group">
+         <label  class="col-sm-2 control-label">用户名</label>
+         <div class="col-sm-10">
+           <input type="text" v-bind:value="username2" class="form-control"  >
+         </div>
+       </div>
+
+
+
+
+       <div class="lottery" v-for="(v,k) in lottery_list">
+
+         <div class="form-group">
+           <label  class="col-sm-2 control-label">
+             {{be_str_lty_name(k)}}{{k}}
+           </label>
+           <div class="col-sm-10">
+             <label class="checkbox-inline" v-for="(i,d) in v.odds_list">
+               <input type="checkbox" v-bind:value="i"   v-model="handicaps[k+'_handicaps']"> a
+             </label>
+           </div>
+         </div>
+
+         <div class="form-group">
+           <label  class="col-sm-2 control-label">最低下注</label>
+           <div class="col-sm-10">
+             <input type="text"  class="form-control" v-model="bet_rules[k].money_min"  placeholder="请输入">
+           </div>
+         </div>
+
+         <div class="form-group">
+           <label  class="col-sm-2 control-label">最高下注</label>
+           <div class="col-sm-10">
+             <input type="text"  class="form-control" v-model="bet_rules[k].money_max"  placeholder="请输入">
+           </div>
+         </div>
+
+         <div class="form-group">
+           <label  class="col-sm-2 control-label">最多中奖金额</label>
+           <div class="col-sm-10">
+             <input type="text"  class="form-control" v-model="bet_rules[k].money_win"  placeholder="请输入">
+           </div>
+         </div>
+       </div>
+
+
+
+
+       <button class="btn btn-primary btn-lg center-block" @click="comfire_that()">确定</button>
      </div>
    </div>
 </template>
@@ -92,76 +147,180 @@
           cash_money:10000,
           credit_money:10000,
           lotteries:['cqssc'],
+          next_step : true,
+          lottery_list:{},
+          username2:'',
+          user_id:'',
+          handicaps:
+          {
+            cqssc_handicaps :[],
+            bjpk10_handicaps:[],
+            pcegg_handicaps :[],
+            cakeno_handicaps:[],
+          },
+          bet_rules:
+          {
+            cqssc:
+            {
+              money_min:10,
+              money_max:10000,
+              money_win:50000,
+            },
+            bjpk10:
+            {
+              money_min:10,
+              money_max:10000,
+              money_win:50000,
+            },
+            pcegg:
+            {
+              money_min:10,
+              money_max:10000,
+              money_win:50000,
+            },
+            cakeno:
+            {
+              money_min:10,
+              money_max:10000,
+              money_win:50000,
+            },
+          }
         };
         return data;
      },
      methods:
-     {
-        add_user:function()
-        {
+       {
+         add_user: function () {
            let check = this.check();
-           if(check)
-           {
+           if (check) {
              this.$http.post(this.api + '/admin/users',
-               {  username:this.username,
-                  nickname:this.nickname,
-                  pwd_1:this.pwd_1,
-                  pwd_2:this.pwd_2,
-                  type:this.user_type,
-                  lotteries:this.lotteries,
-                  cash_money:this.cash_money,
-                  credit_money:this.credit_money,
-               }).then(function(res){
-               if(res.data.status == 200)
                {
-                  alert(res.data.msg);
-                  this.$router.push('users');
-                  return;
+                 username: this.username,
+                 nickname: this.nickname,
+                 pwd_1: this.pwd_1,
+                 pwd_2: this.pwd_2,
+                 type: this.user_type,
+                 lotteries: this.lotteries,
+                 cash_money: this.cash_money,
+                 credit_money: this.credit_money,
+               }).then(function (res) {
+               if (res.data.status == 200) {
+                 console.log(res.data);
+                 this.lottery_list = res.data.data.lotteries;
+                 this.username2 = res.data.data.user.username;
+                 this.user_id = res.data.data.user.id;
+                 this.next_step = false;
+                 //alert(res.data.msg);
+                 //this.$router.push('users');
+                 return;
                }
-               else
-               {
+               else {
                  alert(res.data.msg);
                }
                return;
              });
            }
-           else
-           {
+           else {
              alert('格式不对~');
              return false;
            }
 
 
+         },
+         check: function () {
+           var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
+           if (!uPattern.test(this.username)) {
+             console.log('username is wrong');
+             return false;
+           }
+           if (this.nickname == '') {
+             console.log('nickname is null');
+             return false;
+           }
+           var pPattern = /^[0-9a-zA-Z]{6,16}$/;
+           if (!pPattern.test(this.pwd_1)) {
+             console.log('pwd_1 is wrong');
+             return false;
+           }
+           if (!pPattern.test(this.pwd_2)) {
+             console.log('pwd_2 is wrong');
+             return false;
+           }
+           if (this.cash_money == '') {
+             console.log('cash_money is wrong');
+             return false;
+           }
 
-        },
-        check:function()
-        {
-          var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
-          if(!uPattern.test(this.username))
-          {
-            console.log('username is wrong');
-            return false;
-          }
-          if(this.nickname == '')
-          {
-            console.log('nickname is null');
-            return false;
-          }
-          var pPattern = /^[0-9a-zA-Z]{6,16}$/;
-          if(!pPattern.test(this.pwd_1))
-          {
-            console.log('pwd_1 is wrong');
-            return false;
-          }
-          if(!pPattern.test(this.pwd_2))
-          {
-            console.log('pwd_2 is wrong');
-            return false;
-          }
-          if(this.cash_money == '')
+           return true;
+         },
 
-          return true;
-        }
+         comfire_that: function ()
+         {
+           var str = '至少选择一个盘口给用户' ;
+           var flag = true ;
+           var data =
+           {
+              user_id : this.user_id ,
+              lotteries:
+              {
+
+              },
+           };
+           var keys =  Object.keys(this.lottery_list);
+           for (let  i = 0;i<keys.length;i++)
+           {
+             data.lotteries[keys[i]] = {};
+             data.lotteries[keys[i]].odds_sel = this.handicaps[keys[i] + '_handicaps'];
+             if(data.lotteries[keys[i]].odds_sel.length < 1)
+             {
+                flag = false;
+                break;
+             }
+             data.lotteries[keys[i]].trad = {};
+             data.lotteries[keys[i]].trad = this.bet_rules[keys[i]];
+           }
+           if(flag)
+           {
+                this.$http.post(`${this.api}/admin/lottery`,data)
+                  .then(function(res)
+                  {
+                      if(res.data.status == 200)
+                      {
+                         alert('添加用户成功');
+                         this.$router.push('/users');
+                         return;
+                      }
+                  });
+           }
+           else
+           {
+             alert(str);
+           }
+           return;
+
+         },
+         be_str_lty_name : function (str)
+         {
+            var data = '';
+            str = str.toString();
+            switch (str)
+            {
+              case 'bjpk10':
+                data = '北京赛车PK拾';
+                break;
+              case 'cqssc':
+                data = '重庆时时彩';
+                break;
+              case 'pcegg':
+                data = 'PC蛋蛋';
+              case 'cakeno':
+                data = ' 加拿大28';
+                break;
+              default:
+                break;
+            }
+         }
+
 
      },//end of methods
      created:function()

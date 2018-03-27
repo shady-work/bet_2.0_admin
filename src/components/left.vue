@@ -14,10 +14,7 @@
       <div class="list-admin c-3f " @click="toUrl('recharge')">
         资金明细
       </div>
-      <!--提现-->
-      <!--<div class="list-admin c-3f " @click="toUrl('withdraw')">-->
-       <!--提现-->
-      <!--</div>-->
+
       <!--重庆时时彩-->
       <div class="list-admin c-3f show-cqssc" @click="showitems_cqssc()" >
          重庆时时彩
@@ -114,8 +111,8 @@
         <div class="list-admin-items">
           <router-link to="cake_history_bet" >下注历史</router-link>
         </div>
-        <div class="list-admin-items">
-          <router-link to="cqssc_turntable" >转盘列表</router-link>
+        <div class="list-admin-items ">
+          <router-link to="cqssc_turntable " >转盘列表</router-link>
         </div>
       </div>
 
@@ -124,7 +121,7 @@
       </div>
 
 
-      <div class="list-admin c-3f"  @click="toUrl('articles')">
+      <div class="list-admin c-3f "  @click="toUrl('articles')">
         充值链接管理
       </div>
 
@@ -172,6 +169,13 @@
       }
 
   };
+  $(function(){
+    $('.c-3f').click(function()
+    {
+      $('.c-3f').removeClass('active');
+      $(this).addClass('active');
+    })
+  });
 
 </script>
 
@@ -209,11 +213,7 @@
     -moz-border-radius: 0;
     border-radius: 0;
   }
-  .bg-333
-  {
-    background: #333;
-    color: #fff;
-  }
+
   .c-3f
   {
     color: #fff;
@@ -232,9 +232,9 @@
     -moz-user-select: none;
     -ms-user-select: none;
   }
-  #left>.active
+  #left .active
   {
-    background: #777;
+    background: #777!important;
   }
   .list-admin-items
   {
@@ -253,6 +253,7 @@
     padding-bottom: 5px;
     color: #fff;
     text-decoration: none!important;
+    background: #000;
     height:40px;
     line-height:30px;
     user-select: none;

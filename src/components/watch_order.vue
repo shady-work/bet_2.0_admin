@@ -132,10 +132,10 @@ export  default
                  this.get_cqssc_orders('pk10',1)
                  break;
                case "cakeno" :
-                 this.get_cqssc_orders('egg',2)
+                 this.get_cqssc_orders('cakeno',2)
                  break;
                case "pcegg" :
-                 this.get_cqssc_orders('cake',3)
+                 this.get_cqssc_orders('pcegg',3)
                  break;
              }
          },

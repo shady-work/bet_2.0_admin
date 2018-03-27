@@ -170,7 +170,6 @@ export default {
     /**@augments none   load all user's bet_rules */
     get_user_bet_rules: function(param) {
       this.$http.get(this.api + "/admin/ssc/user").then(function(res) {
-        console.log(res.data);
         if (res.data.status == 200) {
           this.list = res.data.data.list;
           this.hasPrev = res.data.data.hasPrev;
