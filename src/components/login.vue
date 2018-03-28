@@ -59,6 +59,7 @@
                    window.localStorage.token = res.data.data.token;
                    window.sessionStorage.admin_id = res.data.data.user_id;
                    window.sessionStorage.isLogin_admin = 'ok';
+                   //window.sessionStorage.admin_type = 'ok';
                    this.$set(this.$store.state,'admin_id',res.data.data.user_id);
                    this.$router.push('/');
                 }

@@ -1,6 +1,6 @@
 <template>
       <div id="articles">
-        <a class="btn btn-success center-block add-btn" >添加文章</a>
+        <a class="btn btn-success center-block add-btn" href="#/add_article" >添加文章</a>
         <table class="table table-bordered table-hover table-striped text-center">
           <thead>
           <tr>

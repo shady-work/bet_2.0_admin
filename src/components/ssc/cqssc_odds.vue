@@ -1,6 +1,5 @@
 <template>
    <div id='cqssc_odds'>
-       
 
         <div class="row">
             <div class="col-md-2">
@@ -8,7 +7,7 @@
                             <thead class="bg-primary">
                                 <tr >
                                     <td width="130" style='line-height:30px;'>盘口名称</td>
-                                    <td style='line-height:30px;'>操作  
+                                    <td style='line-height:30px;'>操作
                                         <button class="btn-sm btn btn-warning pull-right" @click='add_one()'>+</button>
                                     </td>
                                 </tr>
@@ -25,10 +24,10 @@
                                      </td>
                                  </tr>
                             </tbody>
-                        </table>
+                  </table>
             </div>
             <div class="col-md-10">
-                                    
+
                         <table class="table table-hovor table-bordered table-striped text-center">
                             <thead class="bg-primary">
                                 <tr class="h4">
@@ -196,7 +195,7 @@
                         </table>
                         <br>
                          <br>
-                        
+
                          <button class="center-block save1  btn btn-info" @click='edit_one()'>保存修改</button>
 
                           <br>
@@ -204,8 +203,8 @@
                          <br>
             </div>
         </div>
-      
-       
+
+
    </div>
 </template>
 

@@ -1,46 +1,77 @@
 <template>
   <div class="components-container">
-    <h1>123123123</h1>
-    <div class="info">UE编辑器示例<br>需要使用编辑器时，调用UE公共组件即可。可设置填充内容defaultMsg，配置信息config(宽度和高度等)，可调用组件中获取内容的方法。</div>
-    <button @click="getUEContent()">获取内容</button>
-    <div class="editor-container">
-      <UE :defaultMsg=defaultMsg :config=config ref="ue"></UE>
+    <div class="form-group-my mt15">
+      <label>请输入标题</label>
+      <input type="text" class="form-control">
     </div>
+    <div id="editorElem" ></div>
+    <button class="btn btn-success center-block mt15 btn-lg" @click="getContent">添加</button>
   </div>
 </template>
-<style>
-  .info{
-    border-radius: 10px;
-    line-height: 20px;
-    padding: 10px;
-    margin: 10px;
-    background-color: #ffffff;
-  }
-</style>
+
 <script>
-  import UE from './ueditort';
+  import E from 'wangeditor'
   export default {
-    name:'add_article',
-    components: {UE},
-    data() {
+    name: 'add_article',
+    data ()
+    {
       return {
-        defaultMsg: '这里是UE测试',
-        config: {
-          initialFrameWidth: null,
-          initialFrameHeight: 350
-        }
+        editorContent: ''
       }
     },
-    methods: {
-      getUEContent() {
-        let content = this.$refs.ue.getUEContent();
-        this.$notify({
-          title: '获取成功，可在控制台查看！',
-          message: content,
-          type: 'success'
-        });
-        console.log(content)
+    methods:
+    {
+      /**
+       * 获取富文本编辑器的内容
+       */
+      getContent: function ()
+      {
+        alert(this.editorContent)
       }
+    },
+    mounted()
+    {
+      var editor = new E('#editorElem')
+      editor.customConfig.onchange = (html) =>
+      {
+        this.editorContent = html
+      };
+      editor.create()
     }
   };
 </script>
+
+
+<style scoped>
+  #editorElem
+  {
+    text-align:left;
+    width :1000px;
+    margin:0 auto;
+    margin-top: 25px;
+  }
+
+  .form-group-my
+  {
+    width :1000px;
+    height: 100px;
+    margin:0 auto;
+  }
+
+  .form-group-my>label
+  {
+    float:left;
+    width: 20%;
+    text-align: left;
+    height: 100px;
+    line-height: 100px;
+
+  }
+  .form-group-my>input
+  {
+    float: left;
+    width: 80%;
+    margin-top: 45px;
+  }
+
+</style>

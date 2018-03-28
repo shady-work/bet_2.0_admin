@@ -65,9 +65,6 @@
          <div class="clearfix"></div>
        </div>
 
-
-
-
         <table class="table table-bordered  table-hover text-center table-striped">
           <thead>
             <tr class=" active">
@@ -103,6 +100,8 @@
               <td>
                 <button v-if="v.status == 1"  class="btn btn-danger btn-sm"  @click="user_disabled(v.user_id)">禁用</button>
                 <button v-if="v.status == 0"  class="btn btn-info btn-sm"  @click="user_open(v.user_id)">启用</button>
+
+                <button class="btn btn-warning btn-sm">查看盘口</button>
                 <button class="btn btn-primary btn-sm" @click="user_edit(v.nickname,v.type,v.user_id)">修改</button>
               </td>
             </tr>

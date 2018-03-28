@@ -8,11 +8,6 @@ import VueResource from 'vue-resource';/*引入资源请求插件*/
 import './assets/js/jquery.min.js';
 import './assets/js/bootstrap';
 
-import './assets/ueditor/ueditor.config.js'
-import './assets/ueditor/ueditor.all.min.js'
-import './assets/ueditor/lang/zh-cn/zh-cn.js'
-import './assets/ueditor/ueditor.parse.min.js'
-
 
 
 
@@ -33,18 +28,20 @@ Vue.use(vuex);
 var store = new vuex.Store(
 {//store对象
   state:
-    {
+  {
       isLogin:window.sessionStorage.isLogin_admin == 'ok'?true:false,
       admin_id:window.sessionStorage.admin_id?window.sessionStorage.admin_id:false,
-    },
+      admin_type:0,//登录账号的类型
+  },
   mutations:
-    {
+  {
       switch_dialog(isLogin)
-      {//这里的state对应着上面这个states
+      {
+        //这里的state对应着上面这个states
         state.isLogin = true;
         //你还可以在这里执行其他的操作改变state
       }
-    }
+  }
 });
 
 //配置请求的uri

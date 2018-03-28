@@ -33,7 +33,8 @@ import watch_order from '../components/watch_order'
 import articles from '../components/articles'
 import add_article from '../components/add_article'
 import UE from '../components/ueditort'
-import shady from '../components/tests'
+import users_handicaps from '../components/users_handicaps'
+
 
 Vue.use(Router);
 
@@ -200,6 +201,11 @@ export default new Router({
           path:'ue',  // add_article page
           name:'UE',
           component: UE,
+        },
+        {
+          path:'users_handicaps',  // add_article page
+          name:'users_handicaps',
+          component: users_handicaps,
         },
 
 
