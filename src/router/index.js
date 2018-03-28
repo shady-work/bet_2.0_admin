@@ -31,8 +31,11 @@ import cake_odds from '../components/cake/cake_odds'
 import cake_odds_user from '../components/cake/cake_odds_user'
 import watch_order from '../components/watch_order'
 import articles from '../components/articles'
+import add_article from '../components/add_article'
+import UE from '../components/ueditort'
+import shady from '../components/tests'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -45,7 +48,7 @@ export default new Router({
 
         {
           path:'/',        //index page
-          name:'index',
+          name:'Index',
           component:test,
         },
         {
@@ -188,6 +191,18 @@ export default new Router({
           name:'articles',
           component:articles,
         },
+        {
+          path:'add_article',  // add_article page
+          name:'add_article',
+          component: add_article,
+        },
+        {
+          path:'ue',  // add_article page
+          name:'UE',
+          component: UE,
+        },
+
+
       ],
     }
     ,
@@ -196,5 +211,6 @@ export default new Router({
       name: 'login',
       component: login
     },
+
   ]
 })

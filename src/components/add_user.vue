@@ -123,10 +123,6 @@
            </div>
          </div>
        </div>
-
-
-
-
        <button class="btn btn-primary btn-lg center-block" @click="comfire_that()">确定</button>
      </div>
    </div>

@@ -4,8 +4,15 @@ import App from './App';
 import router from './router';
 import vuex from 'vuex';
 import VueResource from 'vue-resource';/*引入资源请求插件*/
+
 import './assets/js/jquery.min.js';
 import './assets/js/bootstrap';
+
+import './assets/ueditor/ueditor.config.js'
+import './assets/ueditor/ueditor.all.min.js'
+import './assets/ueditor/lang/zh-cn/zh-cn.js'
+import './assets/ueditor/ueditor.parse.min.js'
+
 
 
 
@@ -41,7 +48,7 @@ var store = new vuex.Store(
 });
 
 //配置请求的uri
-Vue.prototype.api = ``;
+Vue.prototype.api = `http://lty-main.com`;
 
 /* eslint-disable no-new */
 const Vm = new Vue(
@@ -69,7 +76,7 @@ const Vm = new Vue(
 //
 //    next();
 // });
-//
+
 
 
 
