@@ -1,6 +1,6 @@
 <template>
       <div id="articles">
-        <a class="btn btn-success center-block add-btn" href="#/add_article" >添加文章</a>
+        <a class="btn btn-success center-block add-btn" @click="turnTo()" >添加文章</a>
         <table class="table table-bordered table-hover table-striped text-center">
           <thead>
           <tr>
@@ -18,28 +18,29 @@
                   <td>{{v.author}}</td>
                   <td>{{v.update_time}}</td>
                   <td>
-                    <button class="btn btn-danger btn-sm" @click="delete_artile(v.id)">删除</button>
-                    <button class="btn btn-info btn-sm" @click="change_article(v.id)">查看</button>
+                    <button class="btn btn-danger btn-sm" @click="delete_artile(v.id,v.title)">删除</button>
+                    <button class="btn btn-info btn-sm" @click="check_article(v.id)">查看</button>
                   </td>
               </tr>
           </tbody>
         </table>
         <div class="row mt15">
-      <div class="col-md-5"></div>
-      <div class="col-md-3">
+          <div class="col-md-5"></div>
+          <div class="col-md-3">
 
-        <button class="btn btn-primary" @click="prevPage()">
-          上一页
-        </button>
+            <button class="btn btn-primary" @click="prevPage()">
+              上一页
+            </button>
 
-        <button class="btn btn-info"  @click="nextPage()">
-          下一页
-        </button>
+            <button class="btn btn-info"  @click="nextPage()">
+              下一页
+            </button>
 
-        <span>当前第{{page}}页</span>
-      </div>
-      <div class="col-md-4"></div>
-    </div>
+            <span>当前第{{page}}页</span>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+
       </div>
 </template>
 
@@ -57,6 +58,7 @@
          hasPrev:false,
          nextPageUrl:'',
          prevPageUrl:'',
+         isShow:false,
        };
      },
      created(){
@@ -64,61 +66,40 @@
      },
      methods:
      {
-          get_articles_list : function ()
-          {
-              this.$http.get(`${this.api}/admin/articles`)
-                .then(function(res)
-                {
-                  console.log(res.data);
-                  if(res.data.status == 200)
-                    {
-                      this.list = res.data.data.articles.list;
-                      this.hasPrev = res.data.data.hasPrev;
-                      this.hasNext = res.data.data.hasNext;
-                      this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
-                      this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
-                    }
 
-                });
-          },
-         prevPage:function()
-         {
-             if(this.prevPageUrl == '')
-             {
-               alert('没有上一页了');
-               return;
-             }
-             else
-             {
-               this.page--;
-               this.$http.get(`${this.api}${this.prevPageUrl}`)
-                 .then(function(res){
-                   if(res.data.status == 200)
-                   {
-                     this.list = res.data.data.articles.list;
-                     this.hasPrev = res.data.data.hasPrev;
-                     this.hasNext = res.data.data.hasNext;
-                     this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
-                     this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
-                   }
-                   else
-                   {
-                     console.log('the codes of cqssc\'s history was load failed');
-                   }
-                 });
-             }
-           },
-         nextPage:function()
-         {
-           if(this.nextPageUrl == '')
+        turnTo:function()
+        {
+          window.sessionStorage.a_id = '';
+          delete window.sessionStorage.a_id;
+          this.$router.push('add_article');
+        },
+        get_articles_list : function ()
+        {
+            this.$http.get(`${this.api}/admin/articles`)
+              .then(function(res)
+              {
+                if(res.data.status == 200)
+                  {
+                    this.list = res.data.data.articles.list;
+                    this.hasPrev = res.data.data.hasPrev;
+                    this.hasNext = res.data.data.hasNext;
+                    this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
+                    this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
+                  }
+
+              });
+        },
+        prevPage:function()
+        {
+           if(this.prevPageUrl == '')
            {
-             alert('没有下一页了');
+             alert('没有上一页了');
              return;
            }
            else
            {
-             this.page++;
-             this.$http.get(`${this.api}${this.nextPageUrl}`)
+             this.page--;
+             this.$http.get(`${this.api}${this.prevPageUrl}`)
                .then(function(res){
                  if(res.data.status == 200)
                  {
@@ -135,6 +116,82 @@
                });
            }
          },
+        nextPage:function()
+        {
+         if(this.nextPageUrl == '')
+         {
+           alert('没有下一页了');
+           return;
+         }
+         else
+         {
+           this.page++;
+           this.$http.get(`${this.api}${this.nextPageUrl}`)
+             .then(function(res){
+               if(res.data.status == 200)
+               {
+                 this.list = res.data.data.articles.list;
+                 this.hasPrev = res.data.data.hasPrev;
+                 this.hasNext = res.data.data.hasNext;
+                 this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
+                 this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
+               }
+               else
+               {
+                 console.log('the codes of cqssc\'s history was load failed');
+               }
+             });
+         }
+        },
+       /**
+        * 查看文章id
+        * @param a_id
+        */
+        check_article:function(a_id)
+        {
+          /**
+           * 不能只单单写path，
+           * 不然会拿不到数据，
+           * 必须是path,name，
+           * params一起写
+           */
+          this.$router.push({
+             path:'add_article',
+             name:'add_article',
+             params:{article_id : a_id}
+           });
+
+        },
+       /**
+        * 删除文章
+        * @param a_id
+        */
+        delete_artile:function(a_id,title)
+        {
+
+          if(confirm('是否删除标题为' + title + '的文章?'))
+          {
+            console.log('是的');
+            this.$http.delete(`${this.api}/admin/articles/${a_id}`)
+              .then(function(res)
+              {
+
+                 if(res.data.status == 200)
+                 {
+                   alert(res.data.msg);
+                   this.get_articles_list();
+                 }
+                 else
+                 {
+                   alert('删除失败，请稍后再试');
+                 }
+              });
+          }
+          else
+          {
+            console.log('你取消了删除!')
+          }
+        }
      },
   }
 </script>
