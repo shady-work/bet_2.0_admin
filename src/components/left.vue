@@ -10,6 +10,14 @@
           <router-link to="add_user" >添加用户</router-link>
         </div>
       </div>
+
+
+
+      <div class="list-admin c-3f " @click="toUrl('edit_right')">
+        权限管理
+      </div>
+
+
       <!--充值-->
       <div class="list-admin c-3f " @click="toUrl('recharge')">
         资金明细

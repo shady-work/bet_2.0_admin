@@ -120,7 +120,7 @@
                   </table>
 
 
-              <table class="table table-hovor table-bordered table-striped text-center">
+               <table class="table table-hovor table-bordered table-striped text-center">
                 <thead class="bg-primary">
                 <tr class="h4">
                   <td width="150">波色</td>

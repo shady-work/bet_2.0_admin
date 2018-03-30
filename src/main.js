@@ -4,12 +4,14 @@ import App from './App';
 import router from './router';
 import vuex from 'vuex';
 import VueResource from 'vue-resource';/*引入资源请求插件*/
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 import './assets/js/jquery.min.js';
 import './assets/js/bootstrap';
 
-
-
+/*使用ElementUI插件*/
+Vue.use(ElementUI)
 
 /*使用VueResource插件*/
 Vue.use(VueResource);

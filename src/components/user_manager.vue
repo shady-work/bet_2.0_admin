@@ -101,8 +101,9 @@
                 <button v-if="v.status == 1"  class="btn btn-danger btn-sm"  @click="user_disabled(v.user_id)">禁用</button>
                 <button v-if="v.status == 0"  class="btn btn-info btn-sm"  @click="user_open(v.user_id)">启用</button>
 
-                <button class="btn btn-warning btn-sm">查看盘口</button>
+                <button class="btn btn-warning btn-sm" @click="check_handicaps(v.user_id)">查看盘口</button>
                 <button class="btn btn-primary btn-sm" @click="user_edit(v.nickname,v.type,v.user_id)">修改</button>
+                <button class="btn btn-info btn-sm" @click="right_edit(v.user_id)">权限管理</button>
               </td>
             </tr>
           </tbody>
@@ -225,8 +226,8 @@
                }
             });
         },
-       prevPage:function()
-       {
+        prevPage:function()
+        {
          if(this.prevPageUrl == '')
          {
            alert('没有上一页了');
@@ -252,8 +253,8 @@
              });
          }
        },
-       nextPage:function()
-       {
+        nextPage:function()
+        {
          if(this.nextPageUrl == '')
          {
            alert('没有下一页了');
@@ -434,6 +435,29 @@
               return url;
          },
 
+       check_handicaps:function(u_id)
+       {
+          this.$router.push(
+            {
+              path:'users_handicaps',
+              name:'users_handicaps',
+              params:{u_id}
+            }
+          );
+       },
+
+       /**
+        * 权限管理页面
+        */
+       right_edit:function(u_id)
+       {
+          this.$router.push(
+          {
+             path:'edit_right',
+             name:'edit_right',
+             params:{u_id},
+          });
+       },
 
      },//end of methods
      created:function()

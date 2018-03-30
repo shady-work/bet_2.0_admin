@@ -34,6 +34,7 @@ import articles from '../components/articles'
 import add_article from '../components/add_article'
 import UE from '../components/ueditort'
 import users_handicaps from '../components/users_handicaps'
+import edit_right from '../components/edit_right'
 
 
 Vue.use(Router);
@@ -206,6 +207,11 @@ export default new Router({
           path:'users_handicaps',  // add_article page
           name:'users_handicaps',
           component: users_handicaps,
+        },
+        {
+          path:'edit_right',  // add_article page
+          name:'edit_right',
+          component: edit_right,
         },
 
 
