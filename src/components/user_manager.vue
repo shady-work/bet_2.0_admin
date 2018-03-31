@@ -103,7 +103,7 @@
 
                 <button class="btn btn-warning btn-sm" @click="check_handicaps(v.user_id)">查看盘口</button>
                 <button class="btn btn-primary btn-sm" @click="user_edit(v.nickname,v.type,v.user_id)">修改</button>
-                <button class="btn btn-info btn-sm" @click="right_edit(v.user_id)">权限管理</button>
+                <button v-if="v.type != 0" class="btn btn-info btn-sm" @click="right_edit(v.user_id)">权限管理</button>
               </td>
             </tr>
           </tbody>

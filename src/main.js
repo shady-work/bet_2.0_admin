@@ -33,7 +33,8 @@ var store = new vuex.Store(
   {
       isLogin:window.sessionStorage.isLogin_admin == 'ok'?true:false,
       admin_id:window.sessionStorage.admin_id?window.sessionStorage.admin_id:false,
-      admin_type:0,//登录账号的类型
+      admin_type:0, //登录账号的类型
+      admin_name:'',//管理员的用户名
   },
   mutations:
   {

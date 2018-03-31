@@ -5,7 +5,8 @@
           <thead>
           <tr>
             <td>序号</td>
-            <td>文章标题</td>
+            <td>充值类型</td>
+            <td>充值标题</td>
             <td>创建人</td>
             <td>更新时间</td>
             <td>操作</td>
@@ -14,6 +15,7 @@
           <tbody>
               <tr v-for="(v,k) in list">
                   <td>{{k}}</td>
+                  <td>{{v.type==0?'银行':(v.type==1?'线下':'第三方')}}</td>
                   <td>{{v.title}}</td>
                   <td>{{v.author}}</td>
                   <td>{{v.update_time}}</td>
@@ -78,6 +80,7 @@
             this.$http.get(`${this.api}/admin/articles`)
               .then(function(res)
               {
+
                 if(res.data.status == 200)
                   {
                     this.list = res.data.data.articles.list;

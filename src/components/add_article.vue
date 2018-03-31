@@ -1,8 +1,58 @@
+<style scoped>
+  #editorElem
+  {
+    text-align:left;
+    width :1000px;
+    margin:0 auto;
+    margin-top: 25px;
+  }
+
+  .form-group-my
+  {
+    width :1000px;
+    height: 100px;
+    margin:0 auto;
+  }
+
+  .form-group-my>label
+  {
+    float:left;
+    width: 20%;
+    text-align: left;
+    height: 30px;
+    line-height: 30px;
+
+  }
+  .form-group-my>input
+  {
+    float: left;
+    width: 80%;
+    margin-top: 45px;
+  }
+  .form-group-my>select
+  {
+    float: left;
+    width: 80%;
+  }
+
+</style>
+
 <template>
   <div class="components-container">
     <div class="form-group-my mt15">
-      <label>请输入标题</label>
+      <label style="line-height: 100px;">请输入标题</label>
       <input type="text" class="form-control" v-model="title">
+    </div>
+
+    <div class="form-group-my mt15">
+      <label>请选择类型</label>
+      <select class="form-control" v-model="type" >
+        <option >请选择</option>
+        <option v-bind:value="0" >银行</option>
+        <option v-bind:value="1">线下</option>
+        <option v-bind:value="2">第三方</option>
+      </select>
+
     </div>
     <div id="editorElem" ></div>
     <button v-if="!is_check" class="btn btn-success center-block mt15 btn-lg" @click="add_article">添加</button>
@@ -22,6 +72,7 @@
         a_id:window.sessionStorage.a_id?window.sessionStorage.a_id:0,
         is_check:false,
         wangEditor:null,
+        type:0,
       }
     },
     methods:
@@ -39,10 +90,12 @@
        */
       add_article:function()
       {
+
          this.$http.post(`${this.api}/admin/articles`,
          {
            title :  this.title,
            content:  this.editorContent,
+           type:this.type,
          })
            .then(function(res)
            {
@@ -70,7 +123,9 @@
           {
              if(res.data.status == 200)
              {
+
                this.title = res.data.data.article.title;
+               this.type = res.data.data.article.type;
                this.editorContent = res.data.data.article.content;
                this.$set(this,'editorContent',res.data.data.article.content);
                //赋值给文件框
@@ -90,11 +145,11 @@
       {
          this.$http.put(`${this.api}/admin/articles/${this.a_id}`,{
            title:this.title,
-           content:this.editorContent
+           content:this.editorContent,
+           type:this.type,
          })
            .then(function(res)
            {
-              console.log(res.data);
               if(res.data.status == 200)
               {
                 alert(res.data.msg);
@@ -194,36 +249,4 @@
 </script>
 
 
-<style scoped>
-  #editorElem
-  {
-    text-align:left;
-    width :1000px;
-    margin:0 auto;
-    margin-top: 25px;
-  }
 
-  .form-group-my
-  {
-    width :1000px;
-    height: 100px;
-    margin:0 auto;
-  }
-
-  .form-group-my>label
-  {
-    float:left;
-    width: 20%;
-    text-align: left;
-    height: 100px;
-    line-height: 100px;
-
-  }
-  .form-group-my>input
-  {
-    float: left;
-    width: 80%;
-    margin-top: 45px;
-  }
-
-</style>
