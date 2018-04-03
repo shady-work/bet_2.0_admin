@@ -97,13 +97,12 @@
                   <b v-if="v.type == 2">代理</b>
                   <b v-if="v.type == 3">管理</b>
               </td>
-              <td>
+              <td style="text-align: right">
+                <button v-if="v.type != 0" class="btn btn-info btn-sm" @click="right_edit(v.user_id)">权限管理</button>
                 <button v-if="v.status == 1"  class="btn btn-danger btn-sm"  @click="user_disabled(v.user_id)">禁用</button>
                 <button v-if="v.status == 0"  class="btn btn-info btn-sm"  @click="user_open(v.user_id)">启用</button>
-
                 <button class="btn btn-warning btn-sm" @click="check_handicaps(v.user_id)">查看盘口</button>
                 <button class="btn btn-primary btn-sm" @click="user_edit(v.nickname,v.type,v.user_id)">修改</button>
-                <button v-if="v.type != 0" class="btn btn-info btn-sm" @click="right_edit(v.user_id)">权限管理</button>
               </td>
             </tr>
           </tbody>

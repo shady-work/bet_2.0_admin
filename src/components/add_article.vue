@@ -228,6 +228,7 @@
        */
       if((JSON.stringify(this.$route.params) != "{}" && this.$route.params.article_id))
       {
+         this.a_id = this.$route.params.article_id;
          this.get_an_article(this.$route.params.article_id);
       }
       else if(this.a_id)

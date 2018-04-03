@@ -48,7 +48,7 @@ var store = new vuex.Store(
 });
 
 //配置请求的uri
-Vue.prototype.api = ``;
+Vue.prototype.api = `http://lty-main.com`;
 
 /* eslint-disable no-new */
 const Vm = new Vue(

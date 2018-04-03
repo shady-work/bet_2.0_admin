@@ -53,7 +53,6 @@
             let ret = res.data;
             _this.menus = ret.data.menus;
             _this.checked_menus = ret.data.checked;
-            console.log(ret.data.checked)
           })
         },
         updateAuth: function () {

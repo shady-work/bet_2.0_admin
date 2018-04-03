@@ -4,9 +4,7 @@
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr class="text-center">
-                    <td> 序号</td>
                     <td>用户名</td>
-                    <td>昵称</td>
                     <td>最小下注额</td>
                     <td>最大下注额</td>
                     <td>最大中奖额</td>
@@ -20,21 +18,17 @@
             </thead>
             <tbody>
                 <tr v-for="(v,k) in list" class="text-center" v-if="v.user">
-                        <td>{{k+1}}</td>
                         <td>{{v.user.username}}</td>
-                        <td>{{v.user.nickname}}</td>
                         <td>{{v.money_min}}</td>
                         <td>{{v.money_max}}</td>
                         <td>{{v.money_win}}</td>
-                        <td>{{v.trad_rate}}</td>
+                        <td >{{v.trad_rate}}</td>
                         <td>{{v.trad_win}}</td>
-                        <td >{{v.trad_tokensup?v.trad_tokensup:'尚未设定'}}</td>
+                        <td width="100"><p>{{v.trad_tokensup?v.trad_tokensup:'尚未设定'}}</p></td>
                         <td>{{v.trad_max}}</td>
                         <td>{{v.trad_url?v.trad_url:'尚未设定'}}</td>
                         <td>
-                            <button class="btn btn-primary" @click="edit_one(v.id)">
-                                    编辑
-                            </button>
+                            <button class="btn btn-primary" @click="edit_one(v.id)">编辑</button>
                         </td>
                 </tr>
             </tbody>
@@ -296,13 +290,14 @@ export default {
 </script>
 
 <style scoped>
-#myModal > .panel {
+#myModal > .panel
+{
   width: 800px;
   margin-top: 50px;
 }
 .table {
-  width: 80%;
-  margin: 0 auto;
-
+  width: 900px;
+  font-size: 12px;
+  max-width:900px;
 }
 </style>

@@ -18,9 +18,8 @@
                                          {{v}}盘
                                      </td>
                                      <td>
-                                          <button class="btn btn-danger btn-sm pull-left mr10 edit" @click='delete_one(v)' v-if="v != 'a'">删除</button>
-                                          <button class="btn btn-danger btn-sm pull-left mr10 edit"   v-if="v == 'a'" disabled readonly>删除</button>
                                           <button class="btn btn-info pull-left btn-sm    edit" @click='choose_one(v,k)'>查看</button>
+                                          <button class="btn btn-danger btn-sm pull-left mr10 edit" @click='delete_one(v)' >删除</button>
                                      </td>
                                  </tr>
                             </tbody>
@@ -30,14 +29,14 @@
 
                         <table class="table table-hovor table-bordered table-striped text-center">
                             <thead class="bg-primary">
-                                <tr class="h4">
+                                <tr >
                                     <td colspan="3">{{which_one}}盘
                                         <button class="pull-right save  btn btn-info" @click='edit_one()'>保存修改</button>
                                     </td>
                                 </tr>
                             </thead>
                             <thead class="bg-warning">
-                                <tr class="h4">
+                                <tr >
                                     <td>级别</td>
                                     <td>返点</td>
                                     <td>流水</td>
@@ -60,8 +59,8 @@
 
                         <table class="table table-hovor table-bordered table-striped text-center">
                             <thead class="bg-primary">
-                                <tr class="h4">
-                                    <td width="150">特码/球序</td>
+                                <tr >
+                                    <td width="100">球序</td>
                                     <td>特码0</td>
                                     <td>特码1</td>
                                     <td>特码2</td>
@@ -116,8 +115,8 @@
 
                         <table class="table table-hovor table-bordered table-striped text-center">
                             <thead class="bg-danger">
-                                <tr class="h4">
-                                    <td width="150">总和、龙虎</td>
+                                <tr >
+                                    <td width="100">总和、龙虎</td>
                                     <td>总和单</td>
                                     <td>总和双</td>
                                     <td>总和大</td>
@@ -161,8 +160,8 @@
 
                         <table class="table table-hovor table-bordered table-striped text-center">
                             <thead class="bg-success">
-                                <tr class="h4">
-                                    <td width="150">总和、龙虎</td>
+                                <tr >
+                                    <td width="100">总和、龙虎</td>
                                     <td>豹子</td>
                                     <td>顺子</td>
                                     <td>对子</td>
@@ -581,6 +580,15 @@ export default {
   width: 100%;
   margin: 0 auto;
   margin-top: 50px;
+  font-size: 12px!important;
+}
+table tr td
+{
+  font-size: 12px!important;
+}
+.form-control
+{
+  font-size: 12px!important;
 }
 .text-danger
 {

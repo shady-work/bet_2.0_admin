@@ -13,9 +13,9 @@
 
 
 
-      <div class="list-admin c-3f " @click="toUrl('edit_right')">
-        权限管理
-      </div>
+      <!--<div class="list-admin c-3f " @click="toUrl('edit_right')">-->
+        <!--权限管理-->
+      <!--</div>-->
 
 
       <!--充值-->

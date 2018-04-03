@@ -77,8 +77,6 @@
 
 
      <div class="form-horizontal" v-show="!next_step">
-       <h2>完善用户配置</h2>
-
        <div class="form-group">
          <label  class="col-sm-2 control-label">用户名</label>
          <div class="col-sm-10">
@@ -86,44 +84,41 @@
          </div>
        </div>
 
-
-
-
        <div class="lottery" v-for="(v,k) in lottery_list">
 
-         <div class="form-group">
+         <div class="form-group" style="margin-bottom: 5px;">
            <label  class="col-sm-2 control-label">
              {{be_str_lty_name(k)}}{{k}}
            </label>
            <div class="col-sm-10">
              <label class="checkbox-inline" v-for="(i,d) in v.odds_list">
-               <input type="checkbox" v-bind:value="i"   v-model="handicaps[k+'_handicaps']"> a
+               <input type="checkbox" v-bind:value="i"   v-model="handicaps[k+'_handicaps']"> {{i}}
              </label>
            </div>
          </div>
 
-         <div class="form-group">
+         <div class="form-group" style="margin-bottom: 5px;">
            <label  class="col-sm-2 control-label">最低下注</label>
            <div class="col-sm-10">
              <input type="text"  class="form-control" v-model="bet_rules[k].money_min"  placeholder="请输入">
            </div>
          </div>
 
-         <div class="form-group">
+         <div class="form-group" style="margin-bottom: 5px;">
            <label  class="col-sm-2 control-label">最高下注</label>
            <div class="col-sm-10">
              <input type="text"  class="form-control" v-model="bet_rules[k].money_max"  placeholder="请输入">
            </div>
          </div>
 
-         <div class="form-group">
+         <div class="form-group" style="margin-bottom: 5px;">
            <label  class="col-sm-2 control-label">最多中奖金额</label>
            <div class="col-sm-10">
              <input type="text"  class="form-control" v-model="bet_rules[k].money_win"  placeholder="请输入">
            </div>
          </div>
        </div>
-       <button class="btn btn-primary btn-lg center-block" @click="comfire_that()">确定</button>
+       <button class="btn btn-primary center-block" @click="comfire_that()">确定</button>
      </div>
    </div>
 </template>

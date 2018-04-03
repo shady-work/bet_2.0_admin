@@ -374,6 +374,7 @@ export default
     width: 80%;
     margin: 0 auto;
     margin-top: 20px;
+    font-size: 12px;
 
   }
   #myModal>.panel
