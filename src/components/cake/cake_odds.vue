@@ -8,7 +8,7 @@
                                 <tr >
                                     <td width="130" style='line-height:30px;'>盘口名称</td>
                                     <td style='line-height:30px;'>操作
-                                        <button class="btn-sm btn btn-warning pull-right" @click='add_one()'>+</button>
+                                        <button v-if="$store.state.admin_type==3" class="btn-sm btn btn-warning pull-right" @click='add_one()'>+</button>
                                     </td>
                                 </tr>
                             </thead>
@@ -18,9 +18,8 @@
                                          {{v}}盘
                                      </td>
                                      <td>
-                                          <button class="btn btn-danger btn-sm pull-left mr10 edit" @click='delete_one(v)' v-if="v != 'a'">删除</button>
-                                          <button class="btn btn-danger btn-sm pull-left mr10 edit"   v-if="v == 'a'" disabled readonly>删除</button>
-                                          <button class="btn btn-info pull-left btn-sm    edit" @click='choose_one(v,k)'>查看</button>
+                                          <button class="btn btn-info btn-sm    edit" @click='choose_one(v,k)'>查看</button>
+                                       <button v-if="$store.state.admin_type==3" class="btn btn-danger btn-sm  mr10 edit"  >删除</button>
                                      </td>
                                  </tr>
                             </tbody>

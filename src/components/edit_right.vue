@@ -60,7 +60,7 @@
           let _this = this;
           let newAuth = this.$refs.tree.getCheckedKeys();
           this.$http.post(`${this.api}/admin/auth`, {
-            user_id: 24,
+            user_id: this.user_id,
             auth_ids: newAuth
           }).then(function (res) {
             let ret = res.data;

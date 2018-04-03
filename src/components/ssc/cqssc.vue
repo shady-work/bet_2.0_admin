@@ -299,5 +299,6 @@ export default {
   width: 900px;
   font-size: 12px;
   max-width:900px;
+  margin:0 auto;
 }
 </style>

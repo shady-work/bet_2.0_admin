@@ -16,7 +16,7 @@
                   <span class="input-group-addon">
                     <i class="glyphicon glyphicon-lock"></i>
                   </span>
-                  <input type="text" class="form-control" placeholder="请输入密码" v-model="pwd_1">
+                  <input type="text" class="form-control" placeholder="请输入密码" @focus="test($event)" v-model="pwd_1">
                 </div>
            </div>
 
@@ -66,6 +66,12 @@
                 return;
              });
           },
+          test:function(e)
+          {
+            console.log(1);
+            let event = e || window.event;
+            console.log(e.keyCode);
+          }
       },
 
   }

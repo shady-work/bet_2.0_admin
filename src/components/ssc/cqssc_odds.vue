@@ -6,9 +6,9 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                             <thead class="bg-primary">
                                 <tr >
-                                    <td width="130" style='line-height:30px;'>盘口名称</td>
+                                    <td width="70" style='line-height:30px;'>盘口</td>
                                     <td style='line-height:30px;'>操作
-                                        <button class="btn-sm btn btn-warning pull-right" @click='add_one()'>+</button>
+                                        <button v-if="$store.state.admin_type==3" class="btn-sm btn btn-warning pull-right" @click='add_one()'>+</button>
                                     </td>
                                 </tr>
                             </thead>
@@ -17,9 +17,9 @@
                                      <td :class="active_array[k]?'text-danger':''">
                                          {{v}}盘
                                      </td>
-                                     <td>
-                                          <button class="btn btn-info pull-left btn-sm    edit" @click='choose_one(v,k)'>查看</button>
-                                          <button class="btn btn-danger btn-sm pull-left mr10 edit" @click='delete_one(v)' >删除</button>
+                                     <td >
+                                          <button class="btn btn-info  btn-sm edit" @click='choose_one(v,k)'>查看</button>
+                                          <button v-if="$store.state.admin_type==3"  class="btn btn-danger btn-sm  mr10  edit m" style="margin-left: 3px;" @click='delete_one(v)' >删除</button>
                                      </td>
                                  </tr>
                             </tbody>
@@ -31,7 +31,7 @@
                             <thead class="bg-primary">
                                 <tr >
                                     <td colspan="3">{{which_one}}盘
-                                        <button class="pull-right save  btn btn-info" @click='edit_one()'>保存修改</button>
+                                        <button v-if="$store.state.admin_type==3" class="pull-right save  btn btn-info" @click='edit_one()'>保存修改</button>
                                     </td>
                                 </tr>
                             </thead>
@@ -564,7 +564,8 @@ export default {
         });
     }
   }, //end methods
-  created: function() {
+  created: function()
+  {
     this.get_all_odds();
   }
 };
@@ -579,7 +580,7 @@ export default {
 .table {
   width: 100%;
   margin: 0 auto;
-  margin-top: 50px;
+
   font-size: 12px!important;
 }
 table tr td

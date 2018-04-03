@@ -33,8 +33,20 @@
             {
               //赋值username给全局变量
               this.$set(this.$store.state,"admin_name",res.data.data.user.username);
+              //设置用户的类型：管理员，代理，总代
+              this.$set(this.$store.state,"admin_type",res.data.data.user.type)
             }
           });
+       },
+       get_lty_list:function()
+       {
+         this.$http.get(`${this.api}/admin/lotteryList/${this.$store.state.admin_id}`).then(function(res)
+         {
+           if(res.data.status == 200)
+           {
+                this.$set(this.$store.state,'has_lotteries',res.data.data.list)
+           }
+         });
        },
     },
     created:function(){
@@ -43,6 +55,7 @@
        {
           console.log('欢迎回来.....admin_id:' + (this.$store.state.admin_id || window.sessionStorage.admin_id) );
           this.get_admin_info();
+          this.get_lty_list();
        }
        else
        {

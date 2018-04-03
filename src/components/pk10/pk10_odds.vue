@@ -6,9 +6,9 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                             <thead class="bg-primary">
                                 <tr >
-                                    <td width="130" style='line-height:30px;'>盘口名称</td>
+                                    <td width="70" style='line-height:30px;'>名称</td>
                                     <td style='line-height:30px;'>操作
-                                        <button class="btn-sm btn btn-warning pull-right" @click='add_one()'>+</button>
+                                        <button  v-if="$store.state.admin_type==3" class="btn-sm btn btn-warning pull-right" @click='add_one()'>+</button>
                                     </td>
                                 </tr>
                             </thead>
@@ -17,10 +17,9 @@
                                      <td :class="active_array[k]?'text-danger':''">
                                          {{v}}盘
                                      </td>
-                                     <td>
-                                          <button class="btn btn-danger btn-sm pull-left mr10 edit" @click='delete_one(v)' v-if="v != 'a'">删除</button>
-                                          <button class="btn btn-danger btn-sm pull-left mr10 edit"   v-if="v == 'a'" disabled readonly>删除</button>
-                                          <button class="btn btn-info pull-left btn-sm    edit" @click='choose_one(v,k)'>查看</button>
+                                     <td class="text-center">
+                                       <button class="btn btn-info  btn-sm    edit" @click='choose_one(v,k)'>查看</button>
+                                       <button  v-if="$store.state.admin_type==3" class="btn btn-danger btn-sm  mr10 edit" >删除</button>
                                      </td>
                                  </tr>
                             </tbody>
@@ -29,14 +28,14 @@
             <div class="col-md-10">
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-primary">
-                        <tr class="h4">
+                        <tr >
                             <td colspan="3">{{which_one}}盘
                                 <button class="pull-right save  btn btn-info" @click='edit_one()'>保存修改</button>
                             </td>
                         </tr>
                     </thead>
                     <thead class="bg-warning">
-                        <tr class="h4">
+                        <tr >
                             <td>级别</td>
                             <td>返点</td>
                             <td>流水</td>
@@ -59,8 +58,8 @@
 
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-primary">
-                        <tr class="h4">
-                            <td width="150">特码/球序</td>
+                        <tr >
+                            <td width="80">特码/球序</td>
                             <td>特码1</td>
                             <td>特码2</td>
                             <td>特码3</td>
@@ -71,12 +70,7 @@
                             <td>特码8</td>
                             <td>特码9</td>
                             <td>特码10</td>
-                            <td>大</td>
-                            <td>小</td>
-                            <td>单</td>
-                            <td>双</td>
-                            <td>龙</td>
-                            <td>虎</td>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -85,60 +79,88 @@
                                 {{v.mark_b}}
                             </td>
                             <td>
-                                <input type="text" class="form-control" v-model="list[k].A">
+                                <input type="text"  style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].A">
                             </td>
                             <td>
-                                <input type="text" class="form-control" v-model="list[k].B">
+                                <input type="text"  style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].B">
                             </td>
                             <td>
-                                <input type="text" class="form-control" v-model="list[k].C">
+                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;"  v-model="list[k].C">
                             </td>
                             <td>
-                                <input type="text" class="form-control" v-model="list[k].D">
+                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].D">
                             </td>
                             <td>
-                                <input type="text" class="form-control" v-model="list[k].E">
+                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].E">
                             </td>
                             <td>
-                                <input type="text" class="form-control" v-model="list[k].F">
+                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].F">
                             </td>
                             <td>
-                                <input type="text" class="form-control" v-model="list[k].G">
+                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].G">
                             </td>
                             <td>
-                                <input type="text" class="form-control" v-model="list[k].H">
+                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].H">
                             </td>
                             <td>
-                                <input type="text" class="form-control" v-model="list[k].I">
+                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].I">
                             </td>
                             <td>
-                                <input type="text" class="form-control" v-model="list[k].J">
-                            </td>
-                            <td>
-                              <input type="text" class="form-control" v-model="list[k].K">
-                            </td>
-                            <td>
-                              <input type="text" class="form-control" v-model="list[k].L">
-                            </td>
-                            <td>
-                              <input type="text" class="form-control" v-model="list[k].M">
-                            </td>
-                            <td>
-                              <input type="text" class="form-control" v-model="list[k].N">
-                            </td>
-                            <td v-if="list[k].O">
-                              <input type="text" class="form-control" v-model="list[k].O">
-                            </td>
-                            <td v-if="list[k].P">
-                              <input type="text" class="form-control" v-model="list[k].P">
+                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].J">
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
+
+
+              <table class="table table-hovor table-bordered table-striped text-center">
+                <thead class="bg-primary">
+                <tr >
+                  <td width="80">特码/球序</td>
+                  <td>大</td>
+                  <td>小</td>
+                  <td>单</td>
+                  <td>双</td>
+                  <td>龙</td>
+                  <td>虎</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(v,k) in list" v-if='k>=4 && k<14'>
+                  <td >
+                    {{v.mark_b}}
+                  </td>
+                  <td>
+                    <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].K">
+                  </td>
+                  <td>
+                    <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].L">
+                  </td>
+                  <td>
+                    <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].M">
+                  </td>
+                  <td>
+                    <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].N">
+                  </td>
+                  <td v-if="list[k].O">
+                    <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].O">
+                  </td>
+                  <td v-if="list[k].P">
+                    <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid gray;" v-model="list[k].P">
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+
+
+
+
+
+
                 <table class="table table-hovor table-bordered table-striped text-center">
                       <thead class="bg-danger">
-                        <tr class="h4">
+                        <tr >
                           <td width="150">冠亚军和-号码</td>
                           <td>13</td>
                           <td>14</td>
@@ -183,7 +205,7 @@
 
                 <table class="table table-hovor table-bordered table-striped text-center">
                   <thead class="bg-danger">
-                  <tr class="h4">
+                  <tr >
                     <td width="150">冠亚军和-号码</td>
                     <td>13</td>
                     <td>14</td>
@@ -226,8 +248,8 @@
 
                 <table class="table table-hovor table-bordered table-striped text-center">
                 <thead class="bg-danger">
-                <tr class="h4">
-                  <td width="150">冠亚军和-号码</td>
+                <tr >
+                  <td width="100">冠亚军和-号码</td>
                   <td>大</td>
                   <td>小</td>
                   <td>单</td>
@@ -251,7 +273,7 @@
                   <td>
                     <input type="text" class="form-control" v-model="list[k].D">
                   </td>
-                  </td>
+
                 </tr>
                 </tbody>
               </table>
@@ -732,7 +754,7 @@ export default {
 .table {
   width: 100%;
   margin: 0 auto;
-  margin-top: 50px;
+  font-size:12px!important;
 }
 .text-danger
 {

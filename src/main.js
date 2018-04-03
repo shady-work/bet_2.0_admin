@@ -35,6 +35,7 @@ var store = new vuex.Store(
       admin_id:window.sessionStorage.admin_id?window.sessionStorage.admin_id:false,
       admin_type:0, //登录账号的类型
       admin_name:'',//管理员的用户名
+      has_lotteries:[],//用户拥有的彩种
   },
   mutations:
   {
