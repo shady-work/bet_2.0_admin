@@ -101,7 +101,7 @@
 
 
       <!--cake_no-->
-      <div v-show="isShowThisLottery('cakeno28')" class="list-admin c-3f " @click="showitems_cake()" >
+      <div v-show="isShowThisLottery('cakeno')" class="list-admin c-3f " @click="showitems_cake()" >
         加拿大28
       </div>
       <div class="items" id="cake" style="display:none;">

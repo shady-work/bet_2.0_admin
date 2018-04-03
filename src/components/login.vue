@@ -16,7 +16,7 @@
                   <span class="input-group-addon">
                     <i class="glyphicon glyphicon-lock"></i>
                   </span>
-                  <input type="text" class="form-control" placeholder="请输入密码" @focus="test($event)" v-model="pwd_1">
+                  <input type="text" class="form-control" placeholder="请输入密码" v-on:keyup.enter="do_login" v-model="pwd_1">
                 </div>
            </div>
 
@@ -59,19 +59,13 @@
                    window.localStorage.token = res.data.data.token;
                    window.sessionStorage.admin_id = res.data.data.user_id;
                    window.sessionStorage.isLogin_admin = 'ok';
-                   //window.sessionStorage.admin_type = 'ok';
                    this.$set(this.$store.state,'admin_id',res.data.data.user_id);
                    this.$router.push('/');
                 }
                 return;
              });
           },
-          test:function(e)
-          {
-            console.log(1);
-            let event = e || window.event;
-            console.log(e.keyCode);
-          }
+
       },
 
   }

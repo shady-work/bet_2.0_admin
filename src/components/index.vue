@@ -44,7 +44,8 @@
          {
            if(res.data.status == 200)
            {
-                this.$set(this.$store.state,'has_lotteries',res.data.data.list)
+             console.log(res.data);
+             this.$set(this.$store.state,'has_lotteries',res.data.data.list)
            }
          });
        },
