@@ -10,6 +10,8 @@
               <td>序号</td>
               <td>用户名/昵称</td>
               <td>提现金额</td>
+              <td>提现类型</td>
+              <td>提现信息</td>
               <td>状态</td>
               <td>时间</td>
               <td  v-show='!one_user_recharge'>操作</td>
@@ -17,13 +19,11 @@
           </thead>
           <tbody>
             <tr v-for="(v,k) in list">
-                <td>
-                  {{k}}
-                </td>
+                <td>{{k}}</td>
                 <td>{{v.username}}/{{v.nickname}}</td>
-                <td>
-                  {{v.money}}
-                </td>
+                <td>{{v.money}}</td>
+                <td>{{v.con}}</td>
+                <td v-html="v.tp_mark"></td>
                 <td>
                   <b v-if="v.tp_stu==1" class="text-warning">待审核</b>
                   <b v-if="v.tp_stu==0" class="text-danger">提现不通过</b>
@@ -90,6 +90,7 @@ export default {
     get_recharge_list: function() {
       this.$http.get(this.api + "/admin/withdraws").then(function(res) {
         if (res.data.status == 200) {
+          console.log(res.data);
           this.list = res.data.data.withdraws.list;
           this.list_all_back_up = res.data.data.withdraws.list;
           this.hasPrev = res.data.data.withdraws.hasPrev;
