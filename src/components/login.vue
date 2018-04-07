@@ -46,7 +46,7 @@
           {
              this.$http.post(`${this.api}/admin/token`,{username:this.username,pwd_1:this.pwd_1}).then(function(res)
              {
-                console.log(res.data);
+            //    console.log(res.data);
                 if(res.data.status == 403 || res.data.status == 404 || res.data.status == 0)
                 {
                   alert(res.data.msg);

@@ -120,10 +120,10 @@ export default {
         .put(this.api + "/admin/withdraws/" + rechagre_id, { pass: review_state })
         .then(function(res) {
           console.log(res.data);
-          if (res.data.status == 201) {
+          if (res.data.status == 200) {
             alert(res.data.msg);
           } else {
-            alert("review failed!");
+            alert(res.data.msg);
           }
           this.get_recharge_list();
         });
@@ -191,8 +191,6 @@ export default {
   },
   created: function() {
     this.get_recharge_list();
-
-
   }
 };
 </script>

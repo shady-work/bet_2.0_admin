@@ -110,7 +110,7 @@ export default {
      */
     get_recharge_list: function() {
       this.$http.get(this.api + "/admin/topups").then(function(res) {
-        
+
         if (res.data.status == 200) {
           this.list = res.data.data.topups.list;
           this.list_all_back_up = res.data.data.topups.list;
@@ -198,7 +198,7 @@ export default {
           if (res.data.status == 200) {
             alert(res.data.msg);
           } else {
-            alert("review failed!");
+            alert(res.data.msg);
           }
           this.get_recharge_list();
         });

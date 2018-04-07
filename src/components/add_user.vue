@@ -304,6 +304,7 @@
                 break;
               case 'pcegg':
                 data = 'PC蛋蛋';
+                break;
               case 'cakeno':
                 data = ' 加拿大28';
                 break;
