@@ -80,8 +80,6 @@
     padding-left: 200px;
     padding-top: 50px;
     overflow:auto;
-
-
   }
   #user
   {

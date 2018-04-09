@@ -2,7 +2,7 @@
    <div id="head">
      <nav class="navbar navbar-inverse navbar-fixed-top">
        <div class="container-fluid">
-         <span class="hello"><a href="/" class="color-white">
+         <span class="hello"><a href="/ltyAdmin" class="color-white">
             首页
          </a></span>
          <span class="hello">您好，{{this.$store.state.admin_name}}

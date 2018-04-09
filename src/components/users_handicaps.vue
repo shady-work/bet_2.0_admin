@@ -85,7 +85,7 @@
       <div class="right">
         <h2 style="margin-top: 0px;" >用户名:{{user.username}} 状态：{{user.status==1?'启用':'禁用'}}
           类型：{{user.type == 0?'会员':(user.type == 1?'代理':(user.type==2?'推广':(user.type == 3?'管理':'')))}}
-          <a href="/#/users">返来查看用户信息</a>
+          <a href="/ltyAdmin#/users">返来查看用户信息</a>
         </h2>
         <div class="cqssc" v-show="which_lottery == 'cqssc'">
           <!--返水-->

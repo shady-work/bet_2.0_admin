@@ -14,6 +14,9 @@ import cqssc_odds_user from '../components/ssc/cqssc_odds_user'
 import cqssc_history from '../components/ssc/cqssc_history'
 import cqssc_history_bet from '../components/ssc/cqssc_history_bet'
 import cqssc_turntable from '../components/ssc/cqssc_turntable'
+import pk10_turntable from '../components/pk10/pk10_turntable'
+import pcegg_turntable from '../components/egg/pcegg_turntable'
+import cakeno_turntable from '../components/cake/cakeno_turntable'
 import pk10 from '../components/pk10/pk10'
 import pk10_odds from '../components/pk10/pk10_odds'
 import pk10_odds_user from '../components/pk10/pk10_odds_user'
@@ -107,6 +110,21 @@ export default new Router({
           path:'cqssc_turntable',  //cqssc_turntable page
           name:'cqssc_turntable',
           component:cqssc_turntable,
+        },
+        {
+          path:'pk10_turntable',  //cqssc_turntable page
+          name:'pk10_turntable',
+          component:pk10_turntable,
+        },
+        {
+          path:'pcegg_turntable',  //cqssc_turntable page
+          name:'pcegg_turntable',
+          component:pcegg_turntable,
+        },
+        {
+          path:'cakeno_turntable',  //cqssc_turntable page
+          name:'cakeno_turntable',
+          component:cakeno_turntable,
         },
         {
           path:'pk10',  //pk10 page

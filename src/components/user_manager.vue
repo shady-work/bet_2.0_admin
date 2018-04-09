@@ -76,6 +76,7 @@
               <td >用户加入时间</td>
               <td >是否可用</td>
               <td >用户类型</td>
+              <td >用户token</td>
               <td >操作</td>
             </tr>
           </thead>
@@ -84,8 +85,10 @@
               <td>{{v.user_id}}</td>
               <td>{{v.username}}</td>
               <td>{{v.nickname}}</td>
-              <td>{{v.money.cash_money}}</td>
-              <td>{{v.money.credit_money}}</td>
+              <td v-if="v.type != 3">{{v.money.cash_money}}</td>
+              <td v-if="v.type == 3">无</td>
+              <td v-if="v.type != 3">{{v.money.credit_money}}</td>
+              <td v-if="v.type == 3">无</td>
               <td>{{v.ctime}}</td>
               <td>
                   <b class="text-danger" v-if="v.status != 1">禁用</b>
@@ -97,7 +100,12 @@
                   <b v-if="v.type == 2">代理</b>
                   <b v-if="v.type == 3">管理</b>
               </td>
-              <td style="text-align: right">
+              <td>
+                <p>
+                  {{v.tokensup}}
+                </p>
+              </td>
+              <td width="260" style="text-align: right">
                 <button v-if="v.type != 0" class="btn btn-info btn-sm" @click="right_edit(v.user_id)">权限管理</button>
                 <button v-if="v.status == 1"  class="btn btn-danger btn-sm"  @click="user_disabled(v.user_id)">禁用</button>
                 <button v-if="v.status == 0"  class="btn btn-info btn-sm"  @click="user_open(v.user_id)">启用</button>
@@ -208,7 +216,7 @@
         {
             this.$http.get(`${this.api}/admin/users`).then(function(res)
             {
-
+              console.log(res.data);
               if(res.data.status == 200)
                {
                  this.users = res.data.data.list;

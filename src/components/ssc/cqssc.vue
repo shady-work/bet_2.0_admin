@@ -34,33 +34,23 @@
             </tbody>
         </table>
 
-
         <div id="myModal" v-show="isShow" @click="close()">
            <div class="panel panel-info center-block" @click="stop_cancel()">
              <div class="panel-heading">修改用户注额</div>
-
              <div class="panel-body form-horizontal">
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">最小下注额</label>
-                  <div class="col-sm-10">
-                    <input type="text" v-model="money_min"  class="form-control" id="inputEmail3" placeholder="请输入">
-                  </div>
-                </div>
-             </div>
-
-             <div class="panel-body form-horizontal">
+               <div class="form-group">
+                 <label for="inputEmail4" class="col-sm-2 control-label">最小下注额</label>
+                 <div class="col-sm-10">
+                   <input type="text" v-model="money_min"  class="form-control" id="inputEmail4" placeholder="请输入">
+                 </div>
+               </div>
                 <div class="form-group">
                   <label for="inputEmail4" class="col-sm-2 control-label">最大下注额</label>
                   <div class="col-sm-10">
                     <input type="text" v-model="money_max"  class="form-control" id="inputEmail4" placeholder="请输入">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="inputEmail4" class="col-sm-2 control-label">最大下注额</label>
-                  <div class="col-sm-10">
-                    <input type="text" v-model="money_max"  class="form-control" id="inputEmail4" placeholder="请输入">
-                  </div>
-                </div>
+
                  <div class="form-group">
                   <label for="inputEmail5" class="col-sm-2 control-label">最大中奖额</label>
                   <div class="col-sm-10">
@@ -85,16 +75,25 @@
                     <input type="text" v-model="trad_max"  class="form-control" id="inputEmail7" placeholder="请输入">
                   </div>
                 </div>
+               <div class="form-group">
+                 <label for="inputEmail8" class="col-sm-2 control-label">转盘选择</label>
+                 <div class="col-sm-10">
+                   <select class="form-control" v-model="which_trad_rule">
+                     <option value="">选择</option>
+                     <option v-for="(v,k) in trad_list" v-bind:value="0">{{v.trad_name}}</option>
+                   </select>
+                 </div>
+               </div>
                  <div class="form-group">
                   <label for="inputEmail8" class="col-sm-2 control-label">转盘API地址</label>
                   <div class="col-sm-10">
-                    <input type="text" v-model="trad_url"  class="form-control" id="inputEmail8" placeholder="请输入">
+                    <input type="text" readonly v-model="trad_url"  class="form-control" id="inputEmail8" placeholder="">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail9" class="col-sm-2 control-label">转盘密钥</label>
                   <div class="col-sm-10">
-                    <input type="text" v-model="trad_tokensup"  class="form-control" id="inputEmail9" placeholder="请输入">
+                    <input type="text" readonly v-model="trad_tokensup"  class="form-control" id="inputEmail9" placeholder="">
                   </div>
                 </div>
              </div>
@@ -155,10 +154,14 @@ export default {
       prevPageUrl:'',
       sum:0,
       pageNum:0,
+      trad_list:[],//转盘列表
+      which_trad_rule:'',//转盘列表的下标
     };
   },
-  created() {
+  created()
+  {
     this.get_user_bet_rules();
+    this.get_trad_list();
   },
   methods: {
     /**@augments none   load all user's bet_rules */
@@ -283,9 +286,38 @@ export default {
             return;
           }
         });
+    },
+    // 获取转盘列表
+    get_trad_list:function()
+    {
+      this.$http.get(`${this.api}/admin/ssc/tradlist`).then(function(res)
+      {
+         if(res.data.status == 200)
+         {
+           this.trad_list = res.data.data.trad_list;
+         }
+         else
+         {
+           alert('转盘列表加载失败');
+         }
+      });
     }
 
-  } //end methods
+  }, //end methods
+  watch:
+  {
+    'which_trad_rule':function(n)
+    {
+      if(n == "")
+      {
+        this.trad_url = '';
+        this.trad_tokensup = '';
+        return;
+      }
+      this.trad_url = this.trad_list[n].trad_url;
+      this.trad_tokensup = this.trad_list[n].trad_tokensup;
+    },
+  }
 };
 </script>
 

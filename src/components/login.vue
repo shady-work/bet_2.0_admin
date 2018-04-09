@@ -16,7 +16,7 @@
                   <span class="input-group-addon">
                     <i class="glyphicon glyphicon-lock"></i>
                   </span>
-                  <input type="text" class="form-control" placeholder="请输入密码" v-on:keyup.enter="do_login" v-model="pwd_1">
+                  <input type="password" class="form-control" placeholder="请输入密码" v-on:keyup.enter="do_login" v-model="pwd_1">
                 </div>
            </div>
 

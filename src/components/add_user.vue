@@ -92,7 +92,7 @@
            </label>
            <div class="col-sm-10">
              <label class="checkbox-inline" v-for="(i,d) in v.odds_list">
-               <input type="checkbox" v-bind:value="i"   v-model="handicaps[k+'_handicaps']"> {{i}}
+               <input type="checkbox" v-bind:value="i"   v-model="handicaps[k+'_handicaps']"> {{return_last_alp(i)}}盘
              </label>
            </div>
          </div>
@@ -119,6 +119,12 @@
          </div>
        </div>
        <button class="btn btn-primary center-block" @click="comfire_that()">确定</button>
+       <br>
+       <br>
+       <br>
+       <br>
+       <br>
+       <br>
      </div>
    </div>
 </template>
@@ -212,39 +218,45 @@
              });
            }
            else {
-             alert('格式不对~');
              return false;
            }
 
 
          },
          check: function () {
-           var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
+           var uPattern = /^[a-zA-Z0-9_-]{6,16}$/;
            if (!uPattern.test(this.username)) {
-             console.log('username is wrong');
+
+             alert('用户名错误，长度在6-16位');
              return false;
            }
            if (this.nickname == '') {
-             console.log('nickname is null');
+             alert('昵称不能为空');
              return false;
            }
            var pPattern = /^[0-9a-zA-Z]{6,16}$/;
            if (!pPattern.test(this.pwd_1)) {
-             console.log('pwd_1 is wrong');
+             alert('密码长度在4-16位');
              return false;
            }
            if (!pPattern.test(this.pwd_2)) {
-             console.log('pwd_2 is wrong');
+             alert('密码长度在4-16位');
              return false;
            }
            if (this.cash_money == '') {
-             console.log('cash_money is wrong');
+
+             alert('金额不能为空');
              return false;
            }
 
            return true;
          },
-
+          return_last_alp:function(str)
+          {
+            let data = str.charAt(str.length - 1);
+            data = data.toUpperCase();
+            return data;
+          },
          comfire_that: function ()
          {
            var str = '至少选择一个盘口给用户' ;
@@ -329,8 +341,7 @@
   {
     position: relative;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+
   }
   .form-horizontal
   {

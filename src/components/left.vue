@@ -25,7 +25,7 @@
       </div>
 
       <!--重庆时时彩-->
-      <div v-show="isShowThisLottery('cqssc')" class="list-admin c-3f show-cqssc" @click="showitems_cqssc()" >
+      <div v-show="isShowThisLottery('cqssc')  || this.$store.state.admin_type == 3" class="list-admin c-3f show-cqssc" @click="showitems_cqssc()" >
          重庆时时彩
       </div>
       <div class="items-cqssc" id="cq" style="display:none;">
@@ -44,13 +44,13 @@
           <div class="list-admin-items">
             <router-link to="cqssc_history_bet" >下注历史</router-link>
           </div>
-          <!--<div class="list-admin-items">-->
-            <!--<router-link to="cqssc_turntable" >转盘列表</router-link>-->
-          <!--</div>-->
+          <div class="list-admin-items">
+            <router-link to="cqssc_turntable" >转盘列表</router-link>
+          </div>
       </div>
 
       <!--北京pk10-->
-      <div v-show="isShowThisLottery('bjpk10')" class="list-admin c-3f " @click="showitems_pk10()" >
+      <div v-show="isShowThisLottery('bjpk10')  || this.$store.state.admin_type == 3" class="list-admin c-3f " @click="showitems_pk10()" >
         北京赛车pk10
       </div>
       <div class="items" id="pk10" style="display:none;">
@@ -69,13 +69,13 @@
         <div class="list-admin-items">
           <router-link to="pk10_history_bet" >下注历史</router-link>
         </div>
-        <!--<div class="list-admin-items">-->
-          <!--<router-link to="cqssc_turntable" >转盘列表</router-link>-->
-        <!--</div>-->
+        <div class="list-admin-items">
+          <router-link to="pk10_turntable" >转盘列表</router-link>
+        </div>
       </div>
 
       <!--pc蛋蛋-->
-      <div v-show="isShowThisLottery('pcegg')" class="list-admin c-3f " @click="showitems_pcegg()" >
+      <div v-show="isShowThisLottery('pcegg')  || this.$store.state.admin_type == 3" class="list-admin c-3f " @click="showitems_pcegg()" >
         PC蛋蛋
       </div>
       <div class="items" id="pcegg" style="display:none;">
@@ -94,14 +94,14 @@
         <div class="list-admin-items">
           <router-link to="pcegg_history_bet" >下注历史</router-link>
         </div>
-        <!--<div class="list-admin-items">-->
-          <!--<router-link to="cqssc_turntable" >转盘列表</router-link>-->
-        <!--</div>-->
+        <div class="list-admin-items">
+          <router-link to="pcegg_turntable" >转盘列表</router-link>
+        </div>
       </div>
 
 
       <!--cake_no-->
-      <div v-show="isShowThisLottery('cakeno')" class="list-admin c-3f " @click="showitems_cake()" >
+      <div v-show="isShowThisLottery('cakeno') || this.$store.state.admin_type == 3" class="list-admin c-3f " @click="showitems_cake()" >
         加拿大28
       </div>
       <div class="items" id="cake" style="display:none;">
@@ -120,9 +120,9 @@
         <div class="list-admin-items">
           <router-link to="cake_history_bet" >下注历史</router-link>
         </div>
-        <!--<div class="list-admin-items ">-->
-          <!--<router-link to="cqssc_turntable " >转盘列表</router-link>-->
-        <!--</div>-->
+        <div class="list-admin-items ">
+          <router-link to="cakeno_turntable " >转盘列表</router-link>
+        </div>
       </div>
 
       <div class="list-admin c-3f"  @click="toUrl('watch_order')">

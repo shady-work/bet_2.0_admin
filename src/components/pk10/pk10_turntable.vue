@@ -82,7 +82,7 @@
 <script>
   export default
   {
-      name:'cqssc_turntable',
+      name:'pk10_turntable',
       data()
       {
           return{
@@ -99,7 +99,7 @@
       {
           get_turntable:function()
           {
-            this.$http.get(`${this.api}/admin/ssc/tradlist`)
+            this.$http.get(`${this.api}/admin/pk10/tradlist`)
               .then(function(res)
               {
                   if(res.data.status == 200)
@@ -114,7 +114,7 @@
           },
           add_trad:function()
           {
-            this.$http.post(`${this.api}/admin/ssc/tradlist`,
+            this.$http.post(`${this.api}/admin/pk10/tradlist`,
               {
                 trad_name:this.trad_name,
                 trad_tokensup:this.trad_tokensup,
@@ -122,7 +122,7 @@
               })
               .then(function(res)
               {
-
+                console.log(res.data);
                 if(res.data.status == 200)
                 {
                   alert('添加成功');
@@ -148,7 +148,7 @@
           },
           do_edit:function()
           {
-            this.$http.post(`${this.api}/admin/ssc/tradlist`,
+            this.$http.post(`${this.api}/admin/pk10/tradlist`,
               {
                 trad_name:this.trad_name,
               })
@@ -163,7 +163,7 @@
           },
           deleteOne:function(t_id)
           {
-            this.$http.delete(`${this.api}/admin/ssc/tradlist/${t_id}`)
+            this.$http.delete(`${this.api}/admin/pk10/tradlist/${t_id}`)
               .then(function(res)
               {
                 if(res.data.status  ==  200)
