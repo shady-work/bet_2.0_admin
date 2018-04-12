@@ -1,56 +1,4 @@
-<style scoped>
-  .personal-handicaps
-  {
-    overflow: hidden;
-  }
-  .left
-  {
-    width: 300px;
-    float: left;
-    box-sizing: border-box;
-    padding-top: 25px;
-  }
-  .choose_lty
-  {
-    width: 100%;
-    overflow: hidden;
-  }
-  .choose_lty>h4,.choose_lty>.form-control
-  {
-    float: left;
 
-  }
-  .choose_lty>h4
-  {
-    width: 30%;
-  }
-  .choose_lty>.form-control
-  {
-    width: 70%;
-  }
-  .right
-  {
-    width: 800px;
-    float: left;
-    box-sizing: border-box;
-    padding-top: 25px;
-    margin-left: 15px;
-  }
-  td>input
-  {
-    width: 55px;
-  }
-  .text-danger
-  {
-    font-size: 18px;
-    font-weight: 700;
-  }
-  table
-  {
-    font-size: 12px!important;
-    margin-bottom: 0px!important;
-  }
-</style>
 <template>
   <div class="personal-handicaps">
       <div class="left">
@@ -85,7 +33,7 @@
       <div class="right">
         <h2 style="margin-top: 0px;" >用户名:{{user.username}} 状态：{{user.status==1?'启用':'禁用'}}
           类型：{{user.type == 0?'会员':(user.type == 1?'代理':(user.type==2?'推广':(user.type == 3?'管理':'')))}}
-          <a href="/ltyAdmin#/users">返来查看用户信息</a>
+          <router-link to="users" >返来查看用户信息</router-link>
         </h2>
         <div class="cqssc" v-show="which_lottery == 'cqssc'">
           <!--返水-->
@@ -503,7 +451,7 @@
         </div>
 
         <div class="cake" v-show="which_lottery == 'cakeno'">
-          <table class="table table-hovor table-bordered table-striped text-center">
+          <table class="table table-hovor table-bordered table-striped text-center" style="width: 900px;">
             <thead class="bg-primary">
             <tr >
               <td colspan="3">
@@ -533,7 +481,7 @@
             </tbody>
           </table>
 
-          <table class="table table-hovor table-bordered table-striped text-center">
+          <table class="table table-hovor table-bordered table-striped text-center" style="width: 900px;">
             <thead class="bg-primary">
             <tr >
               <td width="150">球序</td>
@@ -565,7 +513,7 @@
             </tbody>
           </table>
 
-          <table class="table table-hovor table-bordered table-striped text-center">
+          <table class="table table-hovor table-bordered table-striped text-center" style="width: 900px;">
             <thead class="bg-primary">
             <tr >
               <td width="150">球序</td>
@@ -595,7 +543,7 @@
             </tbody>
           </table>
 
-          <table class="table table-hovor table-bordered table-striped text-center">
+          <table class="table table-hovor table-bordered table-striped text-center" style="width: 900px;">
             <thead class="bg-primary">
             <tr >
               <td width="150">波色</td>
@@ -616,7 +564,7 @@
         </div>
 
         <div class="pcegg" v-show="which_lottery == 'pcegg'">
-          <table class="table table-hovor table-bordered table-striped text-center">
+          <table class="table table-hovor table-bordered table-striped text-center" style="width: 900px;">
             <thead class="bg-primary">
             <tr >
               <td colspan="3">
@@ -646,10 +594,10 @@
             </tbody>
           </table>
 
-          <table class="table table-hovor table-bordered table-striped text-center">
+          <table class="table table-hovor table-bordered table-striped text-center" style="width: 900px;">
             <thead class="bg-primary">
             <tr >
-              <td width="150">特码/球序</td>
+              <td>特码</td>
               <td v-for="(v,k,index) in odds_egg_one[4]" v-if='index<14'>特码{{index}}</td>
             </tr>
             </thead>
@@ -663,14 +611,14 @@
             </tbody>
 
             <thead class="bg-primary">
-            <tr >
-              <td width="150">特码/球序</td>
+            <tr>
+              <td>特码</td>
               <td v-for="(v,k,index) in odds_egg_one[4]" v-if='index>=14&&index<28'>特码{{index}}</td>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td >赔率</td>
+              <td>赔率</td>
               <td v-for="(v,k,index) in odds_egg_one[4]" v-if='index>=14&&index<28'>
                 <input type="text"   v-model="odds_egg_one[4]['e' + (index+1)]" >
               </td>
@@ -678,10 +626,10 @@
             </tbody>
           </table>
 
-          <table class="table table-hovor table-bordered table-striped text-center">
+          <table class="table table-hovor table-bordered table-striped text-center" style="width: 900px;">
             <thead class="bg-primary">
             <tr >
-              <td width="150">特码/球序</td>
+              <td>特码</td>
               <td>大</td>
               <td>小</td>
               <td>单</td>
@@ -709,7 +657,7 @@
           </table>
 
 
-          <table class="table table-hovor table-bordered table-striped text-center">
+          <table class="table table-hovor table-bordered table-striped text-center" style="width: 900px;">
             <thead class="bg-primary">
             <tr >
               <td width="150">波色</td>
@@ -2037,5 +1985,68 @@
   }
 </script>
 
+<style scoped>
+  .personal-handicaps
+  {
+    overflow: hidden;
+  }
+  .left
+  {
+    width: 300px;
+    float: left;
+    box-sizing: border-box;
+    padding-top: 25px;
+  }
+  .choose_lty
+  {
+    width: 100%;
+    overflow: hidden;
+  }
+  .choose_lty>h4,.choose_lty>.form-control
+  {
+    float: left;
+
+  }
+  .choose_lty>h4
+  {
+    width: 30%;
+  }
+  .choose_lty>.form-control
+  {
+    width: 70%;
+  }
+  .right
+  {
+    width: 800px;
+    float: left;
+    box-sizing: border-box;
+    padding-top: 25px;
+    margin-left: 15px;
+  }
+  td>input
+  {
+    width: 55px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid #b6b6b6;
+    text-align: center;
+  }
+  .text-danger
+  {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  table
+  {
+    font-size: 12px!important;
+    margin-bottom: 0px!important;
+  }
+  .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td
+  {
+    padding:8px 2px;
+  }
+</style>
 
 

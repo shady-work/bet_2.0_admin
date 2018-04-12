@@ -79,8 +79,10 @@
       {
          getSummary:function(time = 'today', lty_type = 'all')
          {
+
             for(let i = 0;i<this.english_array.length;i++)
             {
+
               this.$http.get(`${this.api}/admin/summary?range=${this.english_array[i]}&ty_type=${lty_type}`)
                 .then(function(res)
                 {
@@ -90,9 +92,14 @@
                   }
                   else
                   {
-                     console.log('数据加载失败.');
+                      // this.$message(
+                      // {
+                      //   message:"您尚未登录，请登录后再试",
+                      //   center:true,
+                      //   type:'warning',
+                      // });
+                      // this.$router.push('login');
                   }
-
                 });
             }
 

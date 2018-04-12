@@ -32,12 +32,23 @@
               console.log(res.data);
               if(res.data.status == 200)
               {
-                 alert('退出成功');
-                 this.$router.push('login');
+
+                  this.$message(
+                  {
+                    message:"退出成功~",
+                    center:true,
+                    type:'success',
+                  });
+                  this.$router.push('login');
               }
               else
               {
-                alert('出错了，请重新登录');
+                this.$message(
+                  {
+                    message:'出错了，请重新登录~',
+                    center:true,
+                    type:'success',
+                  });
                 this.$router.push('login');
               }
            });

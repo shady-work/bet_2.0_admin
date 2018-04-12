@@ -46,23 +46,26 @@
           {
              this.$http.post(`${this.api}/admin/token`,{username:this.username,pwd_1:this.pwd_1}).then(function(res)
              {
-            //    console.log(res.data);
-                if(res.data.status == 403 || res.data.status == 404 || res.data.status == 0)
-                {
-                  alert(res.data.msg);
-                  return false;
-                }
+                //登录成功
                 if(res.data.status == 200)
                 {
                    //login success
-                   alert(res.data.msg);
                    window.localStorage.token = res.data.data.token;
                    window.sessionStorage.admin_id = res.data.data.user_id;
                    window.sessionStorage.isLogin_admin = 'ok';
                    this.$set(this.$store.state,'admin_id',res.data.data.user_id);
                    this.$router.push('/');
+                   this.$message(
+                   {
+                     message:res.data.msg,
+                     center:true,
+                     type:'success',
+                   });
                 }
-                return;
+                else
+                {
+                  this.$message.error(res.data.msg);
+                }
              });
           },
 
