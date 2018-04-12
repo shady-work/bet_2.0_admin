@@ -121,7 +121,7 @@
           <router-link to="cake_history_bet" >下注历史</router-link>
         </div>
         <div class="list-admin-items ">
-          <router-link to="cakeno_turntable " >转盘列表</router-link>
+          <router-link to="cakeno_turntable" >转盘列表</router-link>
         </div>
       </div>
 

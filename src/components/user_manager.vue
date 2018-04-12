@@ -1,46 +1,5 @@
 
-<style scoped>
-  #users
-  {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    font-size: 12px;
-  }
-  .table
-  {
-    width: 80%;
-    margin:0 auto;
-    margin-top: 10px;
-  }
-  #myModal>.panel
-  {
-    width: 600px;
-    margin-top: 50px;
-  }
-  #search
-  {
-    height:40px;
-    width: 80%;
-    margin:0 auto;
-    margin-top: 15px;
-  }
 
-  #search>.search-input
-  {
-    width: 220px;
-  }
-  #user-type,#user-type-1
-  {
-    width: 150px;
-  }
-  .user-type-str
-  {
-    height: 34px;
-    line-height: 34px;
-    font-size: 13px;
-  }
-</style>
 
 <template>
    <div id="users">
@@ -76,7 +35,7 @@
               <td >用户加入时间</td>
               <td >是否可用</td>
               <td >用户类型</td>
-              <td >用户token</td>
+              <td >tokensup</td>
               <td >操作</td>
             </tr>
           </thead>
@@ -105,11 +64,12 @@
                   {{v.tokensup}}
                 </p>
               </td>
-              <td width="260" style="text-align: right">
+              <td  style="text-align: right">
                 <button v-if="v.type != 0" class="btn btn-info btn-sm" @click="right_edit(v.user_id)">权限管理</button>
                 <button v-if="v.status == 1"  class="btn btn-danger btn-sm"  @click="user_disabled(v.user_id)">禁用</button>
                 <button v-if="v.status == 0"  class="btn btn-info btn-sm"  @click="user_open(v.user_id)">启用</button>
                 <button class="btn btn-warning btn-sm" @click="check_handicaps(v.user_id)">查看盘口</button>
+                <button class="btn btn-primary btn-sm" @click="toUserSum(v.user_id)">查看用户报表</button>
                 <button class="btn btn-primary btn-sm" @click="user_edit(v.nickname,v.type,v.user_id)">修改</button>
               </td>
             </tr>
@@ -466,6 +426,16 @@
           });
        },
 
+       toUserSum:function(u_id)
+       {
+         this.$router.push(
+           {
+             path:'user_sum',
+             name:'user_sum',
+             params:{u_id},
+           });
+       }
+
      },//end of methods
      created:function()
      {
@@ -474,3 +444,48 @@
 
   }
 </script>
+
+
+
+<style scoped>
+  #users
+  {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+  }
+  .table
+  {
+    width: 1400px;
+    margin:0 auto;
+    margin-top: 10px;
+  }
+  #myModal>.panel
+  {
+    width: 600px;
+    margin-top: 50px;
+  }
+  #search
+  {
+    height:40px;
+    width: 80%;
+    margin:0 auto;
+    margin-top: 15px;
+  }
+
+  #search>.search-input
+  {
+    width: 220px;
+  }
+  #user-type,#user-type-1
+  {
+    width: 150px;
+  }
+  .user-type-str
+  {
+    height: 34px;
+    line-height: 34px;
+    font-size: 13px;
+  }
+</style>

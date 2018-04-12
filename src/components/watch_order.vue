@@ -41,12 +41,19 @@ export  default
         cake:[],
         egg:[],
         all:[],
+        host:'',
       };
     },
     created()
     {
-        this.created_websoket();
-        this.get_cqssc_orders();
+        this.$http.get(`${this.api}/host`).then(function(res){
+
+          this.host = res.data;
+        }).then(function(){
+          this.created_websoket();
+          this.get_cqssc_orders();
+        });
+
     },
 
     methods:
@@ -72,7 +79,7 @@ export  default
          {
            var that = this;
            //创建websoket
-           let ws = new WebSocket("ws://lty-main.com:8282");
+           let ws = new WebSocket("ws://"+ this.host +":8282");
            //当websoket创建成功的时候触发的函数
            ws.onopen = function ()
            {
@@ -106,9 +113,10 @@ export  default
          },
          get_cqssc_orders:function(lottery_name = 'ssc',index = 0)
          {
+
            this.activeArray = [0,0,0,0];
            this.activeArray[index] = true;
-           this.$http.get(`${this.api}/admin/${lottery_name}/history/order/per_page/20`)
+           this.$http.get(`${this.api}/admin/${lottery_name}/history/order?per_page=20`)
              .then(function(res){
                if(res.data.status == 200)
                {
@@ -123,19 +131,19 @@ export  default
          },
          add_orders:function(obj,type)
          {
-             let len = obj.length;
+
              switch (type) {
                case "cqssc" :
-                 this.get_cqssc_orders('ssc',0)
+                 this.get_cqssc_orders('ssc',0);
                  break;
                case "bjpk10" :
-                 this.get_cqssc_orders('pk10',1)
+                 this.get_cqssc_orders('pk10',1);
                  break;
                case "cakeno" :
-                 this.get_cqssc_orders('cakeno',2)
+                 this.get_cqssc_orders('cake',3);
                  break;
                case "pcegg" :
-                 this.get_cqssc_orders('pcegg',3)
+                 this.get_cqssc_orders('egg',2);
                  break;
              }
          },

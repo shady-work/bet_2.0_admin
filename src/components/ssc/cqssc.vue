@@ -50,7 +50,6 @@
                     <input type="text" v-model="money_max"  class="form-control" id="inputEmail4" placeholder="请输入">
                   </div>
                 </div>
-
                  <div class="form-group">
                   <label for="inputEmail5" class="col-sm-2 control-label">最大中奖额</label>
                   <div class="col-sm-10">
@@ -79,21 +78,21 @@
                  <label for="inputEmail8" class="col-sm-2 control-label">转盘选择</label>
                  <div class="col-sm-10">
                    <select class="form-control" v-model="which_trad_rule">
-                     <option value="">选择</option>
-                     <option v-for="(v,k) in trad_list" v-bind:value="0">{{v.trad_name}}</option>
+                     <option v-bind:value="'xxx'">清除</option>
+                     <option v-for="(v,k) in trad_list" v-bind:value="k">{{v.trad_name}}</option>
                    </select>
                  </div>
                </div>
                  <div class="form-group">
                   <label for="inputEmail8" class="col-sm-2 control-label">转盘API地址</label>
                   <div class="col-sm-10">
-                    <input type="text" readonly v-model="trad_url"  class="form-control" id="inputEmail8" placeholder="">
+                    <input type="text"  v-model="trad_url"  class="form-control" id="inputEmail8" placeholder="">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail9" class="col-sm-2 control-label">转盘密钥</label>
                   <div class="col-sm-10">
-                    <input type="text" readonly v-model="trad_tokensup"  class="form-control" id="inputEmail9" placeholder="">
+                    <input type="text"  v-model="trad_tokensup"  class="form-control" id="inputEmail9" placeholder="">
                   </div>
                 </div>
              </div>
@@ -238,6 +237,7 @@ export default {
         .get(`${this.api}/admin/ssc/user/${rule_id}/edit`)
         .then(function(res) {
           let data = res.data;
+
           if (data.status == 200) {
             this.money_max = data.data.list.money_max;
             this.money_min = data.data.list.money_min;
@@ -249,6 +249,18 @@ export default {
             this.trad_win = data.data.list.trad_win;
             this.one_id = data.data.list.id;
             this.isShow = true;
+            if(this.trad_url != "")
+            {
+              for(let i = 0 ; i < this.trad_list.length;i++)
+              {
+                if(this.trad_url = this.trad_list[i].trad_url)
+                {
+                  this.which_trad_rule = i ;
+                  break;
+                }
+              }
+            }
+
           } else {
             console.log("load failed");
           }
@@ -308,14 +320,22 @@ export default {
   {
     'which_trad_rule':function(n)
     {
-      if(n == "")
+      if(n == 'xxx')
       {
         this.trad_url = '';
         this.trad_tokensup = '';
+        return
+      }
+      if(n == "")
+      {
+        this.trad_url = this.trad_list[0].trad_url;
+        this.trad_tokensup = this.trad_list[0].trad_tokensup;
         return;
       }
       this.trad_url = this.trad_list[n].trad_url;
       this.trad_tokensup = this.trad_list[n].trad_tokensup;
+
+
     },
   }
 };

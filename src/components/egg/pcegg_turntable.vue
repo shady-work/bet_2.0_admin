@@ -127,6 +127,7 @@
                 {
                   alert('添加成功');
                   this.get_turntable();
+                  this.isShow = false;
                 }
                 else
                 {

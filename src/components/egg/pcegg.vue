@@ -79,8 +79,8 @@
             <label for="inputEmail8" class="col-sm-2 control-label">转盘选择</label>
             <div class="col-sm-10">
               <select class="form-control" v-model="which_trad_rule">
-                <option value="">选择</option>
-                <option v-for="(v,k) in trad_list" v-bind:value="0">{{v.trad_name}}</option>
+                <option v-bind:value="'xxx'">清除</option>
+                <option v-for="(v,k) in trad_list" v-bind:value="k">{{v.trad_name}}</option>
               </select>
             </div>
           </div>
@@ -249,6 +249,17 @@
               this.trad_win = data.data.list.trad_win;
               this.one_id = data.data.list.id;
               this.isShow = true;
+              if(this.trad_url != "")
+              {
+                for(let i = 0 ; i < this.trad_list.length;i++)
+                {
+                  if(this.trad_url = this.trad_list[i].trad_url)
+                  {
+                    this.which_trad_rule = i ;
+                    break;
+                  }
+                }
+              }
             } else {
               console.log("load failed");
             }
@@ -308,10 +319,16 @@
       {
         'which_trad_rule':function(n)
         {
-          if(n == "")
+          if(n == 'xxx')
           {
             this.trad_url = '';
             this.trad_tokensup = '';
+            return
+          }
+          if(n == "")
+          {
+            this.trad_url = this.trad_list[0].trad_url;
+            this.trad_tokensup = this.trad_list[0].trad_tokensup;
             return;
           }
           this.trad_url = this.trad_list[n].trad_url;

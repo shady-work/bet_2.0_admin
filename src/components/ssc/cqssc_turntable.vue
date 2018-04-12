@@ -126,6 +126,7 @@
                 if(res.data.status == 200)
                 {
                   alert('添加成功');
+                  this.isShow = false;
                   this.get_turntable();
                 }
                 else
