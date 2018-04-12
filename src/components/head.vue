@@ -2,9 +2,9 @@
    <div id="head">
      <nav class="navbar navbar-inverse navbar-fixed-top">
        <div class="container-fluid">
-         <span class="hello"><a href="/ltyAdmin" class="color-white">
-            首页
-         </a></span>
+         <span class="hello">
+            <router-link to="/" class="color-white">首页</router-link>
+         </span>
          <span class="hello">您好，{{this.$store.state.admin_name}}
            （{{this.$store.state.admin_type==1?'代理':(this.$store.state.admin_type==2?'总代理':"管理员")}}）</span>
          <span class="hello pull-right log-out" @click="log_out()">退出</span>
@@ -29,7 +29,6 @@
          this.$http.delete(`${this.api}/admin/token`)
            .then(function(res)
            {
-              console.log(res.data);
               if(res.data.status == 200)
               {
 

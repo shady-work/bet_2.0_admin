@@ -1,140 +1,7 @@
 <template>
   <div id="left">
-      <!--用户管理-->
-      <div class="list-admin c-3f " @click="showUsers()">
-         用户管理
-      </div>
-
-      <div class="items" id="users" style="display:none;">
-        <div class="list-admin-items">
-          <router-link to="users" >查看用户信息</router-link>
-          <router-link to="add_user" >添加用户</router-link>
-        </div>
-      </div>
-
-
-
-      <!--<div class="list-admin c-3f " @click="toUrl('edit_right')">-->
-        <!--权限管理-->
-      <!--</div>-->
-
-
-      <!--充值-->
-      <div class="list-admin c-3f " @click="toUrl('recharge')">
-        资金明细
-      </div>
-
-      <!--重庆时时彩-->
-      <div v-show="isShowThisLottery('cqssc')  || this.$store.state.admin_type == 3" class="list-admin c-3f show-cqssc" @click="showitems_cqssc()" >
-         重庆时时彩
-      </div>
-      <div class="items-cqssc" id="cq" style="display:none;">
-          <div class="list-admin-items">
-            <router-link to="cqssc" >用户注额列表</router-link>
-          </div>
-          <div class="list-admin-items">
-            <router-link to="cqssc_odds" >赔率列表</router-link>
-          </div>
-          <!--<div class="list-admin-items">-->
-            <!--<router-link to="cqssc_odds_user" >用户赔率列表</router-link>-->
-          <!--</div>-->
-          <div class="list-admin-items">
-            <router-link to="cqssc_history" >开奖历史</router-link>
-          </div>
-          <div class="list-admin-items">
-            <router-link to="cqssc_history_bet" >下注历史</router-link>
-          </div>
-          <div class="list-admin-items">
-            <router-link to="cqssc_turntable" >转盘列表</router-link>
-          </div>
-      </div>
-
-      <!--北京pk10-->
-      <div v-show="isShowThisLottery('bjpk10')  || this.$store.state.admin_type == 3" class="list-admin c-3f " @click="showitems_pk10()" >
-        北京赛车pk10
-      </div>
-      <div class="items" id="pk10" style="display:none;">
-        <div class="list-admin-items">
-          <router-link to="pk10" >用户注额列表</router-link>
-        </div>
-        <div class="list-admin-items">
-          <router-link to="pk10_odds" >赔率列表</router-link>
-        </div>
-        <!--<div class="list-admin-items">-->
-          <!--<router-link to="pk10_odds_user" >用户赔率列表</router-link>-->
-        <!--</div>-->
-        <div class="list-admin-items">
-          <router-link to="pk10_history" >开奖历史</router-link>
-        </div>
-        <div class="list-admin-items">
-          <router-link to="pk10_history_bet" >下注历史</router-link>
-        </div>
-        <div class="list-admin-items">
-          <router-link to="pk10_turntable" >转盘列表</router-link>
-        </div>
-      </div>
-
-      <!--pc蛋蛋-->
-      <div v-show="isShowThisLottery('pcegg')  || this.$store.state.admin_type == 3" class="list-admin c-3f " @click="showitems_pcegg()" >
-        PC蛋蛋
-      </div>
-      <div class="items" id="pcegg" style="display:none;">
-        <div class="list-admin-items">
-          <router-link to="pcegg" >用户注额列表</router-link>
-        </div>
-        <div class="list-admin-items">
-          <router-link to="pcegg_odds" >赔率列表</router-link>
-        </div>
-        <!--<div class="list-admin-items">-->
-          <!--<router-link to="pcegg_odds_user" >用户赔率列表</router-link>-->
-        <!--</div>-->
-        <div class="list-admin-items">
-          <router-link to="pcegg_history" >开奖历史</router-link>
-        </div>
-        <div class="list-admin-items">
-          <router-link to="pcegg_history_bet" >下注历史</router-link>
-        </div>
-        <div class="list-admin-items">
-          <router-link to="pcegg_turntable" >转盘列表</router-link>
-        </div>
-      </div>
-
-
-      <!--cake_no-->
-      <div v-show="isShowThisLottery('cakeno') || this.$store.state.admin_type == 3" class="list-admin c-3f " @click="showitems_cake()" >
-        加拿大28
-      </div>
-      <div class="items" id="cake" style="display:none;">
-        <div class="list-admin-items">
-          <router-link to="cake" >用户注额列表</router-link>
-        </div>
-        <div class="list-admin-items">
-          <router-link to="cake_odds" >赔率列表</router-link>
-        </div>
-        <!--<div class="list-admin-items">-->
-          <!--<router-link to="cake_odds_user" >用户赔率列表</router-link>-->
-        <!--</div>-->
-        <div class="list-admin-items">
-          <router-link to="cake_history" >开奖历史</router-link>
-        </div>
-        <div class="list-admin-items">
-          <router-link to="cake_history_bet" >下注历史</router-link>
-        </div>
-        <div class="list-admin-items ">
-          <router-link to="cakeno_turntable" >转盘列表</router-link>
-        </div>
-      </div>
-
-      <div class="list-admin c-3f"  @click="toUrl('watch_order')">
-        实时订单
-      </div>
-
-
-      <div class="list-admin c-3f "  @click="toUrl('articles')">
-        充值链接管理
-      </div>
-
-
+      <el-tree :data="tree" :props="defaultProps" @node-click="handleNodeClick"  :accordion="true" :highlight-current="true"></el-tree>
+    <!--:highlight-current="true"-->
   </div>
 </template>
 <script>
@@ -145,52 +12,219 @@
       {
          return{
            isShowCqssc:false,
+           tree:
+           [
+             //用户管理
+             {
+                label: '用户管理',
+                children:
+                [
+                  {
+                    label: '查看用户信息',
+                    href:'users',
+                  },
+                  {
+                    label: '添加用户',
+                    href:'add_user',
+                  }
+               ]
+             },
+             //资金明细
+             {
+               label: '资金明细',
+               href : 'recharge',
+             },
+             //实时订单
+             {
+               label:"实时订单",
+               href:'watch_order'
+             },
+             //充值管理
+             {
+               label:"充值管理",
+               href:'articles'
+             }
+           ],//end of tree data
+           defaultProps:
+           {
+             children: 'children',
+             label: 'label'
+           },
+           //控制是否要加入这个彩种
+          //重庆时时彩
+          cqssc:
+          {
+            label: '重庆时时彩',
+              children:
+            [
+              {
+                label: '用户注额列表',
+                href:'cqssc',
+              },
+              {
+                label: '赔率列表',
+                href:'cqssc_odds',
+              },
+              {
+                label: '开奖历史',
+                href:'cqssc_history',
+              },
+              {
+                label: '下注历史',
+                href:'cqssc_history_bet',
+              },
+              {
+                label: '转盘列表',
+                href:'cqssc_turntable',
+              }
+            ]
+          },
+          //北京赛车PK拾
+           bjpk10:{
+            label: '北京赛车PK拾',
+              children:
+            [
+              {
+                label: '用户注额列表',
+                href:'pk10',
+              },
+              {
+                label: '赔率列表',
+                href:'pk10_odds',
+              },
+              {
+                label: '开奖历史',
+                href:'pk10_history',
+              },
+              {
+                label: '下注历史',
+                href:'pk10_history_bet',
+              },
+              {
+                label: '转盘列表',
+                href:'pk10_turntable',
+              }
+            ]
+          },
+          //PC蛋蛋
+          pcegg:{
+            label: 'PC蛋蛋',
+              children:
+            [
+              {
+                label: '用户注额列表',
+                href:'pcegg',
+              },
+              {
+                label: '赔率列表',
+                href:'pcegg_odds',
+              },
+              {
+                label: '开奖历史',
+                href:'pcegg_history',
+              },
+              {
+                label: '下注历史',
+                href:'pcegg_history_bet',
+              },
+              {
+                label: '转盘列表',
+                href:'pcegg_turntable',
+              }
+            ]
+          },
+          //加拿大28
+          cakeno:{
+            label: '加拿大28',
+              children:
+            [
+              {
+                label: '用户注额列表',
+                href:'cake',
+              },
+              {
+                label: '赔率列表',
+                href:'cake_odds',
+              },
+              {
+                label: '开奖历史',
+                href:'cake_history',
+              },
+              {
+                label: '下注历史',
+                href:'cake_history_bet',
+              },
+              {
+                label: '转盘列表',
+                href:'cakeno_turntable',
+              }
+            ]
+          },
          }
 
       },
       methods:
       {
-        toUrl:function(uri)
+        isJoinThisLottery:function()
         {
-          this.$router.push(uri);
-        },
-        showitems_cqssc:function()
-        {
-            $('#cq').slideToggle(100);
-        },
-        showUsers:function()
-        {
-           $('#users').slideToggle(100);
-        },
-        showitems_pk10:function ()
-        {
-          $('#pk10').slideToggle(100);
-        },
-        showitems_pcegg:function ()
-        {
-          $('#pcegg').slideToggle(100);
-        },
-        showitems_cake:function ()
-        {
-          $('#cake').slideToggle(100);
-        },
-        isShowThisLottery:function(lottery_name)
-        {
-            let numb = this.$store.state.has_lotteries.indexOf(lottery_name);
-            if(numb == -1)
+          //先获取用户的类型，如果是管理员，就直接加入四个彩种，不然就获取用户拥有哪些彩种
+          this.$http.get(`${this.api}/user`).then(function(res)
+          {
+            if(res.data.status == 200)
             {
-              return false;
+              //设置用户的类型：管理员，代理，总代
+              this.$set(this.$store.state,"admin_type",res.data.data.user.type)
+            }
+          })
+          .then(function()
+          {
+            if(this.$store.state.admin_type == 3 || this.$store.state.admin_id == 1)
+            {
+              this.tree.push(this.cqssc);
+              this.tree.push(this.bjpk10);
+              this.tree.push(this.pcegg);
+              this.tree.push(this.cakeno);
             }
             else
             {
-              return true;
+              //获取用户的拥有的彩种，有的话，添加到左侧的导航栏中;
+              this.$http.get(`${this.api}/admin/lotteryList/${this.$store.state.admin_id?this.$store.state.admin_id:window.sessionStorage.admin_id}`).then(function(res)
+              {
+                if(res.data.status == 200)
+                {
+                  let lotteries = ['cqssc','bjpk10','pcegg','cakeno'];
+                  for(let i=0;i<lotteries.length;i++)
+                  {
+                    let isExist = res.data.data.list.indexOf(lotteries[i]);
+                    if(isExist == -1)
+                    {
+                      continue;
+                    }
+                    else
+                    {
+                      this.tree.push(this[lotteries[i]]);
+                    }
+                  }
+                }
+              });
             }
-        }
+          });
+        },
+
+        //tree被点击时触发的事件
+        handleNodeClick(self)
+        {
+          if(self.href)
+          {
+            this.$router.push(self.href);
+          }
+        },
+
         //
       },
      created()
      {
-
+        this.isJoinThisLottery();
      }
 
   };
@@ -287,5 +321,56 @@
   .list-admin-items>.active
   {
     background: #777;
+  }
+</style>
+<style>
+  .el-tree
+  {
+    background: #333!important;
+    color:#e5e5e5;
+  }
+  .el-tree-node
+  {
+    border-bottom:1px solid #222;
+    background: #333!important;
+  }
+  .el-tree-node__content
+  {
+    display: block;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #e5e5e5;
+    text-decoration: none!important;
+    height:40px;
+    line-height:30px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+
+  }
+  .el-tree-node__content .el-tree-node__label
+  {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .el-tree-node__content:hover
+  {
+    background: #636363;
+  }
+  .el-tree-node__children .el-tree-node__label
+  {
+    font-size: 14px;
+    font-weight: normal;
+  }
+  .is-expanded, .is-current, .is-focusable
+  {
+    background: none;
+  }
+  .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content
+  {
+    background: #636363;
   }
 </style>

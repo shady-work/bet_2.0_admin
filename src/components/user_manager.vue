@@ -176,7 +176,6 @@
         {
             this.$http.get(`${this.api}/admin/users`).then(function(res)
             {
-              console.log(res.data);
               if(res.data.status == 200)
                {
                  this.users = res.data.data.list;
@@ -322,18 +321,22 @@
         {
           this.$http.put(`${this.api}/admin/users/${this.user_id}`,{nickname:this.nickname,type:this.user_type}).then(function(res)
           {
-            if(res.data.status == 201)
+            //修改成功
+            if(res.data.status == 200)
             {
-              alert(res.data.msg);
               this.get_user_list();
               this.isShow = false;
-              return;
+              this.$message(
+              {
+                message:res.data.msg,
+                center:true,
+                type:"success",
+              });
             }
             else
             {
-              alert(res.data.msg);
-              console.log('修改失败');
-              return;
+              //修改失败
+              this.$message.error(res.data.msg);
             }
           });
         },
@@ -347,14 +350,6 @@
         */
         search_user:function()
         {
-            /*console.log("type:" + this.type + '\n');
-            console.log("agent:" + this.agent + '\n');
-            console.log("manager:" + this.manager + '\n');
-            console.log("username:" + this.username + '\n');
-            console.log("nickname_s:" + this.nickname_s + '\n');
-            console.log("status:" + this.status + '\n');
-            console.log("--------------------------\n");
-           return;*/
             this.users = [];
             let url = this.search_url(
             {
@@ -389,19 +384,22 @@
         * @returns {string}
         */
        search_url:function(maps={type:null,agent:null,manager:null,username:null,nickname:null,status:null})
-         {
-              let url = `${this.api}/admin/users?`;
-              let keys = Object.keys(maps);
-              for(let i = 0;i<keys.length;i++)
-              {
-                  if(maps[keys[i]] != null)
-                  {
-                    url += keys[i] + '=' + maps[keys[i]] + '&';
-                  }
-              }
-              return url;
-         },
-
+       {
+            let url = `${this.api}/admin/users?`;
+            let keys = Object.keys(maps);
+            for(let i = 0;i<keys.length;i++)
+            {
+                if(maps[keys[i]] != null)
+                {
+                  url += keys[i] + '=' + maps[keys[i]] + '&';
+                }
+            }
+            return url;
+       },
+       /**
+        * 跳转到用户盘口
+        * @param u_id
+        */
        check_handicaps:function(u_id)
        {
           this.$router.push(
@@ -425,7 +423,10 @@
              params:{u_id},
           });
        },
-
+       /**
+        * 跳转到用户报表
+        * @param u_id
+        */
        toUserSum:function(u_id)
        {
          this.$router.push(
@@ -448,6 +449,7 @@
 
 
 <style scoped>
+
   #users
   {
     position: relative;
@@ -460,6 +462,10 @@
     width: 1400px;
     margin:0 auto;
     margin-top: 10px;
+  }
+  #myModal
+  {
+    top:-15px;
   }
   #myModal>.panel
   {
