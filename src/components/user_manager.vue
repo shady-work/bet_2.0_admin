@@ -1,6 +1,4 @@
 
-
-
 <template>
    <div id="users">
        <div id="search">
@@ -32,7 +30,7 @@
               <td >昵称</td>
               <td >现金额度</td>
               <td >信用额度</td>
-              <td >用户加入时间</td>
+              <!--<td >用户加入时间</td>-->
               <td >是否可用</td>
               <td >用户类型</td>
               <td >tokensup</td>
@@ -48,7 +46,7 @@
               <td v-if="v.type == 3">无</td>
               <td v-if="v.type != 3">{{v.money.credit_money}}</td>
               <td v-if="v.type == 3">无</td>
-              <td>{{v.ctime}}</td>
+              <!--<td>{{v.ctime}}</td>-->
               <td>
                   <b class="text-danger" v-if="v.status != 1">禁用</b>
                   <b class="text-info" v-if="v.status == 1">可用</b>
@@ -70,7 +68,7 @@
                 <button v-if="v.status == 0"  class="btn btn-info btn-sm"  @click="user_open(v.user_id)">启用</button>
                 <button class="btn btn-warning btn-sm" @click="check_handicaps(v.user_id)">查看盘口</button>
                 <button class="btn btn-primary btn-sm" @click="toUserSum(v.user_id)">查看用户报表</button>
-                <button class="btn btn-primary btn-sm" @click="user_edit(v.nickname,v.type,v.user_id)">修改</button>
+                <button class="btn btn-primary btn-sm" @click="user_edit(v.nickname,v.type,v.user_id,v.money.cash_money,v.money.credit_money)">修改</button>
               </td>
             </tr>
           </tbody>
@@ -123,6 +121,21 @@
                   </select>
                 </div>
               </div>
+
+             <div class="form-group">
+               <label for="inputEmail4" class="col-sm-2 control-label">现金额度</label>
+               <div class="col-sm-10">
+                 <input type="text" v-model="cash_money" class="form-control" id="inputEmail4" placeholder="请输入">
+               </div>
+             </div>
+
+             <div class="form-group">
+               <label for="inputEmail5" class="col-sm-2 control-label">信用额度</label>
+               <div class="col-sm-10">
+                 <input type="text" v-model="credit_money" class="form-control" id="inputEmail5" placeholder="请输入">
+               </div>
+             </div>
+
             </div>
 
            <div class="panel-footer">
@@ -164,6 +177,8 @@
             status:null,
             sum:0,
             pageNum:0,
+            cash_money:10000.00,
+            credit_money:10000.00,
         };
         return data;
      },
@@ -196,7 +211,7 @@
         {
          if(this.prevPageUrl == '')
          {
-           alert('没有上一页了');
+           this.$message.error('没有上一页了');
            return;
          }
          else
@@ -214,7 +229,7 @@
                }
                else
                {
-                 console.log('the codes of cqssc\'s history was load failed');
+                 this.$message.error('数据加载失败');
                }
              });
          }
@@ -223,7 +238,7 @@
         {
          if(this.nextPageUrl == '')
          {
-           alert('没有下一页了');
+           this.$message.error('没有下一页了');
            return;
          }
          else
@@ -241,7 +256,7 @@
                }
                else
                {
-                 console.log('the codes of pk10c\'s history was load failed');
+                 this.$message.error('数据加载失败。');
                }
              });
          }
@@ -254,16 +269,21 @@
         {
           this.$http.delete(`${this.api}/admin/users/${user_id}`).then(function(res)
           {
-            if(res.data.status == 201)
+            if(res.data.status == 200)
             {
-               alert(res.data.msg);
+
+                this.$message(
+                    {
+                        message:res.data.msg,
+                        center:true,
+                        type:'success',
+                    });
                this.get_user_list();
-               return;
+
             }
             else
             {
-              alert(res.data.msg);
-              console.log('禁用失败');
+              this.$message.error(res.data.msg);
             }
           });
         },
@@ -276,16 +296,22 @@
         {
             this.$http.put(`${this.api}/admin/unbinduser/${user_id}`).then(function(res)
             {
-              if(res.data.status == 201)
+
+              if(res.data.status == 200)
               {
-                alert(res.data.msg);
+
+                  this.$message(
+                      {
+                          message:res.data.msg,
+                          center:true,
+                          type:'success',
+                      });
                 this.get_user_list();
                 return;
               }
               else
               {
-                alert(res.data.msg);
-                console.log('启用失败');
+                  this.$message.error(res.data.msg);
               }
             });
         },
@@ -295,11 +321,13 @@
         * @param user_type
         * @param user_id
         */
-        user_edit:function(nickname,user_type,user_id)
+        user_edit:function(nickname,user_type,user_id,cash_money,credit_money)
         {
             this.nickname = nickname;
             this.user_type = user_type;
             this.user_id = user_id;
+            this.cash_money = cash_money;
+            this.credit_money = credit_money;
             this.isShow = true;
         },
         stop_cancel:function(e)
@@ -319,7 +347,7 @@
         */
         do_edit:function(user_id)
         {
-          this.$http.put(`${this.api}/admin/users/${this.user_id}`,{nickname:this.nickname,type:this.user_type}).then(function(res)
+          this.$http.put(`${this.api}/admin/users/${this.user_id}`,{nickname:this.nickname,type:this.user_type,cash_money:this.cash_money,credit_money:this.credit_money}).then(function(res)
           {
             //修改成功
             if(res.data.status == 200)

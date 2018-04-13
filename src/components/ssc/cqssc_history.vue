@@ -96,7 +96,7 @@ export default
                    }
                    else
                    {
-                     console.log('the codes of cqssc\'s history was load failed');
+                     this.$message.error('数据加载失败');
                    }
               });
         },
@@ -105,7 +105,7 @@ export default
         {
             if(this.prevPageUrl == '')
             {
-               alert('没有上一页了');
+               this.$message.error('没有上一页了');
                return;
             }
             else
@@ -123,7 +123,7 @@ export default
                   }
                   else
                   {
-                    console.log('the codes of cqssc\'s history was load failed');
+                    this.$message.error('数据加载失败');
                   }
                 });
             }
@@ -132,7 +132,7 @@ export default
         {
           if(this.nextPageUrl == '')
           {
-            alert('没有下一页了');
+            this.$message.error('没有下一页了');
             return;
           }
           else
@@ -150,7 +150,7 @@ export default
                 }
                 else
                 {
-                  console.log('the codes of cqssc\'s history was load failed');
+                  this.$message.error('数据加载失败');
                 }
               });
           }

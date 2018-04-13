@@ -110,7 +110,6 @@ export default {
      */
     get_recharge_list: function() {
       this.$http.get(this.api + "/admin/topups").then(function(res) {
-
         if (res.data.status == 200) {
           this.list = res.data.data.topups.list;
           this.list_all_back_up = res.data.data.topups.list;
@@ -118,7 +117,7 @@ export default {
           this.hasNext = res.data.data.topups.hasNext;
           this.sum = res.data.data.topups.sum;
           this.pageNum = res.data.data.topups.pageNum;
-          this.prevPageUrl = this.hasPrev? res.data.data.topups.prevPageUrl:'';
+          this.prevPageUrl = this.hasPrev? res.data.datwia.topups.prevPageUrl:'';
           this.nextPageUrl = this.hasNext? res.data.data.topups.nextPageUrl:'';
         }
       });
@@ -127,11 +126,15 @@ export default {
       this.$http
         .delete(this.api + "/admin/topups/" + recharge_id)
         .then(function(res) {
-          console.log(res.data);
-          if (res.data.status == 201) {
-            alert(res.data.msg);
+          if (res.data.status == 200) {
+          this.$message(
+              {
+                  message:res.data.msg,
+                  center:true,
+                  type:'success',
+              });
           } else {
-            alert("delete failed!");
+              this.$message.error(res.data.msg);
           }
           this.get_recharge_list();
         });
@@ -140,7 +143,7 @@ export default {
     {
       if(this.prevPageUrl == '')
       {
-        alert('没有上一页了');
+        this.$message.error('没有上一页了');
         return;
       }
       else
@@ -158,7 +161,7 @@ export default {
             }
             else
             {
-              console.log('the codes of cqssc\'s history was load failed');
+              this.$message.error('数据加载失败');
             }
           });
       }
@@ -167,7 +170,7 @@ export default {
     {
       if(this.nextPageUrl == '')
       {
-        alert('没有下一页了');
+        this.$message.error('没有下一页了');
         return;
       }
       else
@@ -185,7 +188,7 @@ export default {
             }
             else
             {
-              console.log('the codes of pk10c\'s history was load failed');
+              this.$message.error('数据加载失败。');
             }
           });
       }
@@ -194,11 +197,15 @@ export default {
       this.$http
         .put(this.api + "/admin/topups/" + rechagre_id, { pass: review_state })
         .then(function(res) {
-          console.log(res.data);
           if (res.data.status == 200) {
-            alert(res.data.msg);
+              this.$message(
+                  {
+                      message:res.data.msg,
+                      center:true,
+                      type:'success',
+                  });
           } else {
-            alert(res.data.msg);
+              this.$message.error(res.data.msg);
           }
           this.get_recharge_list();
         });
