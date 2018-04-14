@@ -373,4 +373,8 @@
   {
     background: #636363;
   }
+  .el-message-box
+  {
+    width:600px;
+  }
 </style>

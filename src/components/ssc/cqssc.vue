@@ -29,6 +29,7 @@
                         <td>{{v.trad_url?v.trad_url:'尚未设定'}}</td>
                         <td>
                             <button class="btn btn-primary" @click="edit_one(v.id)">编辑</button>
+                            <button class="btn btn-warning" @click="check_handicaps(v.id)">查看盘口</button>
                         </td>
                 </tr>
             </tbody>
@@ -299,6 +300,20 @@ export default {
           }
         });
     },
+      /**
+        * 跳转到用户盘口
+        * @param u_id
+        */
+       check_handicaps:function(u_id)
+       {
+          this.$router.push(
+            {
+              path:'users_handicaps',
+              name:'users_handicaps',
+              params:{u_id}
+            }
+          );
+       },
     // 获取转盘列表
     get_trad_list:function()
     {

@@ -154,17 +154,22 @@ export  default
 
 
 <style scoped>
+  #watch{
+    position:relative;
+  }
+  
   .table
   {
-    width: 80%;
+    width:1200px;
     margin:0 auto;
     margin-top: 10px;
     font-size: 12px;
+    margin-left:10px;
   }
   .my-nav
-  {
-    width:80%;
-    margin:0 auto;
-    margin-top: 10px;
+  { 
+     width:1200px;
+    margin-left:10px;   
+    margin-top: 5px;
   }
 </style>

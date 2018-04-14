@@ -58,15 +58,14 @@
                   <b v-if="v.type == 3">管理</b>
               </td>
               <td>
-                <p>
-                  {{v.tokensup}}
+                <a @click="show_users_tokensup(v.tokensup,v.username)">点此查看</a>
                 </p>
               </td>
               <td  style="text-align: right">
                 <button v-if="v.type != 0" class="btn btn-info btn-sm" @click="right_edit(v.user_id)">权限管理</button>
                 <button v-if="v.status == 1"  class="btn btn-danger btn-sm"  @click="user_disabled(v.user_id)">禁用</button>
                 <button v-if="v.status == 0"  class="btn btn-info btn-sm"  @click="user_open(v.user_id)">启用</button>
-                <button class="btn btn-warning btn-sm" @click="check_handicaps(v.user_id)">查看盘口</button>
+                <!-- <button class="btn btn-warning btn-sm" @click="check_handicaps(v.user_id)">查看盘口</button> -->
                 <button class="btn btn-primary btn-sm" @click="toUserSum(v.user_id)">查看用户报表</button>
                 <button class="btn btn-primary btn-sm" @click="user_edit(v.nickname,v.type,v.user_id,v.money.cash_money,v.money.credit_money)">修改</button>
               </td>
@@ -179,6 +178,7 @@
             pageNum:0,
             cash_money:10000.00,
             credit_money:10000.00,
+            users_tokensup:'',
         };
         return data;
      },
@@ -205,6 +205,18 @@
                {
                  alert('用户数据加载失败.....');
                }
+            });
+        },
+        /*
+         *点击查看用户的tokensup by elementUI message
+         */
+        show_users_tokensup(tokensup,username)
+        {
+            this.users_tokensup = tokensup;
+            this.$alert(this.users_tokensup, `用户${username}的tokensup`, {
+              confirmButtonText: '确定',
+              dangerouslyUseHTMLString: true,
+              center:true,
             });
         },
         prevPage:function()
@@ -315,6 +327,7 @@
               }
             });
         },
+        
        /**
         * edit user info
         * @param nickname
@@ -477,7 +490,7 @@
 
 
 <style scoped>
-
+d
   #users
   {
     position: relative;
@@ -487,9 +500,10 @@
   }
   .table
   {
-    width: 1400px;
+    width: 1200px;
     margin:0 auto;
     margin-top: 10px;
+    margin-left:10px;
   }
   #myModal
   {
@@ -506,6 +520,7 @@
     width: 80%;
     margin:0 auto;
     margin-top: 15px;
+    margin-left:10px;
   }
 
   #search>.search-input

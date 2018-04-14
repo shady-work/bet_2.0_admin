@@ -341,12 +341,14 @@
   {
     position: relative;
     width: 100%;
+  
 
   }
   .form-horizontal
   {
     width: 80%;
     margin:0 auto;
+    margin-left:10px;
   }
   #inlineCheckbox1,#inlineCheckbox2,#inlineCheckbox3,#inlineCheckbox4
   {
@@ -358,5 +360,9 @@
   .checkbox-inline
   {
     margin-right:20px;
+  }
+  .form-group{
+    /*position:absolute;*/
+    left:10px;
   }
 </style>

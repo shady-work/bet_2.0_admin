@@ -1,16 +1,17 @@
 <style scoped>
 .table
   {
-    width: 80%;
-    margin:0 auto;
-    margin-top: 10px;
+    width:1200px;
+    margin-left:10px;
+    margin-top:10px;
   }
   .my-nav
   {
-      width:80%;
-       margin:0 auto;
-       margin-top: 10px;
+    width:1200px;
+    margin-left:10px;
+    margin-top:10px;
   }
+
 </style>
 
 <template>
@@ -44,7 +45,7 @@
                 <td>
                 {{v.con}}
                 </td>
-                <td v-html="v.tp_mark" style="text-align:left;">
+                <td v-html="v.tp_mark" style="text-align:center;">
                 </td>
                 <td>
                   <b v-if="v.tp_stu==1" class="text-warning">待审核</b>

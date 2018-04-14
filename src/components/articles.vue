@@ -202,14 +202,22 @@
 
 <style scoped>
   .table {
-    width: 80%;
-    margin: 0 auto;
+    width:1200px;
+   margin-left:10px;
     margin-top: 5px;
   }
   #articles>.add-btn
   {
     width: 120px;
     margin-top: 15px;
+  }
+  #articles a{
+    margin-left:550px;
+    margin-bottom:15px;
+  }
+  .row{
+    width:1200px;
+     margin-left:25px;
   }
 </style>
 
