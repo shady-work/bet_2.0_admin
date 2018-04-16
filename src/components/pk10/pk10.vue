@@ -345,9 +345,14 @@
     margin-top: 50px;
   }
   .table {
-    width: 900px;
+    /*width: 900px;*/
     font-size: 12px;
-    max-width:900px;
-    margin:0 auto;
+    /*max-width:900px;*/
+    /*margin:0 auto;*/
+  }
+  #cqssc{
+    margin-left: 10px;
+    width:1200px;
+    margin-top:5px;
   }
 </style>

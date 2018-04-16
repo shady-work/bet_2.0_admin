@@ -161,9 +161,10 @@ export default
 
 <style scoped>
   .table {
-    width: 80%;
-    margin: 0 auto;
+    width:1200px;
+    /*margin: 0 auto;*/
     margin-top: 20px;
+    margin-left:10px; 
     font-size: 12px!important;
   }
 </style>

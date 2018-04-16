@@ -359,13 +359,17 @@ export default {
 <style scoped>
 #myModal > .panel
 {
-  width: 800px;
+  
   margin-top: 50px;
 }
 .table {
-  width: 900px;
+  
   font-size: 12px;
-  max-width:900px;
-  margin:0 auto;
+  
+}
+#cqssc{
+  margin-left:10px;
+  margin-top:5px;
+  max-width:1200px;
 }
 </style>

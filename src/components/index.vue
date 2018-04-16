@@ -22,8 +22,15 @@
       "my-head":head,
       "my-left":left
     },
+    data()
+    {
+      return{
+        timeId:0,//定时器的id
+      }
+    },
     methods:
     {
+        // 获取管理员信息
        get_admin_info:function()
        {
           this.$http.get(`${this.api}/user`).then(function(res)
@@ -36,8 +43,14 @@
               //设置用户的类型：管理员，代理，总代
               this.$set(this.$store.state,"admin_type",res.data.data.user.type)
             }
+            else
+            {
+              this.$message.error('请重新登录！');
+              this.$router.push('login');     
+            }
           });
        },
+
        get_lty_list:function()
        {
          this.$http.get(`${this.api}/admin/lotteryList/${this.$store.state.admin_id}`).then(function(res)
@@ -49,7 +62,8 @@
          });
        },
     },
-    created:function(){
+    created:function()
+    {
        //is_login
        if(this.$store.state.admin_id || window.sessionStorage.admin_id)
        {
@@ -61,6 +75,16 @@
        {
          this.$router.push('login');
        }
+       let that = this;
+       this.timeId = setInterval(()=>
+       {
+        that.get_admin_info();
+       },10000);
+    },
+    //离开这个页面的时候触发的函数 
+    destroyed()
+    {
+        clearInterval(this.timeId);//清除定时器
     }
   }
 </script>

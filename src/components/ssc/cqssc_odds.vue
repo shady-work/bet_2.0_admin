@@ -7,19 +7,22 @@
                             <thead class="bg-primary">
                                 <tr >
                                     <td width="70" style='line-height:30px;'>盘口</td>
-                                    <td style='line-height:30px;'>操作
-                                        <button v-if="$store.state.admin_type==3" class="btn-sm btn btn-warning pull-right" @click='add_one()'>+</button>
+                                    <td v-for="(v,k) in final_list" :class="active_array[k]?'text-danger':''">
+                                      {{v}}盘
                                     </td>
+                                     <td  colspan="2" >
+                                       <button v-if="$store.state.admin_type==3" class="btn-sm btn btn-warning" @click='add_one()'>添加盘口</button>
+                                     </td>
                                 </tr>
                             </thead>
                             <tbody>
-                                 <tr  v-for="(v,k) in final_list" >
-                                     <td :class="active_array[k]?'text-danger':''">
-                                         {{v}}盘
-                                     </td>
-                                     <td >
-                                          <button class="btn btn-info  btn-sm edit" @click='choose_one(v,k)'>查看</button>
+                                 <tr >
+                                     <td style='line-height:30px;'>操作   
+                                    </td>
+                                     <td v-for="(v,k) in final_list">
+                                         
                                           <button v-if="$store.state.admin_type==3"  class="btn btn-danger btn-sm  mr10  edit m" style="margin-left: 3px;" @click='delete_one(v)' >删除</button>
+                                           <button class="btn btn-info  btn-sm edit" @click='choose_one(v,k)'>查看</button>
                                      </td>
                                  </tr>
                             </tbody>
@@ -578,8 +581,8 @@ export default {
   margin-bottom: 15px;
 }
 .table {
-  width: 100%;
-  margin: 0 auto;
+  /*width: 100%;*/
+  /*margin: 0 auto;*/
 
   font-size: 12px!important;
 }
@@ -595,5 +598,14 @@ table tr td
 {
     font-size: 18px;
     font-weight: 700;
+}
+.col-md-10{
+  width:1200px;
+  margin-top:5px;
+  margin-left:10px;
+}
+.col-md-2{
+  margin-left:10px;
+  width:1200px;
 }
 </style>

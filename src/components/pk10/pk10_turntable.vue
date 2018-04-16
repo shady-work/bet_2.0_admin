@@ -190,8 +190,8 @@
 
 <style scoped>
   .table {
-    width: 90%;
-    margin: 0 auto;
+   /* width: 90%;
+    margin: 0 auto;*/
     margin-top: 50px;
   }
 
@@ -199,5 +199,9 @@
   {
     width: 600px;
     margin-top: 80px;
+  }
+  #cqssc_turntable{
+    margin-left:10px;
+    width:1200px;
   }
 </style>

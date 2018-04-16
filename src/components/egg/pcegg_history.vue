@@ -162,9 +162,12 @@ export default
 
 <style scoped>
   .table {
-    width: 90%;
-    margin: 0 auto;
+    
     margin-top: 50px;
     font-size:12px;
+  }
+  #cqssc_history{
+    margin-left:10px;
+    width:1200px;
   }
 </style>

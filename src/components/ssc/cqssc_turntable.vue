@@ -189,9 +189,13 @@
 </script>
 
 <style scoped>
+  #cqssc_turntable{
+    width:1200px;
+    margin-left:10px;
+  }
   .table {
-    width: 90%;
-    margin: 0 auto;
+    /*width: 90%;
+    margin: 0 auto;*/
     margin-top: 50px;
   }
 

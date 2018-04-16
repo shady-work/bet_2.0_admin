@@ -363,8 +363,7 @@
 
 <style scoped>
   .table {
-    width: 80%;
-    margin: 0 auto;
+    
     margin-top: 20px;
   }
   #myModal>.panel
@@ -375,5 +374,9 @@
   .form-group
   {
     margin-bottom:0px;
+  }
+  #cqssc_history{
+    margin-left:10px;
+    width:1200px;
   }
 </style>

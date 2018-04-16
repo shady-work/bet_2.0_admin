@@ -370,9 +370,13 @@ export default
 </script>
 
 <style scoped>
+  #cqssc_history{
+    margin-left:10px;
+    width:1200px;
+  }
   .table {
-    width: 80%;
-    margin: 0 auto;
+    /*width: 80%;
+    margin: 0 auto;*/
     margin-top: 20px;
     font-size: 12px;
 

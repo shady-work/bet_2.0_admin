@@ -364,8 +364,8 @@ export default
 
 <style scoped>
   .table {
-    width: 80%;
-    margin: 0 auto;
+    /*width: 80%;*/
+    /*margin: 0 auto;*/
     margin-top: 20px;
   }
   #myModal>.panel
@@ -376,5 +376,9 @@ export default
   .form-group
   {
     margin-bottom:0px;
+  }
+  #cqssc_history{
+   margin-left:10px;
+   width:1200px; 
   }
 </style>
