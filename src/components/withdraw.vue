@@ -202,17 +202,18 @@ export default {
 };
 </script>
 <style scoped>
-  .table
+.table
   {
-    width: 80%;
-    margin:0 auto;
-    margin-top: 10px;
+    width:1200px;
+    margin-left:10px;
+    margin-top:10px;
   }
   .my-nav
   {
-    width:80%;
-    margin:0 auto;
-    margin-top: 10px;
+    width:1200px;
+    margin-left:10px;
+    margin-top:10px;
   }
+
 </style>
 

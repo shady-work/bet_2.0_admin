@@ -125,13 +125,20 @@
                 console.log(res.data);
                 if(res.data.status == 200)
                 {
-                  alert('添加成功');
+                  // alert('添加成功');
+                   this.$message(
+                    {
+                        message:res.data.msg,
+                        center:true,
+                        type:'success',
+                    });
                   this.get_turntable();
                   this.isShow = false;
                 }
                 else
                 {
-                  alert('添加失败');
+                  this.$message.error('添加失败');
+                  // alert('添加失败');
                 }
 
               });

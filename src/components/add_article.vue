@@ -6,7 +6,9 @@
     margin:0 auto;
     margin-top: 25px;
   }
-
+  #editorElem button{
+    display:block;
+  }
   .form-group-my
   {
     width :1000px;
@@ -101,13 +103,20 @@
            {
               if(res.data.status == 200)
               {
-                alert('添加成功');
+                // alert('添加成功');
+                this.$message(
+                    {
+                        message:res.data.msg,
+                        center:true,
+                        type:'success',
+                    });
                 this.$router.push('articles');
                 return;
               }
               else
               {
-                alert('添加失败，请稍后再试');
+                this.$message.error('添加失败，请稍后再试');
+                // alert('添加失败，请稍后再试');
                 return;
               }
            });

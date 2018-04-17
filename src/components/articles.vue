@@ -42,7 +42,20 @@
           </div>
           <div class="col-md-4"></div>
         </div>
+        
 
+        <!-- element dialog -->
+        <el-dialog
+            title="提示"
+            :visible.sync="dialogVisible"
+            width="30%"
+            :before-close="handleClose">
+            <span>这是一段信息</span>
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="dialogVisible = false">取 消</el-button>
+              <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            </span>
+</el-dialog>
       </div>
 </template>
 
@@ -61,6 +74,7 @@
          nextPageUrl:'',
          prevPageUrl:'',
          isShow:false,
+         dialogVisible: false
        };
      },
      created(){
@@ -171,29 +185,33 @@
         */
         delete_artile:function(a_id,title)
         {
-
-          if(confirm('是否删除标题为' + title + '的文章?'))
+          // confirm('是否删除标题为' + title + '的文章?')
+          this.$confirm('确认关闭？')
+          .then(_ => 
           {
-            console.log('是的');
             this.$http.delete(`${this.api}/admin/articles/${a_id}`)
               .then(function(res)
               {
 
                  if(res.data.status == 200)
-                 {
-                   alert(res.data.msg);
+                 {  
+                   this.$message(
+                    {
+                        message:res.data.msg,
+                        center:true,
+                        type:'success',
+                    });
+                   // alert(res.data.msg);
                    this.get_articles_list();
+                   this.dialogVisible = false;
                  }
-                 else
-                 {
-                   alert('删除失败，请稍后再试');
-                 }
+
               });
-          }
-          else
-          {
-            console.log('你取消了删除!')
-          }
+          })
+          .catch(_ => {});
+          return;
+          
+         
         }
      },
   }

@@ -73,10 +73,10 @@
                 label: '下注历史',
                 href:'cqssc_history_bet',
               },
-              {
-                label: '转盘列表',
-                href:'cqssc_turntable',
-              }
+              // {
+              //   label: '转盘列表',
+              //   href:'cqssc_turntable',
+              // }
             ]
           },
           //北京赛车PK拾
@@ -100,10 +100,10 @@
                 label: '下注历史',
                 href:'pk10_history_bet',
               },
-              {
-                label: '转盘列表',
-                href:'pk10_turntable',
-              }
+              // {
+              //   label: '转盘列表',
+              //   href:'pk10_turntable',
+              // }
             ]
           },
           //PC蛋蛋
@@ -127,10 +127,10 @@
                 label: '下注历史',
                 href:'pcegg_history_bet',
               },
-              {
-                label: '转盘列表',
-                href:'pcegg_turntable',
-              }
+              // {
+              //   label: '转盘列表',
+              //   href:'pcegg_turntable',
+              // }
             ]
           },
           //加拿大28
@@ -154,10 +154,10 @@
                 label: '下注历史',
                 href:'cake_history_bet',
               },
-              {
-                label: '转盘列表',
-                href:'cakeno_turntable',
-              }
+              // {
+              //   label: '转盘列表',
+              //   href:'cakeno_turntable',
+              // }
             ]
           },
          }

@@ -59,35 +59,72 @@
                     </tbody>
                 </table>
 
-                <table class="table table-hovor table-bordered table-striped text-center">
+                <table class="table table-hovor table-bordered table-striped text-center" style="margin-bottom:0;" >
                     <thead class="bg-primary">
-                        <tr class="h4">
-                            <td width="150">特码/球序</td>
-                            <td v-for="(v,k,index) in list[4]" v-if='index<14'>特码{{index}}</td>
+                        <tr >
+                            <td >特码/球序</td>
+                            <td v-for="(v,k,index) in list[4]" v-if='index<10'>特码{{index}}</td>
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td >赔率</td>
-                            <td v-for="(v,k,index) in list[4]" v-if='index<14'>
+                            <td v-for="(v,k,index) in list[4]" v-if='index<10'>
                                 <input type="text" class="form-control"  v-model="list[4]['e' + (index+1)]" >
                             </td>
+
                         </tr>
                     </tbody>
-
                     <thead class="bg-primary">
                       <tr class="h4">
                         <td width="150">特码/球序</td>
-                        <td v-for="(v,k,index) in list[4]" v-if='index>=14&&index<28'>特码{{index}}</td>
+                        <td v-for="(v,k,index) in list[4]" v-if='index>=10&&index<20'>特码{{index}}</td>
+
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td >赔率</td>
-                        <td v-for="(v,k,index) in list[4]" v-if='index>=14&&index<28'>
-                          <input type="text" class="form-control"  v-model="list[4]['e' + (index+1)]" >
+                        <td v-for="(v,k,index) in list[4]" v-if='index>=10&&index<20'>
+                          <input type="text" class="form-control"   v-model="list[4]['e' + (index+1)]" >
+
                         </td>
                       </tr>
+                    </tbody>
+
+                </table>
+
+
+                <table class="table table-hovor table-bordered table-striped text-center">
+                    <thead class="bg-primary">
+                    <tr class="h4">
+                        <td width="150">特码/球序</td>
+                        <td v-for="(v,k,index) in list[4]" v-if='index>=20&&index<28'>特码{{index}}</td>
+                        <td>单注最小限额</td>
+                        <td>单注最大限额</td>
+                        <td>单期限额</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td >赔率</td>
+                        <td v-for="(v,k,index) in list[4]" v-if='index>=20&&index<28'>
+                            <input type="text" class="form-control"   v-model="list[4]['e' + (index+1)]" >
+
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" v-model="list[4].bet_limit.order_limit_min">
+
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" v-model="list[4].bet_limit.order_limit_max">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" v-model="list[4].bet_limit.expect_limit">
+
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -106,6 +143,9 @@
                       <td>极大</td>
                       <td>极小</td>
                       <td>豹子</td>
+                        <td>单注最小限额</td>
+                        <td>单注最大限额</td>
+                        <td>单期限额</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -114,21 +154,36 @@
                       <td v-for="(v,k,index) in list[5]" v-if='index<10'>
                         <input type="text" class="form-control"  v-model="list[5]['e' + (index+1)]" >
                       </td>
+                        <td>
+                            <input type="text" class="form-control" v-model="list[5].bet_limit.order_limit_min">
+
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" v-model="list[5].bet_limit.order_limit_max">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" v-model="list[5].bet_limit.expect_limit">
+
+                        </td>
                       <td >
                         <input type="text" class="form-control"  v-model="list[7]['e1']" >
                       </td>
+
                     </tr>
                     </tbody>
                   </table>
 
 
-              <table class="table table-hovor table-bordered table-striped text-center">
+               <table class="table table-hovor table-bordered table-striped text-center">
                 <thead class="bg-primary">
                 <tr class="h4">
                   <td width="150">波色</td>
                   <td>红波</td>
                   <td>绿波</td>
                   <td>蓝波</td>
+                    <td>单注最小限额</td>
+                    <td>单注最大限额</td>
+                    <td>单期限额</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -137,6 +192,17 @@
                   <td v-for="(v,k,index) in list[5]" v-if='index<3'>
                     <input type="text" class="form-control"  v-model="list[6]['e' + (index+1)]" >
                   </td>
+                    <td>
+                        <input type="text" class="form-control" v-model="list[6].bet_limit.order_limit_min">
+
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" v-model="list[6].bet_limit.order_limit_max">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" v-model="list[6].bet_limit.expect_limit">
+
+                    </td>
                 </tr>
                 </tbody>
               </table>
@@ -179,360 +245,334 @@ export default {
       final_list: [],
       end: 0,
       all_odds:[],
-      list:   [
-        {
-          "id": 1,
-          "mark_a": "返点",
-          "mark_b": "总代",
-          "A": "0.0011",
-          "B": "0.0012",
-          "C": null,
-          "D": null,
-          "E": null,
-          "F": null,
-          "G": null,
-          "H": null,
-          "I": null,
-          "J": null,
-          "K": null,
-          "L": null,
-          "M": null,
-          "N": null,
-          "O": null,
-          "P": null,
-          "Q": null
-        },
-        {
-          "id": 2,
-          "mark_a": "返点",
-          "mark_b": "分代",
-          "A": "0.0012",
-          "B": "0.0010",
-          "C": null,
-          "D": null,
-          "E": null,
-          "F": null,
-          "G": null,
-          "H": null,
-          "I": null,
-          "J": null,
-          "K": null,
-          "L": null,
-          "M": null,
-          "N": null,
-          "O": null,
-          "P": null,
-          "Q": null
-        },
-        {
-          "id": 3,
-          "mark_a": "返点",
-          "mark_b": "推广",
-          "A": "0.0013",
-          "B": "0.0010",
-          "C": null,
-          "D": null,
-          "E": null,
-          "F": null,
-          "G": null,
-          "H": null,
-          "I": null,
-          "J": null,
-          "K": null,
-          "L": null,
-          "M": null,
-          "N": null,
-          "O": null,
-          "P": null,
-          "Q": null
-        },
-        {
-          "id": 4,
-          "mark_a": "返点",
-          "mark_b": "会员",
-          "A": "0.0210",
-          "B": "0.0010",
-          "C": null,
-          "D": null,
-          "E": null,
-          "F": null,
-          "G": null,
-          "H": null,
-          "I": null,
-          "J": null,
-          "K": null,
-          "L": null,
-          "M": null,
-          "N": null,
-          "O": null,
-          "P": null,
-          "Q": null
-        },
-        {
-          "id": 5,
-          "mark_a": "特码",
-          "mark_b": "冠军",
-          "A": "9.7150",
-          "B": "9.7150",
-          "C": "9.7150",
-          "D": "9.7150",
-          "E": "9.7150",
-          "F": "9.7150",
-          "G": "9.7150",
-          "H": "9.7150",
-          "I": "9.7150",
-          "J": "9.7150",
-          "K": "1.9430",
-          "L": "1.9430",
-          "M": "1.9430",
-          "N": "1.9430",
-          "O": "1.9430",
-          "P": "1.9430",
-          "Q": null
-        },
-        {
-          "id": 6,
-          "mark_a": "特码",
-          "mark_b": "亚军",
-          "A": "9.7150",
-          "B": "9.7150",
-          "C": "9.7150",
-          "D": "9.7150",
-          "E": "9.7150",
-          "F": "9.7150",
-          "G": "9.7150",
-          "H": "9.7150",
-          "I": "9.7150",
-          "J": "9.7150",
-          "K": "1.9430",
-          "L": "1.9430",
-          "M": "1.9430",
-          "N": "1.9430",
-          "O": "1.9430",
-          "P": "1.9430",
-          "Q": null
-        },
-        {
-          "id": 7,
-          "mark_a": "特码",
-          "mark_b": "第三名",
-          "A": "9.7150",
-          "B": "9.7150",
-          "C": "9.7150",
-          "D": "9.7150",
-          "E": "9.7150",
-          "F": "9.7150",
-          "G": "9.7150",
-          "H": "9.7150",
-          "I": "9.7150",
-          "J": "9.7150",
-          "K": "1.9430",
-          "L": "1.9430",
-          "M": "1.9430",
-          "N": "1.9430",
-          "O": "1.9430",
-          "P": "1.9430",
-          "Q": null
-        },
-        {
-          "id": 8,
-          "mark_a": "特码",
-          "mark_b": "第四名",
-          "A": "9.7150",
-          "B": "9.7150",
-          "C": "9.7150",
-          "D": "9.7150",
-          "E": "9.7150",
-          "F": "9.7150",
-          "G": "9.7150",
-          "H": "9.7150",
-          "I": "9.7150",
-          "J": "9.7150",
-          "K": "1.9430",
-          "L": "1.9430",
-          "M": "1.9430",
-          "N": "1.9430",
-          "O": "1.9430",
-          "P": "1.9430",
-          "Q": null
-        },
-        {
-          "id": 9,
-          "mark_a": "特码",
-          "mark_b": "第五名",
-          "A": "9.7150",
-          "B": "9.7150",
-          "C": "9.7150",
-          "D": "9.7150",
-          "E": "9.7150",
-          "F": "9.7150",
-          "G": "9.7150",
-          "H": "9.7150",
-          "I": "9.7150",
-          "J": "9.7150",
-          "K": "1.9430",
-          "L": "1.9430",
-          "M": "1.9430",
-          "N": "1.9430",
-          "O": "1.9430",
-          "P": "1.9430",
-          "Q": null
-        },
-        {
-          "id": 10,
-          "mark_a": "特码",
-          "mark_b": "第六名",
-          "A": "9.7150",
-          "B": "9.7150",
-          "C": "9.7150",
-          "D": "9.7150",
-          "E": "9.7150",
-          "F": "9.7150",
-          "G": "9.7150",
-          "H": "9.7150",
-          "I": "9.7150",
-          "J": "9.7150",
-          "K": "1.9430",
-          "L": "1.9430",
-          "M": "1.9430",
-          "N": "1.9430",
-          "O": null,
-          "P": null,
-          "Q": null
-        },
-        {
-          "id": 11,
-          "mark_a": "特码",
-          "mark_b": "第七名",
-          "A": "9.7150",
-          "B": "9.7150",
-          "C": "9.7150",
-          "D": "9.7150",
-          "E": "9.7150",
-          "F": "9.7150",
-          "G": "9.7150",
-          "H": "9.7150",
-          "I": "9.7150",
-          "J": "9.7150",
-          "K": "1.9430",
-          "L": "1.9430",
-          "M": "1.9430",
-          "N": "1.9430",
-          "O": null,
-          "P": null,
-          "Q": null
-        },
-        {
-          "id": 12,
-          "mark_a": "特码",
-          "mark_b": "第八名",
-          "A": "9.7150",
-          "B": "9.7150",
-          "C": "9.7150",
-          "D": "9.7150",
-          "E": "9.7150",
-          "F": "9.7150",
-          "G": "9.7150",
-          "H": "9.7150",
-          "I": "9.7150",
-          "J": "9.7150",
-          "K": "1.9430",
-          "L": "1.9430",
-          "M": "1.9430",
-          "N": "1.9430",
-          "O": null,
-          "P": null,
-          "Q": null
-        },
-        {
-          "id": 13,
-          "mark_a": "特码",
-          "mark_b": "第九名",
-          "A": "9.7150",
-          "B": "9.7150",
-          "C": "9.7150",
-          "D": "9.7150",
-          "E": "9.7150",
-          "F": "9.7150",
-          "G": "9.7150",
-          "H": "9.7150",
-          "I": "9.7150",
-          "J": "9.7150",
-          "K": "1.9430",
-          "L": "1.9430",
-          "M": "1.9430",
-          "N": "1.9430",
-          "O": null,
-          "P": null,
-          "Q": null
-        },
-        {
-          "id": 14,
-          "mark_a": "特码",
-          "mark_b": "第十名",
-          "A": "9.7150",
-          "B": "9.7150",
-          "C": "9.7150",
-          "D": "9.7150",
-          "E": "9.7150",
-          "F": "9.7150",
-          "G": "9.7150",
-          "H": "9.7150",
-          "I": "9.7150",
-          "J": "9.7150",
-          "K": "1.9430",
-          "L": "1.9430",
-          "M": "1.9430",
-          "N": "1.9430",
-          "O": null,
-          "P": null,
-          "Q": null
-        },
-        {
-          "id": 15,
-          "mark_a": "特码",
-          "mark_b": "冠亚军和",
-          "A": "43.5150",
-          "B": "43.5150",
-          "C": "21.7580",
-          "D": "21.7580",
-          "E": "14.5050",
-          "F": "14.5050",
-          "G": "10.6370",
-          "H": "10.6370",
-          "I": "8.7030",
-          "J": "10.6370",
-          "K": "10.6370",
-          "L": "14.5050",
-          "M": "14.5050",
-          "N": "21.7580",
-          "O": "21.7580",
-          "P": "43.5150",
-          "Q": "43.5150"
-        },
-        {
-          "id": 16,
-          "mark_a": "两面",
-          "mark_b": "冠亚军和",
-          "A": "1.9430",
-          "B": "1.9430",
-          "C": "1.9430",
-          "D": "1.9430",
-          "E": null,
-          "F": null,
-          "G": null,
-          "H": null,
-          "I": null,
-          "J": null,
-          "K": null,
-          "L": null,
-          "M": null,
-          "N": null,
-          "O": null,
-          "P": null,
-          "Q": null
-        }
-      ]//end list
+      list:  [
+                  {
+                      "id": 1,
+                      "mark_a": "返点",
+                      "mark_b": "总代",
+                      "bet_limit": null,
+                      "e1": "0.0010",
+                      "e2": "0.0010",
+                      "e3": null,
+                      "e4": null,
+                      "e5": null,
+                      "e6": null,
+                      "e7": null,
+                      "e8": null,
+                      "e9": null,
+                      "e10": null,
+                      "e11": null,
+                      "e12": null,
+                      "e13": null,
+                      "e14": null,
+                      "e15": null,
+                      "e16": null,
+                      "e17": null,
+                      "e18": null,
+                      "e19": null,
+                      "e20": null,
+                      "e21": null,
+                      "e22": null,
+                      "e23": null,
+                      "e24": null,
+                      "e25": null,
+                      "e26": null,
+                      "e27": null,
+                      "e28": null
+                  },
+                  {
+                      "id": 2,
+                      "mark_a": "返点",
+                      "mark_b": "分代",
+                      "bet_limit": null,
+                      "e1": "0.0010",
+                      "e2": "0.0010",
+                      "e3": null,
+                      "e4": null,
+                      "e5": null,
+                      "e6": null,
+                      "e7": null,
+                      "e8": null,
+                      "e9": null,
+                      "e10": null,
+                      "e11": null,
+                      "e12": null,
+                      "e13": null,
+                      "e14": null,
+                      "e15": null,
+                      "e16": null,
+                      "e17": null,
+                      "e18": null,
+                      "e19": null,
+                      "e20": null,
+                      "e21": null,
+                      "e22": null,
+                      "e23": null,
+                      "e24": null,
+                      "e25": null,
+                      "e26": null,
+                      "e27": null,
+                      "e28": null
+                  },
+                  {
+                      "id": 3,
+                      "mark_a": "返点",
+                      "mark_b": "推广",
+                      "bet_limit": null,
+                      "e1": "0.0010",
+                      "e2": "0.0010",
+                      "e3": null,
+                      "e4": null,
+                      "e5": null,
+                      "e6": null,
+                      "e7": null,
+                      "e8": null,
+                      "e9": null,
+                      "e10": null,
+                      "e11": null,
+                      "e12": null,
+                      "e13": null,
+                      "e14": null,
+                      "e15": null,
+                      "e16": null,
+                      "e17": null,
+                      "e18": null,
+                      "e19": null,
+                      "e20": null,
+                      "e21": null,
+                      "e22": null,
+                      "e23": null,
+                      "e24": null,
+                      "e25": null,
+                      "e26": null,
+                      "e27": null,
+                      "e28": null
+                  },
+                  {
+                      "id": 4,
+                      "mark_a": "返点",
+                      "mark_b": "会员",
+                      "bet_limit": null,
+                      "e1": "0.0210",
+                      "e2": "0.0010",
+                      "e3": null,
+                      "e4": null,
+                      "e5": null,
+                      "e6": null,
+                      "e7": null,
+                      "e8": null,
+                      "e9": null,
+                      "e10": null,
+                      "e11": null,
+                      "e12": null,
+                      "e13": null,
+                      "e14": null,
+                      "e15": null,
+                      "e16": null,
+                      "e17": null,
+                      "e18": null,
+                      "e19": null,
+                      "e20": null,
+                      "e21": null,
+                      "e22": null,
+                      "e23": null,
+                      "e24": null,
+                      "e25": null,
+                      "e26": null,
+                      "e27": null,
+                      "e28": null
+                  },
+                  {
+                      "id": 5,
+                      "mark_a": "特码",
+                      "mark_b": "特码",
+                      "bet_limit": {
+                          "order_limit_min": 10,
+                          "order_limit_max": 10000,
+                          "expect_limit": 20000
+                      },
+                      "e1": "500.0000",
+                      "e2": "100.0000",
+                      "e3": "50.0000",
+                      "e4": "40.0000",
+                      "e5": "30.0000",
+                      "e6": "20.0000",
+                      "e7": "17.0000",
+                      "e8": "16.0000",
+                      "e9": "15.0000",
+                      "e10": "15.0000",
+                      "e11": "14.0000",
+                      "e12": "14.0000",
+                      "e13": "13.0000",
+                      "e14": "13.0000",
+                      "e15": "14.0000",
+                      "e16": "14.0000",
+                      "e17": "14.0000",
+                      "e18": "14.0000",
+                      "e19": "15.0000",
+                      "e20": "15.0000",
+                      "e21": "16.0000",
+                      "e22": "17.0000",
+                      "e23": "20.0000",
+                      "e24": "30.0000",
+                      "e25": "40.0000",
+                      "e26": "50.0000",
+                      "e27": "100.0000",
+                      "e28": "500.0000"
+                  },
+                  {
+                      "id": 6,
+                      "mark_a": "两面",
+                      "mark_b": "两面",
+                      "bet_limit": {
+                          "order_limit_min": 10,
+                          "order_limit_max": 10000,
+                          "expect_limit": 20000
+                      },
+                      "e1": "3.0000",
+                      "e2": "2.0000",
+                      "e3": "2.0000",
+                      "e4": "2.0000",
+                      "e5": "4.3000",
+                      "e6": "4.2000",
+                      "e7": "4.2000",
+                      "e8": "4.3000",
+                      "e9": "13.0000",
+                      "e10": "13.0000",
+                      "e11": null,
+                      "e12": null,
+                      "e13": null,
+                      "e14": null,
+                      "e15": null,
+                      "e16": null,
+                      "e17": null,
+                      "e18": null,
+                      "e19": null,
+                      "e20": null,
+                      "e21": null,
+                      "e22": null,
+                      "e23": null,
+                      "e24": null,
+                      "e25": null,
+                      "e26": null,
+                      "e27": null,
+                      "e28": null
+                  },
+                  {
+                      "id": 7,
+                      "mark_a": "波色",
+                      "mark_b": "波色",
+                      "bet_limit": {
+                          "order_limit_min": 10,
+                          "order_limit_max": 10000,
+                          "expect_limit": 20000
+                      },
+                      "e1": "2.5000",
+                      "e2": "2.5000",
+                      "e3": "2.5000",
+                      "e4": null,
+                      "e5": null,
+                      "e6": null,
+                      "e7": null,
+                      "e8": null,
+                      "e9": null,
+                      "e10": null,
+                      "e11": null,
+                      "e12": null,
+                      "e13": null,
+                      "e14": null,
+                      "e15": null,
+                      "e16": null,
+                      "e17": null,
+                      "e18": null,
+                      "e19": null,
+                      "e20": null,
+                      "e21": null,
+                      "e22": null,
+                      "e23": null,
+                      "e24": null,
+                      "e25": null,
+                      "e26": null,
+                      "e27": null,
+                      "e28": null
+                  },
+                  {
+                      "id": 8,
+                      "mark_a": "豹子",
+                      "mark_b": "豹子",
+                      "bet_limit": {
+                          "order_limit_min": 10,
+                          "order_limit_max": 10000,
+                          "expect_limit": 20000
+                      },
+                      "e1": "30.0000",
+                      "e2": null,
+                      "e3": null,
+                      "e4": null,
+                      "e5": null,
+                      "e6": null,
+                      "e7": null,
+                      "e8": null,
+                      "e9": null,
+                      "e10": null,
+                      "e11": null,
+                      "e12": null,
+                      "e13": null,
+                      "e14": null,
+                      "e15": null,
+                      "e16": null,
+                      "e17": null,
+                      "e18": null,
+                      "e19": null,
+                      "e20": null,
+                      "e21": null,
+                      "e22": null,
+                      "e23": null,
+                      "e24": null,
+                      "e25": null,
+                      "e26": null,
+                      "e27": null,
+                      "e28": null
+                  },
+                  {
+                      "id": 9,
+                      "mark_a": "特码三压一",
+                      "mark_b": "特码三压一",
+                      "bet_limit": {
+                          "order_limit_min": 10,
+                          "order_limit_max": 10000,
+                          "expect_limit": 20000
+                      },
+                      "e1": "3.0000",
+                      "e2": null,
+                      "e3": null,
+                      "e4": null,
+                      "e5": null,
+                      "e6": null,
+                      "e7": null,
+                      "e8": null,
+                      "e9": null,
+                      "e10": null,
+                      "e11": null,
+                      "e12": null,
+                      "e13": null,
+                      "e14": null,
+                      "e15": null,
+                      "e16": null,
+                      "e17": null,
+                      "e18": null,
+                      "e19": null,
+                      "e20": null,
+                      "e21": null,
+                      "e22": null,
+                      "e23": null,
+                      "e24": null,
+                      "e25": null,
+                      "e26": null,
+                      "e27": null,
+                      "e28": null
+                  }
+      ],
     };
   },
   methods: {
@@ -545,6 +585,7 @@ export default {
             console.log(res.data);
             if(res.data.status == 200)
             {
+                // console.log(res.data);
                 this.all_odds = res.data.data.odds_list;
                 this.list = this.all_odds[0].odds;
                 this.collectData();
@@ -571,8 +612,16 @@ export default {
         })
         .then(function(res) {
           if (res.data.status == 201) {
-            alert(res.data.msg);
+              this.$message(
+                  {
+                      message:res.data.msg,
+                      center:true,
+                      type:'success',
+                  });
+            // alert(res.data.msg);
             return;
+          }else{
+              this.$message.error(res.data.msg);
           }
         });
     },

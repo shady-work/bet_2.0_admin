@@ -23,7 +23,7 @@
           <tbody>
               <tr v-for="(v,k) in history_codes">
                 <td>{{v.expect}}</td>
-                <td><b>{{v.opencode}}</b></td>
+                <td><b v-for="(val,key) in v.open_codes" style="width:30px;height:30px;" :class="'hao'+(val/10*10)">{{val/10*10}}</b></td>
                 <td>{{v.details.ball_1}}</td>
                 <td>{{v.details.ball_2}}</td>
                 <td>{{v.details.ball_3}}</td>
@@ -34,7 +34,7 @@
                 <td>{{v.details.ball_8}}</td>
                 <td>{{v.details.ball_9}}</td>
                 <td>{{v.details.ball_10}}</td>
-                <td>{{get_result(v.open_codes[0],v.open_codes[0])}}</td>
+                <td>{{get_result(v.open_codes[0],v.open_codes[1])}}</td>
                 <td>{{v.opentime}}</td>
               </tr>
           </tbody>
@@ -90,6 +90,7 @@ export default
               .then(function(res){
                 if(res.data.status == 200)
                    {
+                      console.log(res.data);
                       this.history_codes = res.data.data.list;
                       this.hasPrev = res.data.data.hasPrev;
                       this.hasNext = res.data.data.hasNext;
@@ -169,6 +170,8 @@ export default
             return str;
         }
     },
+
+
 };
 </script>
 
@@ -181,7 +184,58 @@ export default
   }
   #cqssc_history{
     margin-left:10px;
-    width:1200px;
-    
+    width:1700px;
   }
+  #cqssc_history b{
+    display:inline-block;
+    line-height:30px;
+    color:white;
+    text-align:center;
+    font-size:20px;
+    /*width:30px;*/
+    /*background:gray;*/
+    margin-left:5px;
+  }
+   .hao1
+      {
+          background: #959612;
+      }
+      .hao2
+      {
+          background: #0060ff;
+      }
+      .hao3
+      {
+          background: #4d4d4d;
+      }
+      .hao4
+      {
+          background: #ff7300;
+      }
+      .hao5
+      {
+          background: #00adad;
+      }
+      .hao6
+      {
+          background:#5200ff;
+      }
+      .hao7
+      {
+          background: #666666;
+      }
+      .hao8
+      {
+          /*background: #ff0000;*/
+          background:#9300ffe8;
+      }
+      .hao9
+      {
+          background:#760000;
+      }
+      .hao10
+      {
+          background:#167301;
+      }
+
 </style>

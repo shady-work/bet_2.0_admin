@@ -8,11 +8,11 @@
         <td>最小下注额</td>
         <td>最大下注额</td>
         <td>最大中奖额</td>
-        <td>转盘比例</td>
+       <!--  <td>转盘比例</td>
         <td>中奖大于多少转盘</td>
         <td >转盘密钥</td>
         <td>下注大于多少转盘</td>
-        <td>转盘API地址</td>
+        <td>转盘API地址</td> -->
         <td>操作</td>
       </tr>
       </thead>
@@ -22,13 +22,14 @@
         <td>{{v.money_min}}</td>
         <td>{{v.money_max}}</td>
         <td>{{v.money_win}}</td>
-        <td >{{v.trad_rate}}</td>
+       <!--  <td >{{v.trad_rate}}</td>
         <td>{{v.trad_win}}</td>
         <td width="100"><p>{{v.trad_tokensup?v.trad_tokensup:'尚未设定'}}</p></td>
         <td>{{v.trad_max}}</td>
-        <td>{{v.trad_url?v.trad_url:'尚未设定'}}</td>
+        <td>{{v.trad_url?v.trad_url:'尚未设定'}}</td> -->
         <td>
           <button class="btn btn-primary" @click="edit_one(v.id)">编辑</button>
+          <button class="btn btn-warning" @click="check_handicaps(v.id)">查看盘口</button>
         </td>
       </tr>
       </tbody>
@@ -57,7 +58,7 @@
               <input type="text" v-model="money_win"  class="form-control" id="inputEmail5" placeholder="请输入">
             </div>
           </div>
-          <div class="form-group">
+         <!--  <div class="form-group">
             <label for="inputEmail5" class="col-sm-2 control-label">转盘比例</label>
             <div class="col-sm-10">
               <input type="text" v-model="trad_rate"  class="form-control" id="inputEmail5" placeholder="请输入">
@@ -95,7 +96,7 @@
             <div class="col-sm-10">
               <input type="text" readonly v-model="trad_tokensup"  class="form-control" id="inputEmail9" placeholder="">
             </div>
-          </div>
+          </div> -->
         </div>
 
 
@@ -290,14 +291,33 @@
             trad_win: this.trad_win
           })
           .then(function(res) {
-            if (res.data.status == 0) {
-              this.get_user_bet_rules();
-              this.isShow = false;
-              alert("修改成功");
-              return;
+            if (res.data.msg == "修改成功") {
+               this.get_user_bet_rules();
+            this.isShow = false;
+            // alert("修改成功");
+             this.$message(
+                    {
+                        message:res.data.msg,
+                        center:true,
+                        type:'success',
+                    });
+            return;
+            }else{
+              this.$message.error('修改失败');
             }
           });
       },
+      //跳转到用户盘口
+      check_handicaps:function(u_id)
+       {
+          this.$router.push(
+            {
+              path:'users_handicaps',
+              name:'users_handicaps',
+              params:{u_id}
+            }
+          );
+       },
       // 获取转盘列表
       get_trad_list:function()
       {

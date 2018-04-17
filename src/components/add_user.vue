@@ -226,26 +226,29 @@
          check: function () {
            var uPattern = /^[a-zA-Z0-9_-]{6,16}$/;
            if (!uPattern.test(this.username)) {
-
-             alert('用户名错误，长度在6-16位');
+              this.$message.error('用户名错误，长度在6-16位');
+             // alert('用户名错误，长度在6-16位');
              return false;
            }
            if (this.nickname == '') {
-             alert('昵称不能为空');
+             this.$message.error('昵称不能为空');
+             // alert('昵称不能为空');
              return false;
            }
            var pPattern = /^[0-9a-zA-Z]{6,16}$/;
            if (!pPattern.test(this.pwd_1)) {
-             alert('密码长度在4-16位');
+            this.$message.error('密码长度在4-16位');
+             // alert('密码长度在4-16位');
              return false;
            }
            if (!pPattern.test(this.pwd_2)) {
-             alert('密码长度在4-16位');
+            this.$message.error('密码长度在4-16位');
+             // alert('密码长度在4-16位');
              return false;
            }
            if (this.cash_money == '') {
-
-             alert('金额不能为空');
+             this.$message.error('金额不能为空');
+             // alert('金额不能为空');
              return false;
            }
 

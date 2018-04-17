@@ -50,7 +50,7 @@ var store = new vuex.Store(
 
 //配置请求的uri
 Vue.prototype.api = `http://lty-main.com`;
-//Vue.prototype.api = ``;
+// Vue.prototype.api = ``;
 
 /* eslint-disable no-new */
 const Vm = new Vue(

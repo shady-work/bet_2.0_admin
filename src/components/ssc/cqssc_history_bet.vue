@@ -390,4 +390,7 @@ export default
   {
     margin-bottom:0px;
   }
+  #cqssc_history b{
+    
+  }
 </style>

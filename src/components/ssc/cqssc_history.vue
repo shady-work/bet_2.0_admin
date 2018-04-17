@@ -21,7 +21,8 @@
           <tbody>
               <tr v-for="(v,k) in history_codes">
                 <td>{{v.expect}}</td>
-                <td><b v-for="code in v.open_codes">{{code}}</b></td>
+                <!--  <td><b v-for="code in v.open_codes">{{code}}</b></td> -->
+                <td><b v-for="code in v.open_codes" :class="'hao'+(code/10*10)">{{code}}</b></td>
                 <td>{{v.details.ball_1}}</td>
                 <td>{{v.details.ball_2}}</td>
                 <td>{{v.details.ball_3}}</td>
@@ -36,7 +37,7 @@
           </tbody>
         </table>
         <div class="row mt15">
-        <div class="col-md-4"></div>
+        <!-- <div class="col-md-4"></div> -->
         <div class="col-md-4">
           <span>当前第 {{page}} 页</span>
           <span>共 {{pageNum}} 页，</span>
@@ -166,5 +167,49 @@ export default
     margin-top: 20px;
     margin-left:10px; 
     font-size: 12px!important;
+  }
+  .col-md-4{
+    margin-left:500px;
+  }
+  #cqssc_history b{
+    display:inline-block;
+    width:30px;
+    height:30px;
+    text-align:center;
+    line-height:30px;
+    color:white;
+    font-size:20px;
+    border-radius:50%;
+    margin-left:5px;
+  }
+  .hao0{
+    background:#24C500;
+  }
+  .hao1{
+    background:#760000;
+  }
+  .hao2{
+    background:#FF0000;
+  }
+  .hao3{
+    background:#e4e4e4;
+  }
+  .hao4{
+    background:#5200ff;
+  }
+  .hao5{
+    background:#82FFFF;
+  }
+  .hao6{
+    background:#FF7200;
+  }
+  .hao7{
+    background:#4A4A4A;
+  }
+   .hao8{
+    background:#008AFF;
+  }
+   .hao9{
+    background:#FFFF00;
   }
 </style>
