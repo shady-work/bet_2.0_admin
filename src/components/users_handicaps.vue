@@ -1674,8 +1674,8 @@
     methods:
     {
       /**
-      * 获取系统的盘口
-      */
+       * 获取用户的盘口
+       */
       get_systems_handicaps:function(type = 'ssc')
       {
       this.$http
@@ -1750,17 +1750,6 @@
             };
           }
         });
-      },
-      /**
-      * 获取用户的盘口
-      */
-      get_users_handicaps:function(type = 'ssc')
-      {
-      this.$http.get(`${this.api}/admin/ssc/ratelist/${this.u_id}`)
-      .then(function(res)
-      {
-      console.log(res.data);
-      })
       },
       /**
       * 获取用户有哪些彩种
