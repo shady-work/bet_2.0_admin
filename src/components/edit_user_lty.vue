@@ -267,7 +267,7 @@ export default {
            }
            else
            {
-             this.$message.error(str)
+             this.$message.error(str);
            }
            return;
 
