@@ -9,7 +9,7 @@
                  <span class="input-group-addon">
                     <i class="glyphicon glyphicon-user"></i>
                  </span>
-                 <input type="text" class="form-control" placeholder="请输入用户名" v-model="username">
+                 <input type="text" class="form-control" placeholder="请输入用户名" v-model="username" autofocus='autofocus'>
                </div>
 
                 <div class="input-group input-group-lg mt15">
@@ -71,6 +71,9 @@
           },
 
       },
+      created()
+      {
+      }
 
   }
 </script>

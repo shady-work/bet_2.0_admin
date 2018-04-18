@@ -67,6 +67,7 @@
                  <!--<button class="btn btn-warning btn-sm" @click="check_handicaps(v.user_id)">查看盘口</button>-->
                 <button class="btn btn-primary btn-sm" @click="toUserSum(v.user_id)">查看用户报表</button>
                 <button class="btn btn-primary btn-sm" @click="user_edit(v.nickname,v.type,v.user_id,v.money.cash_money,v.money.credit_money)">修改</button>
+                <button class="btn btn-primary btn-sm" @click="toEditLty(v.user_id)">修改彩种</button>
               </td>
             </tr>
           </tbody>
@@ -475,7 +476,20 @@
              name:'user_sum',
              params:{u_id},
            });
-       }
+       },
+        /**
+        * 跳转到修改用户彩种
+        * @param u_id
+        */
+       toEditLty(u_id)
+       {
+            this.$router.push(
+           {
+             path:'edit_user_lty',
+             name:'edit_user_lty',
+             params:{u_id},
+           });
+       },
 
      },//end of methods
      created:function()
@@ -489,7 +503,6 @@
 
 
 <style scoped>
-d
   #users
   {
     position: relative;
@@ -518,7 +531,7 @@ d
     height:40px;
     width: 80%;
     margin:0 auto;
-    margin-top: 15px;
+    padding-top: 15px;
     margin-left:10px;
   }
 

@@ -197,7 +197,6 @@
     {
       this.user_id = this.$route.params.u_id?this.$route.params.u_id:window.sessionStorage.sum_uid;
       window.sessionStorage.sum_uid = this.user_id;
-      console.log(this.user_id)
       this.get_all_data();
     },
   }

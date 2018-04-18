@@ -39,6 +39,7 @@ import UE from '../components/ueditort'
 import users_handicaps from '../components/users_handicaps'
 import edit_right from '../components/edit_right'
 import user_sum from '../components/user_sum'
+import edit_user_lty from '../components/edit_user_lty'
 
 
 Vue.use(Router);
@@ -236,6 +237,11 @@ export default new Router({
           path:'user_sum',  // add_article page
           name:'user_sum',
           component: user_sum,
+        },
+        {
+          path: 'edit_user_lty',  // edit_user_lty page
+          name:'edit_user_lty',
+          component: edit_user_lty,
         },
 
 
