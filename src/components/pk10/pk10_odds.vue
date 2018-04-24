@@ -64,16 +64,10 @@
                     <thead class="bg-primary">
                         <tr style="vertical-align:middle;">
                             <td width="80">特码/球序</td>
-                            <td>特码1</td>
-                            <td>特码2</td>
-                            <td>特码3</td>
-                            <td>特码4</td>
-                            <td>特码5</td>
-                            <td>特码6</td>
-                            <td>特码7</td>
-                            <td>特码8</td>
-                            <td>特码9</td>
-                            <td>特码10</td>
+                            <td>特码1-10</td>
+                            <td>大小单双</td>
+                            <td>龙</td>
+                            <td>虎</td>
                             <td>单注最小限额</td>
                             <td>单注最大限额</td>
                             <td>单期限额</td>
@@ -85,109 +79,33 @@
                                 {{v.mark_b}}
                             </td>
                             <td>
-                                <input type="text"  style="width:55px;border-radius:3px;outline:none;border:1px solid #CCCCCC;" class="text-center" v-model="list[k].A">
+                                <input type="text"   class="text-center form-control" v-model="list[k].A" @change="change_1_9_digit(list[k].A,k)">
                             </td>
                             <td>
-                                <input type="text"  style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;" class="text-center" v-model="list[k].B">
+                                <input type="text"  class="text-center form-control" v-model="list[k].K" @change="change_1_9_half(list[k].K,k)">
                             </td>
                             <td>
-                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;"   class="text-center"  v-model="list[k].C">
+                                <input type="text"  class="text-center form-control" v-model="list[k].O" v-bind:disabled="list[k].O == 0.0000">
                             </td>
                             <td>
-                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;"   class="text-center" v-model="list[k].D">
+                                <input type="text"  class="text-center form-control" v-model="list[k].P" v-bind:disabled="list[k].O == 0.0000">
                             </td>
+
+
                             <td>
-                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;"  class="text-center"  v-model="list[k].E">
-                            </td>
-                            <td>
-                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;"  class="text-center"  v-model="list[k].F">
-                            </td>
-                            <td>
-                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;"  class="text-center"  v-model="list[k].G">
-                            </td>
-                            <td>
-                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;"   class="text-center" v-model="list[k].H">
-                            </td>
-                            <td>
-                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;"   class="text-center" v-model="list[k].I">
-                            </td>
-                            <td>
-                                <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;"  class="text-center"  v-model="list[k].J">
-                            </td>
-                            <td>
-                                <input type="text"  style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;"  class="text-center" v-model="list[k].bet_limit.order_limit_min">
+                                <input type="text"    class="text-center form-control" v-model="list[k].bet_limit.order_limit_min">
                                 <!-- {{list[k].bet_limit.order_limit}} -->
                             </td>
                             <td>
-                                <input type="text"  style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;" class="text-center"  v-model="list[k].bet_limit.order_limit_max">
+                                <input type="text"   class="text-center form-control"  v-model="list[k].bet_limit.order_limit_max">
                             </td>
                             <td>
-                                <input type="text"   style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC; " class="text-center" v-model="list[k].bet_limit.expect_limit">
+                                <input type="text"    class="text-center form-control" v-model="list[k].bet_limit.expect_limit">
                                 <!-- {{list[k].bet_limit.expect_limit}} -->
                             </td>
                         </tr>
                     </tbody>
                 </table>
-
-
-
-              <table class="table table-hovor table-bordered table-striped text-center">
-                <thead class="bg-primary">
-                <tr >
-                  <td width="80">特码/球序</td>
-                  <td>大</td>
-                  <td>小</td>
-                  <td>单</td>
-                  <td>双</td>
-                  <td>龙</td>
-                  <td>虎</td>
-                    <td>单注最小限额</td>
-                    <td>单注最大限额</td>
-                    <td>单期限额</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="(v,k) in list" v-if='k>=4 && k<14'>
-                  <td >
-                    {{v.mark_b}}
-                  </td>
-                  <td>
-                    <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;" class="text-center" v-model="list[k].K">
-                  </td>
-                  <td>
-                    <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;" class="text-center" v-model="list[k].L">
-                  </td>
-                  <td>
-                    <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;" class="text-center" v-model="list[k].M">
-                  </td>
-                  <td>
-                    <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;" class="text-center" v-model="list[k].N">
-                  </td>
-                  <td v-if="list[k].O">
-                    <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;" class="text-center" v-model="list[k].O">
-                  </td>
-                  <td v-if="list[k].P">
-                    <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;" class="text-center" v-model="list[k].P">
-                  </td>
-                    <td>
-                        <input type="text"  style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;" class="text-center" v-model="list[k].bet_limit.order_limit_min">
-                        <!-- {{list[k].bet_limit.order_limit}} -->
-                    </td>
-                    <td>
-                        <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;" class="text-center" v-model="list[k].bet_limit.order_limit_max">
-                    </td>
-                    <td>
-                        <input type="text" style="width: 55px;border-radius: 3px;outline: none;border: 1px solid #CCCCCC;" class="text-center" v-model="list[k].bet_limit.expect_limit">
-                        <!-- {{list[k].bet_limit.expect_limit}} -->
-                    </td>
-                </tr>
-                </tbody>
-              </table>
-
-
-
-
-
 
                 <table class="table table-hovor table-bordered table-striped text-center">
                       <thead class="bg-danger">
@@ -253,10 +171,8 @@
                 <thead class="bg-danger">
                 <tr >
                   <td width="100">冠亚军和-号码</td>
-                  <td>大</td>
-                  <td>小</td>
-                  <td>单</td>
-                  <td>双</td>
+                  <td>大小单双</td>
+
                     <td>单注最小限额</td>
                     <td>单注最大限额</td>
                     <td>单期限额</td>
@@ -268,16 +184,7 @@
                     {{v.mark_b}}
                   </td>
                   <td>
-                    <input type="text" class="form-control" v-model="list[k].A">
-                  </td>
-                  <td>
-                    <input type="text" class="form-control" v-model="list[k].B">
-                  </td>
-                  <td>
-                    <input type="text" class="form-control" v-model="list[k].C">
-                  </td>
-                  <td>
-                    <input type="text" class="form-control" v-model="list[k].D">
+                    <input type="text" class="form-control" v-model="list[k].A" @change="change_sum(list[k].A,k)">
                   </td>
                     <td>
                         <input type="text" class="form-control" v-model="list[k].bet_limit.order_limit_min">
@@ -1596,6 +1503,27 @@ export default {
     };
   },
   methods: {
+      change_1_9_digit:function(val,k){
+          // console.log(val);
+          let array = ['A','B','C','D','E','F','G','H','I','J'];
+          for(let i=0;i<array.length;i++){
+              this.list[k][array[i]] = val;
+          }
+      },
+      change_1_9_half:function(val,k){
+          // console.log(val);
+          let array = ['K','L','M','N'];
+          for(let i=0;i<array.length;i++){
+              this.list[k][array[i]] = val;
+          }
+      },
+      change_sum:function(val,k){
+          // console.log(val);
+          let array = ['A','B','C','D'];
+          for(let i=0;i<array.length;i++){
+              this.list[k][array[i]] = val;
+          }
+      },
     get_all_odds:function(){
         this.$http
         .get(
@@ -1696,8 +1624,10 @@ export default {
   }
 .form-control
 {
-  padding: 0;
+    font-size: 12px!important;
+  /*padding: 0;*/
   text-align: center;
+    padding:5px 3px;
 }
 .col-md-10{
   width:1300px;

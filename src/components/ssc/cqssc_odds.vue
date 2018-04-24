@@ -63,17 +63,12 @@
                         <table class="table table-hovor table-bordered table-striped text-center">
                             <thead class="bg-primary">
                                 <tr >
-                                    <td width="100">球序</td>
-                                    <td>特码0</td>
-                                    <td>特码1</td>
-                                    <td>特码2</td>
-                                    <td>特码3</td>
-                                    <td>特码4</td>
-                                    <td>特码5</td>
-                                    <td>特码6</td>
-                                    <td>特码7</td>
-                                    <td>特码8</td>
-                                    <td>特码9</td>
+                                    <td width="60">球序</td>
+                                    <td>特码0-9</td>
+                                    <td>大</td>
+                                    <td>小</td>
+                                    <td>单</td>
+                                    <td>双</td>
                                     <td>单注最小限额</td>
                                     <td>单注最大限额</td>
                                     <td>单期限额</td>
@@ -85,34 +80,20 @@
                                         {{v.mark_b}}
                                     </td>
                                     <td style="font-size:12px;">
-                                        <input type="text" class="form-control text-center" v-model="list[k].A">
+                                        <input type="text" class="form-control text-center" v-model="list[k].A" @change="change_1_9_digit(list[k].A,k)">
+                                    </td>
+
+                                    <td>
+                                        <input type="text" class="form-control text-center" v-model="list[k].L">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control text-center" v-model="list[k].B">
+                                        <input type="text" class="form-control text-center" v-model="list[k].M">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control text-center" v-model="list[k].C">
+                                        <input type="text" class="form-control text-center" v-model="list[k].N">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control text-center" v-model="list[k].D">
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control text-center" v-model="list[k].E">
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control text-center" v-model="list[k].F">
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control text-center" v-model="list[k].G">
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control text-center" v-model="list[k].H">
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control text-center" v-model="list[k].I">
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control text-center" v-model="list[k].J">
+                                        <input type="text" class="form-control text-center" v-model="list[k].O">
                                     </td>
                                     <td>
                                         <input type="text" class="form-control text-center" v-model="list[k].bet_limit.order_limit_min">
@@ -1227,6 +1208,13 @@ export default {
     };
   },
   methods: {
+      change_1_9_digit:function(val,k){
+           // console.log(val);
+          let array = ['A','B','C','D','E','F','G','H','I','J'];
+          for(let i=0;i<array.length;i++){
+              this.list[k][array[i]] = val;
+          }
+      },
     get_all_odds:function(){
         this.$http
         .get(
@@ -1235,7 +1223,7 @@ export default {
         .then(function(res) {
             if(res.data.status == 200)
             {   
-                console.log(res.data);
+                // console.log(res.data);
                 this.all_odds = res.data.data.odds_list;
                 this.list = this.all_odds[0].odds;
                 this.collectData();
@@ -1316,6 +1304,14 @@ export default {
   created: function()
   {
     this.get_all_odds();
+  },
+  watch : {
+      // "list[4].A":function (n,o) {
+      //     for(let i=5;i<9;i++){
+      //         this.list[i].A = n;
+      //     }
+      // },
+
   }
 
 };
@@ -1354,5 +1350,7 @@ table tr td
   margin-left:10px;
   width:1300px;
 }
-
+.form-control{
+    padding:5px 3px;
+}
 </style>
