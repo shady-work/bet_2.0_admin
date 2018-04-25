@@ -207,7 +207,7 @@
 
 <script>
     export default {
-        name: 'users_handicaps',
+        name: 'users_handicaps_egg',
         data() {
             return {
                 u_id: 0,
@@ -690,7 +690,7 @@
 
         created() {
             //获取用户的id
-            this.u_id = this.$route.params.u_id ? this.$route.params.u_id : window.sessionStorage.handicaps_uid;
+            this.u_id = this.$route.params.u_id ? this.$route.params.u_id : window.sessionStorage.handicaps_uid_egg;
             window.sessionStorage.handicaps_uid = this.u_id;
             this.get_users_lties();
             this.get_user_info();

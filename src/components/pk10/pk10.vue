@@ -42,7 +42,7 @@
           <div class="form-group">
             <label for="inputEmail4" class="col-sm-2 control-label">最小下注额</label>
             <div class="col-sm-10">
-              <input type="text" v-model="money_min"  class="form-control" id="inputEmail4" placeholder="请输入">
+              <input type="text" v-model="money_min"  class="form-control" id="inputEmail3" placeholder="请输入">
             </div>
           </div>
           <div class="form-group">
@@ -133,7 +133,7 @@
 
 <script>
   export default {
-    name: "cqssc",
+    name: "bjpk10",
     data() {
       return {
         list: [], //the bet_rules of list
@@ -312,8 +312,8 @@
        {
           this.$router.push(
             {
-              path:'users_handicaps',
-              name:'users_handicaps',
+              path:'users_handicaps_pk10',
+              name:'users_handicaps_pk10',
               params:{u_id}
             }
           );

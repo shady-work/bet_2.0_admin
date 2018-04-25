@@ -37,6 +37,10 @@ import articles from '../components/articles'
 import add_article from '../components/add_article'
 import UE from '../components/ueditort'
 import users_handicaps from '../components/users_handicaps'
+import users_handicaps_ssc from '../components/users_handicaps_ssc'
+import users_handicaps_pk10 from '../components/users_handicaps_pk10'
+import users_handicaps_egg from '../components/users_handicaps_egg'
+import users_handicaps_cake from '../components/users_handicaps_cake'
 import edit_right from '../components/edit_right'
 import user_sum from '../components/user_sum'
 import edit_user_lty from '../components/edit_user_lty'
@@ -223,11 +227,7 @@ export default new Router({
           name:'UE',
           component: UE,
         },
-        {
-          path:'users_handicaps',  // add_article page
-          name:'users_handicaps',
-          component: users_handicaps,
-        },
+
         {
           path:'edit_right',  // add_article page
           name:'edit_right',
@@ -243,7 +243,26 @@ export default new Router({
           name:'edit_user_lty',
           component: edit_user_lty,
         },
-
+          {
+              path: 'users_handicaps_ssc',
+              name:'users_handicaps_ssc',
+              component: users_handicaps_ssc,
+          },
+          {
+              path: 'users_handicaps_pk10',
+              name:'users_handicaps_pk10',
+              component: users_handicaps_pk10,
+          },
+          {
+              path: 'users_handicaps_egg',
+              name:'users_handicaps_egg',
+              component: users_handicaps_egg,
+          },
+          {
+              path: 'users_handicaps_cake',
+              name:'users_handicaps_cake',
+              component: users_handicaps_cake,
+          },
 
       ],
     }

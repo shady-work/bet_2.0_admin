@@ -29,7 +29,7 @@
                         <td>{{v.trad_url?v.trad_url:'尚未设定'}}</td> -->
                         <td>
                             <button class="btn btn-primary" @click="edit_one(v.id)">编辑</button>
-                            <button class="btn btn-warning" @click="check_handicaps(v.id)">查看盘口</button>
+                            <button class="btn btn-warning" @click="check_handicaps(v.id)">查看盘口{{v.id}}</button>
                         </td>
                 </tr>
             </tbody>
@@ -40,9 +40,9 @@
              <div class="panel-heading">修改用户注额</div>
              <div class="panel-body form-horizontal">
                <div class="form-group">
-                 <label for="inputEmail4" class="col-sm-2 control-label">最小下注额</label>
+                 <label for="inputEmail3" class="col-sm-2 control-label">最小下注额</label>
                  <div class="col-sm-10">
-                   <input type="text" v-model="money_min"  class="form-control" id="inputEmail4" placeholder="请输入">
+                   <input type="text" v-model="money_min"  class="form-control" id="inputEmail3" placeholder="请输入">
                  </div>
                </div>
                 <div class="form-group">
@@ -320,8 +320,8 @@ export default {
        {
           this.$router.push(
             {
-              path:'users_handicaps',
-              name:'users_handicaps',
+              path:'users_handicaps_ssc',
+              name:'users_handicaps_ssc',
               params:{u_id}
             }
           );
