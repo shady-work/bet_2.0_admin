@@ -74,7 +74,7 @@ export default
     {
         get_all_history:function(page = 1,per_page = 15)
         {
-            this.$http.get(`${this.api}/admin/egg/history/lottery/page/${page}/per_page/${per_page}`)
+            this.$http.get(`${this.api}/admin/egg/history/lottery?page=${page}&per_page=${per_page}`)
               .then(function(res){
                 if(res.data.status == 200)
                    {

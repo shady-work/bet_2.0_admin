@@ -29,7 +29,7 @@
         <td>{{v.trad_url?v.trad_url:'尚未设定'}}</td> -->
         <td>
           <button class="btn btn-primary" @click="edit_one(v.id)">编辑</button>
-          <button class="btn btn-warning" @click="check_handicaps(v.id)">查看盘口</button>
+          <button class="btn btn-warning" @click="check_handicaps(v.user.id)">查看盘口</button>
         </td>
       </tr>
       </tbody>
@@ -170,6 +170,7 @@
         this.$http.get(this.api + "/admin/pk10/user").then(function(res) {
           if (res.data.status == 200) {
             this.list = res.data.data.list;
+            console.log(this.list);
             this.hasPrev = res.data.data.hasPrev;
             this.hasNext = res.data.data.hasNext;
             this.sum = res.data.data.sum;

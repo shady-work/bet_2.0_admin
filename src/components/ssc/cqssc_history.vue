@@ -83,7 +83,7 @@ export default
     {
         get_all_history:function(page = 1,per_page = 15)
         {
-            this.$http.get(`${this.api}/admin/ssc/history/lottery/page/${page}/per_page/${per_page}`)
+            this.$http.get(`${this.api}/admin/ssc/history/lottery?page=${page}&per_page=${per_page}`)
               .then(function(res){
                    if(res.data.status == 200)
                    {
@@ -116,6 +116,7 @@ export default
                 .then(function(res){
                   if(res.data.status == 200)
                   {
+                      this.history_codes = [];
                     this.history_codes = res.data.data.list;
                     this.hasPrev = res.data.data.hasPrev;
                     this.hasNext = res.data.data.hasNext;
@@ -139,13 +140,17 @@ export default
           else
           {
             this.page++;
-            this.$http.get(`${this.api}${this.nextPageUrl}`)
+
+              this.$http.get(`${this.api}${this.nextPageUrl}`)
               .then(function(res){
                 if(res.data.status == 200)
                 {
+                    this.history_codes = [];
                   this.history_codes = res.data.data.list;
                   this.hasPrev = res.data.data.hasPrev;
                   this.hasNext = res.data.data.hasNext;
+                    this.sum = res.data.data.sum;
+                    this.pageNum = res.data.data.pageNum;
                   this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
                   this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
                 }

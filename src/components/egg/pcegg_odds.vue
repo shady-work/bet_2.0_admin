@@ -81,7 +81,7 @@
                     </tr>
                     </tbody>
                     <thead class="bg-primary">
-                    <tr class="h4">
+                    <tr >
                         <td width="150">特码/球序</td>
                         <td v-for="(v,k,index) in list[4]" v-if='index>=10&&index<20'>特码{{index}}</td>
 
@@ -101,7 +101,7 @@
 
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-primary">
-                    <tr class="h4">
+                    <tr >
                         <td width="150">特码/球序</td>
                         <td v-for="(v,k,index) in list[4]" v-if='index>=20&&index<28'>特码{{index}}</td>
                         <td>单注最小限额</td>
@@ -133,7 +133,7 @@
 
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-primary">
-                    <tr class="h4">
+                    <tr >
                         <td width="150">特码/球序</td>
                         <td>大</td>
                         <td>小</td>
@@ -180,7 +180,7 @@
 
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-primary">
-                    <tr class="h4">
+                    <tr >
                         <td width="150">波色</td>
                         <td>红波</td>
                         <td>绿波</td>

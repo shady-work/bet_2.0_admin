@@ -186,7 +186,7 @@
         delete_artile:function(a_id,title)
         {
           // confirm('是否删除标题为' + title + '的文章?')
-          this.$confirm('确认关闭？')
+          this.$confirm('确认删除？')
           .then(_ => 
           {
             this.$http.delete(`${this.api}/admin/articles/${a_id}`)
