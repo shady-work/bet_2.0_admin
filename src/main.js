@@ -79,8 +79,9 @@ const Vm = new Vue(
 //    next();
 // });
 
+//导入覆盖饿了么ui的样式
 
-
+import './assets/css/left.css';
 
 
 
