@@ -88,10 +88,10 @@
                         </td>
 
                         <td v-if="odds_ssc_one[k].O">
-                            <input type="text"  v-model="odds_ssc_one[k].O" class="text-center form-control">
+                            <input type="text"  v-model="odds_ssc_one[k].O" class="text-center form-control" v-bind:disabled="odds_ssc_one[k].O == 0.0000">
                         </td>
                         <td v-if="odds_ssc_one[k].P">
-                            <input type="text"  v-model="odds_ssc_one[k].P" class="text-center form-control">
+                            <input type="text"  v-model="odds_ssc_one[k].P" class="text-center form-control" v-bind:disabled="odds_ssc_one[k].O == 0.0000" >
                         </td>
                         <td>
                             <input type="text" class="form-control text-center"
@@ -114,7 +114,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-danger">
                     <tr >
-                        <td width="100">冠亚军和-号码</td>
+                        <td width="90">冠亚军和-号码</td>
                         <td>13</td>
                         <td>14</td>
                         <td>15</td>
@@ -175,7 +175,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-danger">
                     <tr >
-                        <td >冠亚军和-号码</td>
+                        <td width="90">冠亚军和-号码</td>
                         <td>大</td>
                         <td>小</td>
                         <td>单</td>
@@ -720,7 +720,7 @@
                             }
                         });
                 },
-                //检测用户是否拥有cqssc这个彩种
+                //检测用户是否拥有pk10这个彩种
                 get_users_lties: function ()
                 {
                     this.$http.get(`${this.api}/admin/lotteryList/${this.u_id}`)
@@ -851,7 +851,6 @@
 
 
 
-
     .right {
         width: 880px;
         float: left;
@@ -875,7 +874,10 @@
         font-size: 18px;
         font-weight: 700;
     }
-
+    .form-control{
+        font-size: 12px !important;
+        padding: 6px 8px;
+    }
     table {
         font-size: 12px !important;
         margin-bottom: 0px !important;

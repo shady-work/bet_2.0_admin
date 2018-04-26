@@ -111,7 +111,7 @@
                     <thead class="bg-danger">
                     <tr>
                         <td width="80">总和、龙虎</td>
-                        <td>总和单双大小龙虎</td>
+                        <td>总和:单,双,大,小,龙,虎</td>
                         <td>和</td>
                         <td>单注最小限额</td>
                         <td>单注最大限额</td>
@@ -199,6 +199,9 @@
                     </tr>
                     </tbody>
                 </table>
+                <br>
+                <br>
+                <br>
             </div>
         </div>
     </div>

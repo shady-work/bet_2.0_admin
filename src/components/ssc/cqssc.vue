@@ -29,7 +29,7 @@
                         <td>{{v.trad_url?v.trad_url:'尚未设定'}}</td> -->
                         <td>
                             <button class="btn btn-primary" @click="edit_one(v.id)">编辑</button>
-                            <button class="btn btn-warning" @click="check_handicaps(v.id)">查看盘口{{v.id}}</button>
+                            <button class="btn btn-warning" @click="check_handicaps(v.id)">查看盘口</button>
                         </td>
                 </tr>
             </tbody>
