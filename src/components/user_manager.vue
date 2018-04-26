@@ -203,7 +203,8 @@
                }
                else
                {
-                 alert('用户数据加载失败.....');
+                 // alert('用户数据加载失败.....');
+                   this.$message.error('用户数据加载失败.....');
                }
             });
         },
@@ -412,7 +413,8 @@
                   this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
                   if(this.users.length<1)
                   {
-                     alert('没有符合条件的数据.');
+                     // alert('没有符合条件的数据.');
+                      this.$message.error('没有符合条件的数据.');
                   }
                 }
             });

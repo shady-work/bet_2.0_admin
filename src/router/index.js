@@ -44,6 +44,7 @@ import users_handicaps_cake from '../components/users_handicaps_cake'
 import edit_right from '../components/edit_right'
 import user_sum from '../components/user_sum'
 import edit_user_lty from '../components/edit_user_lty'
+import chart from '../components/chart'
 
 
 Vue.use(Router);
@@ -262,6 +263,11 @@ export default new Router({
               path: 'users_handicaps_cake',
               name:'users_handicaps_cake',
               component: users_handicaps_cake,
+          },
+          {
+              path: 'chart',
+              name:'chart',
+              component: chart,
           },
 
       ],
