@@ -74,7 +74,8 @@
          nextPageUrl:'',
          prevPageUrl:'',
          isShow:false,
-         dialogVisible: false
+         dialogVisible: false,
+
        };
      },
      created(){

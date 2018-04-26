@@ -87,6 +87,7 @@ export default
               .then(function(res){
                    if(res.data.status == 200)
                    {
+
                       this.history_codes = res.data.data.list;
                       this.hasPrev = res.data.data.hasPrev;
                       this.hasNext = res.data.data.hasNext;

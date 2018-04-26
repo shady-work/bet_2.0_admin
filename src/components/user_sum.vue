@@ -1,11 +1,11 @@
 <template>
 
-    <div>
+    <div style="margin-left:10px;margin-top:10px;">
       <div class="xy-list">
-        <a :class="table_lotterys[0]?'active':''" @click="tab_lottery(0)">
+        <a :class="table_lotterys[0]?'active':''" @click="tab_lottery(0)" style="cursor: pointer">
           本周报表
         </a>
-        <a :class="table_lotterys[1]?'active':''" @click="tab_lottery(1)">
+        <a :class="table_lotterys[1]?'active':''" @click="tab_lottery(1)" style="cursor: pointer">
           上周报表
         </a>
       </div>
@@ -40,8 +40,8 @@
       </table>
 
 
-      <table class="table table-bordered" v-show="details_show" style="font-size: 12px;">
-        <tr>
+      <table border="1" class="table table-bordered table-hover table-striped text-center" v-show="details_show" style="font-size:12px;">
+        <tr >
           <td>彩种</td>
           <td>期数</td>
           <td>注单号</td>
@@ -53,18 +53,18 @@
         <tr v-for="v in details_data">
           <td>{{v.lty_name}}</td>
           <td>{{v.expect}}</td>
-          <td>{{v.order_no}}</td>
+          <td >{{v.order_no}}</td>
           <td>{{v.create_time}}</td>
           <td>{{v.mark_a}}{{v.mark_b}}({{v.rate}})</td>
           <td>{{v.money}}</td>
-          <td>{{v.open_ret==1?'中奖':'未中奖'}}</td>
+          <td >{{v.open_ret==1?'中奖':'未中奖'}}</td>
         </tr>
       </table>
 
       <div class="page-xy" v-show="details_show">
-        <span @click="prev_page">◀</span>
+        <span @click="prev_page" style="cursor:pointer">◀</span>
         <input type="text" v-model="page"  disabled>
-        <span @click="next_page">▶</span>
+        <span @click="next_page" style="cursor:pointer">▶</span>
       </div>
     </div>
 </template>
@@ -129,13 +129,13 @@
         //下一页
         next_page:function(){
           if(this.next_url) this.list = this.get_details('',this.api + this.next_url);
-          else alert('没有下一页');
+          else this.$message.error('没有下一页');
 
         },
         //上一页
         prev_page:function(){
           if(this.prev_url) this.list = this.get_details('',this.api + this.prev_url);
-          else alert('没有上一页');
+          else this.$message.error('没有上一页');
         },
 
 
@@ -166,7 +166,8 @@
 
               if(res.data.status == 200)
               {
-                let data = res.data.data;
+                  // console.log(res.data);
+                  let data = res.data.data;
                 this.next_url = data.nextPageUrl;
                 this.prev_url = data.prevPageUrl;
                 this.details_data = data.orders;
@@ -178,7 +179,7 @@
           {
             this.$http.get(`${this.api}/admin/details?date=${date_str}&per_page=10&user_id=${this.user_id}`).then(function(res)
             {
-              console.log(res.data.data);
+              // console.log(res.data.data);
               if(res.data.status == 200)
               {
                 let data = res.data.data;
@@ -210,12 +211,27 @@
     font-size: 18px;
     font-weight: 700;
   }
+  .page-xy{
 
+    margin-left:600px;
+  }
   .page-xy>input
   {
     width: 40px;
     height: 20px;
 
   }
+  /*.table {*/
 
+    /*font-size: 12px!important;*/
+  /*}*/
+  table{
+    width:1200px;
+  }
+  table tr td
+  {
+    font-size: 14px!important;
+    padding:8px;
+    /*font-weight: 700;*/
+  }
 </style>
