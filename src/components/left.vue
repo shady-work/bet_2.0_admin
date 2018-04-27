@@ -59,7 +59,7 @@
           cqssc:
           {
             label: '重庆时时彩',
-              children:
+            children:
             [
               {
                 label: '用户注额列表',
@@ -77,16 +77,17 @@
                 label: '下注历史',
                 href:'cqssc_history_bet',
               },
-              // {
-              //   label: '转盘列表',
-              //   href:'cqssc_turntable',
-              // }
+              {
+                label: '转盘列表',
+                href:'cqssc_turntable',
+              }
             ]
           },
           //北京赛车PK拾
-           bjpk10:{
+           bjpk10:
+           {
             label: '北京赛车PK拾',
-              children:
+            children:
             [
               {
                 label: '用户注额列表',
@@ -104,16 +105,17 @@
                 label: '下注历史',
                 href:'pk10_history_bet',
               },
-              // {
-              //   label: '转盘列表',
-              //   href:'pk10_turntable',
-              // }
+              {
+                label: '转盘列表',
+                href:'pk10_turntable',
+              }
             ]
           },
           //PC蛋蛋
-          pcegg:{
+          pcegg:
+          {
             label: 'PC蛋蛋',
-              children:
+            children:
             [
               {
                 label: '用户注额列表',
@@ -131,10 +133,10 @@
                 label: '下注历史',
                 href:'pcegg_history_bet',
               },
-              // {
-              //   label: '转盘列表',
-              //   href:'pcegg_turntable',
-              // }
+              {
+                label: '转盘列表',
+                href:'pcegg_turntable',
+              }
             ]
           },
           //加拿大28
@@ -158,10 +160,10 @@
                 label: '下注历史',
                 href:'cake_history_bet',
               },
-              // {
-              //   label: '转盘列表',
-              //   href:'cakeno_turntable',
-              // }
+              {
+                label: '转盘列表',
+                href:'cakeno_turntable',
+              }
             ]
           },
          }
@@ -182,8 +184,17 @@
           })
           .then(function()
           {
+            console.log(this.$store.state.son_off);
             if(this.$store.state.admin_type == 3 || this.$store.state.admin_id == 1)
             {
+
+              if(!this.$store.state.son_off)
+              {
+                this.cqssc.children.splice(4,1);
+                this.bjpk10.children.splice(4,1);
+                this.pcegg.children.splice(4,1);
+                this.cakeno.children.splice(4,1);
+              }
               this.tree.push(this.cqssc);
               this.tree.push(this.bjpk10);
               this.tree.push(this.pcegg);

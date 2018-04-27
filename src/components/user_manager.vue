@@ -22,7 +22,7 @@
          <div class="clearfix"></div>
        </div>
 
-        <table class="table table-bordered  table-hover text-center table-striped">
+        <table class="table table-bordered  table-hover text-center table-striped mt15">
           <thead>
             <tr class=" active">
               <td >用户ID</td>
@@ -516,7 +516,7 @@
   {
     width: 1200px;
     margin:0 auto;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-left:10px;
   }
   #myModal

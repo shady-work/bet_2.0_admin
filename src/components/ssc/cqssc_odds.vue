@@ -1232,6 +1232,7 @@ export default {
     },
     collectData:function()
     {
+      this.final_list = [];
         for(let i = 0 ;i<this.all_odds.length;i++)
         {
             this.final_list.push(this.all_odds[i].name);
@@ -1268,21 +1269,21 @@ export default {
         });
     },
 
-    add_one: function() {
+    add_one: function()
+    {
       this.$http
         .post(`${this.api}/admin/ssc/odds`, {
           odds: this.list
         })
         .then(function(res) {
           if (res.data.status == 200) {
-            // alert("添加成功");
              this.$message(
                     {
                         message:res.data.msg,
                         center:true,
                         type:'success',
                     });
-            this.$router.go(0);
+            this.get_all_odds();
             return;
           }
         });
@@ -1293,9 +1294,8 @@ export default {
         .then(function(res) {
           console.log(res.data);
           if (res.data.status == 200) {
-            // alert("删除成功");
             this.$message.error('删除成功');
-            this.$router.go(0);
+            this.get_all_odds();
             return;
           }
         });

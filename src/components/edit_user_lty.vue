@@ -1,25 +1,32 @@
 <template>
     <div>
-        <div class="form-horizontal"  v-show="next_step">
-       <div class="form-group">
-         <label  class="col-sm-2 control-label">选择彩种</label>
-         <div class="col-sm-10">
-           <label class="checkbox-inline">
-             <input type="checkbox" id="inlineCheckbox1" value="cqssc"   v-model="lotteries"> 重庆时时彩
-           </label>
-           <label class="checkbox-inline">
-             <input type="checkbox" id="inlineCheckbox2" value="bjpk10" v-model="lotteries"> 北京赛车PK10
-           </label>
-           <label class="checkbox-inline">
-             <input type="checkbox" id="inlineCheckbox3" value="pcegg" v-model="lotteries"> PC蛋蛋
-           </label>
-           <label class="checkbox-inline">
-             <input type="checkbox" id="inlineCheckbox4" value="cakeno" v-model="lotteries"> 加拿大28
-           </label>
-         </div>
-       </div>
-       <button class="btn btn-primary btn-lg center-block" @click="nextstep()">修改</button>
-     </div> 
+
+        <div class="panel panel-success" style="width: 1200px;margin-top: 5px;margin-left: 10px;">
+            <div class="panel-heading">为用户选择彩种</div>
+            <div class="panel-body">
+                <div class="form-horizontal"  v-show="next_step">
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">选择彩种</label>
+                        <div class="col-sm-10">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox1" value="cqssc"   v-model="lotteries"> 重庆时时彩
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox2" value="bjpk10" v-model="lotteries"> 北京赛车PK10
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox3" value="pcegg" v-model="lotteries"> PC蛋蛋
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox4" value="cakeno" v-model="lotteries"> 加拿大28
+                            </label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-lg center-block" @click="nextstep()">修改</button>
+                </div>
+            </div>
+        </div>
+
 
           <div class="form-horizontal" v-show="!next_step">
                

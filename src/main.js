@@ -36,6 +36,7 @@ var store = new vuex.Store(
       admin_type:0, //登录账号的类型
       admin_name:'',//管理员的用户名
       has_lotteries:[],//用户拥有的彩种
+      son_off:true,//是否打开子盘
   },
   mutations:
   {
@@ -49,8 +50,8 @@ var store = new vuex.Store(
 });
 
 //配置请求的uri
-Vue.prototype.api = `http://lty-main.com`;
-// Vue.prototype.api = ``;
+ Vue.prototype.api = `http://lty-main.com`;
+//Vue.prototype.api = ``;
 
 /* eslint-disable no-new */
 const Vm = new Vue(

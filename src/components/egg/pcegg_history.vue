@@ -5,24 +5,19 @@
              <tr>
                <td>期数</td>
                <td>开奖号码</td>
-               <td>第一球</td>
-               <td>第二球</td>
-               <td>第三球</td>
-               <td>第四球</td>
-
-               <td>冠亚军</td>
-               <td>后开奖时间</td>
+               <td colspan="2">总和</td>
+               <td>波色</td>
+               <td>开奖时间</td>
              </tr>
            </thead>
           <tbody>
               <tr v-for="(v,k) in history_codes">
                 <td>{{v.expect}}</td>
                 <td><b>{{v.opencode}}</b></td>
-                <td>{{v.details.ball_1}}</td>
-                <td>{{v.details.ball_2}}</td>
+                <td >{{v.details.ball_1}}</td>
+                <td class="text-left">{{v.details.ball_2}}</td>
                 <td>{{v.details.ball_3}}</td>
-                <td>{{v.details.ball_4}}</td>
-                <td>{{get_result(v.open_codes[0],v.open_codes[0])}}</td>
+
                 <td>{{v.opentime}}</td>
               </tr>
           </tbody>

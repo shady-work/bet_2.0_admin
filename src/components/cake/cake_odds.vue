@@ -62,18 +62,18 @@
                     </tr>
                     </tbody>
                 </table>
-
+                <!--0-7-->
                 <table class="table table-hovor table-bordered table-striped text-center" style="margin-bottom:0;">
                     <thead class="bg-primary">
                     <tr>
                         <td width="150">选项/球序</td>
-                        <td v-for="(v,k,index) in list[4]" v-if='index<10'>特码{{index}}</td>
+                        <td v-for="(v,k,index) in list[4]" v-if='index<8'>特码{{index}}</td>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>赔率</td>
-                        <td v-for="(v,k,index) in list[4]" v-if='index<10'>
+                        <td v-for="(v,k,index) in list[4]" v-if='index<8'>
                             <input type="text" class="form-control" v-model="list[4]['e' + (index+1)]">
                         </td>
                     </tr>
@@ -81,11 +81,47 @@
 
 
                 </table>
+                <!--8-16-->
+                <table class="table table-hovor table-bordered table-striped text-center" style="margin-bottom:0;">
+                    <thead class="bg-primary">
+                    <tr>
+                        <td width="150">选项/球序</td>
+                        <td v-for="(v,k,index) in list[4]" v-if='index<16 && index>=8'>特码{{index}}</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>赔率</td>
+                        <td v-for="(v,k,index) in list[4]" v-if='index<16 && index>=8'>
+                            <input type="text" class="form-control" v-model="list[4]['e' + (index+1)]">
+                        </td>
+                    </tr>
+                    </tbody>
+
+
+                </table>
+                <!--16-24-->
+                <table class="table table-hovor table-bordered table-striped text-center" style="margin-bottom:0;">
+                    <thead class="bg-primary">
+                    <tr>
+                        <td width="150">选项/球序</td>
+                        <td v-for="(v,k,index) in list[4]" v-if='index<24 && index>=16'>特码{{index}}</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>赔率</td>
+                        <td v-for="(v,k,index) in list[4]" v-if='index<24 && index>=16'>
+                            <input type="text" class="form-control" v-model="list[4]['e' + (index+1)]">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-primary">
                     <tr >
                         <td width="150">选项/球序</td>
-                        <td v-for="(v,k,index) in list[4]" v-if='index>=10&&index<20'>特码{{index}}</td>
+                        <td v-for="(v,k,index) in list[4]" v-if='index>23 && index<28'>特码{{index}}</td>
                         <td>单注最小限额</td>
                         <td>单注最大限额</td>
                         <td>单期限额</td>
@@ -94,7 +130,7 @@
                     <tbody>
                     <tr>
                         <td>赔率</td>
-                        <td v-for="(v,k,index) in list[4]" v-if='index>=10&&index<20'>
+                        <td v-for="(v,k,index) in list[4]" v-if='index>23 && index<28'>
                             <input type="text" class="form-control" v-model="list[4]['e' + (index+1)]">
 
                         </td>
@@ -567,7 +603,6 @@
                         `${this.api}/admin/cake/odds`
                     )
                     .then(function (res) {
-                        console.log(res.data);
                         if (res.data.status == 200) {
                             this.all_odds = res.data.data.odds_list;
                             this.list = this.all_odds[0].odds;
@@ -576,6 +611,7 @@
                     });
             },
             collectData: function () {
+              this.final_list = [];
                 for (let i = 0; i < this.all_odds.length; i++) {
                     this.final_list.push(this.all_odds[i].name);
                 }
@@ -614,8 +650,13 @@
                     })
                     .then(function (res) {
                         if (res.data.status == 200) {
-                            alert("添加成功");
-                            this.$router.go(0);
+                          this.$message(
+                            {
+                              message:res.data.msg,
+                              center:true,
+                              type:'success',
+                            });
+                          this.get_all_odds();
                             return;
                         }
                     });
@@ -625,8 +666,8 @@
                     .delete(`${this.api}/admin/cake/odds/cake_${whichOne}`)
                     .then(function (res) {
                         if (res.data.status == 200) {
-                            alert("删除成功");
-                            this.$router.go(0);
+                          this.$message.error('删除成功');
+                          this.get_all_odds();
                             return;
                         }
                     });

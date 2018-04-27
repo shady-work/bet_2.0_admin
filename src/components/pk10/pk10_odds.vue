@@ -6,7 +6,6 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                             <thead class="bg-primary">
                                 <tr >
-                                    
                                     <td width="70" style='line-height:30px;'>盘口</td>
                                     <td v-for="(v,k) in final_list" :class="active_array[k]?'text-danger':''">
                                       {{v}}盘
@@ -1540,6 +1539,7 @@ export default {
     },
     collectData:function()
     {
+      this.final_list = [];
         for(let i = 0 ;i<this.all_odds.length;i++)
         {
             this.final_list.push(this.all_odds[i].name);
@@ -1557,7 +1557,7 @@ export default {
           odds: this.list
         })
         .then(function(res) {
-          if (res.data.status == 201) {
+          if (res.data.status == 200) {
               this.$message(
                   {
                       message:res.data.msg,
@@ -1578,8 +1578,13 @@ export default {
         })
         .then(function(res) {
           if (res.data.status == 200) {
-            alert("添加成功");
-            this.$router.go(0);
+            this.$message(
+              {
+                message:res.data.msg,
+                center:true,
+                type:'success',
+              });
+            this.get_all_odds();
             return;
           }
         });
@@ -1590,8 +1595,8 @@ export default {
         .then(function(res) {
           console.log(res.data);
           if (res.data.status == 200) {
-            alert("删除成功");
-            this.$router.go(0);
+            this.$message.error('删除成功');
+            this.get_all_odds();
             return;
           }
         });

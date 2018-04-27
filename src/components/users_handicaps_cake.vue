@@ -63,18 +63,19 @@
                     </tr>
                     </tbody>
                 </table>
+
                 <!--特码-->
                 <table class="table table-hovor table-bordered table-striped text-center" style="margin-bottom:0;">
                     <thead class="bg-primary">
                     <tr>
                         <td width="70">选项/球序</td>
-                        <td v-for="(v,k,index) in odds_ssc_one[4]" v-if='index<10'>特码{{index}}</td>
+                        <td v-for="(v,k,index) in odds_ssc_one[4]" v-if='index<8'>特码{{index}}</td>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>赔率</td>
-                        <td v-for="(v,k,index) in odds_ssc_one[4]" v-if='index<10'>
+                        <td v-for="(v,k,index) in odds_ssc_one[4]" v-if='index<8'>
                             <input type="text" class="text-center  form-control" v-model="odds_ssc_one[4]['e' + (index+1)]">
                         </td>
                     </tr>
@@ -82,11 +83,50 @@
 
 
                 </table>
+
+                <table class="table table-hovor table-bordered table-striped text-center" style="margin-bottom:0;">
+                    <thead class="bg-primary">
+                    <tr>
+                        <td width="70">选项/球序</td>
+                        <td v-for="(v,k,index) in odds_ssc_one[4]" v-if='index<16 && index>=8'>特码{{index}}</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>赔率</td>
+                        <td v-for="(v,k,index) in odds_ssc_one[4]" v-if='index<16 && index>=8'>
+                            <input type="text" class="text-center  form-control" v-model="odds_ssc_one[4]['e' + (index+1)]">
+                        </td>
+                    </tr>
+                    </tbody>
+
+
+                </table>
+
+                <table class="table table-hovor table-bordered table-striped text-center" style="margin-bottom:0;">
+                    <thead class="bg-primary">
+                    <tr>
+                        <td width="70">选项/球序</td>
+                        <td v-for="(v,k,index) in odds_ssc_one[4]" v-if='index<24 && index>=16'>特码{{index}}</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>赔率</td>
+                        <td v-for="(v,k,index) in odds_ssc_one[4]" v-if='index<24 && index>=16'>
+                            <input type="text" class="text-center  form-control" v-model="odds_ssc_one[4]['e' + (index+1)]">
+                        </td>
+                    </tr>
+                    </tbody>
+
+
+                </table>
+
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-primary">
                     <tr >
                         <td width="70">选项/球序</td>
-                        <td v-for="(v,k,index) in odds_ssc_one[4]" v-if='index>=10&&index<20'>特码{{index}}</td>
+                        <td v-for="(v,k,index) in odds_ssc_one[4]" v-if='index>23 && index<28'>特码{{index}}</td>
                         <td>单注最小限额</td>
                         <td>单注最大限额</td>
                         <td>单期限额</td>
@@ -95,7 +135,7 @@
                     <tbody>
                     <tr>
                         <td>赔率</td>
-                        <td v-for="(v,k,index) in odds_ssc_one[4]" v-if='index>=10&&index<20'>
+                        <td v-for="(v,k,index) in odds_ssc_one[4]" v-if='index>23 && index<28'>
                             <input type="text" class="text-center form-control" v-model="odds_ssc_one[4]['e' + (index+1)]">
 
                         </td>
@@ -747,6 +787,10 @@
         padding: 5px 3px;
     }
 
+    .form-control {
+
+        padding:6px 5px;
+    }
     td > input {
 
     }

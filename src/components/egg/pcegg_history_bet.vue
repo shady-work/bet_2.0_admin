@@ -104,14 +104,14 @@
             </div>
 
             <div class="form-group">
-              <label for="inputEmail4" class="col-sm-3 control-label">是否结算</label>
+              <label for="inputEmail4" class="col-sm-3 control-label">是否中奖</label>
               <div class="col-sm-8">
                 <p class="form-control">{{open_ret==0?'未中奖':'中奖'}}</p>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputEmail4" class="col-sm-3 control-label">是否结算</label>
+              <label for="inputEmail4" class="col-sm-3 control-label">是否转盘</label>
               <div class="col-sm-8">
                 <p class="form-control">{{trad_stu==0?'未转':'转盘'}}</p>
               </div>
@@ -122,31 +122,31 @@
                 <p class="form-control">{{open_code}}</p>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" v-if="$store.state.son_off">
               <label for="inputEmail4" class="col-sm-3 control-label">输赢额</label>
               <div class="col-sm-8">
                 <p class="form-control">{{open_win}}</p>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" v-if="$store.state.son_off">
               <label for="inputEmail4" class="col-sm-3 control-label">转盘金额</label>
               <div class="col-sm-8">
                 <p class="form-control">{{trad_val}}</p>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" v-if="$store.state.son_off">
               <label for="inputEmail4" class="col-sm-3 control-label">转盘API</label>
               <div class="col-sm-8">
                 <p class="form-control">{{trad_url}}</p>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" v-if="$store.state.son_off">
               <label for="inputEmail4" class="col-sm-3 control-label">转盘密钥</label>
               <div class="col-sm-8">
                 <p class="form-control">{{trad_tokensup}}</p>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" v-if="$store.state.son_off">
               <label for="inputEmail4" class="col-sm-3 control-label">转盘返回信息</label>
               <div class="col-sm-8">
                 <p class="form-control">{{trad_return}}</p>

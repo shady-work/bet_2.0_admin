@@ -116,7 +116,6 @@
               else
               {
                 this.$message.error('添加失败，请稍后再试');
-                // alert('添加失败，请稍后再试');
                 return;
               }
            });
@@ -143,6 +142,7 @@
              else
              {
                alert(res.data.msg);
+
              }
           });
          this.is_check = true;
@@ -161,13 +161,18 @@
            {
               if(res.data.status == 200)
               {
-                alert(res.data.msg);
+                this.$message(
+                  {
+                    message:res.data.msg,
+                    center:true,
+                    type:'success',
+                  });
                 window.sessionStorage.a_id = '';
                 this.$router.push('articles');
               }
               else
               {
-                alert('修改失败');
+                this.$message.error(res.data.msg);
               }
            });
       },
@@ -196,17 +201,15 @@
         {
             fail: function (xhr, editor, result)
             {
-
-              alert('图片上传失败')
+              this.$message.error('图片上传失败');
             },
             error: function (xhr, editor)
             {
-
-              alert('图片上传失败')
+              this.$message.error('图片上传失败');
             },
             timeout: function (xhr, editor)
             {
-              alert('图片上传失败')
+              this.$message.error('图片上传失败');
             },
           };
 
@@ -246,7 +249,6 @@
       }
       else
       {
-         console.log('没有传值过来');
          this.is_check = false;
       }
 

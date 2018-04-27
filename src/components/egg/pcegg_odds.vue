@@ -596,6 +596,7 @@
                     });
             },
             collectData: function () {
+              this.final_list = [];
                 for (let i = 0; i < this.all_odds.length; i++) {
                     this.final_list.push(this.all_odds[i].name);
                 }
@@ -634,8 +635,13 @@
                     })
                     .then(function (res) {
                         if (res.data.status == 200) {
-                            alert("添加成功");
-                            this.$router.go(0);
+                          this.$message(
+                            {
+                              message:res.data.msg,
+                              center:true,
+                              type:'success',
+                            });
+                          this.get_all_odds();
                             return;
                         }
                     });
@@ -645,8 +651,8 @@
                     .delete(`${this.api}/admin/egg/odds/egg_${whichOne}`)
                     .then(function (res) {
                         if (res.data.status == 200) {
-                            alert("删除成功");
-                            this.$router.go(0);
+                          this.$message.error('删除成功');
+                          this.get_all_odds();
                             return;
                         }
                     });
