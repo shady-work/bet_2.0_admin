@@ -28,7 +28,7 @@
                 用户名：<span class="label label-default">{{user.username}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 状态：<span class="label" :class="user.status==1?'label-success':'label-danger'">{{user.status==1?'启用':'禁用'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
                 类型：{{user.type == 0?'会员':(user.type == 1?'代理':(user.type==2?'推广':(user.type == 3?'管理':'')))}}
-                <router-link to="users" class="pull-right mr10">返回查看时时彩用户信息</router-link>
+                <router-link to="pcegg" class="pull-right mr10">返回查看时时彩用户信息</router-link>
             </h4>
 
             <div class="cqssc" >

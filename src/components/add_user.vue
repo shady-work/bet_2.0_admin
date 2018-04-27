@@ -212,7 +212,8 @@
                  return;
                }
                else {
-                 alert(res.data.msg);
+                   this.$message.error(res.data.msg);
+                 // alert(res.data.msg);
                }
                return;
              });
@@ -292,7 +293,13 @@
                   {
                       if(res.data.status == 200)
                       {
-                         alert('添加用户成功');
+                         // alert('添加用户成功');
+                          this.$message(
+                              {
+                                  message:res.data.msg,
+                                  center:true,
+                                  type:'success',
+                              });
                          this.$router.push('/users');
                          return;
                       }
@@ -300,7 +307,8 @@
            }
            else
            {
-             alert(str);
+             // alert(str);
+               this.$message.error(str);
            }
            return;
 

@@ -107,6 +107,7 @@
 
               });
         },
+         handleClose:function(){},
         prevPage:function()
         {
            if(this.prevPageUrl == '')
