@@ -44,10 +44,10 @@
                label:"充值管理",
                href:'articles'
              },
-               {
-                   label:"报表",
-                   href:'chart'
-               }
+               // {
+               //     label:"报表",
+               //     href:'chart'
+               // }
            ],//end of tree data
            defaultProps:
            {
