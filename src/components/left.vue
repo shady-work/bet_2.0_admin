@@ -184,7 +184,6 @@
           })
           .then(function()
           {
-            console.log(this.$store.state.son_off);
             if(this.$store.state.admin_type == 3 || this.$store.state.admin_id == 1)
             {
 

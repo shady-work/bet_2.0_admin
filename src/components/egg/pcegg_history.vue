@@ -13,9 +13,11 @@
           <tbody>
               <tr v-for="(v,k) in history_codes">
                 <td>{{v.expect}}</td>
-                <td><b>{{v.opencode}}</b></td>
+                <td class="text-center" width="120">
+                    <b v-for="(val,key) in v.details.ball_0" v-if="isNumb(val)" :class="returnColor(val)" class="open-code">{{val}}</b>
+                </td>
                 <td >{{v.details.ball_1}}</td>
-                <td class="text-left">{{v.details.ball_2}}</td>
+                <td class="text-left" width="170" style="text-indent: 20px;">{{v.details.ball_2}}</td>
                 <td>{{v.details.ball_3}}</td>
 
                 <td>{{v.opentime}}</td>
@@ -57,8 +59,9 @@ export default
          hasPrev:false,
          nextPageUrl:'',
          prevPageUrl:'',
-        sum:0,
-        pageNum:0,
+         sum:0,
+         pageNum:0,
+         data:[],
       }
     },
     created()
@@ -71,15 +74,18 @@ export default
         {
             this.$http.get(`${this.api}/admin/egg/history/lottery?page=${page}&per_page=${per_page}`)
               .then(function(res){
+                console.log(res.data);
                 if(res.data.status == 200)
                    {
                       this.history_codes = res.data.data.list;
                       this.hasPrev = res.data.data.hasPrev;
                       this.hasNext = res.data.data.hasNext;
-                     this.sum = res.data.data.sum;
-                     this.pageNum = res.data.data.pageNum;
+                      this.sum = res.data.data.sum;
+                      this.pageNum = res.data.data.pageNum;
                       this.prevPageUrl = this.hasPrev?res.data.data.prevPageUrl:'';
                       this.nextPageUrl = this.hasNext?res.data.data.nextPageUrl:'';
+
+
                    }
                    else
                    {
@@ -87,7 +93,19 @@ export default
                    }
               });
         },
+        isNumb(v)
+        {
+          if(isNaN(Number(v)))
+          {
+            return false;
+          }
+          if(v == ' ' )
+          {
+            return false;
+          }
+          return true;
 
+        },
         prevPage:function()
         {
             if(this.prevPageUrl == '')
@@ -150,7 +168,31 @@ export default
             str += (no1+no2) + '  |   ';
             str += (no1+no2)>11?'大':'小';
             return str;
+        },
+      returnColor:function(num)
+      {
+        let className = '';
+        num = parseInt(num);
+        if(num%3 == 0)
+        {
+          className = 'bg-red';
         }
+        if(num%3 == 1)
+        {
+          className = 'bg-green';
+        }
+        if(num%3 == 2)
+        {
+          className = 'bg-blue';
+        }
+
+        if(num == 0 || num == 13 || num == 14 || num ==27)
+        {
+          className = 'bg-white';
+        }
+        return className;
+
+      },
     },
 };
 </script>
@@ -164,5 +206,50 @@ export default
   #cqssc_history{
     margin-left:10px;
     width:1200px;
+  }
+  .bg-red{
+      background: #9c464d!important;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      color: #fff;
+  }
+
+  .bg-green{
+      background: #3b9c6d !important;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      color: #fff;
+  }
+
+
+  .bg-blue{
+      background: #285b9c !important;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      color: #fff;
+  }
+  .bg-white{
+      background: #9f9f9f !important;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      color: #fff;
+  }
+  .open-code {
+      float: left;
+      width: 25px;
+      height: 25px;
+      /*background: url('../assets/img/ball.png');*/
+      background-size: cover;
+      margin-left:5px;
+      margin-right: 2px;
+      line-height: 25px;
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      color:#fff;
   }
 </style>
