@@ -45,6 +45,11 @@ import edit_right from '../components/edit_right'
 import user_sum from '../components/user_sum'
 import edit_user_lty from '../components/edit_user_lty'
 import chart from '../components/chart'
+import ssc_chart from '../components/ssc_chart'
+import pk10_chart from '../components/pk10_chart'
+import egg_chart from '../components/egg_chart'
+import cake_chart from '../components/cake_chart'
+
 
 
 Vue.use(Router);
@@ -268,6 +273,26 @@ export default new Router({
               path: 'chart',
               name:'chart',
               component: chart,
+          },
+          {
+              path: 'ssc_chart',
+              name:'ssc_chart',
+              component: ssc_chart,
+          },
+          {
+              path: 'pk10_chart',
+              name:'pk10_chart',
+              component: pk10_chart,
+          },
+          {
+              path: 'egg_chart',
+              name:'egg_chart',
+              component: egg_chart,
+          },
+          {
+              path: 'cake_chart',
+              name:'cake_chart',
+              component: cake_chart,
           },
 
       ],

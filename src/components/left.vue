@@ -44,10 +44,7 @@
                label:"充值管理",
                href:'articles'
              },
-               // {
-               //     label:"报表",
-               //     href:'chart'
-               // }
+
            ],//end of tree data
            defaultProps:
            {
@@ -166,6 +163,31 @@
               }
             ]
           },
+             //统计报表
+             chart:{
+                 label: '统计报表',
+                 children:
+                     [
+                         {
+                             label: '重庆时时彩',
+                             href:'ssc_chart',
+                         },
+                         {
+                             label: '北京赛车PK拾',
+                             href:'pk10_chart',
+                         },
+                         {
+                             label: 'PC蛋蛋',
+                             href:'egg_chart',
+                         },
+                         {
+                             label: '加拿大28',
+                             href:'cake_chart',
+                         }
+                     ]
+             },
+
+
          }
 
       },
@@ -193,11 +215,13 @@
                 this.bjpk10.children.splice(4,1);
                 this.pcegg.children.splice(4,1);
                 this.cakeno.children.splice(4,1);
+
               }
               this.tree.push(this.cqssc);
               this.tree.push(this.bjpk10);
               this.tree.push(this.pcegg);
               this.tree.push(this.cakeno);
+              this.tree.push(this.chart);
             }
             else
             {
