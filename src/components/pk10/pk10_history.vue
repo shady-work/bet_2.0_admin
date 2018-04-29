@@ -22,10 +22,10 @@
         </thead>
         <tbody>
         <tr >
-          <td style="vertical-align:middle">重庆时时彩</td>
+          <td style="vertical-align:middle">北京赛车PK拾</td>
           <td><input type="text" v-model="expect" class="form-control"></td>
-          <td>
-            <select v-model="open_codes[0]" class="form-control">
+          <td v-for="(v,k) in open_codes" >
+            <select v-model="open_codes[k]" class="form-control">
 
               <option value="1">1</option>
               <option value="2">2</option>
@@ -39,141 +39,7 @@
               <option value="10">10</option>
             </select>
           </td>
-          <td>
-            <select v-model="open_codes[1]" class="form-control">
 
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </td>
-          <td>
-            <select v-model="open_codes[2]" class="form-control">
-
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </td>
-          <td>
-            <select v-model="open_codes[3]" class="form-control">
-
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </td>
-          <td>
-            <select v-model="open_codes[4]" class="form-control">
-
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </td>
-          <td>
-            <select v-model="open_codes[5]" class="form-control">
-
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </td>
-          <td>
-            <select v-model="open_codes[6]" class="form-control">
-
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </td>
-          <td>
-            <select v-model="open_codes[7]" class="form-control">
-
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </td>
-          <td>
-            <select v-model="open_codes[8]" class="form-control">
-
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </td>
-          <td>
-            <select v-model="open_codes[9]" class="form-control">
-
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </td>
           <td>
             <button @click="hand_manual()" class="btn btn-primary btn-xs" style="margin-top:5px;">确定</button>
           </td>
@@ -261,7 +127,7 @@ export default
         pageNum:0,
           data:[],
           expect:'',//按期数查找数据
-          open_codes:[0,0,0,0,0,0,0,0,0,0,0],
+          open_codes:[0,0,0,0,0,0,0,0,0,0],
       }
     },
     created()
@@ -403,7 +269,7 @@ export default
   }
   #cqssc_history{
     margin-left:10px;
-    width:1600px;
+    width:1650px;
     /*width: 100%;*/
   }
   #cqssc_history b{

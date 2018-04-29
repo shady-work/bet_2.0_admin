@@ -31,8 +31,8 @@
              <h4 style="margin-top: 8px;margin-bottom: 14px;clear: both;">
                  总条数：<span class="label label-default">{{sum.sum_bet_num}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  总金额：<span class="label" style="color:blue">{{sum.sum_bet_money}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                 结算后盈亏：<span style="color:green" v-if="sum.sum_open_win>0">{{sum.sum_open_win}}</span>
-                 <span style="color:red" v-else="sum.sum_open_win<0">{{sum.sum_open_win}}</span>
+                 结算后盈亏：<span class="label" style="color:green" v-if="sum.sum_open_win>0">{{sum.sum_open_win}}</span>
+                 <span class="label" style="color:red" v-else="sum.sum_open_win<0">{{sum.sum_open_win}}</span>
 
              </h4>
 
@@ -45,7 +45,7 @@
                      <td width="100">赔率</td>
                      <td width="90">下注总条数</td>
                      <td width="150">下注总金额</td>
-                     <td width="150">盈亏</td>
+                     <td width="150" style="font-weight: bold;">盈亏</td>
 
                  </tr>
                  </thead>
@@ -141,7 +141,7 @@
               {
                 if(isNaN(Number(this.expect)))
                 {
-                  this.$message.error('请确保您输入的日期是数据');
+                  this.$message.error('请输入正确期号');
                   return;
                 }
                 data.params.expect = this.expect;

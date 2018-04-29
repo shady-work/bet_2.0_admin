@@ -19,9 +19,9 @@
             <tr >
                 <td>重庆时时彩</td>
                 <td><input type="text" v-model="expect" class="form-control"></td>
-                <td>
-                    <select v-model="open_codes[0]" class="form-control">
-                        <option value="0">0</option>
+                <td v-for="(v,k) in open_codes">
+                    <select   class="form-control" v-model="open_codes[k]">
+                        <option value="">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -33,62 +33,7 @@
                         <option value="9">9</option>
                     </select>
                 </td>
-                <td>
-                    <select v-model="open_codes[1]" class="form-control">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                    </select>
-                </td>
-                <td>
-                    <select v-model="open_codes[2]" class="form-control">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                    </select>
-                </td>
-                <td>
-                    <select v-model="open_codes[3]" class="form-control">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                    </select>
-                </td>
-                <td>
-                    <select v-model="open_codes[4]" class="form-control">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                    </select>
-                </td>
+
                 <td>
                     <button @click="hand_manual()" class="btn btn-primary btn-xs">确定</button>
                 </td>
@@ -300,6 +245,39 @@ export default
                         this.$message.error(res.data.msg);
                     }
                 });
+        },
+        filter:function(){
+            let data =
+                {
+                    params:{}
+
+                };
+            if(this.open_codes)
+            {
+                data.params.range = this.open_codes;
+            }
+            if(this.expect)
+            {
+                if(isNaN(Number(this.expect)))
+                {
+                    this.$message.error('请输入正确期号');
+                    return;
+                }
+                data.params.expect = this.expect;
+            }
+
+            this.$http.get(`${this.api}/admin/ssc/history/lottery`).then(function(res){
+                if(res.data.status == 200)
+                {
+
+                    console.log(res.data);
+                    this.history_codes = res.data.data.list;
+                    // if(this.history_codes.islottery==0){
+                    //
+                    // }
+
+                }
+            })
         }
     },
 };
