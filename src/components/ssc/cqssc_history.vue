@@ -1,6 +1,102 @@
 <template>
     <div id="cqssc_history">
 
+        <!--手动开奖-->
+        <table class="table table-bordered table-hover table-striped text-center">
+            <thead>
+            <tr>
+                <td>彩票类别</td>
+                <td>彩票期号</td>
+                <td>第一球</td>
+                <td>第二球</td>
+                <td>第三球</td>
+                <td>第四球</td>
+                <td>第五球</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr >
+                <td>重庆时时彩</td>
+                <td><input type="text" v-model="expect" class="form-control"></td>
+                <td>
+                    <select v-model="open_codes[0]" class="form-control">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                </td>
+                <td>
+                    <select v-model="open_codes[1]" class="form-control">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                </td>
+                <td>
+                    <select v-model="open_codes[2]" class="form-control">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                </td>
+                <td>
+                    <select v-model="open_codes[3]" class="form-control">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                </td>
+                <td>
+                    <select v-model="open_codes[4]" class="form-control">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                </td>
+                <td>
+                    <button @click="hand_manual()" class="btn btn-primary btn-xs">确定</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
         <table class="table table-bordered table-hover table-striped text-center">
            <thead>
              <tr>
@@ -15,7 +111,8 @@
                <td>前三</td>
                <td>中三</td>
                <td>后三</td>
-               <td>后开奖时间</td>
+               <td>开奖时间</td>
+               <td>是否开奖</td>
              </tr>
            </thead>
           <tbody>
@@ -33,6 +130,7 @@
                 <td>{{v.details.medium_3}}</td>
                 <td>{{v.details.end_3}}</td>
                 <td>{{v.opentime}}</td>
+                <td>{{v.is_lottery == 1 ? '已开' : '未开'}}</td>
               </tr>
           </tbody>
         </table>
@@ -73,14 +171,22 @@ export default
          prevPageUrl:'',
          sum:0,
          pageNum:0,
+         data:[],
+         expect:'',//按期数查找数据
+         open_codes:[0,0,0,0,0],
+
       }
     },
     created()
     {
         this.get_all_history();
+
     },
     methods:
     {
+        test: function(){
+            console.log(this.open_codes)
+        },
         get_all_history:function(page = 1,per_page = 15)
         {
             this.$http.get(`${this.api}/admin/ssc/history/lottery?page=${page}&per_page=${per_page}`)
@@ -162,6 +268,39 @@ export default
               });
           }
         },
+        hand_manual:function(){
+
+            let data = {};
+            if(this.open_codes)
+            {
+                data.open_codes = this.open_codes;
+            }
+            if(this.expect)
+            {
+                if(isNaN(Number(this.expect)))
+                {
+                    this.$message.error('请输入正确期号');
+                    return;
+                }
+                data.expect = this.expect;
+            }
+
+            this.$http.post(`${this.api}/admin/ssc/manLottery`,data).then(function(res) {
+                    if(res.data.status == 200)
+                    {
+                        console.log(res.data);
+                        this.$message(
+                            {
+                                message:res.data.msg,
+                                center:true,
+                                type:'success',
+                            });
+
+                    }else{
+                        this.$message.error(res.data.msg);
+                    }
+                });
+        }
     },
 };
 </script>

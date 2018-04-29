@@ -1,6 +1,187 @@
 <template>
     <div id="cqssc_history">
 
+      <!--手动开奖-->
+      <table class="table table-bordered table-hover table-striped text-center">
+        <thead>
+        <tr>
+          <td>彩票类别</td>
+          <td>彩票期号</td>
+          <td>冠军</td>
+          <td>亚军</td>
+          <td>第三名</td>
+          <td>第四名</td>
+          <td>第五名</td>
+          <td>第六名</td>
+          <td>第七名</td>
+          <td>第八名</td>
+          <td>第九名</td>
+          <td>第十名</td>
+          <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr >
+          <td style="vertical-align:middle">重庆时时彩</td>
+          <td><input type="text" v-model="expect" class="form-control"></td>
+          <td>
+            <select v-model="open_codes[0]" class="form-control">
+
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </td>
+          <td>
+            <select v-model="open_codes[1]" class="form-control">
+
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </td>
+          <td>
+            <select v-model="open_codes[2]" class="form-control">
+
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </td>
+          <td>
+            <select v-model="open_codes[3]" class="form-control">
+
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </td>
+          <td>
+            <select v-model="open_codes[4]" class="form-control">
+
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </td>
+          <td>
+            <select v-model="open_codes[5]" class="form-control">
+
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </td>
+          <td>
+            <select v-model="open_codes[6]" class="form-control">
+
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </td>
+          <td>
+            <select v-model="open_codes[7]" class="form-control">
+
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </td>
+          <td>
+            <select v-model="open_codes[8]" class="form-control">
+
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </td>
+          <td>
+            <select v-model="open_codes[9]" class="form-control">
+
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </td>
+          <td>
+            <button @click="hand_manual()" class="btn btn-primary btn-xs" style="margin-top:5px;">确定</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+
         <table class="table table-bordered table-hover table-striped text-center">
            <thead>
              <tr>
@@ -17,7 +198,8 @@
                <td>第九球</td>
                <td>第十球</td>
                <td>冠亚军</td>
-               <td>后开奖时间</td>
+               <td>开奖时间</td>
+               <td>是否开奖</td>
              </tr>
            </thead>
           <tbody>
@@ -36,6 +218,7 @@
                 <td>{{v.details.ball_10}}</td>
                 <td>{{get_result(v.open_codes[0],v.open_codes[1])}}</td>
                 <td>{{v.opentime}}</td>
+                <td>{{v.is_lottery == 1 ? '已开' : '未开'}}</td>
               </tr>
           </tbody>
         </table>
@@ -76,6 +259,9 @@ export default
          prevPageUrl:'',
         sum:0,
         pageNum:0,
+          data:[],
+          expect:'',//按期数查找数据
+          open_codes:[0,0,0,0,0,0,0,0,0,0,0],
       }
     },
     created()
@@ -90,7 +276,7 @@ export default
               .then(function(res){
                 if(res.data.status == 200)
                    {
-                      console.log(res.data);
+                      // console.log(res.data);
                       this.history_codes = res.data.data.list;
                       this.hasPrev = res.data.data.hasPrev;
                       this.hasNext = res.data.data.hasNext;
@@ -168,6 +354,39 @@ export default
             str += (no1+no2) + '  |   ';
             str += (no1+no2)>11?'大':'小';
             return str;
+        },
+        hand_manual:function(){
+
+            let data = {};
+            if(this.open_codes)
+            {
+                data.open_codes = this.open_codes;
+            }
+            if(this.expect)
+            {
+                if(isNaN(Number(this.expect)))
+                {
+                    this.$message.error('请确保您输入的日期是数据');
+                    return;
+                }
+                data.expect = this.expect;
+            }
+
+            this.$http.post(`${this.api}/admin/pk10/manLottery`,data).then(function(res) {
+                if(res.data.status == 200)
+                {
+                    console.log(res.data);
+                    this.$message(
+                        {
+                            message:res.data.msg,
+                            center:true,
+                            type:'success',
+                        });
+
+                }else{
+                    this.$message.error(res.data.msg);
+                }
+            });
         }
     },
 
@@ -179,12 +398,13 @@ export default
   .table {
     /*width: 90%;*/
     /*margin: 0 auto;*/
-    margin-top: 50px;
+    margin-top: 20px;
     font-size:12px;
   }
   #cqssc_history{
     margin-left:10px;
-    width:1700px;
+    width:1600px;
+    /*width: 100%;*/
   }
   #cqssc_history b{
     display:inline-block;

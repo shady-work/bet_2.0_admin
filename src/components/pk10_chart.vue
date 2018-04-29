@@ -140,8 +140,7 @@
                     data.params.expect = this.expect;
                 }
 
-                this.$http.get(
-                    `${this.api}/admin/pk10/markb`,data)
+                this.$http.get(`${this.api}/admin/pk10/markb`,data)
                     .then(function(res) {
                         if(res.data.status == 200)
                         {
