@@ -88,7 +88,7 @@
 
          <div class="form-group" style="margin-bottom: 5px;">
            <label  class="col-sm-2 control-label">
-             {{be_str_lty_name(k)}}{{k}}
+             {{be_str_lty_name(k)}}
            </label>
            <div class="col-sm-10">
              <label class="checkbox-inline" v-for="(i,d) in v.odds_list">

@@ -17,11 +17,11 @@
             </thead>
             <tbody>
             <tr >
-                <td>重庆时时彩</td>
+                <td style="vertical-align:middle">重庆时时彩</td>
                 <td><input type="text" v-model="expect" class="form-control"></td>
                 <td v-for="(v,k) in open_codes">
                     <select   class="form-control" v-model="open_codes[k]">
-                        <option value="">0</option>
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -35,7 +35,7 @@
                 </td>
 
                 <td>
-                    <button @click="hand_manual()" class="btn btn-primary btn-xs">确定</button>
+                    <button @click="hand_manual()" class="btn btn-primary btn-xs" style="margin-top:5px;">确定</button>
                 </td>
             </tr>
             </tbody>
@@ -75,7 +75,8 @@
                 <td>{{v.details.medium_3}}</td>
                 <td>{{v.details.end_3}}</td>
                 <td>{{v.opentime}}</td>
-                <td>{{v.is_lottery == 1 ? '已开' : '未开'}}</td>
+                <td v-if="v.is_lottery == 1" >已开</td>
+                <td v-else="v.is_lottery == 0"><button class="btn btn-primary btn-xs" @click="open_prize(v.expect)">未开</button></td>
               </tr>
           </tbody>
         </table>
@@ -134,12 +135,16 @@ export default
         },
         get_all_history:function(page = 1,per_page = 15)
         {
-            this.$http.get(`${this.api}/admin/ssc/history/lottery?page=${page}&per_page=${per_page}`)
+            this.$http.get(`${this.api}/admin/ssc/history/lottery?page=${page}&per_page=${per_page}`, {
+                // params: {
+                //     range: 'today'
+                // }
+            })
               .then(function(res){
                    if(res.data.status == 200)
                    {
-
-                      this.history_codes = res.data.data.list;
+                       console.log(res.data);
+                       this.history_codes = res.data.data.list;
                       this.hasPrev = res.data.data.hasPrev;
                       this.hasNext = res.data.data.hasNext;
                       this.sum = res.data.data.sum;
@@ -246,39 +251,10 @@ export default
                     }
                 });
         },
-        filter:function(){
-            let data =
-                {
-                    params:{}
-
-                };
-            if(this.open_codes)
-            {
-                data.params.range = this.open_codes;
-            }
-            if(this.expect)
-            {
-                if(isNaN(Number(this.expect)))
-                {
-                    this.$message.error('请输入正确期号');
-                    return;
-                }
-                data.params.expect = this.expect;
-            }
-
-            this.$http.get(`${this.api}/admin/ssc/history/lottery`).then(function(res){
-                if(res.data.status == 200)
-                {
-
-                    console.log(res.data);
-                    this.history_codes = res.data.data.list;
-                    // if(this.history_codes.islottery==0){
-                    //
-                    // }
-
-                }
-            })
+        open_prize:function (res) {
+            this.expect=res;
         }
+
     },
 };
 </script>

@@ -15,7 +15,7 @@
             </thead>
             <tbody>
             <tr >
-                <td>PC蛋蛋</td>
+                <td style="vertical-align: middle;">PC蛋蛋</td>
                 <td><input type="text" v-model="expect" class="form-control"></td>
                 <td v-for="(v,k) in open_codes">
                     <select v-model="open_codes[k]" class="form-control">
@@ -34,7 +34,7 @@
 
 
                 <td>
-                    <button @click="hand_manual()" class="btn btn-primary btn-xs">确定</button>
+                    <button @click="hand_manual()" class="btn btn-primary btn-xs" style="margin-top:5px;">确定</button>
                 </td>
             </tr>
             </tbody>
@@ -63,7 +63,8 @@
                 <td>{{v.details.ball_3}}</td>
 
                 <td>{{v.opentime}}</td>
-                  <td>{{v.is_lottery == 1 ? '已开' : '未开'}}</td>
+                  <td v-if="v.is_lottery == 1" >已开</td>
+                  <td v-else="v.is_lottery == 0"><button class="btn btn-primary btn-xs" @click="open_prize(v.expect)">未开</button></td>
               </tr>
           </tbody>
         </table>
@@ -271,7 +272,10 @@ export default
                     this.$message.error(res.data.msg);
                 }
             });
-        }
+        },
+        open_prize:function (res) {
+            this.expect=res;
+        },
     },
 };
 </script>

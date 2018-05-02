@@ -33,7 +33,7 @@
                 <div class="lottery" v-for="(v,k) in lottery_list">
                     <div class="form-group" style="margin-bottom: 5px;">
                     <label  class="col-sm-2 control-label">
-                        {{be_str_lty_name(k)}}{{k}}
+                        {{be_str_lty_name(k)}}
                     </label>
                     <div class="col-sm-10">
                         <label class="checkbox-inline" v-for="(i,d) in v.odds_list">
@@ -297,8 +297,8 @@ export default {
 <style scoped>
 .form-horizontal
   {
-    width: 80%;
-    margin:0 auto;
+    width:1200px;
+
     margin-left:10px;
   }
   #inlineCheckbox1,#inlineCheckbox2,#inlineCheckbox3,#inlineCheckbox4

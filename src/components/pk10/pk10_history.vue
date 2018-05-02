@@ -84,7 +84,8 @@
                 <td>{{v.details.ball_10}}</td>
                 <td>{{get_result(v.open_codes[0],v.open_codes[1])}}</td>
                 <td>{{v.opentime}}</td>
-                <td>{{v.is_lottery == 1 ? '已开' : '未开'}}</td>
+                <td v-if="v.is_lottery == 1" >已开</td>
+                <td v-else="v.is_lottery == 0"><button class="btn btn-primary btn-xs" @click="open_prize(v.expect)">未开</button></td>
               </tr>
           </tbody>
         </table>
@@ -253,6 +254,9 @@ export default
                     this.$message.error(res.data.msg);
                 }
             });
+        },
+        open_prize:function (res) {
+            this.expect=res;
         }
     },
 
