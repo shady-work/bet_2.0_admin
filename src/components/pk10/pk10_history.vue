@@ -318,19 +318,11 @@ export default
         open_prize:function (expect,code) {
             this.expect=expect;
             center.scrollTo(0,0);
-            console.log(code);
-            this.open_codes=[];
-            if(code.length<1)
-            {
-                this.open_codes=[1,1,1,1,1,1,1,1,1,1];
-            }else{
-                for(let i=0;i<code.length;i++){
-                    this.open_codes.push(code[i]);
-                }
+
+            for (let i = 0; i < code.length; i++) {
+                code[i] = parseInt(code[i])
             }
-            console.log(this.open_codes);
-
-
+            this.open_codes = code
         },
         get_all_history2:function(page = 1,per_page = 15)
         {

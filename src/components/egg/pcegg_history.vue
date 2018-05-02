@@ -319,11 +319,8 @@ export default
         },
         open_prize:function (expect,code) {
             center.scrollTo(0,0);
-            this.open_codes=code;
+            this.open_codes=code.split(" | ");
             this.expect=expect;
-            if(code==''){
-                this.open_codes=[0,0,0];
-            }
         },
         get_details:function(date_str,str)
         {

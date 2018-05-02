@@ -278,7 +278,7 @@
               });
           },
           open_prize:function (expect,code) {
-              this.open_codes=code;
+              this.open_codes=code.split(" | ");
               this.expect=expect;
               center.scrollTo(0,0);
 
