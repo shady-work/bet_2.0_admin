@@ -67,7 +67,7 @@
           <tr>
               <td>期数</td>
               <td>开奖号码</td>
-              <td colspan="2">总和</td>
+              <td colspan="3">总和</td>
               <td>波色</td>
               <td>开奖时间</td>
               <td>是否开奖</td>
@@ -81,6 +81,7 @@
               </td>
               <td >{{v.details.ball_1}}</td>
               <td class="text-left" width="170" style="text-indent: 20px;">{{v.details.ball_2}}</td>
+              <td>{{v.details.ball_4}}</td>
               <td>{{v.details.ball_3}}</td>
               <td>{{v.opentime}}</td>
               <td v-if="v.is_lottery == 1" >已开</td>
