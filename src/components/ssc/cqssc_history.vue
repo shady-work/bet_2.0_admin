@@ -99,7 +99,7 @@
                 <td>{{v.details.end_3}}</td>
                 <td>{{v.opentime}}</td>
                 <td v-if="v.is_lottery == 1" >已开</td>
-                <td v-else="v.is_lottery == 0"><button  class="btn btn-primary btn-xs"  @click="open_prize(v.expect,v.open_codes)" >手动开奖</button></td>
+                <td v-else="v.is_lottery == 0"><button  class="btn btn-primary btn-xs"  @click="open_prize(v.expect,v.open_codes,k)" >手动开奖</button></td>
               </tr>
           </tbody>
         </table>
@@ -145,6 +145,7 @@ export default
          open_codes:[0,0,0,0,0],
           when_:'星期三/04-11',
           value6:null,
+         unclear_index:'',  //未开奖的下标
 
 
 
@@ -296,26 +297,27 @@ export default
             this.$http.post(`${this.api}/admin/ssc/manLottery`,data).then(function(res) {
                     if(res.data.status == 200)
                     {
-                        console.log(res.data);
                         this.$message(
                             {
                                 message:res.data.msg,
                                 center:true,
                                 type:'success',
                             });
+                        this.history_codes[this.unclear_index].is_lottery=1;
 
                     }else{
                         this.$message.error(res.data.msg);
                     }
                 });
         },
-        open_prize:function (expect,code) {
+        open_prize:function (expect,code,index) {
             center.scrollTo(0,0);   //滚动条返回到顶部
             this.expect=expect;
             this.open_codes=code;
             if(code==''){
                 this.open_codes=[0,0,0,0,0];
             }
+            this.unclear_index=index;
         },
         get_details:function(date_str,str)
         {

@@ -85,7 +85,7 @@
               <td>{{v.details.ball_3}}</td>
               <td>{{v.opentime}}</td>
               <td v-if="v.is_lottery == 1" >已开</td>
-              <td v-else="v.is_lottery == 0"><button class="btn btn-primary btn-xs" @click="open_prize(v.expect,v.details.ball_0)">手动开奖</button></td>
+              <td v-else="v.is_lottery == 0"><button class="btn btn-primary btn-xs" @click="open_prize(v.expect,v.details.ball_0,k)">手动开奖</button></td>
           </tr>
           </tbody>
       </table>
@@ -131,6 +131,7 @@
           open_codes:[0,0,0],
           when_:'星期三/04-11',
           value6:null,
+          unclear_index:'',  //未开奖的下标
       }
     },
     created()
@@ -272,17 +273,18 @@
                               center:true,
                               type:'success',
                           });
+                      this.history_codes[this.unclear_index].is_lottery=1;
 
                   }else{
                       this.$message.error(res.data.msg);
                   }
               });
           },
-          open_prize:function (expect,code) {
+          open_prize:function (expect,code,index) {
               this.open_codes=code.split(" | ");
               this.expect=expect;
               center.scrollTo(0,0);
-
+              this.unclear_index=index;
           },
           get_details:function(date_str,str)
           {
