@@ -36,11 +36,7 @@ var store = new vuex.Store(
       admin_type:0, //登录账号的类型
       admin_name:'',//管理员的用户名
       has_lotteries:[],//用户拥有的彩种
-<<<<<<< HEAD
-      son_off:false,//是否打开子盘
-=======
       son_off:true,//是否打开子盘,true打开子盘，false关闭子盘
->>>>>>> 5871253bf3475e3094c6027ce709114ec74618e3
   },
   mutations:
   {
@@ -54,15 +50,9 @@ var store = new vuex.Store(
 });
 
 //配置请求的uri
-<<<<<<< HEAD
  Vue.prototype.api = `http://lty-main.com`;  //母盘
 //  Vue.prototype.api = `http://lty-sub.com`;  //子盘
-// Vue.prototype.api = ``;
-=======
-  Vue.prototype.api = `http://lty-main.com`;  //母盘
-//  Vue.prototype.api = `http://lty-sub.com`;  //子盘
 //Vue.prototype.api = ``;
->>>>>>> 5871253bf3475e3094c6027ce709114ec74618e3
 
 /* eslint-disable no-new */
 const Vm = new Vue(
