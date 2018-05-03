@@ -1,5 +1,5 @@
 <template>
-    <div id="cqssc_history">
+    <div id="cqssc_history" style="font-size:12px;">
       <h4 style="margin-top: 8px;margin-bottom:35px;clear: both;margin-left:10px;" id="top">
         <span style="margin-top:-15px;">{{when_}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span >开奖历史</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -74,40 +74,40 @@
         <table class="table table-bordered table-hover table-striped text-center">
            <thead>
              <tr>
-               <td>期数</td>
+               <td width="200">期号/时间</td>
                <td>开奖号码</td>
-               <td>第一球</td>
-               <td>第二球</td>
-               <td>第三球</td>
-               <td>第四球</td>
-               <td>第五球</td>
-               <td>第六球</td>
-               <td>第七球</td>
-               <td>第八球</td>
-               <td>第九球</td>
-               <td>第十球</td>
-               <td>冠亚军</td>
-               <td>开奖时间</td>
+               <td colspan="3">冠亚军和</td>
+               <td colspan="5">1~5龙虎</td>
                <td>是否开奖</td>
              </tr>
            </thead>
           <tbody>
               <tr v-for="(v,k) in history_codes">
-                <td>{{v.expect}}</td>
-                <td><b v-for="(val,key) in v.open_codes" style="width:30px;height:30px;" :class="'hao'+(val/10*10)">{{val/10*10}}</b></td>
-                <td>{{v.details.ball_1}}</td>
-                <td>{{v.details.ball_2}}</td>
-                <td>{{v.details.ball_3}}</td>
-                <td>{{v.details.ball_4}}</td>
-                <td>{{v.details.ball_5}}</td>
-                <td>{{v.details.ball_6}}</td>
-                <td>{{v.details.ball_7}}</td>
-                <td>{{v.details.ball_8}}</td>
-                <td>{{v.details.ball_9}}</td>
-                <td>{{v.details.ball_10}}</td>
-                <td>{{v.details.sum}}</td>
-                <td>{{v.opentime}}</td>
-                <td v-if="v.is_lottery == 1" >已开</td>
+                <!--<td>{{v.expect}}</td>-->
+                <!--<td><b v-for="(val,key) in v.open_codes" style="width:25px;height:25px;line-height:20px;" :class="'hao'+(val/10*10)">{{val/10*10}}</b></td>-->
+                <!--<td>{{v.details.ball_1}}</td>-->
+                <!--<td>{{v.details.ball_2}}</td>-->
+                <!--<td>{{v.details.ball_3}}</td>-->
+                <!--<td>{{v.details.ball_4}}</td>-->
+                <!--<td>{{v.details.ball_5}}</td>-->
+                <!--<td>{{v.details.ball_6}}</td>-->
+                <!--<td>{{v.details.ball_7}}</td>-->
+                <!--<td>{{v.details.ball_8}}</td>-->
+                <!--<td>{{v.details.ball_9}}</td>-->
+                <!--<td>{{v.details.ball_10}}</td>-->
+                <!--<td>{{v.details.sum}}</td>-->
+                <td><p>{{v.expect}}&nbsp;<span style="color:gray">{{v.opentime|get_time}}</span></p></td>
+                <td><b v-for="(val,key) in v.open_codes" style="width:25px;height:25px;line-height:25px;" :class="'hao'+(val/10*10)">{{val/10*10}}</b></td>
+                <td>{{v.details?v.details.sum[0]:''}}</td>
+                <td v-if="v.details && v.details.sum[2]=='大'" class="color-red">{{v.details?v.details.sum[2]:''}}</td>
+                <td v-if="v.details && v.details.sum[2]=='小'">{{v.details?v.details.sum[2]:''}}</td>
+                <td>{{v.details?v.details.sum[1]:''}}</td>
+                <td :class="v.details && v.details.ball_1[3]=='龙'?'color-red':''">{{v.details?v.details.ball_1[3]:''}}</td>
+                <td :class="v.details && v.details.ball_2[3]=='龙'?'color-red':''">{{v.details?v.details.ball_2[3]:''}}</td>
+                <td :class="v.details && v.details.ball_3[3]=='龙'?'color-red':''">{{v.details?v.details.ball_3[3]:''}}</td>
+                <td :class="v.details && v.details.ball_4[3]=='龙'?'color-red':''">{{v.details?v.details.ball_4[3]:''}}</td>
+                <td :class="v.details && v.details.ball_5[3]=='龙'?'color-red':''">{{v.details?v.details.ball_5[3]:''}}</td>
+                <td v-if="v.is_lottery == 1">已开</td>
                 <td v-else="v.is_lottery == 0"><button class="btn btn-primary btn-xs" @click="open_prize(v.expect,v.open_codes,k)">手动开奖</button></td>
               </tr>
           </tbody>
@@ -150,6 +150,7 @@ export default
         sum:0,
         pageNum:0,
           data:[],
+          code:'',
           expect:'',//按期数查找数据
           open_codes:[0,0,0,0,0,0,0,0,0,0],
           when_:'星期三/04-11',
@@ -160,6 +161,22 @@ export default
     created()
     {
         this.get_all_history();
+    },
+    filters: {
+        get_time: function (str) {
+            // console.log(str);
+            let data = str.substring(10);
+            return data;
+        },
+        get_code:function(str){
+            console.log( str);
+            if(str===""){
+                let data ='';
+                return data;
+            }
+
+        },
+
     },
     methods:
     {
@@ -178,7 +195,7 @@ export default
               .then(function(res){
                 if(res.data.status == 200)
                    {
-                      // console.log(res.data);
+                      console.log(res.data);
                       this.history_codes = res.data.data.list;
                       this.hasPrev = res.data.data.hasPrev;
                       this.hasNext = res.data.data.hasNext;
@@ -398,19 +415,19 @@ export default
     /*width: 90%;*/
     /*margin: 0 auto;*/
     margin-top: 20px;
-    font-size:12px;
+    font-size:12px!important;
   }
   #cqssc_history{
     margin-left:10px;
-    width:1650px;
+    width:1200px;
     /*width: 100%;*/
   }
   #cqssc_history b{
     display:inline-block;
-    line-height:30px;
+    /*line-height:30px;*/
     color:white;
     text-align:center;
-    font-size:20px;
+    font-size:12px;
     /*width:30px;*/
     /*background:gray;*/
     margin-left:5px;
