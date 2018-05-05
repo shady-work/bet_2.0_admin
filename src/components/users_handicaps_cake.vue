@@ -130,6 +130,8 @@
                         <td>单注最小限额</td>
                         <td>单注最大限额</td>
                         <td>单期限额</td>
+                        <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+                        <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -150,6 +152,22 @@
                             <input type="text" class="text-center form-control" v-model="odds_ssc_one[4].bet_limit.expect_limit">
 
                         </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[4].dec_odds[0].limit">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[4].dec_odds[0].dec_odds">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[4].dec_odds[1].limit">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[4].dec_odds[1].dec_odds">
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -158,7 +176,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-primary">
                     <tr >
-                        <td width="70">选项/球序</td>
+                        <td width="70">特码/球序</td>
                         <td>大</td>
                         <td>小</td>
                         <td>单</td>
@@ -173,6 +191,8 @@
                         <td>单注最小限额</td>
                         <td>单注最大限额</td>
                         <td>单期限额</td>
+                        <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+                        <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -193,8 +213,24 @@
                         </td>
                         <td>
                             <input type="text" class="text-center form-control" v-model="odds_ssc_one[5].bet_limit.expect_limit">
-
                         </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[5].dec_odds[0].limit">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[5].dec_odds[0].dec_odds">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[5].dec_odds[1].limit">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[5].dec_odds[1].dec_odds">
+                        </td>
+
 
                     </tr>
                     </tbody>
@@ -210,6 +246,8 @@
                         <td>单注最小限额</td>
                         <td>单注最大限额</td>
                         <td>单期限额</td>
+                        <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+                        <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -229,9 +267,28 @@
                             <input type="text" class="text-center form-control" v-model="odds_ssc_one[6].bet_limit.expect_limit">
 
                         </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[6].dec_odds[0].limit">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[6].dec_odds[0].dec_odds">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[6].dec_odds[1].limit">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[6].dec_odds[1].dec_odds">
+                        </td>
                     </tr>
                     </tbody>
                 </table>
+                <br>
+                <br>
+                <br>
             </div>
         </div>
     </div>
@@ -254,6 +311,7 @@
                             "mark_a": "返点",
                             "mark_b": "总代",
                             "bet_limit": null,
+                            "dec_odds": null,
                             "e1": "0.0010",
                             "e2": "0.0010",
                             "e3": null,
@@ -288,6 +346,7 @@
                             "mark_a": "返点",
                             "mark_b": "分代",
                             "bet_limit": null,
+                            "dec_odds": null,
                             "e1": "0.0010",
                             "e2": "0.0010",
                             "e3": null,
@@ -322,6 +381,7 @@
                             "mark_a": "返点",
                             "mark_b": "推广",
                             "bet_limit": null,
+                            "dec_odds": null,
                             "e1": "0.0010",
                             "e2": "0.0010",
                             "e3": null,
@@ -356,6 +416,7 @@
                             "mark_a": "返点",
                             "mark_b": "会员",
                             "bet_limit": null,
+                            "dec_odds": null,
                             "e1": "0.0210",
                             "e2": "0.0010",
                             "e3": null,
@@ -394,6 +455,16 @@
                                 "order_limit_max": 10000,
                                 "expect_limit": 20000
                             },
+                            "dec_odds": [
+                                {
+                                    "limit": 1000,
+                                    "dec_odds": 0.1
+                                },
+                                {
+                                    "limit": 2000,
+                                    "dec_odds": 0.2
+                                }
+                            ],
                             "e1": "500.0000",
                             "e2": "100.0000",
                             "e3": "50.0000",
@@ -432,6 +503,16 @@
                                 "order_limit_max": 10000,
                                 "expect_limit": 20000
                             },
+                            "dec_odds": [
+                                {
+                                    "limit": 1000,
+                                    "dec_odds": 0.1
+                                },
+                                {
+                                    "limit": 2000,
+                                    "dec_odds": 0.2
+                                }
+                            ],
                             "e1": "3.0000",
                             "e2": "2.0000",
                             "e3": "2.0000",
@@ -470,6 +551,16 @@
                                 "order_limit_max": 300,
                                 "expect_limit": 1000
                             },
+                            "dec_odds": [
+                                {
+                                    "limit": 1000,
+                                    "dec_odds": 0.1
+                                },
+                                {
+                                    "limit": 2000,
+                                    "dec_odds": 0.2
+                                }
+                            ],
                             "e1": "2.5000",
                             "e2": "2.5000",
                             "e3": "2.5000",
@@ -508,6 +599,16 @@
                                 "order_limit_max": 10000,
                                 "expect_limit": 20000
                             },
+                            "dec_odds": [
+                                {
+                                    "limit": 1000,
+                                    "dec_odds": 0.1
+                                },
+                                {
+                                    "limit": 2000,
+                                    "dec_odds": 0.2
+                                }
+                            ],
                             "e1": "30.0000",
                             "e2": null,
                             "e3": null,
@@ -546,6 +647,16 @@
                                 "order_limit_max": 10000,
                                 "expect_limit": 20000
                             },
+                            "dec_odds": [
+                                {
+                                    "limit": 1000,
+                                    "dec_odds": 0.1
+                                },
+                                {
+                                    "limit": 2000,
+                                    "dec_odds": 0.2
+                                }
+                            ],
                             "e1": "3.0000",
                             "e2": null,
                             "e3": null,
@@ -789,7 +900,7 @@
 
     .form-control {
 
-        padding:6px 5px;
+        padding:6px 0px;
     }
     td > input {
 

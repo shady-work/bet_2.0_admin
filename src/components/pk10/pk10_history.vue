@@ -96,7 +96,7 @@
                 <!--<td>{{v.details.ball_9}}</td>-->
                 <!--<td>{{v.details.ball_10}}</td>-->
                 <!--<td>{{v.details.sum}}</td>-->
-                <td><p>{{v.expect}}&nbsp;<span style="color:gray">{{v.opentime|get_time}}</span></p></td>
+                <td><p>{{v.expect}}&nbsp;<span style="color:gray">{{v.opentime}}</span></p></td>
                 <td><b v-for="(val,key) in v.open_codes" style="width:25px;height:25px;line-height:25px;" :class="'hao'+(val/10*10)">{{val/10*10}}</b></td>
                 <td>{{v.details?v.details.sum[0]:''}}</td>
                 <td v-if="v.details && v.details.sum[2]=='大'" class="color-red">{{v.details?v.details.sum[2]:''}}</td>
@@ -163,11 +163,11 @@ export default
         this.get_all_history();
     },
     filters: {
-        get_time: function (str) {
-            // console.log(str);
-            let data = str.substring(10);
-            return data;
-        },
+        // get_time: function (str) {
+        //     // console.log(str);
+        //     let data = str.substring(10);
+        //     return data;
+        // },
         get_code:function(str){
             console.log( str);
             if(str===""){

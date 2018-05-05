@@ -107,13 +107,15 @@
                         <td>单注最小限额</td>
                         <td>单注最大限额</td>
                         <td>单期限额</td>
+                        <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+                        <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>赔率</td>
                         <td v-for="(v,k,index) in odds_ssc_one[4]" v-if='index>=20&&index<28'>
-                            <input type="text" class="text-center form-control" v-model="odds_ssc_one[4]['e' + (index+1)]">
+                            <input type="text" class="text-center form-control" v-model="odds_ssc_one[4]['e' + (index+1)]" style="padding:0px 0px;">
 
                         </td>
                         <td>
@@ -126,6 +128,22 @@
                         <td>
                             <input type="text" class="text-center form-control" v-model="odds_ssc_one[4].bet_limit.expect_limit">
 
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[4].dec_odds[0].limit">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[4].dec_odds[0].dec_odds">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[4].dec_odds[1].limit">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[4].dec_odds[1].dec_odds">
                         </td>
                     </tr>
                     </tbody>
@@ -150,6 +168,8 @@
                         <td>单注最小限额</td>
                         <td>单注最大限额</td>
                         <td>单期限额</td>
+                        <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+                        <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -170,7 +190,22 @@
                         </td>
                         <td>
                             <input type="text" class="text-center form-control" v-model="odds_ssc_one[5].bet_limit.expect_limit">
-
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[5].dec_odds[0].limit">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[5].dec_odds[0].dec_odds">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[5].dec_odds[1].limit">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[5].dec_odds[1].dec_odds">
                         </td>
 
 
@@ -188,6 +223,8 @@
                         <td>单注最小限额</td>
                         <td>单注最大限额</td>
                         <td>单期限额</td>
+                        <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+                        <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -206,6 +243,22 @@
                         <td>
                             <input type="text" class="text-center form-control" v-model="odds_ssc_one[6].bet_limit.expect_limit">
 
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[6].dec_odds[0].limit">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[6].dec_odds[0].dec_odds">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[6].dec_odds[1].limit">
+                        </td>
+                        <td v-if="$store.state.son_off">
+                            <input type="text" class="form-control text-center"
+                                   v-model="odds_ssc_one[6].dec_odds[1].dec_odds">
                         </td>
                     </tr>
                     </tbody>
@@ -227,337 +280,394 @@
                 active_array: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],//active_array;
                 odds_ssc_one:
                     [
-                        {
-                            "id": 1,
-                            "mark_a": "返点",
-                            "mark_b": "总代",
-                            "bet_limit": null,
-                            "e1": "0.0010",
-                            "e2": "0.0010",
-                            "e3": null,
-                            "e4": null,
-                            "e5": null,
-                            "e6": null,
-                            "e7": null,
-                            "e8": null,
-                            "e9": null,
-                            "e10": null,
-                            "e11": null,
-                            "e12": null,
-                            "e13": null,
-                            "e14": null,
-                            "e15": null,
-                            "e16": null,
-                            "e17": null,
-                            "e18": null,
-                            "e19": null,
-                            "e20": null,
-                            "e21": null,
-                            "e22": null,
-                            "e23": null,
-                            "e24": null,
-                            "e25": null,
-                            "e26": null,
-                            "e27": null,
-                            "e28": null
-                        },
-                        {
-                            "id": 2,
-                            "mark_a": "返点",
-                            "mark_b": "分代",
-                            "bet_limit": null,
-                            "e1": "0.0010",
-                            "e2": "0.0010",
-                            "e3": null,
-                            "e4": null,
-                            "e5": null,
-                            "e6": null,
-                            "e7": null,
-                            "e8": null,
-                            "e9": null,
-                            "e10": null,
-                            "e11": null,
-                            "e12": null,
-                            "e13": null,
-                            "e14": null,
-                            "e15": null,
-                            "e16": null,
-                            "e17": null,
-                            "e18": null,
-                            "e19": null,
-                            "e20": null,
-                            "e21": null,
-                            "e22": null,
-                            "e23": null,
-                            "e24": null,
-                            "e25": null,
-                            "e26": null,
-                            "e27": null,
-                            "e28": null
-                        },
-                        {
-                            "id": 3,
-                            "mark_a": "返点",
-                            "mark_b": "推广",
-                            "bet_limit": null,
-                            "e1": "0.0010",
-                            "e2": "0.0010",
-                            "e3": null,
-                            "e4": null,
-                            "e5": null,
-                            "e6": null,
-                            "e7": null,
-                            "e8": null,
-                            "e9": null,
-                            "e10": null,
-                            "e11": null,
-                            "e12": null,
-                            "e13": null,
-                            "e14": null,
-                            "e15": null,
-                            "e16": null,
-                            "e17": null,
-                            "e18": null,
-                            "e19": null,
-                            "e20": null,
-                            "e21": null,
-                            "e22": null,
-                            "e23": null,
-                            "e24": null,
-                            "e25": null,
-                            "e26": null,
-                            "e27": null,
-                            "e28": null
-                        },
-                        {
-                            "id": 4,
-                            "mark_a": "返点",
-                            "mark_b": "会员",
-                            "bet_limit": null,
-                            "e1": "0.0210",
-                            "e2": "0.0010",
-                            "e3": null,
-                            "e4": null,
-                            "e5": null,
-                            "e6": null,
-                            "e7": null,
-                            "e8": null,
-                            "e9": null,
-                            "e10": null,
-                            "e11": null,
-                            "e12": null,
-                            "e13": null,
-                            "e14": null,
-                            "e15": null,
-                            "e16": null,
-                            "e17": null,
-                            "e18": null,
-                            "e19": null,
-                            "e20": null,
-                            "e21": null,
-                            "e22": null,
-                            "e23": null,
-                            "e24": null,
-                            "e25": null,
-                            "e26": null,
-                            "e27": null,
-                            "e28": null
-                        },
-                        {
-                            "id": 5,
-                            "mark_a": "特码",
-                            "mark_b": "特码",
-                            "bet_limit": {
-                                "order_limit_min": 10,
-                                "order_limit_max": 10000,
-                                "expect_limit": 20000
-                            },
-                            "e1": "500.0000",
-                            "e2": "100.0000",
-                            "e3": "50.0000",
-                            "e4": "40.0000",
-                            "e5": "30.0000",
-                            "e6": "20.0000",
-                            "e7": "17.0000",
-                            "e8": "16.0000",
-                            "e9": "15.0000",
-                            "e10": "15.0000",
-                            "e11": "14.0000",
-                            "e12": "14.0000",
-                            "e13": "13.0000",
-                            "e14": "13.0000",
-                            "e15": "14.0000",
-                            "e16": "14.0000",
-                            "e17": "14.0000",
-                            "e18": "14.0000",
-                            "e19": "15.0000",
-                            "e20": "15.0000",
-                            "e21": "16.0000",
-                            "e22": "17.0000",
-                            "e23": "20.0000",
-                            "e24": "30.0000",
-                            "e25": "40.0000",
-                            "e26": "50.0000",
-                            "e27": "100.0000",
-                            "e28": "500.0000"
-                        },
-                        {
-                            "id": 6,
-                            "mark_a": "两面",
-                            "mark_b": "两面",
-                            "bet_limit": {
-                                "order_limit_min": 10,
-                                "order_limit_max": 10000,
-                                "expect_limit": 20000
-                            },
-                            "e1": "3.0000",
-                            "e2": "2.0000",
-                            "e3": "2.0000",
-                            "e4": "2.0000",
-                            "e5": "4.3000",
-                            "e6": "4.2000",
-                            "e7": "4.2000",
-                            "e8": "4.3000",
-                            "e9": "13.0000",
-                            "e10": "13.0000",
-                            "e11": null,
-                            "e12": null,
-                            "e13": null,
-                            "e14": null,
-                            "e15": null,
-                            "e16": null,
-                            "e17": null,
-                            "e18": null,
-                            "e19": null,
-                            "e20": null,
-                            "e21": null,
-                            "e22": null,
-                            "e23": null,
-                            "e24": null,
-                            "e25": null,
-                            "e26": null,
-                            "e27": null,
-                            "e28": null
-                        },
-                        {
-                            "id": 7,
-                            "mark_a": "波色",
-                            "mark_b": "波色",
-                            "bet_limit": {
-                                "order_limit_min": 10,
-                                "order_limit_max": 10000,
-                                "expect_limit": 20000
-                            },
-                            "e1": "2.5000",
-                            "e2": "2.5000",
-                            "e3": "2.5000",
-                            "e4": null,
-                            "e5": null,
-                            "e6": null,
-                            "e7": null,
-                            "e8": null,
-                            "e9": null,
-                            "e10": null,
-                            "e11": null,
-                            "e12": null,
-                            "e13": null,
-                            "e14": null,
-                            "e15": null,
-                            "e16": null,
-                            "e17": null,
-                            "e18": null,
-                            "e19": null,
-                            "e20": null,
-                            "e21": null,
-                            "e22": null,
-                            "e23": null,
-                            "e24": null,
-                            "e25": null,
-                            "e26": null,
-                            "e27": null,
-                            "e28": null
-                        },
-                        {
-                            "id": 8,
-                            "mark_a": "豹子",
-                            "mark_b": "豹子",
-                            "bet_limit": {
-                                "order_limit_min": 10,
-                                "order_limit_max": 10000,
-                                "expect_limit": 20000
-                            },
-                            "e1": "30.0000",
-                            "e2": null,
-                            "e3": null,
-                            "e4": null,
-                            "e5": null,
-                            "e6": null,
-                            "e7": null,
-                            "e8": null,
-                            "e9": null,
-                            "e10": null,
-                            "e11": null,
-                            "e12": null,
-                            "e13": null,
-                            "e14": null,
-                            "e15": null,
-                            "e16": null,
-                            "e17": null,
-                            "e18": null,
-                            "e19": null,
-                            "e20": null,
-                            "e21": null,
-                            "e22": null,
-                            "e23": null,
-                            "e24": null,
-                            "e25": null,
-                            "e26": null,
-                            "e27": null,
-                            "e28": null
-                        },
-                        {
-                            "id": 9,
-                            "mark_a": "特码三压一",
-                            "mark_b": "特码三压一",
-                            "bet_limit": {
-                                "order_limit_min": 10,
-                                "order_limit_max": 10000,
-                                "expect_limit": 20000
-                            },
-                            "e1": "3.0000",
-                            "e2": null,
-                            "e3": null,
-                            "e4": null,
-                            "e5": null,
-                            "e6": null,
-                            "e7": null,
-                            "e8": null,
-                            "e9": null,
-                            "e10": null,
-                            "e11": null,
-                            "e12": null,
-                            "e13": null,
-                            "e14": null,
-                            "e15": null,
-                            "e16": null,
-                            "e17": null,
-                            "e18": null,
-                            "e19": null,
-                            "e20": null,
-                            "e21": null,
-                            "e22": null,
-                            "e23": null,
-                            "e24": null,
-                            "e25": null,
-                            "e26": null,
-                            "e27": null,
-                            "e28": null
-                        }
+
+
+                                {
+                                    "id": 1,
+                                    "mark_a": "返点",
+                                    "mark_b": "总代",
+                                    "bet_limit": null,
+                                    "dec_odds": null,
+                                    "e1": "0.0010",
+                                    "e2": "0.0010",
+                                    "e3": null,
+                                    "e4": null,
+                                    "e5": null,
+                                    "e6": null,
+                                    "e7": null,
+                                    "e8": null,
+                                    "e9": null,
+                                    "e10": null,
+                                    "e11": null,
+                                    "e12": null,
+                                    "e13": null,
+                                    "e14": null,
+                                    "e15": null,
+                                    "e16": null,
+                                    "e17": null,
+                                    "e18": null,
+                                    "e19": null,
+                                    "e20": null,
+                                    "e21": null,
+                                    "e22": null,
+                                    "e23": null,
+                                    "e24": null,
+                                    "e25": null,
+                                    "e26": null,
+                                    "e27": null,
+                                    "e28": null
+                                },
+                                {
+                                    "id": 2,
+                                    "mark_a": "返点",
+                                    "mark_b": "分代",
+                                    "bet_limit": null,
+                                    "dec_odds": null,
+                                    "e1": "0.0010",
+                                    "e2": "0.0010",
+                                    "e3": null,
+                                    "e4": null,
+                                    "e5": null,
+                                    "e6": null,
+                                    "e7": null,
+                                    "e8": null,
+                                    "e9": null,
+                                    "e10": null,
+                                    "e11": null,
+                                    "e12": null,
+                                    "e13": null,
+                                    "e14": null,
+                                    "e15": null,
+                                    "e16": null,
+                                    "e17": null,
+                                    "e18": null,
+                                    "e19": null,
+                                    "e20": null,
+                                    "e21": null,
+                                    "e22": null,
+                                    "e23": null,
+                                    "e24": null,
+                                    "e25": null,
+                                    "e26": null,
+                                    "e27": null,
+                                    "e28": null
+                                },
+                                {
+                                    "id": 3,
+                                    "mark_a": "返点",
+                                    "mark_b": "推广",
+                                    "bet_limit": null,
+                                    "dec_odds": null,
+                                    "e1": "0.0010",
+                                    "e2": "0.0010",
+                                    "e3": null,
+                                    "e4": null,
+                                    "e5": null,
+                                    "e6": null,
+                                    "e7": null,
+                                    "e8": null,
+                                    "e9": null,
+                                    "e10": null,
+                                    "e11": null,
+                                    "e12": null,
+                                    "e13": null,
+                                    "e14": null,
+                                    "e15": null,
+                                    "e16": null,
+                                    "e17": null,
+                                    "e18": null,
+                                    "e19": null,
+                                    "e20": null,
+                                    "e21": null,
+                                    "e22": null,
+                                    "e23": null,
+                                    "e24": null,
+                                    "e25": null,
+                                    "e26": null,
+                                    "e27": null,
+                                    "e28": null
+                                },
+                                {
+                                    "id": 4,
+                                    "mark_a": "返点",
+                                    "mark_b": "会员",
+                                    "bet_limit": null,
+                                    "dec_odds": null,
+                                    "e1": "0.0210",
+                                    "e2": "0.0010",
+                                    "e3": null,
+                                    "e4": null,
+                                    "e5": null,
+                                    "e6": null,
+                                    "e7": null,
+                                    "e8": null,
+                                    "e9": null,
+                                    "e10": null,
+                                    "e11": null,
+                                    "e12": null,
+                                    "e13": null,
+                                    "e14": null,
+                                    "e15": null,
+                                    "e16": null,
+                                    "e17": null,
+                                    "e18": null,
+                                    "e19": null,
+                                    "e20": null,
+                                    "e21": null,
+                                    "e22": null,
+                                    "e23": null,
+                                    "e24": null,
+                                    "e25": null,
+                                    "e26": null,
+                                    "e27": null,
+                                    "e28": null
+                                },
+                                {
+                                    "id": 5,
+                                    "mark_a": "特码",
+                                    "mark_b": "特码",
+                                    "bet_limit": {
+                                        "order_limit_min": 10,
+                                        "order_limit_max": 10000,
+                                        "expect_limit": 20000
+                                    },
+                                    "dec_odds": [
+                                        {
+                                            "limit": 1000,
+                                            "dec_odds": 0.1
+                                        },
+                                        {
+                                            "limit": 2000,
+                                            "dec_odds": 0.2
+                                        }
+                                    ],
+                                    "e1": "500.0000",
+                                    "e2": "100.0000",
+                                    "e3": "50.0000",
+                                    "e4": "40.0000",
+                                    "e5": "30.0000",
+                                    "e6": "20.0000",
+                                    "e7": "17.0000",
+                                    "e8": "16.0000",
+                                    "e9": "15.0000",
+                                    "e10": "15.0000",
+                                    "e11": "14.0000",
+                                    "e12": "14.0000",
+                                    "e13": "13.0000",
+                                    "e14": "13.0000",
+                                    "e15": "14.0000",
+                                    "e16": "14.0000",
+                                    "e17": "14.0000",
+                                    "e18": "14.0000",
+                                    "e19": "15.0000",
+                                    "e20": "15.0000",
+                                    "e21": "16.0000",
+                                    "e22": "17.0000",
+                                    "e23": "20.0000",
+                                    "e24": "30.0000",
+                                    "e25": "40.0000",
+                                    "e26": "50.0000",
+                                    "e27": "100.0000",
+                                    "e28": "500.0000"
+                                },
+                                {
+                                    "id": 6,
+                                    "mark_a": "两面",
+                                    "mark_b": "两面",
+                                    "bet_limit": {
+                                        "order_limit_min": 10,
+                                        "order_limit_max": 10000,
+                                        "expect_limit": 20000
+                                    },
+                                    "dec_odds": [
+                                        {
+                                            "limit": 1000,
+                                            "dec_odds": 0.1
+                                        },
+                                        {
+                                            "limit": 2000,
+                                            "dec_odds": 0.2
+                                        }
+                                    ],
+                                    "e1": "3.0000",
+                                    "e2": "2.0000",
+                                    "e3": "2.0000",
+                                    "e4": "2.0000",
+                                    "e5": "4.3000",
+                                    "e6": "4.2000",
+                                    "e7": "4.2000",
+                                    "e8": "4.3000",
+                                    "e9": "13.0000",
+                                    "e10": "13.0000",
+                                    "e11": null,
+                                    "e12": null,
+                                    "e13": null,
+                                    "e14": null,
+                                    "e15": null,
+                                    "e16": null,
+                                    "e17": null,
+                                    "e18": null,
+                                    "e19": null,
+                                    "e20": null,
+                                    "e21": null,
+                                    "e22": null,
+                                    "e23": null,
+                                    "e24": null,
+                                    "e25": null,
+                                    "e26": null,
+                                    "e27": null,
+                                    "e28": null
+                                },
+                                {
+                                    "id": 7,
+                                    "mark_a": "波色",
+                                    "mark_b": "波色",
+                                    "bet_limit": {
+                                        "order_limit_min": 10,
+                                        "order_limit_max": 10000,
+                                        "expect_limit": 20000
+                                    },
+                                    "dec_odds": [
+                                        {
+                                            "limit": 1000,
+                                            "dec_odds": 0.1
+                                        },
+                                        {
+                                            "limit": 2000,
+                                            "dec_odds": 0.2
+                                        }
+                                    ],
+                                    "e1": "2.5000",
+                                    "e2": "2.5000",
+                                    "e3": "2.5000",
+                                    "e4": null,
+                                    "e5": null,
+                                    "e6": null,
+                                    "e7": null,
+                                    "e8": null,
+                                    "e9": null,
+                                    "e10": null,
+                                    "e11": null,
+                                    "e12": null,
+                                    "e13": null,
+                                    "e14": null,
+                                    "e15": null,
+                                    "e16": null,
+                                    "e17": null,
+                                    "e18": null,
+                                    "e19": null,
+                                    "e20": null,
+                                    "e21": null,
+                                    "e22": null,
+                                    "e23": null,
+                                    "e24": null,
+                                    "e25": null,
+                                    "e26": null,
+                                    "e27": null,
+                                    "e28": null
+                                },
+                                {
+                                    "id": 8,
+                                    "mark_a": "豹子",
+                                    "mark_b": "豹子",
+                                    "bet_limit": {
+                                        "order_limit_min": 10,
+                                        "order_limit_max": 10000,
+                                        "expect_limit": 20000
+                                    },
+                                    "dec_odds": [
+                                        {
+                                            "limit": 1000,
+                                            "dec_odds": 0.1
+                                        },
+                                        {
+                                            "limit": 2000,
+                                            "dec_odds": 0.2
+                                        }
+                                    ],
+                                    "e1": "30.0000",
+                                    "e2": null,
+                                    "e3": null,
+                                    "e4": null,
+                                    "e5": null,
+                                    "e6": null,
+                                    "e7": null,
+                                    "e8": null,
+                                    "e9": null,
+                                    "e10": null,
+                                    "e11": null,
+                                    "e12": null,
+                                    "e13": null,
+                                    "e14": null,
+                                    "e15": null,
+                                    "e16": null,
+                                    "e17": null,
+                                    "e18": null,
+                                    "e19": null,
+                                    "e20": null,
+                                    "e21": null,
+                                    "e22": null,
+                                    "e23": null,
+                                    "e24": null,
+                                    "e25": null,
+                                    "e26": null,
+                                    "e27": null,
+                                    "e28": null
+                                },
+                                {
+                                    "id": 9,
+                                    "mark_a": "特码三压一",
+                                    "mark_b": "特码三压一",
+                                    "bet_limit": {
+                                        "order_limit_min": 10,
+                                        "order_limit_max": 10000,
+                                        "expect_limit": 20000
+                                    },
+                                    "dec_odds": [
+                                        {
+                                            "limit": 1000,
+                                            "dec_odds": 0.1
+                                        },
+                                        {
+                                            "limit": 2000,
+                                            "dec_odds": 0.2
+                                        }
+                                    ],
+                                    "e1": "3.0000",
+                                    "e2": null,
+                                    "e3": null,
+                                    "e4": null,
+                                    "e5": null,
+                                    "e6": null,
+                                    "e7": null,
+                                    "e8": null,
+                                    "e9": null,
+                                    "e10": null,
+                                    "e11": null,
+                                    "e12": null,
+                                    "e13": null,
+                                    "e14": null,
+                                    "e15": null,
+                                    "e16": null,
+                                    "e17": null,
+                                    "e18": null,
+                                    "e19": null,
+                                    "e20": null,
+                                    "e21": null,
+                                    "e22": null,
+                                    "e23": null,
+                                    "e24": null,
+                                    "e25": null,
+                                    "e26": null,
+                                    "e27": null,
+                                    "e28": null
+                                }
                     ],
                 user: {},//用户信息
                 index: 0,//彩种盘口的下标
                 is_custom: [],
                 handicaps:[],//例如 ['a','b','c','d'....],默认为空数组
+                dec_odds:[],
             };
         },
 
@@ -602,6 +712,7 @@
                                 this.handicaps = [];
                                 //用户是否定制过的盘口,例如[1,0,1,0...] 1为定制版本，0为没有修改过的版本，默认为空
                                 this.is_custom = [];
+                                this.dec_odds=res.data.data.odds_list[0].odds;
                                 for (var i = 0; i < res.data.data.odds_list.length; i++)
                                 {
                                     //所有的盘口列表push盘名称,['a'], ['a','b'], ['a','b','c'] ......
@@ -774,6 +885,7 @@
         font-weight: 700;
     }
     .form-control{
+        font-size: 12px!important;
         padding: 5px 0px;
     }
 

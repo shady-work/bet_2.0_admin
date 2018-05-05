@@ -72,6 +72,8 @@
                                     <td>单注最小限额</td>
                                     <td>单注最大限额</td>
                                     <td>单期限额</td>
+                                    <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+                                    <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,6 +86,9 @@
                                     </td>
 
                                     <td>
+                                        <input type="text" class="form-control text-center" v-model="list[k].K">
+                                    </td>
+                                    <td>
                                         <input type="text" class="form-control text-center" v-model="list[k].L">
                                     </td>
                                     <td>
@@ -93,18 +98,29 @@
                                         <input type="text" class="form-control text-center" v-model="list[k].N">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control text-center" v-model="list[k].O">
-                                    </td>
-                                    <td>
                                         <input type="text" class="form-control text-center" v-model="list[k].bet_limit.order_limit_min">
-                                        <!-- {{list[k].bet_limit.order_limit}} -->
                                     </td>
                                     <td>
                                         <input type="text" class="form-control text-center" v-model="list[k].bet_limit.order_limit_max">
                                     </td>
                                      <td>
                                       <input type="text" class="form-control text-center" v-model="list[k].bet_limit.expect_limit">
-                                        <!-- {{list[k].bet_limit.expect_limit}} -->
+                                    </td>
+                                    <td v-if="$store.state.son_off">
+                                        <input type="text" class="form-control text-center"
+                                               v-model="list[k].dec_odds[0].limit">
+                                    </td>
+                                    <td v-if="$store.state.son_off">
+                                        <input type="text" class="form-control text-center"
+                                               v-model="list[k].dec_odds[0].dec_odds">
+                                    </td>
+                                    <td v-if="$store.state.son_off">
+                                        <input type="text" class="form-control text-center"
+                                               v-model="list[k].dec_odds[1].limit">
+                                    </td>
+                                    <td v-if="$store.state.son_off">
+                                        <input type="text" class="form-control text-center"
+                                               v-model="list[k].dec_odds[1].dec_odds">
                                     </td>
                                 </tr>
                             </tbody>
@@ -125,6 +141,8 @@
                                     <td>单注最小限额</td>
                                     <td>单注最大限额</td>
                                     <td>单期限额</td>
+                                    <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+                                    <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -155,14 +173,28 @@
                                     </td>
                                     <td>
                                         <input type="text" class="form-control text-center" v-model="list[k].bet_limit.order_limit_min">
-                                        <!-- {{list[k].bet_limit.order_limit}} -->
                                     </td>
                                     <td>
                                         <input type="text" class="form-control text-center" v-model="list[k].bet_limit.order_limit_max">
                                     </td>
                                     <td>
                                         <input type="text" class="form-control text-center" v-model="list[k].bet_limit.expect_limit">
-                                        <!-- {{list[k].bet_limit.expect_limit}} -->
+                                    </td>
+                                    <td v-if="$store.state.son_off">
+                                        <input type="text" class="form-control text-center"
+                                               v-model="list[k].dec_odds[0].limit">
+                                    </td>
+                                    <td v-if="$store.state.son_off">
+                                        <input type="text" class="form-control text-center"
+                                               v-model="list[k].dec_odds[0].dec_odds">
+                                    </td>
+                                    <td v-if="$store.state.son_off">
+                                        <input type="text" class="form-control text-center"
+                                               v-model="list[k].dec_odds[1].limit">
+                                    </td>
+                                    <td v-if="$store.state.son_off">
+                                        <input type="text" class="form-control text-center"
+                                               v-model="list[k].dec_odds[1].dec_odds">
                                     </td>
                                 </tr>
                             </tbody>
@@ -181,6 +213,8 @@
                                     <td>单注最小限额</td>
                                     <td>单注最大限额</td>
                                     <td>单期限额</td>
+                                    <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+                                    <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
 
                                 </tr>
                             </thead>
@@ -206,14 +240,29 @@
                                     </td>
                                     <td>
                                         <input type="text" class="form-control text-center" v-model="list[k].bet_limit.order_limit_min">
-                                        <!-- {{list[k].bet_limit.order_limit}} -->
+
                                     </td>
                                     <td>
                                         <input type="text" class="form-control text-center" v-model="list[k].bet_limit.order_limit_max">
                                     </td>
                                     <td>
                                         <input type="text" class="form-control text-center" v-model="list[k].bet_limit.expect_limit">
-                                        <!-- {{list[k].bet_limit.expect_limit}} -->
+                                    </td>
+                                    <td v-if="$store.state.son_off">
+                                        <input type="text" class="form-control text-center"
+                                               v-model="list[k].dec_odds[0].limit">
+                                    </td>
+                                    <td v-if="$store.state.son_off">
+                                        <input type="text" class="form-control text-center"
+                                               v-model="list[k].dec_odds[0].dec_odds">
+                                    </td>
+                                    <td v-if="$store.state.son_off">
+                                        <input type="text" class="form-control text-center"
+                                               v-model="list[k].dec_odds[1].limit">
+                                    </td>
+                                    <td v-if="$store.state.son_off">
+                                        <input type="text" class="form-control text-center"
+                                               v-model="list[k].dec_odds[1].dec_odds">
                                     </td>
                                 </tr>
                             </tbody>
@@ -1223,7 +1272,7 @@ export default {
         .then(function(res) {
             if(res.data.status == 200)
             {   
-                // console.log(res.data);
+                console.log(res.data);
                 this.all_odds = res.data.data.odds_list;
                 this.list = this.all_odds[0].odds;
                 this.collectData();
