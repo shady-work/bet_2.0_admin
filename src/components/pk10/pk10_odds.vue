@@ -296,6 +296,7 @@ export default {
                       "mark_a": "返点",
                       "mark_b": "总代",
                       "bet_limit": null,
+                      "dec_odds": null,
                       "A": "0.0010",
                       "B": "0.0010",
                       "C": null,
@@ -319,6 +320,7 @@ export default {
                       "mark_a": "返点",
                       "mark_b": "分代",
                       "bet_limit": null,
+                      "dec_odds": null,
                       "A": "0.0010",
                       "B": "0.0010",
                       "C": null,
@@ -342,6 +344,7 @@ export default {
                       "mark_a": "返点",
                       "mark_b": "推广",
                       "bet_limit": null,
+                      "dec_odds": null,
                       "A": "0.0010",
                       "B": "0.0010",
                       "C": null,
@@ -365,6 +368,7 @@ export default {
                       "mark_a": "返点",
                       "mark_b": "会员",
                       "bet_limit": null,
+                      "dec_odds": null,
                       "A": "0.0210",
                       "B": "0.0010",
                       "C": null,
@@ -392,6 +396,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -419,6 +433,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -446,6 +470,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -473,6 +507,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -500,6 +544,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -527,6 +581,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -554,6 +618,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -581,6 +655,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -608,6 +692,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -635,6 +729,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -662,6 +766,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "43.5150",
                       "B": "43.5150",
                       "C": "21.7580",
@@ -689,6 +803,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "1.9430",
                       "B": "1.9430",
                       "C": "1.9430",
@@ -707,7 +831,8 @@ export default {
                       "P": null,
                       "Q": null
                   }
-              ]
+              ],
+              "custom_odds": null
           },
           {
               "name": "b",
@@ -718,6 +843,7 @@ export default {
                       "mark_a": "返点",
                       "mark_b": "总代",
                       "bet_limit": null,
+                      "dec_odds": null,
                       "A": "0.0011",
                       "B": "0.0012",
                       "C": null,
@@ -741,6 +867,7 @@ export default {
                       "mark_a": "返点",
                       "mark_b": "分代",
                       "bet_limit": null,
+                      "dec_odds": null,
                       "A": "0.0012",
                       "B": "0.0010",
                       "C": null,
@@ -764,6 +891,7 @@ export default {
                       "mark_a": "返点",
                       "mark_b": "推广",
                       "bet_limit": null,
+                      "dec_odds": null,
                       "A": "0.0013",
                       "B": "0.0010",
                       "C": null,
@@ -787,6 +915,7 @@ export default {
                       "mark_a": "返点",
                       "mark_b": "会员",
                       "bet_limit": null,
+                      "dec_odds": null,
                       "A": "0.0210",
                       "B": "0.0010",
                       "C": null,
@@ -814,6 +943,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -841,6 +980,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -868,6 +1017,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -895,6 +1054,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -922,6 +1091,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -949,6 +1128,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -976,6 +1165,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -1003,6 +1202,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -1030,6 +1239,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -1057,6 +1276,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "9.7150",
                       "B": "9.7150",
                       "C": "9.7150",
@@ -1084,6 +1313,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "43.5150",
                       "B": "43.5150",
                       "C": "21.7580",
@@ -1111,6 +1350,16 @@ export default {
                           "order_limit_max": 10000,
                           "expect_limit": 20000
                       },
+                      "dec_odds": [
+                          {
+                              "limit": 1000,
+                              "dec_odds": 0.1
+                          },
+                          {
+                              "limit": 2000,
+                              "dec_odds": 0.2
+                          }
+                      ],
                       "A": "1.9430",
                       "B": "1.9430",
                       "C": "1.9430",
@@ -1129,422 +1378,8 @@ export default {
                       "P": null,
                       "Q": null
                   }
-              ]
-          },
-          {
-              "name": "c",
-              "table": "pk10_c",
-              "odds": []
-          },
-          {
-              "name": "d",
-              "table": "pk10_d",
-              "odds": [
-                  {
-                      "id": 1,
-                      "mark_a": "返点",
-                      "mark_b": "总代",
-                      "bet_limit": null,
-                      "A": "0.0010",
-                      "B": "0.0010",
-                      "C": null,
-                      "D": null,
-                      "E": null,
-                      "F": null,
-                      "G": null,
-                      "H": null,
-                      "I": null,
-                      "J": null,
-                      "K": null,
-                      "L": null,
-                      "M": null,
-                      "N": null,
-                      "O": null,
-                      "P": null,
-                      "Q": null
-                  },
-                  {
-                      "id": 2,
-                      "mark_a": "返点",
-                      "mark_b": "分代",
-                      "bet_limit": null,
-                      "A": "0.0010",
-                      "B": "0.0010",
-                      "C": null,
-                      "D": null,
-                      "E": null,
-                      "F": null,
-                      "G": null,
-                      "H": null,
-                      "I": null,
-                      "J": null,
-                      "K": null,
-                      "L": null,
-                      "M": null,
-                      "N": null,
-                      "O": null,
-                      "P": null,
-                      "Q": null
-                  },
-                  {
-                      "id": 3,
-                      "mark_a": "返点",
-                      "mark_b": "推广",
-                      "bet_limit": null,
-                      "A": "0.0010",
-                      "B": "0.0010",
-                      "C": null,
-                      "D": null,
-                      "E": null,
-                      "F": null,
-                      "G": null,
-                      "H": null,
-                      "I": null,
-                      "J": null,
-                      "K": null,
-                      "L": null,
-                      "M": null,
-                      "N": null,
-                      "O": null,
-                      "P": null,
-                      "Q": null
-                  },
-                  {
-                      "id": 4,
-                      "mark_a": "返点",
-                      "mark_b": "会员",
-                      "bet_limit": null,
-                      "A": "0.0210",
-                      "B": "0.0010",
-                      "C": null,
-                      "D": null,
-                      "E": null,
-                      "F": null,
-                      "G": null,
-                      "H": null,
-                      "I": null,
-                      "J": null,
-                      "K": null,
-                      "L": null,
-                      "M": null,
-                      "N": null,
-                      "O": null,
-                      "P": null,
-                      "Q": null
-                  },
-                  {
-                      "id": 5,
-                      "mark_a": "特码",
-                      "mark_b": "冠军",
-                      "bet_limit": {
-                          "order_limit": 10000,
-                          "expect_limit": 20000
-                      },
-                      "A": "9.7150",
-                      "B": "9.7150",
-                      "C": "9.7150",
-                      "D": "9.7150",
-                      "E": "9.7150",
-                      "F": "9.7150",
-                      "G": "9.7150",
-                      "H": "9.7150",
-                      "I": "9.7150",
-                      "J": "9.7150",
-                      "K": "1.9430",
-                      "L": "1.9430",
-                      "M": "1.9430",
-                      "N": "1.9430",
-                      "O": "1.9430",
-                      "P": "1.9430",
-                      "Q": null
-                  },
-                  {
-                      "id": 6,
-                      "mark_a": "特码",
-                      "mark_b": "亚军",
-                      "bet_limit": {
-                          "order_limit": 10000,
-                          "expect_limit": 20000
-                      },
-                      "A": "9.7150",
-                      "B": "9.7150",
-                      "C": "9.7150",
-                      "D": "9.7150",
-                      "E": "9.7150",
-                      "F": "9.7150",
-                      "G": "9.7150",
-                      "H": "9.7150",
-                      "I": "9.7150",
-                      "J": "9.7150",
-                      "K": "1.9430",
-                      "L": "1.9430",
-                      "M": "1.9430",
-                      "N": "1.9430",
-                      "O": "1.9430",
-                      "P": "1.9430",
-                      "Q": null
-                  },
-                  {
-                      "id": 7,
-                      "mark_a": "特码",
-                      "mark_b": "第三名",
-                      "bet_limit": {
-                          "order_limit": 10000,
-                          "expect_limit": 20000
-                      },
-                      "A": "9.7150",
-                      "B": "9.7150",
-                      "C": "9.7150",
-                      "D": "9.7150",
-                      "E": "9.7150",
-                      "F": "9.7150",
-                      "G": "9.7150",
-                      "H": "9.7150",
-                      "I": "9.7150",
-                      "J": "9.7150",
-                      "K": "1.9430",
-                      "L": "1.9430",
-                      "M": "1.9430",
-                      "N": "1.9430",
-                      "O": "1.9430",
-                      "P": "1.9430",
-                      "Q": null
-                  },
-                  {
-                      "id": 8,
-                      "mark_a": "特码",
-                      "mark_b": "第四名",
-                      "bet_limit": {
-                          "order_limit": 10000,
-                          "expect_limit": 20000
-                      },
-                      "A": "9.7150",
-                      "B": "9.7150",
-                      "C": "9.7150",
-                      "D": "9.7150",
-                      "E": "9.7150",
-                      "F": "9.7150",
-                      "G": "9.7150",
-                      "H": "9.7150",
-                      "I": "9.7150",
-                      "J": "9.7150",
-                      "K": "1.9430",
-                      "L": "1.9430",
-                      "M": "1.9430",
-                      "N": "1.9430",
-                      "O": "1.9430",
-                      "P": "1.9430",
-                      "Q": null
-                  },
-                  {
-                      "id": 9,
-                      "mark_a": "特码",
-                      "mark_b": "第五名",
-                      "bet_limit": {
-                          "order_limit": 10000,
-                          "expect_limit": 20000
-                      },
-                      "A": "9.7150",
-                      "B": "9.7150",
-                      "C": "9.7150",
-                      "D": "9.7150",
-                      "E": "9.7150",
-                      "F": "9.7150",
-                      "G": "9.7150",
-                      "H": "9.7150",
-                      "I": "9.7150",
-                      "J": "9.7150",
-                      "K": "1.9430",
-                      "L": "1.9430",
-                      "M": "1.9430",
-                      "N": "1.9430",
-                      "O": "1.9430",
-                      "P": "1.9430",
-                      "Q": null
-                  },
-                  {
-                      "id": 10,
-                      "mark_a": "特码",
-                      "mark_b": "第六名",
-                      "bet_limit": {
-                          "order_limit": 10000,
-                          "expect_limit": 20000
-                      },
-                      "A": "9.7150",
-                      "B": "9.7150",
-                      "C": "9.7150",
-                      "D": "9.7150",
-                      "E": "9.7150",
-                      "F": "9.7150",
-                      "G": "9.7150",
-                      "H": "9.7150",
-                      "I": "9.7150",
-                      "J": "9.7150",
-                      "K": "1.9430",
-                      "L": "1.9430",
-                      "M": "1.9430",
-                      "N": "1.9430",
-                      "O": null,
-                      "P": null,
-                      "Q": null
-                  },
-                  {
-                      "id": 11,
-                      "mark_a": "特码",
-                      "mark_b": "第七名",
-                      "bet_limit": {
-                          "order_limit": 10000,
-                          "expect_limit": 20000
-                      },
-                      "A": "9.7150",
-                      "B": "9.7150",
-                      "C": "9.7150",
-                      "D": "9.7150",
-                      "E": "9.7150",
-                      "F": "9.7150",
-                      "G": "9.7150",
-                      "H": "9.7150",
-                      "I": "9.7150",
-                      "J": "9.7150",
-                      "K": "1.9430",
-                      "L": "1.9430",
-                      "M": "1.9430",
-                      "N": "1.9430",
-                      "O": null,
-                      "P": null,
-                      "Q": null
-                  },
-                  {
-                      "id": 12,
-                      "mark_a": "特码",
-                      "mark_b": "第八名",
-                      "bet_limit": {
-                          "order_limit": 10000,
-                          "expect_limit": 20000
-                      },
-                      "A": "9.7150",
-                      "B": "9.7150",
-                      "C": "9.7150",
-                      "D": "9.7150",
-                      "E": "9.7150",
-                      "F": "9.7150",
-                      "G": "9.7150",
-                      "H": "9.7150",
-                      "I": "9.7150",
-                      "J": "9.7150",
-                      "K": "1.9430",
-                      "L": "1.9430",
-                      "M": "1.9430",
-                      "N": "1.9430",
-                      "O": null,
-                      "P": null,
-                      "Q": null
-                  },
-                  {
-                      "id": 13,
-                      "mark_a": "特码",
-                      "mark_b": "第九名",
-                      "bet_limit": {
-                          "order_limit": 10000,
-                          "expect_limit": 20000
-                      },
-                      "A": "9.7150",
-                      "B": "9.7150",
-                      "C": "9.7150",
-                      "D": "9.7150",
-                      "E": "9.7150",
-                      "F": "9.7150",
-                      "G": "9.7150",
-                      "H": "9.7150",
-                      "I": "9.7150",
-                      "J": "9.7150",
-                      "K": "1.9430",
-                      "L": "1.9430",
-                      "M": "1.9430",
-                      "N": "1.9430",
-                      "O": null,
-                      "P": null,
-                      "Q": null
-                  },
-                  {
-                      "id": 14,
-                      "mark_a": "特码",
-                      "mark_b": "第十名",
-                      "bet_limit": {
-                          "order_limit": 10000,
-                          "expect_limit": 20000
-                      },
-                      "A": "9.7150",
-                      "B": "9.7150",
-                      "C": "9.7150",
-                      "D": "9.7150",
-                      "E": "9.7150",
-                      "F": "9.7150",
-                      "G": "9.7150",
-                      "H": "9.7150",
-                      "I": "9.7150",
-                      "J": "9.7150",
-                      "K": "1.9430",
-                      "L": "1.9430",
-                      "M": "1.9430",
-                      "N": "1.9430",
-                      "O": null,
-                      "P": null,
-                      "Q": null
-                  },
-                  {
-                      "id": 15,
-                      "mark_a": "特码",
-                      "mark_b": "冠亚军和",
-                      "bet_limit": {
-                          "order_limit": 10000,
-                          "expect_limit": 20000
-                      },
-                      "A": "43.5150",
-                      "B": "43.5150",
-                      "C": "21.7580",
-                      "D": "21.7580",
-                      "E": "14.5050",
-                      "F": "14.5050",
-                      "G": "10.6370",
-                      "H": "10.6370",
-                      "I": "8.7030",
-                      "J": "10.6370",
-                      "K": "10.6370",
-                      "L": "14.5050",
-                      "M": "14.5050",
-                      "N": "21.7580",
-                      "O": "21.7580",
-                      "P": "43.5150",
-                      "Q": "43.5150"
-                  },
-                  {
-                      "id": 16,
-                      "mark_a": "两面",
-                      "mark_b": "冠亚军和",
-                      "bet_limit": {
-                          "order_limit": 10000,
-                          "expect_limit": 20000
-                      },
-                      "A": "1.9430",
-                      "B": "1.9430",
-                      "C": "1.9430",
-                      "D": "1.9430",
-                      "E": null,
-                      "F": null,
-                      "G": null,
-                      "H": null,
-                      "I": null,
-                      "J": null,
-                      "K": null,
-                      "L": null,
-                      "M": null,
-                      "N": null,
-                      "O": null,
-                      "P": null,
-                      "Q": null
-                  }
-              ]
+              ],
+              "custom_odds": null
           }
       ],
     };
