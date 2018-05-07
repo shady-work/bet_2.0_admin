@@ -49,6 +49,7 @@ export  default
         this.$http.get(`${this.api}/host`).then(function(res){
 
           this.host = res.data;
+
         }).then(function(){
           this.created_websoket();
           this.get_cqssc_orders();
@@ -79,7 +80,7 @@ export  default
          {
            var that = this;
            //创建websoket
-           let ws = new WebSocket("ws://"+ this.host +":8282");
+             let ws = new WebSocket("ws://"+ this.host +(this.$store.state.son_off?":8282":":9292"));
            //当websoket创建成功的时候触发的函数
            ws.onopen = function ()
            {
