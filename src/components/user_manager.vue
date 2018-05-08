@@ -33,8 +33,8 @@
               <!--<td >用户加入时间</td>-->
               <td >是否可用</td>
               <td >用户类型</td>
-              <td >tokensup</td>
-              <td >操作</td>
+              <td v-if="!$store.state.son_off">tokensup</td>
+              <td width="360">操作</td>
             </tr>
           </thead>
           <tbody>
@@ -57,7 +57,7 @@
                   <b v-if="v.type == 2">代理</b>
                   <b v-if="v.type == 3">管理</b>
               </td>
-              <td>
+              <td v-if="!$store.state.son_off">
                 <a @click="show_users_tokensup(v.tokensup,v.username)">点此查看</a>
               </td>
               <td  style="text-align: right">
@@ -514,7 +514,7 @@
   }
   .table
   {
-    width: 1200px;
+    width: 1100px;
     margin:0 auto;
     margin-top: 20px;
     margin-left:10px;

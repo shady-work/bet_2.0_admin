@@ -10,18 +10,16 @@
         <td>最大中奖额</td>
          <td>转盘比例</td>
         <td>中奖大于多少转盘</td>
-        <td >转盘密钥</td>
         <td>下注大于多少转盘</td>
-        <td>转盘API地址</td>
-        <td>操作</td>
+        <td>转盘密钥-转盘API地址</td>
+        <td width="180">操作</td>
       </tr>
       <tr class="text-center" v-else>
         <td>用户名</td>
         <td>最小下注额</td>
         <td>最大下注额</td>
         <td>最大中奖额</td>
-
-        <td>操作</td>
+        <td width="180">操作</td>
       </tr>
       </thead>
       <tbody>
@@ -33,9 +31,11 @@
           <td>{{v.money_win}}</td>
           <td >{{v.trad_rate}}</td>
           <td>{{v.trad_win}}</td>
-          <td width="100"><p>{{v.trad_tokensup?v.trad_tokensup:'尚未设定'}}</p></td>
           <td>{{v.trad_max}}</td>
-          <td>{{v.trad_url?v.trad_url:'尚未设定'}}</td>
+          <td>
+              <a v-if="v.trad_tokensup" @click="show_users_tokensup(v.trad_tokensup,v.user.username,v.trad_url)" class="pointer">点此查看</a>
+              <span v-else>尚未设定</span>
+          </td>
           <td>
               <button class="btn btn-primary" @click="edit_one(v.id)">编辑</button>
               <button class="btn btn-warning" @click="check_handicaps(v.user.id)">查看盘口</button>
@@ -54,8 +54,8 @@
       </tbody>
     </table>
 
-    <div id="myModal" v-show="isShow" @click="close()">
-      <div class="panel panel-info center-block" @click="stop_cancel()">
+    <div class="task_" v-show="isShow" @click="close()">
+      <div class="panel panel-info center-block task-panel" @click="stop_cancel()">
         <div class="panel-heading">修改用户注额</div>
         <div class="panel-body form-horizontal">
           <div class="form-group">
@@ -99,7 +99,7 @@
             <label for="inputEmail8" class="col-sm-2 control-label">转盘选择</label>
             <div class="col-sm-10">
               <select class="form-control" v-model="which_trad_rule">
-                <option v-bind:value="'xxx'">清除</option>
+                <option v-bind:value="'xxx'">不设定</option>
                 <option v-for="(v,k) in trad_list" v-bind:value="k">{{v.trad_name}}</option>
               </select>
             </div>
@@ -175,7 +175,9 @@
         sum:0,
         pageNum:0,
         trad_list:[],//转盘列表
-        which_trad_rule:'',//转盘列表的下标
+        which_trad_rule:'xxx',//转盘列表的下标
+        users_tokensup:'',//转盘密钥
+        users_url:'',//转盘api url
       };
     },
     created()
@@ -184,6 +186,16 @@
       this.get_trad_list();
     },
     methods: {
+      show_users_tokensup(tokensup,username,users_url)
+      {
+        this.users_tokensup = tokensup;
+        this.users_url = users_url;
+        this.$alert(this.users_tokensup + '<p>' + this.users_url + '</p>', `用户${username}的转盘密钥-转盘API地址`, {
+          confirmButtonText: '确定',
+          dangerouslyUseHTMLString: true,
+          // center:'left',
+        });
+      },
       /**@augments none   load all user's bet_rules */
       get_user_bet_rules: function(param) {
         this.$http.get(this.api + "/admin/egg/user").then(function(res) {
@@ -259,6 +271,7 @@
           .then(function(res) {
             let data = res.data;
             if (data.status == 200) {
+              this.which_trad_rule = 'xxx';
               this.money_max = data.data.list.money_max;
               this.money_min = data.data.list.money_min;
               this.money_win = data.data.list.money_win;
@@ -269,18 +282,20 @@
               this.trad_win = data.data.list.trad_win;
               this.one_id = data.data.list.id;
               this.isShow = true;
-              if(this.trad_url != "")
+              if(this.trad_url)
               {
                 for(let i = 0 ; i < this.trad_list.length;i++)
                 {
-                  if(this.trad_url = this.trad_list[i].trad_url)
+                  if(this.trad_tokensup == this.trad_list[i].trad_tokensup)
                   {
                     this.which_trad_rule = i ;
                     break;
                   }
                 }
               }
-            } else {
+            }
+            else
+            {
               console.log("load failed");
             }
           });
@@ -362,16 +377,13 @@
           {
             this.trad_url = '';
             this.trad_tokensup = '';
-            return
+
           }
-          if(n == "")
+          else
           {
-            this.trad_url = this.trad_list[0].trad_url;
-            this.trad_tokensup = this.trad_list[0].trad_tokensup;
-            return;
+            this.trad_url = this.trad_list[n].trad_url;
+            this.trad_tokensup = this.trad_list[n].trad_tokensup;
           }
-          this.trad_url = this.trad_list[n].trad_url;
-          this.trad_tokensup = this.trad_list[n].trad_tokensup;
         },
       }
   };
@@ -383,14 +395,12 @@
     width: 800px;
     margin-top: 50px;
   }
-  .table {
-    /*width: 900px;*/
+  .table
+  {
     font-size: 12px;
-    /*max-width:900px;*/
-    /*margin:0 auto;*/
   }
   #cqssc{
-    width:1200px;
+    width:1100px;
     margin-left:10px;
     margin-top:5px;
   }

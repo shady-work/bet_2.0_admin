@@ -806,14 +806,14 @@
     }
 
     .col-md-10 {
-        width: 1200px;
+        width: 1100px;
         margin-top: 5px;
         margin-left: 10px;
     }
 
     .col-md-2 {
         margin-left: 10px;
-        width: 1200px;
+        width: 1100px;
         margin-top: 5px;
     }
 </style>

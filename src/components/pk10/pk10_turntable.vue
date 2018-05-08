@@ -7,12 +7,6 @@
                   <td>转盘名称</td>
                   <td>转盘地址</td>
                   <td>转盘token</td>
-                  <!--<td>现金额度</td>-->
-                  <!--<td>信用额度</td>-->
-                  <!--<td>最小下注额度</td>-->
-                  <!--<td>最大下注额度</td>-->
-                  <!--<td>最大中奖额</td>-->
-                  <!--<td>是否默认转盘</td>-->
                   <td>操作</td>
                 </tr>
               </thead>
@@ -22,15 +16,8 @@
                   <td>{{v.trad_url}}</td>
                   <td>{{v.trad_tokensup}}</td>
                   <td>
-                    <!--<button class="btn btn-primary" @click="showEdit()">修改</button>-->
-                    <button class="btn btn-danger" @click="deleteOne(v.id)">删除</button>
+                      <button class="btn btn-danger" @click="deleteOne(v.id,v.trad_name)">删除</button>
                   </td>
-                  <!--<td>{{v.trad_cash}}</td>-->
-                  <!--<td>{{v.trad_credit}}</td>-->
-                  <!--<td>{{v.trad_min}}</td>-->
-                  <!--<td>{{v.trad_max}}</td>-->
-                  <!--<td>{{v.trad_win}}</td>-->
-                  <!--<td>{{v.sel==0?'否':'是'}}</td>-->
                 </tr>
               </tbody>
           </table>
@@ -169,23 +156,60 @@
           {
 
           },
-          deleteOne:function(t_id)
+          deleteOne:function(t_id,name)
           {
-            this.$http.delete(`${this.api}/admin/pk10/tradlist/${t_id}`)
-              .then(function(res)
-              {
-                if(res.data.status  ==  200)
-                {
-                  alert(res.data.msg);
+            const h = this.$createElement;
+            this.$msgbox({
+              title: '提示',
+              type:"warning",
+              message: h('p', null, [
+                h('span', null, '确定删除转盘名称为： '),
+                h('i', { style: 'color: teal' }, name),
+                h('span', null, '  的接口吗？ ')
+              ]),
+              showCancelButton: true,
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              beforeClose: (action, instance, done) => {
+                if (action === 'confirm') {
+                  instance.confirmButtonLoading = true;
+                  instance.confirmButtonText = '删除中...';
+                  setTimeout(() => {
+                    done();
+                    setTimeout(() => {
+                      instance.confirmButtonLoading = false;
+                    }, 300);
+                  }, 3000);
+                } else {
+                  done();
                 }
-                else
+              }
+            }).then(() => {
+              this.$http.delete(`${this.api}/admin/pk10/tradlist/${t_id}`)
+                .then(function(res)
                 {
-                  alert(res.data.msg)
-                }
+                  if(res.data.status  ==  200)
+                  {
+                    this.$notify({
+                      title: '成功',
+                      message: res.data.msg,
+                      type: 'success'
+                    });
+                  }
+                  else
+                  {
+                    this.$notify({
+                      title: '失败',
+                      message: res.data.msg,
+                      type: 'info'
+                    });
+                  }
 
+                  this.get_turntable();
+                });
+            });
+            return;
 
-                this.get_turntable();
-              });
           },
       },
       created()
@@ -196,9 +220,8 @@
 </script>
 
 <style scoped>
-  .table {
-   /* width: 90%;
-    margin: 0 auto;*/
+  .table
+  {
     margin-top: 50px;
   }
 
@@ -209,6 +232,6 @@
   }
   #cqssc_turntable{
     margin-left:10px;
-    width:1200px;
+    width:1100px;
   }
 </style>

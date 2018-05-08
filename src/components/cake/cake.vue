@@ -1,153 +1,153 @@
 <template>
-  <div id="cqssc">
+    <div id="cqssc">
 
-    <table class="table table-bordered table-striped table-hover">
-      <thead>
-      <tr class="text-center" v-if="$store.state.son_off">
-        <td>用户名</td>
-        <td>最小下注额</td>
-        <td>最大下注额</td>
-        <td>最大中奖额</td>
-         <td>转盘比例</td>
-        <td>中奖大于多少转盘</td>
-        <td >转盘密钥</td>
-        <td>下注大于多少转盘</td>
-        <td>转盘API地址</td>
-        <td>操作</td>
-      </tr>
-      <tr class="text-center" v-else>
-          <td>用户名</td>
-          <td>最小下注额</td>
-          <td>最大下注额</td>
-          <td>最大中奖额</td>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr class="text-center" v-if="$store.state.son_off">
+                <td>用户名</td>
+                <td>最小下注额</td>
+                <td>最大下注额</td>
+                <td>最大中奖额</td>
+                <td>转盘比例</td>
+                <td>中奖大于多少转盘</td>
+                <td>下注大于多少转盘</td>
+                <td>转盘密钥-转盘API地址</td>
+                <td width="180">操作</td>
+            </tr>
+            <tr class="text-center" v-else>
+                <td>用户名</td>
+                <td>最小下注额</td>
+                <td>最大下注额</td>
+                <td>最大中奖额</td>
+                <td width="180">操作</td>
+            </tr>
+            </thead>
+            <tbody>
 
-          <td>操作</td>
-      </tr>
-      </thead>
-      <tbody>
-      <tr v-for="(v,k) in list" class="text-center" v-if="v.user" v-show="$store.state.son_off">
-        <td>{{v.user.username}}</td>
-        <td>{{v.money_min}}</td>
-        <td>{{v.money_max}}</td>
-        <td>{{v.money_win}}</td>
-         <td >{{v.trad_rate}}</td>
-        <td>{{v.trad_win}}</td>
-        <td width="100"><p>{{v.trad_tokensup?v.trad_tokensup:'尚未设定'}}</p></td>
-        <td>{{v.trad_max}}</td>
-        <td>{{v.trad_url?v.trad_url:'尚未设定'}}</td>
-        <td>
-          <button class="btn btn-primary" @click="edit_one(v.id)">编辑</button>
-          <button class="btn btn-warning" @click="check_handicaps(v.user.id)">查看盘口</button>
-        </td>
-      </tr>
+            <tr v-for="(v,k) in list" class="text-center" v-if="v.user" v-show="$store.state.son_off">
+                <td>{{v.user.username}}</td>
+                <td>{{v.money_min}}</td>
+                <td>{{v.money_max}}</td>
+                <td>{{v.money_win}}</td>
+                <td >{{v.trad_rate}}</td>
+                <td>{{v.trad_win}}</td>
+                <td>{{v.trad_max}}</td>
+                <td>
+                    <a v-if="v.trad_tokensup" @click="show_users_tokensup(v.trad_tokensup,v.user.username,v.trad_url)" class="pointer">点此查看</a>
+                    <span v-else>尚未设定</span>
+                </td>
+                <td>
+                    <button class="btn btn-primary" @click="edit_one(v.id)">编辑</button>
+                    <button class="btn btn-warning" @click="check_handicaps(v.user.id)">查看盘口</button>
+                </td>
+            </tr>
+            <tr v-for="(v,k) in list" class="text-center" v-if="v.user" v-show="!$store.state.son_off">
+                <td>{{v.user.username}}</td>
+                <td>{{v.money_min}}</td>
+                <td>{{v.money_max}}</td>
+                <td>{{v.money_win}}</td>
+                <td>
+                    <button class="btn btn-primary" @click="edit_one(v.id)">编辑</button>
+                    <button class="btn btn-warning" @click="check_handicaps(v.user.id)">查看盘口</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-      <tr v-for="(v,k) in list" class="text-center" v-if="v.user" v-show="!$store.state.son_off">
-          <td>{{v.user.username}}</td>
-          <td>{{v.money_min}}</td>
-          <td>{{v.money_max}}</td>
-          <td>{{v.money_win}}</td>
-          <td>
-              <button class="btn btn-primary" @click="edit_one(v.id)">编辑</button>
-              <button class="btn btn-warning" @click="check_handicaps(v.user.id)">查看盘口</button>
-          </td>
-      </tr>
-      </tbody>
-    </table>
+        <div class="task_" v-show="isShow" @click="close()">
+            <div class="panel panel-info center-block task-panel" @click="stop_cancel()">
+                <div class="panel-heading">修改用户注额</div>
+                <div class="panel-body form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail4" class="col-sm-2 control-label">最小下注额</label>
+                        <div class="col-sm-10">
+                            <input type="text" v-model="money_min"  class="form-control" id="inputEmail3" placeholder="请输入">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail4" class="col-sm-2 control-label">最大下注额</label>
+                        <div class="col-sm-10">
+                            <input type="text" v-model="money_max"  class="form-control" id="inputEmail4" placeholder="请输入">
+                        </div>
+                    </div>
 
-    <div id="myModal" v-show="isShow" @click="close()">
-      <div class="panel panel-info center-block" @click="stop_cancel()">
-        <div class="panel-heading">修改用户注额</div>
-        <div class="panel-body form-horizontal">
-          <div class="form-group">
-            <label for="inputEmail4" class="col-sm-2 control-label">最小下注额</label>
-            <div class="col-sm-10">
-              <input type="text" v-model="money_min"  class="form-control" id="inputEmail3" placeholder="请输入">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputEmail4" class="col-sm-2 control-label">最大下注额</label>
-            <div class="col-sm-10">
-              <input type="text" v-model="money_max"  class="form-control" id="inputEmail4" placeholder="请输入">
-            </div>
-          </div>
+                    <div class="form-group">
+                        <label for="inputEmail5" class="col-sm-2 control-label">最大中奖额</label>
+                        <div class="col-sm-10">
+                            <input type="text" v-model="money_win"  class="form-control" id="inputEmail5" placeholder="请输入">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail5" class="col-sm-2 control-label">转盘比例</label>
+                        <div class="col-sm-10">
+                            <input type="text" v-model="trad_rate"  class="form-control" id="inputEmail5" placeholder="请输入">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail6" class="col-sm-2 control-label">中奖大于多少转盘</label>
+                        <div class="col-sm-10">
+                            <input type="text" v-model="trad_win"  class="form-control" id="inputEmail6" placeholder="请输入">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail7" class="col-sm-2 control-label">下注大于多少转盘</label>
+                        <div class="col-sm-10">
+                            <input type="text" v-model="trad_max"  class="form-control" id="inputEmail7" placeholder="请输入">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail8" class="col-sm-2 control-label">转盘选择</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" v-model="which_trad_rule">
+                                <option v-bind:value="'xxx'">不设定</option>
+                                <option v-for="(v,k) in trad_list" v-bind:value="k">{{v.trad_name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail8" class="col-sm-2 control-label">转盘API地址</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly v-model="trad_url"  class="form-control" id="inputEmail8" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail9" class="col-sm-2 control-label">转盘密钥</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly v-model="trad_tokensup"  class="form-control" id="inputEmail9" placeholder="">
+                        </div>
+                    </div>
+                </div>
 
-          <div class="form-group">
-            <label for="inputEmail5" class="col-sm-2 control-label">最大中奖额</label>
-            <div class="col-sm-10">
-              <input type="text" v-model="money_win"  class="form-control" id="inputEmail5" placeholder="请输入">
+
+
+                <div class="panel-footer">
+                    <button class="btn btn-primary pull-right" @click="do_edit()">修改</button>
+                    <button class="btn btn-info pull-right mr10" @click="isShow = false">取消</button>
+                    <div class="clearfix"></div>
+                </div>
+
             </div>
-          </div>
-           <div class="form-group">
-            <label for="inputEmail5" class="col-sm-2 control-label">转盘比例</label>
-            <div class="col-sm-10">
-              <input type="text" v-model="trad_rate"  class="form-control" id="inputEmail5" placeholder="请输入">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputEmail6" class="col-sm-2 control-label">中奖大于多少转盘</label>
-            <div class="col-sm-10">
-              <input type="text" v-model="trad_win"  class="form-control" id="inputEmail6" placeholder="请输入">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputEmail7" class="col-sm-2 control-label">下注大于多少转盘</label>
-            <div class="col-sm-10">
-              <input type="text" v-model="trad_max"  class="form-control" id="inputEmail7" placeholder="请输入">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputEmail8" class="col-sm-2 control-label">转盘选择</label>
-            <div class="col-sm-10">
-              <select class="form-control" v-model="which_trad_rule">
-                <option v-bind:value="'xxx'">清除</option>
-                <option v-for="(v,k) in trad_list" v-bind:value="k">{{v.trad_name}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputEmail8" class="col-sm-2 control-label">转盘API地址</label>
-            <div class="col-sm-10">
-              <input type="text" readonly v-model="trad_url"  class="form-control" id="inputEmail8" placeholder="">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputEmail9" class="col-sm-2 control-label">转盘密钥</label>
-            <div class="col-sm-10">
-              <input type="text" readonly v-model="trad_tokensup"  class="form-control" id="inputEmail9" placeholder="">
-            </div>
-          </div>
         </div>
 
+        <div class="row mt15">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <span>当前第 {{page}} 页</span>
+                <span>共 {{pageNum}} 页，</span>
+                <button class="btn btn-primary btn-xs" v-if="hasPrev" @click="prevPage()">
+                    上一页
+                </button>
 
-
-        <div class="panel-footer">
-          <button class="btn btn-primary pull-right" @click="do_edit()">修改</button>
-          <button class="btn btn-info pull-right mr10" @click="isShow = false">取消</button>
-          <div class="clearfix"></div>
+                <button class="btn btn-info btn-xs" v-if="hasNext" @click="nextPage()">
+                    下一页
+                </button>
+                <span>共 {{sum}} 条</span>
+                <br>
+                <br>
+            </div>
+            <div class="col-md-4"></div>
         </div>
-
-      </div>
-    </div>
-
-    <div class="row mt15">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
-        <span>当前第 {{page}} 页</span>
-        <span>共 {{pageNum}} 页，</span>
-        <button class="btn btn-primary btn-xs" v-if="hasPrev" @click="prevPage()">
-          上一页
-        </button>
-
-        <button class="btn btn-info btn-xs" v-if="hasNext" @click="nextPage()">
-          下一页
-        </button>
-        <span>共 {{sum}} 条</span>
-        <br>
-        <br>
-      </div>
-      <div class="col-md-4"></div>
-    </div>
-  </div> <!--end #cqssc-->
+    </div> <!--end #cqssc-->
 </template>
 
 <script>
@@ -175,7 +175,9 @@
         sum:0,
         pageNum:0,
         trad_list:[],//转盘列表
-        which_trad_rule:'',//转盘列表的下标
+        which_trad_rule:'xxx',//转盘列表的下标
+        users_tokensup:'',//转盘密钥
+        users_url:'',//转盘api url
       };
     },
     created()
@@ -184,6 +186,16 @@
       this.get_trad_list();
     },
     methods: {
+      show_users_tokensup(tokensup,username,users_url)
+      {
+        this.users_tokensup = tokensup;
+        this.users_url = users_url;
+        this.$alert(this.users_tokensup + '<p>' + this.users_url + '</p>', `用户${username}的转盘密钥-转盘API地址`, {
+          confirmButtonText: '确定',
+          dangerouslyUseHTMLString: true,
+          // center:'left',
+        });
+      },
       /**@augments none   load all user's bet_rules */
       get_user_bet_rules: function(param) {
         this.$http.get(this.api + "/admin/cake/user").then(function(res) {
@@ -259,6 +271,7 @@
           .then(function(res) {
             let data = res.data;
             if (data.status == 200) {
+              this.which_trad_rule = 'xxx';
               this.money_max = data.data.list.money_max;
               this.money_min = data.data.list.money_min;
               this.money_win = data.data.list.money_win;
@@ -269,18 +282,20 @@
               this.trad_win = data.data.list.trad_win;
               this.one_id = data.data.list.id;
               this.isShow = true;
-              if(this.trad_url != "")
+              if(this.trad_url)
               {
                 for(let i = 0 ; i < this.trad_list.length;i++)
                 {
-                  if(this.trad_url = this.trad_list[i].trad_url)
+                  if(this.trad_tokensup == this.trad_list[i].trad_tokensup)
                   {
                     this.which_trad_rule = i ;
                     break;
                   }
                 }
               }
-            } else {
+            }
+            else
+            {
               console.log("load failed");
             }
           });
@@ -311,17 +326,16 @@
           })
           .then(function(res) {
             if (res.data.msg == "修改成功") {
-             
-            this.get_user_bet_rules();
-            this.isShow = false;
-            // alert("修改成功");
-             this.$message(
-                    {
-                        message:res.data.msg,
-                        center:true,
-                        type:'success',
-                    });
-            return;
+              this.get_user_bet_rules();
+              this.isShow = false;
+              // alert("修改成功");
+              this.$message(
+                {
+                  message:res.data.msg,
+                  center:true,
+                  type:'success',
+                });
+              return;
             }else{
               this.$message.error('修改失败');
             }
@@ -329,15 +343,15 @@
       },
       //跳转到用户盘口
       check_handicaps:function(u_id)
-       {
-          this.$router.push(
-            {
-              path:'users_handicaps_cake',
-              name:'users_handicaps_cake',
-              params:{u_id}
-            }
-          );
-       },
+      {
+        this.$router.push(
+          {
+            path:'users_handicaps_cake',
+            name:'users_handicaps_cake',
+            params:{u_id}
+          }
+        );
+      },
       // 获取转盘列表
       get_trad_list:function()
       {
@@ -363,36 +377,31 @@
           {
             this.trad_url = '';
             this.trad_tokensup = '';
-            return
+
           }
-          if(n == "")
+          else
           {
-            this.trad_url = this.trad_list[0].trad_url;
-            this.trad_tokensup = this.trad_list[0].trad_tokensup;
-            return;
+            this.trad_url = this.trad_list[n].trad_url;
+            this.trad_tokensup = this.trad_list[n].trad_tokensup;
           }
-          this.trad_url = this.trad_list[n].trad_url;
-          this.trad_tokensup = this.trad_list[n].trad_tokensup;
         },
       }
   };
 </script>
 
 <style scoped>
-  #myModal > .panel
-  {
-  width:800px; 
-  margin:0 auto;
-  margin-top:100px;
-  }
-  .table {
-   
-    font-size: 12px;
-    
-  }
-  #cqssc{
-    margin-top:5px;
-    margin-left:10px;
-    width:1200px;
-  }
+    #myModal > .panel
+    {
+        width: 800px;
+        margin-top: 50px;
+    }
+    .table
+    {
+        font-size: 12px;
+    }
+    #cqssc{
+        width:1100px;
+        margin-left:10px;
+        margin-top:5px;
+    }
 </style>

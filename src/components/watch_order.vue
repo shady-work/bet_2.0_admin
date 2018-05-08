@@ -161,7 +161,7 @@ export  default
   
   .table
   {
-    width:1200px;
+    width:1100px;
     margin:0 auto;
     margin-top: 10px;
     font-size: 12px;
@@ -169,7 +169,7 @@ export  default
   }
   .my-nav
   { 
-     width:1200px;
+     width:1100px;
     margin-left:10px;   
     margin-top: 5px;
   }

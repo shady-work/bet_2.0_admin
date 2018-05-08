@@ -8,7 +8,7 @@
                     <tr>
                         <td width="70" style='line-height:30px;'>盘口</td>
                         <td v-for="(v,k) in final_list" :class="active_array[k]?'text-danger':''">
-                            {{v}}盘
+                            {{toUp(v)}}盘
                         </td>
                         <td colspan="2">
                             <button v-if="$store.state.admin_type==3" class="btn-sm btn btn-warning" @click='add_one()'>
@@ -36,7 +36,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-primary">
                     <tr class="h4">
-                        <td colspan="3">{{which_one}}盘
+                        <td colspan="3">{{toUp(which_one)}}盘
                             <button class="pull-right save  btn btn-info" @click='edit_one()'>保存修改</button>
                         </td>
                     </tr>
@@ -798,14 +798,14 @@
     }
 
     .col-md-10 {
-        width: 1200px;
+        width: 1100px;
         margin-top: 5px;
         margin-left: 10px;
     }
 
     .col-md-2 {
         margin-left: 10px;
-        width: 1200px;
+        width: 1100px;
         margin-top: 5px;
     }
 </style>

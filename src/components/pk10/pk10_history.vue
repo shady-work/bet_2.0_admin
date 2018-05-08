@@ -1,11 +1,9 @@
 <template>
     <div id="cqssc_history" style="font-size:12px;">
       <h4 style="margin-top: 8px;margin-bottom:35px;clear: both;margin-left:10px;" id="top">
-        <span style="margin-top:-15px;">{{when_}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span style="margin-top:-15px;">北京PK拾 {{when_}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span >开奖历史</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="block">
-          <!--<span class="demonstration" sty>选择日期</span>-->
-
           <el-date-picker
                   v-model="value6"
                   type="daterange"
@@ -20,11 +18,7 @@
         <el-button type="success" class="pull-left mr10" @click="get_all_history()" >查找</el-button>
         <el-button type="primary" class="pull-left mr10" @click="get_all_history3()" style="margin-left:670px;">今日</el-button>
         <el-button type="info" class="pull-left mr10" @click="get_all_history2()" style="margin-left:750px;">查看以往所有数据</el-button>
-
       </h4>
-
-
-
       <!--手动开奖-->
       <table class="table table-bordered table-hover table-striped text-center">
         <thead>
@@ -195,7 +189,6 @@ export default
               .then(function(res){
                 if(res.data.status == 200)
                    {
-                      console.log(res.data);
                       this.history_codes = res.data.data.list;
                       this.hasPrev = res.data.data.hasPrev;
                       this.hasNext = res.data.data.hasNext;
@@ -412,75 +405,68 @@ export default
 
 <style scoped>
   .table {
-    /*width: 90%;*/
-    /*margin: 0 auto;*/
+
     margin-top: 20px;
     font-size:12px!important;
   }
   #cqssc_history{
     margin-left:10px;
-    width:1200px;
-    /*width: 100%;*/
+    width:1100px;
+
   }
   #cqssc_history b{
     display:inline-block;
-    /*line-height:30px;*/
     color:white;
     text-align:center;
-    font-size:12px;
-    /*width:30px;*/
-    /*background:gray;*/
+    font-size:18px;
     margin-left:5px;
   }
-   .hao1
-      {
-          background: #959612;
-      }
-      .hao2
-      {
-          background: #0060ff;
-      }
-      .hao3
-      {
-          background: #4d4d4d;
-      }
-      .hao4
-      {
-          background: #ff7300;
-      }
-      .hao5
-      {
-          background: #00adad;
-      }
-      .hao6
-      {
-          background:#5200ff;
-      }
-      .hao7
-      {
-          background: #666666;
-      }
-      .hao8
-      {
-          /*background: #ff0000;*/
-          background:#9300ffe8;
-      }
-      .hao9
-      {
-          background:#760000;
-      }
-      .hao10
-      {
-          background:#167301;
-      }
+  .hao1
+  {
+      background: #959612;
+  }
+  .hao2
+  {
+      background: #0060ff;
+  }
+  .hao3
+  {
+      background: #4d4d4d;
+  }
+  .hao4
+  {
+      background: #ff7300;
+  }
+  .hao5
+  {
+      background: #00adad;
+  }
+  .hao6
+  {
+      background:#5200ff;
+  }
+  .hao7
+  {
+      background: #666666;
+  }
+  .hao8
+  {
+      /*background: #ff0000;*/
+      background:#9300ffe8;
+  }
+  .hao9
+  {
+      background:#760000;
+  }
+  .hao10
+  {
+      background:#167301;
+  }
   .block
   {
     width: 230px;
     margin-left:220px;
     margin-top: -41px;
-    /*float: left;*/
-    /*margin-right:300px;*/
-
   }
   .mr10{
     margin-left: 590px;

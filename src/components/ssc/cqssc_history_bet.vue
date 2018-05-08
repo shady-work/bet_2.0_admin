@@ -1,6 +1,6 @@
 <template>
     <div id="cqssc_history">
-
+        <h3>重庆时时彩用户下注历史</h3>
         <table class="table table-bordered table-hover table-striped text-center">
            <thead>
              <tr>
@@ -27,7 +27,7 @@
                 <td>{{v.open_stu==0?'未结算':'已结算'}}</td>
                 <td>{{v.open_ret==0?'未中奖':'中奖'}}</td>
                 <td>{{v.trad_stu==0?'未转':'转盘'}}</td>
-                <td>{{v.status}}</td>
+                <td>{{v.status==1?"已开奖":(v.status==0?'未开奖':'已取消')}}</td>
                 <td>{{v.update_time}}</td>
                 <td>
                   <button class="btn btn-primary btn-sm" @click="show_details(v)">查看详情</button>
@@ -55,100 +55,100 @@
       </div>
 
 
-      <div id="myModal" v-show="isShow" @click="close()">
-        <div class="panel panel-info center-block" @click="stop_cancel()">
+      <div class="task_" v-show="isShow" @click="close()">
+        <div class="panel panel-info center-block task-panel" @click="stop_cancel()">
 
-          <div class="panel-heading">xw</div>
+          <div class="panel-heading"></div>
 
           <div class="panel-body form-horizontal">
 
             <div class="form-group">
-              <label for="inputEmail4" class="col-sm-3 control-label">用户名-昵称</label>
+              <label  class="col-sm-3 control-label">用户名-昵称</label>
               <div class="col-sm-8">
                 <p class="form-control">{{username+'-'+nickname}}</p>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputEmail4" class="col-sm-3 control-label">期数</label>
+              <label  class="col-sm-3 control-label">期数</label>
               <div class="col-sm-8">
                 <p class="form-control">{{expect}}</p>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputEmail4" class="col-sm-3 control-label">订单号</label>
+              <label  class="col-sm-3 control-label">订单号</label>
               <div class="col-sm-8">
                 <p class="form-control">{{order_no}}</p>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputEmail4" class="col-sm-3 control-label">下注内容</label>
+              <label  class="col-sm-3 control-label">下注内容</label>
               <div class="col-sm-8">
                 <p class="form-control">{{mark_a}}-{{mark_b}}</p>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputEmail4" class="col-sm-3 control-label">下注金额</label>
+              <label  class="col-sm-3 control-label">下注金额</label>
               <div class="col-sm-8">
                 <p class="form-control">{{money}}</p>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputEmail4" class="col-sm-3 control-label">是否结算</label>
+              <label  class="col-sm-3 control-label">是否结算</label>
               <div class="col-sm-8">
                 <p class="form-control">{{open_stu==0?'未结算':'已结算'}}</p>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputEmail4" class="col-sm-3 control-label">是否中奖</label>
+              <label  class="col-sm-3 control-label">是否中奖</label>
               <div class="col-sm-8">
                 <p class="form-control">{{open_ret==0?'未中奖':'中奖'}}</p>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputEmail4" class="col-sm-3 control-label">是否转盘</label>
+              <label  class="col-sm-3 control-label">是否转盘</label>
               <div class="col-sm-8">
                 <p class="form-control">{{trad_stu==0?'未转':'转盘'}}</p>
               </div>
             </div>
             <div class="form-group">
-              <label for="inputEmail4" class="col-sm-3 control-label">开奖号码</label>
+              <label  class="col-sm-3 control-label">开奖号码</label>
               <div class="col-sm-8">
                 <p class="form-control">{{open_code}}</p>
               </div>
             </div>
             <div class="form-group">
-              <label for="inputEmail4" class="col-sm-3 control-label">输赢额</label>
+              <label  class="col-sm-3 control-label">输赢额</label>
               <div class="col-sm-8">
                 <p class="form-control">{{open_win}}</p>
               </div>
             </div>
             <div class="form-group" v-if="$store.state.son_off">
-              <label for="inputEmail4" class="col-sm-3 control-label">转盘金额</label>
+              <label  class="col-sm-3 control-label">转盘金额</label>
               <div class="col-sm-8">
                 <p class="form-control">{{trad_val}}</p>
               </div>
             </div>
             <div class="form-group" v-if="$store.state.son_off">
-              <label for="inputEmail4" class="col-sm-3 control-label">转盘API</label>
+              <label  class="col-sm-3 control-label">转盘API</label>
               <div class="col-sm-8">
                 <p class="form-control">{{trad_url}}</p>
               </div>
             </div>
             <div class="form-group" v-if="$store.state.son_off">
-              <label for="inputEmail4" class="col-sm-3 control-label">转盘密钥</label>
+              <label  class="col-sm-3 control-label">转盘密钥</label>
               <div class="col-sm-8">
-                <p class="form-control">{{trad_tokensup}}</p>
+                <p class="form-control" style="font-size: 12px;">{{trad_tokensup}}</p>
               </div>
             </div>
             <div class="form-group" v-if="$store.state.son_off">
-              <label for="inputEmail4" class="col-sm-3 control-label">转盘返回信息</label>
+              <label  class="col-sm-3 control-label">转盘返回信息</label>
               <div class="col-sm-8">
                 <p class="form-control">{{trad_return}}</p>
               </div>
@@ -372,11 +372,9 @@ export default
 <style scoped>
   #cqssc_history{
     margin-left:10px;
-    width:1200px;
+    width:1100px;
   }
   .table {
-    /*width: 80%;
-    margin: 0 auto;*/
     margin-top: 20px;
     font-size: 12px;
 

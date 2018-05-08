@@ -41,7 +41,7 @@
              },
              //充值管理
              {
-               label:"充值管理",
+               label:"充值链接管理",
                href:'articles'
              },
 

@@ -23,7 +23,7 @@
                   <td>{{v.trad_tokensup}}</td>
                   <td>
                     <!--<button class="btn btn-primary" @click="showEdit()">修改</button>-->
-                    <button class="btn btn-danger" @click="deleteOne(v.id)">删除</button>
+                    <button class="btn btn-danger" @click="deleteOne(v.id,v.trad_name)">删除</button>
                   </td>
                   <!--<td>{{v.trad_cash}}</td>-->
                   <!--<td>{{v.trad_credit}}</td>-->
@@ -169,24 +169,61 @@
           {
 
           },
-          deleteOne:function(t_id)
-          {
+        deleteOne:function(t_id,name)
+        {
+          const h = this.$createElement;
+          this.$msgbox({
+            title: '提示',
+            type:"warning",
+            message: h('p', null, [
+              h('span', null, '确定删除转盘名称为： '),
+              h('i', { style: 'color: teal' }, name),
+              h('span', null, '  的接口吗？ ')
+            ]),
+            showCancelButton: true,
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            beforeClose: (action, instance, done) => {
+              if (action === 'confirm') {
+                instance.confirmButtonLoading = true;
+                instance.confirmButtonText = '删除中...';
+                setTimeout(() => {
+                  done();
+                  setTimeout(() => {
+                    instance.confirmButtonLoading = false;
+                  }, 300);
+                }, 3000);
+              } else {
+                done();
+              }
+            }
+          }).then(() => {
             this.$http.delete(`${this.api}/admin/egg/tradlist/${t_id}`)
               .then(function(res)
               {
                 if(res.data.status  ==  200)
                 {
-                  alert(res.data.msg);
+                  this.$notify({
+                    title: '成功',
+                    message: res.data.msg,
+                    type: 'success'
+                  });
                 }
                 else
                 {
-                  alert(res.data.msg)
+                  this.$notify({
+                    title: '失败',
+                    message: res.data.msg,
+                    type: 'info'
+                  });
                 }
-
 
                 this.get_turntable();
               });
-          },
+          });
+          return;
+
+        },
       },
       created()
       {
@@ -207,7 +244,7 @@
     margin-top: 80px;
   }
   #cqssc_turntable{
-    width:1200px;
+    width:1100px;
     margin-left:10px;
   }
 </style>

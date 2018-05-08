@@ -1,11 +1,10 @@
 <template>
     <div id="cqssc_history">
+
         <h4 style="margin-top: 8px;margin-bottom:35px;clear: both;margin-left:10px;" id="top">
-            <span style="margin-top:-15px;">{{when_}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span style="margin-top:-15px;">重庆时时彩   {{when_}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span >开奖历史</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div class="block">
-                <!--<span class="demonstration" sty>选择日期</span>-->
-
                 <el-date-picker
                         v-model="value6"
                         type="daterange"
@@ -396,8 +395,7 @@ export default
 
 <style scoped>
   .table {
-    width:1200px;
-    /*margin: 0 auto;*/
+    width:1100px;
     margin-top: 20px;
     margin-left:10px; 
     font-size: 12px!important;
@@ -451,9 +449,6 @@ export default
       width: 230px;
       margin-left:220px;
       margin-top: -41px;
-       /*float: left;*/
-      /*margin-right:300px;*/
-
   }
   .mr10{
       margin-left: 590px;

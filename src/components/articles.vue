@@ -1,6 +1,6 @@
 <template>
       <div id="articles">
-        <a class="btn btn-success center-block add-btn" @click="turnTo()" >添加文章</a>
+        <a class="btn btn-success center-block add-btn" @click="turnTo()" >添加充值方式</a>
         <table class="table table-bordered table-hover table-striped text-center">
           <thead>
           <tr>
@@ -222,7 +222,7 @@
 
 <style scoped>
   .table {
-    width:1200px;
+    width:1100px;
    margin-left:10px;
     margin-top: 5px;
   }

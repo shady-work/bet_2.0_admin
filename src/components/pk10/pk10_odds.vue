@@ -1,6 +1,6 @@
 <template>
    <div id='cq/pk10/_odds'>
-
+       <h3 class="ml10">北京赛车PK拾-系统盘口设定</h3>
         <div class="row">
             <div class="col-md-2">
                 <table class="table table-hovor table-bordered table-striped text-center">
@@ -8,7 +8,7 @@
                                 <tr >
                                     <td width="70" style='line-height:30px;'>盘口</td>
                                     <td v-for="(v,k) in final_list" :class="active_array[k]?'text-danger':''">
-                                      {{v}}盘
+                                      {{toUp(v)}}盘
                                     </td>
                                      <td  colspan="2" >
                                        <button v-if="$store.state.admin_type==3" class="btn-sm btn btn-warning" @click='add_one()'>添加盘口</button>
@@ -20,7 +20,6 @@
                                      <td style='line-height:30px;'>操作   
                                     </td>
                                      <td v-for="(v,k) in final_list">
-                                         
                                           <button v-if="$store.state.admin_type==3"  class="btn btn-danger btn-sm  mr10  edit m" style="margin-left: 3px;" @click='delete_one(v)' >删除</button>
                                            <button class="btn btn-info  btn-sm edit" @click='choose_one(v,k)'>查看</button>
                                      </td>
@@ -32,7 +31,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-primary">
                         <tr >
-                            <td colspan="3">{{which_one}}盘
+                            <td colspan="3">{{toUp(which_one)}}盘
                                 <button class="pull-right save  btn btn-info" @click='edit_one()'>保存修改</button>
                             </td>
                         </tr>
@@ -125,7 +124,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                       <thead class="bg-danger">
                         <tr >
-                          <td width="150">冠亚军和-号码</td>
+                          <td >冠亚军和-号码</td>
                           <td>13</td>
                           <td>14</td>
                           <td>15</td>
@@ -201,7 +200,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                 <thead class="bg-danger">
                 <tr >
-                  <td width="100">冠亚军和-号码</td>
+                  <td >冠亚军和-号码</td>
                   <td>大小单双</td>
                     <td>单注最小限额</td>
                     <td>单注最大限额</td>
@@ -1518,13 +1517,13 @@ export default {
     padding:5px 3px;
 }
 .col-md-10{
-  width:1300px;
+  width:1100px;
   margin-top:5px;
   margin-left:10px;
 }
 .col-md-2{
   margin-left:10px;
-  width:1300px;
+  width:1100px;
 }
 
 </style>

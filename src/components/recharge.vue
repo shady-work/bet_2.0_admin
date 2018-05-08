@@ -1,13 +1,13 @@
 <style scoped>
 .table
   {
-    width:1200px;
+    width:1100px;
     margin-left:10px;
     margin-top:10px;
   }
   .my-nav
   {
-    width:1200px;
+    width:1100px;
     margin-left:10px;
     margin-top:10px;
   }
@@ -53,12 +53,12 @@
                   <b class="text-info"  v-if="v.tp_stu==2" >充值通过</b>
                 </td>
                 <td>{{v.tp_time}}</td>
-                <td v-if="v.tp_stu==1" style="text-align:right;">
+                <td v-if="v.tp_stu==1" style="text-align:center;">
                   <button  class="btn btn-primary btn-sm" @click="review_recharge(v.id,2)">通过</button>
                   <button  class="btn btn-primary btn-sm" @click="review_recharge(v.id,0)">拒绝</button>
                   <button class="btn btn-danger btn-sm"  @click="delete_one(v.id)">删除</button>
                 </td>
-                 <td v-if="v.tp_stu!=1" style="text-align:right;">
+                 <td v-if="v.tp_stu!=1" style="text-align:center;">
                   <button class="btn btn-danger btn-sm"  @click="delete_one(v.id)">删除</button>
                 </td>
             </tr>
