@@ -130,6 +130,61 @@
                     </tbody>
                 </table>
 
+
+                <table class="table table-hovor table-bordered table-striped text-center">
+                    <thead class="bg-danger">
+                    <tr >
+                        <td width="100">冠亚军和-号码</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(v,k) in odds_ssc_one" v-if='k==14'>
+                        <td >
+                            {{v.mark_b}}
+                        </td>
+                        <td>
+                            <input type="text" class="text-center form-control" v-model="odds_ssc_one[k].A">
+                        </td>
+                        <td>
+                            <input type="text" class="text-center form-control" v-model="odds_ssc_one[k].B">
+                        </td>
+                        <td>
+                            <input type="text" class="text-center form-control" v-model="odds_ssc_one[k].C">
+                        </td>
+                        <td>
+                            <input type="text" class="text-center form-control" v-model="odds_ssc_one[k].D">
+                        </td>
+                        <td>
+                            <input type="text" class="text-center form-control" v-model="odds_ssc_one[k].E">
+                        </td>
+                        <td>
+                            <input type="text" class="text-center form-control" v-model="odds_ssc_one[k].F">
+                        </td>
+                        <td>
+                            <input type="text" class="text-center form-control" v-model="odds_ssc_one[k].G">
+                        </td>
+                        <td>
+                            <input type="text" class="text-center form-control" v-model="odds_ssc_one[k].H">
+                        </td>
+                        <td>
+                            <input type="text" class="text-center form-control" v-model="odds_ssc_one[k].I">
+                        </td>
+                        <td>
+                            <input type="text" class="text-center form-control" v-model="odds_ssc_one[k].J">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-danger">
                     <tr >
