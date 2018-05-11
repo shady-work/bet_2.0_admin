@@ -782,7 +782,9 @@
 
         /*margin-top: 50px;*/
     }
-
+    #odds{
+        width: 1100px;
+    }
     .text-danger {
         font-size: 18px;
         font-weight: 700;

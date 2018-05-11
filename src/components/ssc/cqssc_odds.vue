@@ -833,6 +833,9 @@ export default {
   margin-top: 15px;
   margin-bottom: 15px;
 }
+#cqssc_odds{
+    width: 1100px;
+}
 .table {
 
   font-size: 12px!important;

@@ -1,5 +1,5 @@
 <template>
-    <div id='cq/pk10/_odds'>
+    <div id='pk10_odds'>
         <h3 class="ml10">北京赛车PK拾-系统盘口设定</h3>
         <div class="row">
             <div class="col-md-2">
@@ -85,10 +85,10 @@
                             <input type="text"  class="text-center form-control" v-model="list[k].K" @change="change_1_9_half(list[k].K,k)">
                         </td>
                         <td>
-                            <input type="text"  class="text-center form-control" v-model="list[k].O" v-bind:disabled="list[k].O == 0.0000">
+                            <input type="text"  class="text-center form-control" v-model="list[k].O" v-bind:disabled="list[k].O == 0.0000 || !list[k].O">
                         </td>
                         <td>
-                            <input type="text"  class="text-center form-control" v-model="list[k].P" v-bind:disabled="list[k].O == 0.0000">
+                            <input type="text"  class="text-center form-control" v-model="list[k].P" v-bind:disabled="list[k].P == 0.0000 || !list[k].P">
                         </td>
 
 
@@ -1556,6 +1556,9 @@
     .table {
 
         font-size:12px!important;
+    }
+    #pk10_odds{
+        width: 1100px;
     }
     .text-danger
     {

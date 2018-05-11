@@ -795,7 +795,9 @@
         font-size: 18px;
         font-weight: 700;
     }
-
+    #odds{
+        width: 1100px;
+    }
     input {
         font-size: 12px;
     }

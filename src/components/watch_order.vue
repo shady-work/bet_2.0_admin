@@ -80,7 +80,7 @@ export  default
          {
            var that = this;
            //创建websoket
-             let ws = new WebSocket("ws://"+ this.host +(this.$store.state.son_off?":8282":":9292"));
+             let ws = new WebSocket("ws://"+ this.host +(this.$store.state.son_off?":9292":":8282"));
            //当websoket创建成功的时候触发的函数
            ws.onopen = function ()
            {

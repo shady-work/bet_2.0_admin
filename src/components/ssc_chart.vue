@@ -159,6 +159,7 @@
 
 <style scoped>
   .col-md-8 {
+    width: 1100px;
     margin-left: 10px;
     margin-top: 5px;
   }
