@@ -53,12 +53,12 @@
               </td>
               <td>
                   <b v-if="v.type == 0">会员</b>
-                  <b v-if="v.type == 1">推广</b>
-                  <b v-if="v.type == 2">代理</b>
+                  <b v-if="v.type == 1">代理</b>
+                  <b v-if="v.type == 2">经理</b>
                   <b v-if="v.type == 3">管理</b>
               </td>
               <td v-if="!$store.state.son_off">
-                <a @click="show_users_tokensup(v.tokensup,v.username)">点此查看</a>
+                <a @click="show_users_tokensup(v.tokensup,v.username)" class="pointer">点此查看</a>
               </td>
               <td  style="text-align: right">
                 <button v-if="v.type != 0" class="btn btn-info btn-sm" @click="right_edit(v.user_id)">权限管理</button>

@@ -1,6 +1,6 @@
 <template>
     <div id="cqssc_history">
-
+        <h3>北京赛车PK拾用户下注历史</h3>
         <table class="table table-bordered table-hover table-striped text-center">
            <thead>
              <tr>

@@ -204,13 +204,13 @@ export default {
 <style scoped>
 .table
   {
-    width:1200px;
+    width:1100px;
     margin-left:10px;
     margin-top:10px;
   }
   .my-nav
   {
-    width:1200px;
+    width:1100px;
     margin-left:10px;
     margin-top:10px;
   }

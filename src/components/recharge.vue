@@ -20,9 +20,9 @@
         <li role="presentation" class="active"><a >充值</a></li>
         <li role="presentation" ><a href="#/withdraw">提现</a></li>
       </ul>
-      <table class="table table-hover table-bordered table-striped text-center">
+      <table class="table table-hover table-bordered table-striped text-center middle">
           <thead>
-            <tr >
+            <tr class="middle">
               <td>序号</td>
               <td>用户名/昵称</td>
               <td>充值金额</td>
@@ -33,8 +33,8 @@
               <td  v-show='!one_user_recharge'>操作</td>
             </tr>
           </thead>
-          <tbody>
-            <tr v-for="(v,k) in list">
+          <tbody class="middle">
+            <tr v-for="(v,k) in list" class="middle">
                 <td>
                   {{k}}
                 </td>

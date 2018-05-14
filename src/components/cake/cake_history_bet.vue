@@ -1,5 +1,6 @@
 <template>
   <div id="cqssc_history">
+    <h3>加拿大28用户下注历史</h3>
     <table class="table table-bordered table-hover table-striped text-center">
       <thead>
       <tr>

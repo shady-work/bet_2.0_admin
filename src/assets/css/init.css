@@ -183,3 +183,8 @@ a:hover{
 {
     width: 700px;margin-top: 60px;
 }
+
+.middle
+{
+  vertical-align: middle!important;
+}

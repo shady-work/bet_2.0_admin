@@ -1,6 +1,7 @@
 <template>
     <div id="cqssc_history">
-        <table class="table table-bordered table-hover table-striped text-center">
+      <h3>PC蛋蛋用户下注历史</h3>
+      <table class="table table-bordered table-hover table-striped text-center">
            <thead>
              <tr>
                <td>用户名-昵称</td>
