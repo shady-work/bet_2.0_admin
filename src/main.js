@@ -22,6 +22,7 @@ Vue.http.interceptors.push(function(request, next)
   // 跨域携带cookie
   request.credentials = true;
   request.headers.set('Authorization', 'bearer ' + window.localStorage.token);
+  request.params.t = window.localStorage.token;
   next();
 });
 Vue.http.options.emulateJSON = true;//vue-resource的处理方案
@@ -51,9 +52,9 @@ var store = new vuex.Store(
 });
 
 //配置请求的uri
-Vue.prototype.api = `http://lty-main.com`;  //母盘
-//   Vue.prototype.api = `http://lty-sub.com`;  //子盘
-// Vue.prototype.api = ``;
+   Vue.prototype.api = `http://lty-main.com`;  //母盘
+//  Vue.prototype.api = `http://lty-sub.com`;  //子盘
+//   Vue.prototype.api = ``;
 
 Vue.prototype.toUp = (str)=>
 {

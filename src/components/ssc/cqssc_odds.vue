@@ -833,7 +833,7 @@ export default {
     width: 1100px;
 }
 .table {
-
+  width: 1065px;
   font-size: 12px!important;
 }
 table tr td

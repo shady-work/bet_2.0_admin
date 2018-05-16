@@ -773,7 +773,8 @@
     }
 
     .table {
-
+      width: 1065px;
+      font-size: 12px;
         /*margin-top: 50px;*/
     }
     #odds{
@@ -803,5 +804,9 @@
         margin-left: 10px;
         width: 1100px;
         margin-top: 5px;
+    }
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td
+    {
+      padding: 5px;
     }
 </style>

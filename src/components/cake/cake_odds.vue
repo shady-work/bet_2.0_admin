@@ -780,7 +780,10 @@
 </script>
 
 <style scoped>
-
+    .table
+    {
+      width: 1065px;
+    }
     .nav {
         margin-top: 15px;
         margin-bottom: 15px;

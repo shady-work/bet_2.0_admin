@@ -402,7 +402,7 @@ export default {
   margin-top:50px;
 }
 .table {
-  
+  width: 1100px;
   font-size: 12px;
   
 }
