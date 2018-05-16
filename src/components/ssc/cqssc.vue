@@ -1,6 +1,6 @@
 <template>
     <div id="cqssc">
-        <h3>重庆时时用户列表</h3>
+        <h3>重庆时时彩用户列表</h3>
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr class="text-center" v-if="$store.state.son_off">

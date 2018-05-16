@@ -1,36 +1,29 @@
 <template>
     <div id='odds'>
-
-        <div class="row">
+      <h3 class="ml10">PC蛋蛋-系统盘口设定</h3>
+      <div class="row">
             <div class="col-md-2">
-                <table class="table table-hovor table-bordered table-striped text-center">
-                    <thead class="bg-primary">
-                    <tr>
-                        <td width="70" style='line-height:30px;'>盘口</td>
-                        <td v-for="(v,k) in final_list" :class="active_array[k]?'text-danger':''">
-                            {{toUp(v)}}盘
-                        </td>
-                        <td colspan="2">
-                            <button v-if="$store.state.admin_type==3" class="btn-sm btn btn-warning" @click='add_one()'>
-                                添加盘口
-                            </button>
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td style='line-height:30px;'>操作
-                        </td>
-                        <td v-for="(v,k) in final_list">
-
-                            <button v-if="$store.state.admin_type==3" class="btn btn-danger btn-sm  mr10  edit m"
-                                    style="margin-left: 3px;" @click='delete_one(v)'>删除
-                            </button>
-                            <button class="btn btn-info  btn-sm edit" @click='choose_one(v,k)'>查看</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+              <ul>
+                <li
+                  v-for="(v,k) in final_list" :class="active_array[k]?'text-danger':''"
+                  @click='choose_one(v,k)'
+                  class="pull-left text-center pointer mt5"
+                  style="margin-left: 3px;width: 210px;height: 40px;line-height: 40px;box-sizing: border-box;border: 1px solid #e5e5e5;position:relative;"
+                >
+                  {{toUp(v)}}盘
+                  <el-button type="danger" icon="el-icon-delete" circle size="mini"
+                             style="padding: 3px;position: absolute;top:0;right:0;" @click='delete_one(v,$event)'></el-button>
+                  <!--<span style="position:absolute;right:0;top:0;width: 15px;height:15px;line-height:15px;font-size:12px;border-radius: 50%;background:#000;color: #fff;">X</span>-->
+                </li>
+                <li
+                  @click='add_one()'
+                  class="pull-left text-center pointer mt5 color-white"
+                  style="background: #67C23A;margin-left: 3px;width: 210px;height: 40px;line-height: 40px;box-sizing: border-box;border: 1px solid #e5e5e5;position:relative;"
+                >
+                  添加盘口
+                </li>
+              </ul>
+              <div class="clear"></div>
             </div>
             <div class="col-md-10">
                 <table class="table table-hovor table-bordered table-striped text-center">
@@ -92,7 +85,6 @@
                         <td>赔率</td>
                         <td v-for="(v,k,index) in list[4]" v-if='index>=10&&index<20'>
                             <input type="text" class="form-control" v-model="list[4]['e' + (index+1)]">
-
                         </td>
                     </tr>
                     </tbody>
@@ -693,7 +685,7 @@
                         `${this.api}/admin/egg/odds`
                     )
                     .then(function (res) {
-                        console.log(res.data);
+
                         if (res.data.status == 200) {
                             // console.log(res.data);
                             this.all_odds = res.data.data.odds_list;
@@ -753,7 +745,9 @@
                         }
                     });
             },
-            delete_one: function (whichOne) {
+            delete_one: function (whichOne,e) {
+              let event = e||window.event;
+              event.cancelBubble = true;
                 this.$http
                     .delete(`${this.api}/admin/egg/odds/egg_${whichOne}`)
                     .then(function (res) {

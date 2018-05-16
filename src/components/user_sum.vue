@@ -1,6 +1,13 @@
 <template>
 
     <div style="margin-left:10px;margin-top:10px;">
+      <h4 style="margin-top: 8px;margin-bottom: 14px;width: 1100px;">
+        用户名：<span class="label label-default">{{user.username}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        状态：<span class="label" :class="user.status==1?'label-success':'label-danger'">{{user.status==1?'启用':'禁用'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        类型：{{user.type == 0?'会员':(user.type == 1?'代理':(user.type==2?'推广':(user.type == 3?'管理':'')))}}
+        <router-link to="users" class="pull-right mr10">返回查看用户列表</router-link>
+      </h4>
+
       <div class="xy-list">
         <a :class="table_lotterys[0]?'active':''" @click="tab_lottery(0)" style="cursor: pointer">
           本周报表
@@ -90,6 +97,7 @@
           data:[],
           details_data:[],
           details_show:false,
+          user:{},
 
         };
       return data;
@@ -147,7 +155,7 @@
         {
           this.$http.get(`${this.api}/admin/clearList?user_id=${this.user_id}`).then(function(res)
           {
-            console.log(res.data.data);
+
             if(res.data.status == 200)
             {
               this.sum_week = res.data.data;
@@ -193,12 +201,26 @@
 
         },
 
+        //获取用户的信息
+        get_user_info()
+        {
+           this.$http.get(this.api + "/admin/users/" + this.user_id).then(function(res)
+           {
+             console.log(res.data);
+             if(res.data.status == 200 )
+             {
+               this.user = res.data.data.user
+             }
+           })
+        }
+
       },//methods end
     created:function()
     {
       this.user_id = this.$route.params.u_id?this.$route.params.u_id:window.sessionStorage.sum_uid;
       window.sessionStorage.sum_uid = this.user_id;
       this.get_all_data();
+      this.get_user_info();
     },
   }
 
