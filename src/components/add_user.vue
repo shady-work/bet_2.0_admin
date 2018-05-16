@@ -357,8 +357,8 @@
   }
   .form-horizontal
   {
-    width: 80%;
-    margin:0 auto;
+    width: 900px;
+
     margin-left:10px;
   }
   #inlineCheckbox1,#inlineCheckbox2,#inlineCheckbox3,#inlineCheckbox4
@@ -371,6 +371,7 @@
   .checkbox-inline
   {
     margin-right:20px;
+    margin-left: 10px;
   }
   .form-group{
     /*position:absolute;*/

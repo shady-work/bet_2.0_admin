@@ -530,8 +530,8 @@
   }
   #search
   {
-    height:40px;
-    width: 80%;
+    height:65px;
+    width: 1000px;
     margin:0 auto;
     padding-top: 15px;
     margin-left:10px;
