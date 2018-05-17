@@ -333,9 +333,9 @@
 
 <style scoped>
   .table {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 50px;
+    width:1100px;
+    margin-left:10px;
+    margin-top: 5px;
   }
   #myModal>.panel
   {
