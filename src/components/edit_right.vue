@@ -1,8 +1,7 @@
 <template>
       <div id="right">
-        <div>
-
-          <el-tree
+        <div style="overflow: hidden">
+          <el-tree style="float:left;"
             :data="menus"
             show-checkbox
             node-key="id"
@@ -11,8 +10,7 @@
             highlight-current
             :props="defaultProps">
           </el-tree>
-          <el-button @click="updateAuth" :loading="updateAuthStu">修改权限</el-button>
-
+          <el-button class="btn btn-success" style="float:left;margin-left:20px;margin-top:20px;" @click="updateAuth" :loading="updateAuthStu">修改权限</el-button>
         </div>
       </div>
 </template>
@@ -93,4 +91,9 @@
   }
 </script>
 
-<style scoped></style>
+<style scoped>
+  #right{
+    width:10%;
+    /*margin-left: 20px;*/
+  }
+</style>

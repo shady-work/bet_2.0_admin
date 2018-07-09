@@ -8,7 +8,7 @@
                   v-for="(v,k) in final_list" :class="active_array[k]?'text-danger':''"
                   @click='choose_one(v,k)'
                   class="pull-left text-center pointer mt5"
-                  style="margin-left: 3px;width: 210px;height: 40px;line-height: 40px;box-sizing: border-box;border: 1px solid #e5e5e5;position:relative;"
+                  style="margin-right: 3px;width: 210px;height: 40px;line-height: 40px;box-sizing: border-box;border: 1px solid #e5e5e5;position:relative;border-radius: 5px"
                 >
                   {{toUp(v)}}盘
                   <el-button type="danger" icon="el-icon-delete" circle size="mini"
@@ -18,7 +18,7 @@
                 <li
                   @click='add_one()'
                   class="pull-left text-center pointer mt5 color-white"
-                  style="background: #67C23A;margin-left: 3px;width: 210px;height: 40px;line-height: 40px;box-sizing: border-box;border: 1px solid #e5e5e5;position:relative;"
+                  style="background: #67C23A;margin-right: 3px;width: 210px;height: 40px;line-height: 40px;box-sizing: border-box;border: 1px solid #e5e5e5;position:relative;border-radius: 5px;"
                 >
                   添加盘口
                 </li>
@@ -29,14 +29,14 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-primary">
                     <tr >
-                        <td colspan="3">{{toUp(which_one)}}盘
+                        <td colspan="3" style="line-height: 32px;font-size: 16px;font-weight: 600;padding-right: 50px">{{toUp(which_one)}}盘
                             <button class="pull-right save  btn btn-info" @click='edit_one()'>保存修改</button>
                         </td>
                     </tr>
                     </thead>
                     <thead class="bg-warning">
                     <tr >
-                        <td>级别</td>
+                        <td width="180">级别</td>
                         <td>返点</td>
                         <td>流水</td>
                     </tr>
@@ -59,7 +59,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-primary">
                     <tr style="vertical-align:middle;">
-                        <td width="80">特码/球序</td>
+                        <td width="180">特码/球序</td>
                         <td>特码1-10</td>
                         <td>大小单双</td>
                         <td>龙</td>
@@ -124,7 +124,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-danger">
                     <tr >
-                        <td width="100">冠亚军和-号码</td>
+                        <td width="180">冠亚军和-号码</td>
                         <td>3</td>
                         <td>4</td>
                         <td>5</td>
@@ -179,7 +179,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-danger">
                     <tr >
-                        <td width="100">冠亚军和-号码</td>
+                        <td width="180">冠亚军和-号码</td>
                         <td>13</td>
                         <td>14</td>
                         <td>15</td>
@@ -1466,6 +1466,7 @@
                         `${this.api}/admin/pk10/odds`
                     )
                     .then(function(res) {
+                      console.log(res);
                         if(res.data.status == 200)
                         {
                             this.all_odds = res.data.data.odds_list;
@@ -1554,11 +1555,11 @@
         margin-bottom: 15px;
     }
     .table {
-        width: 1065px;
-        font-size:12px!important;
+        width: 100%;
+        font-size:14px;
     }
     #pk10_odds{
-        width: 1100px;
+        width:100%;
     }
     .text-danger
     {
@@ -1577,13 +1578,18 @@
         padding:5px 3px;
     }
     .col-md-10{
-        width:1100px;
+        width:100%;
         margin-top:5px;
-        margin-left:10px;
+        /*margin-left:10px;*/
     }
     .col-md-2{
-        margin-left:10px;
-        width:1100px;
+        /*margin-left:10px;*/
+        width:100%;
+        margin-bottom: 20px;
     }
-
+    .table thead td{
+      font-size: 16px;
+      font-weight: 600;
+      padding:10px 0;
+    }
 </style>

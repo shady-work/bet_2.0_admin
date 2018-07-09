@@ -1,12 +1,12 @@
 <template>
     <div>
 
-        <div class="panel panel-success" style="width: 1200px;margin-top: 5px;margin-left: 10px;">
-            <div class="panel-heading">为用户选择彩种</div>
+        <div class="panel panel-success" style="width: 1200px;margin:20px;">
+            <div class="panel-heading" style="padding:15px;font-size: 16px;font-weight: 600">为用户选择彩种</div>
             <div class="panel-body">
                 <div class="form-horizontal"  v-show="next_step">
                     <div class="form-group">
-                        <label  class="col-sm-2 control-label">选择彩种</label>
+                        <label  class="col-sm-2 control-label" style="font-size: 16px;">选择彩种：</label>
                         <div class="col-sm-10">
                             <label class="checkbox-inline">
                                 <input type="checkbox" id="inlineCheckbox1" value="cqssc"   v-model="lotteries"> 重庆时时彩
@@ -22,14 +22,14 @@
                             </label>
                         </div>
                     </div>
-                    <button class="btn btn-primary btn-lg center-block" @click="nextstep()">修改</button>
+                    <button class="btn btn-primary center-block" @click="nextstep()">修改</button>
                 </div>
             </div>
         </div>
 
 
           <div class="form-horizontal" v-show="!next_step">
-               
+
                 <div class="lottery" v-for="(v,k) in lottery_list">
                     <div class="form-group" style="margin-bottom: 5px;">
                     <label  class="col-sm-2 control-label">
@@ -72,10 +72,10 @@
                 <br>
           </div>
     </div>
-    
 
 
-    
+
+
 </template>
 
 <script>
@@ -141,8 +141,8 @@ export default {
                                 this.lotteries.push(res.data.data.list[i].name);
                             }
                     }
-                } 
-                
+                }
+
             });
         },
         nextstep()
@@ -186,7 +186,7 @@ export default {
             })
             .then(function(res)
             {
-                console.log(res.data); 
+                console.log(res.data);
                 if(res.data.status == 200)
                 {
                     //只是删除彩种，提示成功，并且跳转到user_manager的页面
@@ -265,7 +265,7 @@ export default {
                   {
                       if(res.data.status == 200)
                       {
-                         
+
                          this.$message({message:"修改成功",center:true,type:"success",});
                          this.$router.push('/users');
                          return;
@@ -289,7 +289,7 @@ export default {
     },
     watch:
     {
-      
+
     }
 }
 </script>
@@ -297,16 +297,15 @@ export default {
 <style scoped>
 .form-horizontal
   {
-    width:1200px;
-
-    margin-left:10px;
+    /*width:1200px;*/
+    /*margin-left:10px;*/
   }
   #inlineCheckbox1,#inlineCheckbox2,#inlineCheckbox3,#inlineCheckbox4
   {
-    width:25px;
-    height:25px;
+    width:20px;
+    height:20px;
     margin-left:-30px;
-    margin-top:-6px;
+    margin-top:0;
   }
   .checkbox-inline
   {

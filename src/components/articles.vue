@@ -20,8 +20,8 @@
                   <td>{{v.author}}</td>
                   <td>{{v.update_time}}</td>
                   <td>
-                    <button class="btn btn-danger btn-sm" @click="delete_artile(v.id,v.title)">删除</button>
-                    <button class="btn btn-info btn-sm" @click="check_article(v.id)">查看</button>
+                    <button class="btn btn-danger" @click="delete_artile(v.id,v.title)">删除</button>
+                    <button class="btn btn-info" @click="check_article(v.id)">查看</button>
                   </td>
               </tr>
           </tbody>
@@ -42,7 +42,7 @@
           </div>
           <div class="col-md-4"></div>
         </div>
-        
+
 
         <!-- element dialog -->
         <el-dialog
@@ -189,14 +189,14 @@
         {
           // confirm('是否删除标题为' + title + '的文章?')
           this.$confirm('确认删除？')
-          .then(_ => 
+          .then(_ =>
           {
             this.$http.delete(`${this.api}/admin/articles/${a_id}`)
               .then(function(res)
               {
 
                  if(res.data.status == 200)
-                 {  
+                 {
                    this.$message(
                     {
                         message:res.data.msg,
@@ -212,8 +212,8 @@
           })
           .catch(_ => {});
           return;
-          
-         
+
+
         }
      },
   }
@@ -222,9 +222,14 @@
 
 <style scoped>
   .table {
-    width:1100px;
-   margin-left:10px;
+    width:100%;
+   /*margin-left:10px;*/
     margin-top: 5px;
+  }
+  .table thead td{
+    font-weight: 600;
+    font-size: 16px;
+    padding:15px 0;
   }
   #articles>.add-btn
   {
@@ -236,8 +241,9 @@
     margin-bottom:15px;
   }
   .row{
-    width:1200px;
-     margin-left:25px;
+    width:100%;
+     /*margin-left:25px;*/
+    font-size: 16px;
   }
 </style>
 

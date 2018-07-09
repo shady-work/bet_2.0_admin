@@ -687,7 +687,7 @@
                     .then(function (res) {
 
                         if (res.data.status == 200) {
-                            // console.log(res.data);
+                            console.log(res.data);
                             this.all_odds = res.data.data.odds_list;
                             this.list = this.all_odds[0].odds;
                             this.collectData();

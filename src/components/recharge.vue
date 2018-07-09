@@ -1,17 +1,24 @@
 <style scoped>
 .table
   {
-    width:1100px;
-    margin-left:10px;
+    width:100%;
+    /*margin-left:10px;*/
     margin-top:10px;
   }
   .my-nav
   {
-    width:1100px;
-    margin-left:10px;
-    margin-top:10px;
+    width:100%;
+    /*margin-left:10px;*/
+    margin:30px 0;
   }
-
+  .table thead td{
+    padding:15px 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+.row{
+  font-size: 16px;
+}
 </style>
 
 <template>
@@ -91,8 +98,8 @@
 export default {
   data: function() {
     return {
-      list: [], //recharge list
-      list_all_back_up: [], //all recharge lit back up;
+      list: [], //recharge list 初始化的充值列表
+      list_all_back_up: [], //all recharge lit back up; element 样式控制
       one_user_recharge: false, //some one's recharge list
       page:1,
       per_page:15,
@@ -108,6 +115,7 @@ export default {
     /*
      *load all recharge records
      *@augments
+     *
      */
     get_recharge_list: function() {
       this.$http.get(this.api + "/admin/topups").then(function(res) {
@@ -123,9 +131,9 @@ export default {
         }
       });
     },
+    /*刪除*/
     delete_one: function(recharge_id) {
-      this.$http
-        .delete(this.api + "/admin/topups/" + recharge_id)
+      this.$http.delete(this.api + "/admin/topups/" + recharge_id)
         .then(function(res) {
           if (res.data.status == 200) {
           this.$message(

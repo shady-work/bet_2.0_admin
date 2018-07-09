@@ -3,13 +3,13 @@
         <div class="left">
             <!--choose_lty-->
             <div class="choose_lty">
-                <h4 class="text-center" style="margin-bottom: 14px;">重庆时时彩</h4>
+                <h4 class="text-center" style="margin:10px 0 20px;">重庆时时彩</h4>
             </div>
             <!--choose_handicap-->
             <table class="table table-hovor table-bordered table-striped text-center">
                 <thead class="bg-primary">
                 <tr>
-                    <td width="130" style='line-height:30px;'>盘口名称</td>
+                    <td width="130" style='line-height:30px;font-size: 16px;font-weight: 600'>盘口名称</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -17,14 +17,13 @@
                     <td :class="active_array[k]?'text-danger':''" @click='choose_one_ssc(k,v)' style="cursor:pointer;">
                         {{v}}盘 <b v-if="is_custom[k]" class="text-warning">(定制盘)</b>
                     </td>
-
                 </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="right">
-            <h4 style="margin-top: 8px;margin-bottom: 14px;">
+            <h4 style="margin:10px 0 20px;">
                 用户名：<span class="label label-default">{{user.username}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 状态：<span class="label" :class="user.status==1?'label-success':'label-danger'">{{user.status==1?'启用':'禁用'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
                 类型：{{user.type == 0?'会员':(user.type == 1?'代理':(user.type==2?'推广':(user.type == 3?'管理':'')))}}
@@ -44,7 +43,7 @@
                     </thead>
                     <thead class="bg-warning">
                     <tr>
-                        <td>级别</td>
+                        <td width="180">级别</td>
                         <td>返点</td>
                         <td>流水</td>
                     </tr>
@@ -68,7 +67,7 @@
                        style="margin-bottom: 0;font-size: 12px;">
                     <thead class="bg-primary">
                     <tr>
-                        <td width="50">球序</td>
+                        <td width="180">球序</td>
                         <td>特码0-9</td>
                         <td>大小单双</td>
                         <td>单注最小限额</td>
@@ -128,7 +127,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-danger">
                     <tr>
-                        <td width="80">总和、龙虎</td>
+                        <td width="180">总和、龙虎</td>
                         <td>总和:单,双,大,小,龙虎</td>
                         <td>和</td>
                         <td>单注最小限额</td>
@@ -187,7 +186,7 @@
                        style="margin-bottom: 0;font-size: 12px;">
                     <thead class="bg-success">
                     <tr>
-                        <td width="80">前三，中三，后三</td>
+                        <td width="180">前三，中三，后三</td>
                         <td>豹子</td>
                         <td>顺子</td>
                         <td>对子</td>
@@ -858,56 +857,49 @@
     .personal-handicaps {
         overflow: hidden;
     }
-
     .left {
-        width: 200px;
+        width: 9%;
         float: left;
         box-sizing: border-box;
         padding-top: 25px;
     }
-
     .choose_lty {
         width: 100%;
         overflow: hidden;
     }
-
-
-
-
-
-
     .right {
-        width: 880px;
+        width: 90%;
         float: left;
         box-sizing: border-box;
         padding-top: 25px;
-        margin-left: 15px;
+        margin-left: 1%;
     }
-
     .right > .form-control {
         text-align: center;
         width: 100%;
         font-size: 12px !important;
         padding: 5px 3px;
     }
-
     td > input {
 
     }
-
     .text-danger {
         font-size: 18px;
         font-weight: 700;
     }
-
     table {
-        font-size: 12px !important;
-        margin-bottom: 0px !important;
+        font-size: 14px;
+        margin-bottom: 0;
     }
-
     .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
         padding: 8px 2px;
+      font-size: 14px;
     }
+  .table thead tr td{
+    padding:15px 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
 </style>
 
 

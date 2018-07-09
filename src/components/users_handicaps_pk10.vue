@@ -3,7 +3,7 @@
         <div class="left">
             <!--choose_lty-->
             <div class="choose_lty">
-                <h4 class="text-center" style="margin-bottom: 14px;">北京赛车PK拾</h4>
+                <h4 class="text-center" style="margin:10px 0 20px;">北京赛车PK拾</h4>
             </div>
             <!--choose_handicap-->
             <table class="table table-hovor table-bordered table-striped text-center">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="right">
-            <h4 style="margin-top: 8px;margin-bottom: 14px;">
+            <h4 style="margin:10px 0 20px;">
                 用户名：<span class="label label-default">{{user.username}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 状态：<span class="label" :class="user.status==1?'label-success':'label-danger'">{{user.status==1?'启用':'禁用'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
                 类型：{{user.type == 0?'会员':(user.type == 1?'代理':(user.type==2?'推广':(user.type == 3?'管理':'')))}}
@@ -41,7 +41,7 @@
                     </thead>
                     <thead class="bg-warning">
                     <tr >
-                        <td>级别</td>
+                        <td width="180">级别</td>
                         <td>返点</td>
                         <td>流水</td>
                     </tr>
@@ -65,7 +65,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-primary">
                     <tr >
-                        <td width="50">球序</td>
+                        <td width="180">球序</td>
                         <td>特码1-10</td>
                         <td>大小单双</td>
                         <td>龙</td>
@@ -99,7 +99,6 @@
                         <td>
                             <input type="text" class="form-control text-center"
                                    v-model="odds_ssc_one[k].bet_limit.order_limit_min">
-
                         </td>
                         <td>
                             <input type="text" class="form-control text-center"
@@ -134,7 +133,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-danger">
                     <tr >
-                        <td width="100">冠亚军和-号码</td>
+                        <td width="180">冠亚军和-号码</td>
                         <td>3</td>
                         <td>4</td>
                         <td>5</td>
@@ -188,7 +187,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-danger">
                     <tr >
-                        <td width="90">冠亚军和-号码</td>
+                        <td width="180">冠亚军和-号码</td>
                         <td>13</td>
                         <td>14</td>
                         <td>15</td>
@@ -267,7 +266,7 @@
                 <table class="table table-hovor table-bordered table-striped text-center">
                     <thead class="bg-danger">
                     <tr >
-                        <td width="90">冠亚军和-号码</td>
+                        <td width="180">冠亚军和-号码</td>
                         <td>大</td>
                         <td>小</td>
                         <td>单</td>
@@ -1626,7 +1625,7 @@
     }
 
     .left {
-        width: 200px;
+        width:9%;
         float: left;
         box-sizing: border-box;
         padding-top: 25px;
@@ -1636,17 +1635,12 @@
         width: 100%;
         overflow: hidden;
     }
-
-
-
-
-
     .right {
-        width: 880px;
+        width: 90%;
         float: left;
         box-sizing: border-box;
         padding-top: 25px;
-        margin-left: 15px;
+        margin-left: 1%;
     }
 
     .right > .form-control {
@@ -1669,12 +1663,18 @@
         padding: 6px 8px;
     }
     table {
-        font-size: 12px !important;
-        margin-bottom: 0px !important;
+        font-size: 14px;
+        margin-bottom: 0;
     }
 
     .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
         padding: 8px 2px;
+      font-size: 14px;
+    }
+    .table thead tr td{
+      padding:15px 0;
+      font-size: 16px;
+      font-weight: 600;
     }
 </style>
 

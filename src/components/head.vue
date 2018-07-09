@@ -1,7 +1,7 @@
 <template>
    <div id="head">
      <nav class="navbar navbar-inverse navbar-fixed-top">
-       <div class="container-fluid">
+       <div class="container-fluid pull-right">
          <span class="hello">
             <router-link to="/" class="color-white">首页</router-link>
          </span>
@@ -59,16 +59,22 @@
 
 
 <style scoped>
+  .navbar{
+    background:#2aabd2;
+    border:0;
+    height:60px;
+    line-height:60px;
+  }
   .hello
   {
     font-size: 18px;
     color: #fff;
-    line-height: 40px;
-    margin-left: 15px;
+    line-height:60px;
+    margin-right:30px;
   }
   .log-out
   {
-    margin-right: 30px;
+    margin-right:60px;
     cursor: pointer;
   }
 </style>

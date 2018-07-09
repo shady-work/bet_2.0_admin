@@ -29,6 +29,16 @@
                   }
                ]
              },
+             //赔率与反水
+             {
+               label:'赔率与反水',
+               children:[
+                 {
+                   label:'系统赔率',
+                   href:'odds_fs',
+                 },
+               ]
+             },
              //资金明细
              {
                label: '资金明细',
@@ -280,12 +290,13 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    background: #333;
-    border: 1px solid #222;
-    padding-top: 55px;
+    background: #545C64;
+    /*border: 1px solid #222;*/
+    padding-top:60px;
     padding-left:4px;
     padding-right:4px;
-    color: #fff;
+    color: #f2f2f2;
+    font-size:16px;
     z-index: 2;
   }
 
@@ -325,7 +336,7 @@
   }
   #left .active
   {
-    background: #777!important;
+    /*background: #777!important;*/
   }
   .list-admin-items
   {
@@ -343,7 +354,7 @@
     padding-top: 5px;
     padding-bottom: 5px;
     color: #fff;
-    text-decoration: none!important;
+    /*text-decoration: none!important;*/
     background: #000;
     height:40px;
     line-height:30px;
@@ -358,36 +369,36 @@
   }
   .list-admin-items>.active
   {
-    background: #777;
+    /*background: #777;*/
   }
 </style>
 <style>
   .el-tree
   {
-    background: #333!important;
+    background: #545C64!important;
     color:#e5e5e5;
   }
   .el-tree-node
   {
     border-bottom:1px solid #222;
-    background: #333!important;
+    background: #545C64!important;
+  }
+  .el-tree-node>div.el-tree-node__content{
+    border-bottom:1px solid #222;
   }
   .el-tree-node__content
   {
     display: block;
     width: 100%;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding:0;
     color: #e5e5e5;
     text-decoration: none!important;
-    height:40px;
-    line-height:30px;
+    height:50px;
+    line-height:50px;
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-
-
   }
   .el-tree-node__content .el-tree-node__label
   {
@@ -396,12 +407,17 @@
   }
   .el-tree-node__content:hover
   {
-    background: #636363;
+    background: #434A50;
+    color:#FFD04B;
   }
   .el-tree-node__children .el-tree-node__label
   {
     font-size: 14px;
     font-weight: normal;
+  }
+  .is-current>div.el-tree-node__content{
+    color:#ffd048;
+    border-bottom: 1px solid #222;
   }
   .is-expanded, .is-current, .is-focusable
   {

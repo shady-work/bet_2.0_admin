@@ -394,15 +394,23 @@
 <style scoped>
   #myModal > .panel
   {
-    width: 800px;
+    width: 900px;
     margin-top: 50px;
   }
   .table {
-    font-size: 12px;
+    font-size: 14px;
+  }
+  .table thead td{
+    padding:15px 0;
+    font-size: 16px;
+    font-weight: 600;
   }
   #cqssc{
-    margin-left: 10px;
-    width:1100px;
+    /*margin-left: 10px;*/
+    width:100%;
     margin-top:5px;
+  }
+  .row{
+    font-size: 16px;
   }
 </style>

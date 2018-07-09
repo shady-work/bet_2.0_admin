@@ -8,7 +8,7 @@
                      v-for="(v,k) in final_list" :class="active_array[k]?'text-danger':''"
                      @click='choose_one(v,k)'
                      class="pull-left text-center pointer mt5"
-                     style="margin-left: 3px;width: 210px;height: 40px;line-height: 40px;box-sizing: border-box;border: 1px solid #e5e5e5;position:relative;"
+                     style="margin-right:8px;width: 210px;height: 40px;line-height: 40px;box-sizing: border-box;border: 1px solid #e5e5e5;position:relative;border-radius: 5px"
                    >
                      {{toUp(v)}}盘
                      <el-button type="danger" icon="el-icon-delete" circle size="mini"
@@ -18,7 +18,7 @@
                    <li
                      @click='add_one()'
                      class="pull-left text-center pointer mt5 color-white"
-                     style="background: #67C23A;margin-left: 3px;width: 210px;height: 40px;line-height: 40px;box-sizing: border-box;border: 1px solid #e5e5e5;position:relative;"
+                     style="background: #67C23A;margin-left: 3px;width: 210px;height: 40px;line-height: 40px;box-sizing: border-box;border: 1px solid #e5e5e5;position:relative;border-radius: 5px"
                    >
                      添加盘口
                    </li>
@@ -30,8 +30,8 @@
                         <table class="table table-hovor table-bordered table-striped text-center">
                             <thead class="bg-primary">
                                 <tr >
-                                    <td colspan="3">{{toUp(which_one)}}盘
-                                        <button v-if="$store.state.admin_type==3" class="pull-right save  btn btn-info" @click='edit_one()'>保存修改</button>
+                                    <td colspan="3" style="font-size: 16px;font-weight: 600;line-height: 32px;padding-right: 50px">{{toUp(which_one)}}盘
+                                        <button  v-if="$store.state.admin_type==3" class="pull-right save  btn btn-info" @click='edit_one()'>保存修改</button>
                                     </td>
                                 </tr>
                             </thead>
@@ -715,20 +715,22 @@ export default {
   },
   methods: {
       change_1_9_digit:function(val,k){
-           // console.log(val);
+           console.log(val);
           let array = ['A','B','C','D','E','F','G','H','I','J'];
           for(let i=0;i<array.length;i++){
               this.list[k][array[i]] = val;
           }
       },
+    //获取全部赔率，表格数据
     get_all_odds:function(){
         this.$http
         .get(
           `${this.api}/admin/ssc/odds`
         )
         .then(function(res) {
+          console.log(res);
             if(res.data.status == 200)
-            {   
+            {
 
                 this.all_odds = res.data.data.odds_list;
                 this.list = this.all_odds[0].odds;
@@ -736,6 +738,7 @@ export default {
             }
         });
     },
+    //获取各个盘口名称
     collectData:function()
     {
       this.final_list = [];
@@ -744,21 +747,25 @@ export default {
             this.final_list.push(this.all_odds[i].name);
         }
     },
+    //选中盘口
     choose_one: function(whichOne, index) {
       this.active_array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
       this.which_one = whichOne;
       this.active_array[index] = 1;
+      // console.log(this.active_array);
       this.list = this.all_odds[index].odds;
     },
+    //保存修改数据
     edit_one: function() {
       this.$http
         .put(`${this.api}/admin/ssc/odds/ssc_${this.which_one}`, {
           odds: this.list
         })
         .then(function(res) {
-          // 
+          // console.log(this.list);
+          //
           if(res.data.status==200){
-              console.log(res.data);
+              // console.log(res.data);
               this.$message(
                     {
                         message:res.data.msg,
@@ -771,7 +778,7 @@ export default {
 
         });
     },
-
+    //添加盘口
     add_one: function()
     {
       this.$http
@@ -791,6 +798,7 @@ export default {
           }
         });
     },
+    //删除盘口
     delete_one: function(whichOne,e) {
       let event = e||window.event;
       event.cancelBubble = true;
@@ -830,19 +838,19 @@ export default {
   margin-bottom: 15px;
 }
 #cqssc_odds{
-    width: 1100px;
+    width: 100%;
 }
 .table {
-  width: 1065px;
-  font-size: 12px!important;
+  width: 100%;
+  font-size:14px;
 }
 table tr td
 {
-  font-size: 12px!important;
+  font-size:14px;
 }
 .form-control
 {
-  font-size: 12px!important;
+  font-size:14px;
 }
 .text-danger
 {
@@ -850,13 +858,14 @@ table tr td
     font-weight: 700;
 }
 .col-md-10{
-  width:1100px;
+  width:100%;
   margin-top:5px;
-  margin-left:10px;
+  /*margin-left:10px;*/
 }
 .col-md-2{
-  margin-left:10px;
-  width:1100px;
+  /*margin-left:10px;*/
+  width:100%;
+  margin-bottom: 20px;
 }
 .form-control{
     padding:5px 3px;

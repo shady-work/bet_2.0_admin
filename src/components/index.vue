@@ -46,7 +46,7 @@
             else
             {
               this.$message.error('请重新登录！');
-              this.$router.push('login');     
+              this.$router.push('login');
             }
           });
        },
@@ -81,7 +81,7 @@
         that.get_admin_info();
        },10000);
     },
-    //离开这个页面的时候触发的函数 
+    //离开这个页面的时候触发的函数
     destroyed()
     {
         clearInterval(this.timeId);//清除定时器
@@ -96,13 +96,12 @@
   #center
   {
     position: fixed;
-    left: 0px;
-    top: 0px;
+    left:0;
+    top:0;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding-left: 200px;
-    padding-top: 50px;
+    padding:60px 20px 20px 220px;
     overflow:auto;
   }
   #user

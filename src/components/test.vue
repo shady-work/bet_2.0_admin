@@ -86,6 +86,7 @@
               this.$http.get(`${this.api}/admin/summary?range=${this.english_array[i]}&ty_type=${lty_type}`)
                 .then(function(res)
                 {
+                  console.log(res);
                   if(res.data.status == 200)
                   {
                     this.summary[this.english_array[i]] = res.data.data.summary;

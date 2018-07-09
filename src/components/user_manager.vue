@@ -18,23 +18,23 @@
            <option v-bind:value="1">启用</option>
            <option v-bind:value="0">禁用</option>
          </select>
-         <button class="btn btn-success ml10 pull-left " @click="search_user">查找</button>
+         <button class="btn btn-success ml10 pull-left " @click="search_user" style="padding:5px 20px;font-size: 16px">查找</button>
          <div class="clearfix"></div>
        </div>
 
         <table class="table table-bordered  table-hover text-center table-striped mt15">
           <thead>
             <tr class=" active">
-              <td >用户ID</td>
-              <td >用户名</td>
-              <td >昵称</td>
-              <td >现金额度</td>
-              <td >信用额度</td>
+              <td width="100">用户ID</td>
+              <td width="110">用户名</td>
+              <td width="110">昵称</td>
+              <td width="110">现金额度</td>
+              <td width="110">信用额度</td>
               <!--<td >用户加入时间</td>-->
-              <td >是否可用</td>
-              <td >用户类型</td>
-              <td v-if="!$store.state.son_off">tokensup</td>
-              <td width="360">操作</td>
+              <td width="110">是否可用</td>
+              <td width="110">用户类型</td>
+              <td width='110' v-if="!$store.state.son_off">tokensup</td>
+              <td width="400">操作</td>
             </tr>
           </thead>
           <tbody>
@@ -60,7 +60,7 @@
               <td v-if="!$store.state.son_off">
                 <a @click="show_users_tokensup(v.tokensup,v.username)" class="pointer">点此查看</a>
               </td>
-              <td  style="text-align: right">
+              <td  style="text-align: right;padding-right:20px">
                 <button v-if="v.type != 0" class="btn btn-info btn-sm" @click="right_edit(v.user_id)">权限管理</button>
                 <button v-if="v.status == 1"  class="btn btn-danger btn-sm"  @click="user_disabled(v.user_id)">禁用</button>
                 <button v-if="v.status == 0"  class="btn btn-info btn-sm"  @click="user_open(v.user_id)">启用</button>
@@ -134,9 +134,7 @@
                  <input type="text" v-model="credit_money" class="form-control" id="inputEmail5" placeholder="请输入">
                </div>
              </div>
-
             </div>
-
            <div class="panel-footer">
              <button class="btn btn-primary pull-right" @click="do_edit()">修改</button>
              <button class="btn btn-info pull-right mr10" @click="isShow = false">取消</button>
@@ -163,7 +161,7 @@
             isShow:false,
             user_id:false,
             page:1,
-            per_page:15,
+            per_page:5,
             hasNext:false,
             hasPrev:false,
             nextPageUrl:'',
@@ -328,7 +326,7 @@
               }
             });
         },
-        
+
        /**
         * edit user info
         * @param nickname
@@ -510,31 +508,50 @@
     position: relative;
     width: 100%;
     height: 100%;
-    font-size: 12px;
+    font-size:14px;
   }
   .table
   {
-    width: 1100px;
-    margin:0 auto;
+    width:100%;
+    /*margin:0 auto;*/
     margin-top: 20px;
-    margin-left:10px;
+    font-size: 14px;
+  }
+  .table thead td{
+    padding:12px 0;
+    font-size: 16px;
+    font-weight:600;
+  }
+  .table tbody td button{
+    font-size: 14px;
+  }
+  /*分页*/
+  .row{
+    margin:0;
+    width:100%;
+    font-size: 16px;
   }
   #myModal
   {
-    top:-15px;
+    /*top:-15px;*/
   }
   #myModal>.panel
   {
     width: 600px;
-    margin-top: 50px;
+    margin-top: 100px;
+    /*border-radius: 8px;*/
+  }
+  #myModal .panel-heading{
+    padding:15px;
+    font-size: 16px;
+    font-weight: 600;
   }
   #search
   {
     height:65px;
-    width: 1000px;
-    margin:0 auto;
-    padding-top: 15px;
-    margin-left:10px;
+    width:100%;
+    /*margin:0 auto;*/
+    padding-top: 20px;
   }
 
   #search>.search-input
@@ -549,6 +566,6 @@
   {
     height: 34px;
     line-height: 34px;
-    font-size: 13px;
+    font-size: 16px;
   }
 </style>

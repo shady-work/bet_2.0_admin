@@ -235,6 +235,7 @@ export default
         {
             this.$http.get(`${this.api}/admin/ssc/history/order`)
               .then(function(res){
+                console.log(res);
                    if(res.data.status == 200)
                    {
                       this.history_codes = res.data.data.list;
@@ -313,6 +314,7 @@ export default
               });
           }
         },
+
         stop_cancel:function(e)
         {
           let event = e || window.event;
@@ -324,6 +326,7 @@ export default
           let event = e || window.event;
           event.cancelBubble = true;
         },
+
         show_details:function(val)
         {
             this.win = val.win;
@@ -371,13 +374,17 @@ export default
 
 <style scoped>
   #cqssc_history{
-    margin-left:10px;
-    width:1100px;
+    /*margin-left:10px;*/
+    width:100%;
   }
   .table {
     margin-top: 20px;
-    font-size: 12px;
-
+    font-size: 14px;
+  }
+  .table thead td{
+    padding:15px 0;
+    font-size: 16px;
+    font-weight: 600;
   }
   #myModal>.panel
   {
@@ -388,7 +395,7 @@ export default
   {
     margin-bottom:0px;
   }
-  #cqssc_history b{
-    
+  .row{
+    font-size: 16px;
   }
 </style>

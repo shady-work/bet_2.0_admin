@@ -12,14 +12,14 @@
                     <td>中奖大于多少转盘</td>
                     <td>下注大于多少转盘</td>
                     <td>转盘密钥-转盘API地址</td>
-                    <td width="180">操作</td>
+                    <td width="300">操作</td>
                 </tr>
                 <tr class="text-center" v-else>
                     <td>用户名</td>
                     <td>最小下注额</td>
                     <td>最大下注额</td>
                     <td>最大中奖额</td>
-                    <td width="180">操作</td>
+                    <td width="300">操作</td>
                 </tr>
             </thead>
             <tbody>
@@ -54,7 +54,7 @@
             </tbody>
         </table>
 
-        <div class="task_" v-show="isShow" @click="close()">
+        <div id="myModal" v-show="isShow" @click="close()">
            <div class="panel panel-info center-block task-panel" @click="stop_cancel()">
              <div class="panel-heading">修改用户注额</div>
              <div class="panel-body form-horizontal">
@@ -79,7 +79,7 @@
                   <div class="form-group">
                   <label for="inputEmail5" class="col-sm-2 control-label">转盘比例</label>
                   <div class="col-sm-10">
-                    <input type="text" v-model="trad_rate"  class="form-control" id="inputEmail5" placeholder="请输入">
+                    <input type="text" v-model="trad_rate"  class="form-control" id="inputEmail2" placeholder="请输入">
                   </div>
                 </div>
                 <div class="form-group">
@@ -323,7 +323,7 @@ export default {
           trad_win: this.trad_win
         })
         .then(function(res) {
-          if (res.data.msg == "修改成功") 
+          if (res.data.msg == "修改成功")
           {
             this.get_user_bet_rules();
             this.isShow = false;
@@ -396,19 +396,24 @@ export default {
 
 #myModal > .panel
 {
-  width:800px;
-  margin:0 auto;
- 
-  margin-top:50px;
+  width:900px;
+  margin:50px auto 0;
 }
 .table {
-  width: 1100px;
-  font-size: 12px;
-  
+  width: 100%;
+  font-size: 14px;
+}
+.table thead td{
+  padding:15px 0;
+  font-size: 16px;
+  font-weight: 600;
 }
 #cqssc{
-  margin-left:10px;
+  /*margin-left:10px;*/
   margin-top:5px;
-  width:1100px;
+  width:100%;
 }
+  .row{
+    font-size: 16px;
+  }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div id="cqssc_history" style="font-size:12px;">
-      <h4 style="margin-top: 8px;margin-bottom:35px;clear: both;margin-left:10px;" id="top">
+      <h4 style="margin-top: 8px;margin-bottom:35px;clear: both;" id="top">
         <span style="margin-top:-15px;">北京PK拾 {{when_}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span >开奖历史</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="block">
@@ -23,7 +23,7 @@
       <table class="table table-bordered table-hover table-striped text-center">
         <thead>
         <tr>
-          <td>彩票类别</td>
+          <td width="250">彩票类别</td>
           <td>彩票期号</td>
           <td>冠军</td>
           <td>亚军</td>
@@ -68,7 +68,7 @@
         <table class="table table-bordered table-hover table-striped text-center">
            <thead>
              <tr>
-               <td width="200">期号/时间</td>
+               <td width="250">期号/时间</td>
                <td>开奖号码</td>
                <td colspan="3">冠亚军和</td>
                <td colspan="5">1~5龙虎</td>
@@ -405,13 +405,17 @@ export default
 
 <style scoped>
   .table {
-
     margin-top: 20px;
-    font-size:12px!important;
+    font-size:14px;
+  }
+  .table thead td{
+    font-size: 16px;
+    font-weight: 600;
+    padding:15px 0;
   }
   #cqssc_history{
-    margin-left:10px;
-    width:1100px;
+    /*margin-left:10px;*/
+    width:100%;
 
   }
   #cqssc_history b{
@@ -476,6 +480,8 @@ export default
     height: 45px;
     line-height:45px;
     display: inline-block;
-
+  }
+  .row{
+    font-size: 16px;
   }
 </style>

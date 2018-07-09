@@ -6,6 +6,7 @@ import index from '../components/index';
 import users from '../components/user_manager';
 import add_user from '../components/add_user';
 import recharge from '../components/recharge'
+import recharge_1 from '../components/recharge_1';
 import withdraw from '../components/withdraw'
 import user_money from '../components/user_money'
 import cqssc from '../components/ssc/cqssc'
@@ -49,7 +50,7 @@ import ssc_chart from '../components/ssc_chart'
 import pk10_chart from '../components/pk10_chart'
 import egg_chart from '../components/egg_chart'
 import cake_chart from '../components/cake_chart'
-
+import odds_fs from '../components/odds_fs'
 
 
 Vue.use(Router);
@@ -87,6 +88,11 @@ export default new Router({
           path:'recharge',  //recharge page
           name:'recharge',
           component:recharge,
+        },
+        {
+          path:'recharge_1',
+          name:'recharge_1',
+          component:recharge_1,
         },
         {
           path:'withdraw',  //withdraw page
@@ -294,7 +300,11 @@ export default new Router({
               name:'cake_chart',
               component: cake_chart,
           },
-
+          {
+            path:'odds_fs',
+            name:'odds_fs',
+            component:odds_fs,
+          },
       ],
     }
     ,

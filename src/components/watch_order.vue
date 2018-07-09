@@ -158,19 +158,30 @@ export  default
   #watch{
     position:relative;
   }
-  
+
   .table
   {
-    width:1100px;
-    margin:0 auto;
-    margin-top: 10px;
-    font-size: 12px;
-    margin-left:10px;
+    width:100%;
+    margin:10px auto;
+    /*margin-top: 10px;*/
+    font-size: 16px;
+    /*margin-left:10px;*/
   }
   .my-nav
-  { 
-     width:1100px;
-    margin-left:10px;   
-    margin-top: 5px;
+  {
+     width:100%;
+    /*margin-left:10px;*/
+    margin:30px 0;
+  }
+  .my-nav li{
+    cursor: pointer;
+  }
+  .table thead td{
+    font-weight: 600;
+    font-size: 16px;
+    padding:15px 0;
+  }
+  .row{
+    font-size: 16px;
   }
 </style>

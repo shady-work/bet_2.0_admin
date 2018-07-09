@@ -46,10 +46,12 @@
           {
              this.$http.post(`${this.api}/admin/token`,{username:this.username,pwd_1:this.pwd_1}).then(function(res)
              {
+               // console.log(res);
                 //登录成功
                 if(res.data.status == 200)
                 {
                    //login success
+                  console.log(res.data);
                    window.localStorage.token = res.data.data.token;
                    window.sessionStorage.admin_id = res.data.data.user_id;
                    window.sessionStorage.isLogin_admin = 'ok';
@@ -65,7 +67,7 @@
                 else
                 {
                   this.$message.error(res.data.msg);
-                  
+
                 }
              });
           },

@@ -72,7 +72,7 @@
            </label>
          </div>
        </div>
-       <button class="btn btn-primary btn-lg center-block" @click="add_user()">添加</button>
+       <button class="btn btn-primary center-block" style="padding:6px 22px;" @click="add_user()">添加</button>
      </div>
 
 
@@ -363,10 +363,11 @@
   }
   #inlineCheckbox1,#inlineCheckbox2,#inlineCheckbox3,#inlineCheckbox4
   {
-    width:25px;
-    height:25px;
+    width:20px;
+    height:30px;
     margin-left:-30px;
     margin-top:-6px;
+    cursor:pointer;
   }
   .checkbox-inline
   {

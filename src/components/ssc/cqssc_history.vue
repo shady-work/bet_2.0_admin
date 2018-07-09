@@ -1,7 +1,7 @@
 <template>
     <div id="cqssc_history">
 
-        <h4 style="margin-top: 8px;margin-bottom:35px;clear: both;margin-left:10px;" id="top">
+        <h4 style="margin-top:10px;margin-bottom:35px;clear: both;" id="top">
             <span style="margin-top:-15px;">重庆时时彩   {{when_}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span >开奖历史</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div class="block">
@@ -141,7 +141,7 @@ export default
          pageNum:0,
          data:[],
          expect:'',//按期数查找数据
-         open_codes:[0,0,0,0,0],
+         open_codes:[0,0,0,0,0],//按期号及开奖号码所搜
           when_:'星期三/04-11',
           value6:null,
          unclear_index:'',  //未开奖的下标
@@ -170,7 +170,6 @@ export default
             }
             this.$http.get(`${this.api}/admin/ssc/history/lottery?page=${page}&per_page=${per_page}`,{
                 params: {
-
                     range:range
                 }
             })
@@ -276,6 +275,7 @@ export default
               });
           }
         },
+        //  期号、开奖号搜索
         hand_manual:function(){
 
             let data = {};
@@ -309,6 +309,7 @@ export default
                     }
                 });
         },
+        //手动开奖
         open_prize:function (expect,code,index) {
             center.scrollTo(0,0);   //滚动条返回到顶部
             this.expect=expect;
@@ -318,11 +319,13 @@ export default
             }
             this.unclear_index=index;
         },
+        //处理数据，头部今天时间
         get_details:function(date_str,str)
         {
 
             this.when_ = str;
             this.when_ = this.when_.replace('undefined/',"");
+
 
             //格式不统一，需要格式化下日期格式，有的是04-10  有的是2018-04-10   正确的数据格式是04-10
             if(date_str.length > 8)
@@ -330,6 +333,7 @@ export default
                 date_str = date_str.substring(5);
             }
         },
+        //全部数据
         get_all_history2:function(page = 1,per_page = 15)
         {
 
@@ -355,6 +359,7 @@ export default
                 });
 
         },
+      // 今日数据
         get_all_history3:function(page = 1,per_page = 15)
         {
 
@@ -395,10 +400,15 @@ export default
 
 <style scoped>
   .table {
-    width:1100px;
+    width:100%;
     margin-top: 20px;
-    margin-left:10px; 
-    font-size: 12px!important;
+    /*margin-left:10px; */
+    font-size: 14px;
+  }
+  .table thead td{
+    padding:15px 0;
+    font-size: 16px;
+    font-weight: 600;
   }
   .col-md-4{
     margin-left:500px;
@@ -458,6 +468,9 @@ export default
       height: 45px;
       line-height:45px;
       display: inline-block;
+  }
+  .row{
+    font-size: 16px;
 
   }
 </style>

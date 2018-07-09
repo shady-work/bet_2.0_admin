@@ -14,35 +14,32 @@
     width :1000px;
     height: 100px;
     margin:0 auto;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    justify-content:flex-start;
   }
 
   .form-group-my>label
   {
-    float:left;
     width: 20%;
     text-align: left;
-    height: 30px;
-    line-height: 30px;
-
+    font-size: 16px;
+    line-height: 123px;
   }
-  .form-group-my>input
+  .form-group-my>input,.form-group-my>select
   {
-    float: left;
+    /*float: left;*/
     width: 80%;
     margin-top: 45px;
   }
-  .form-group-my>select
-  {
-    float: left;
-    width: 80%;
-  }
+
 
 </style>
 
 <template>
   <div class="components-container">
     <div class="form-group-my mt15">
-      <label style="line-height: 100px;">请输入标题</label>
+      <label style="">请输入标题</label>
       <input type="text" class="form-control" v-model="title">
     </div>
 
@@ -57,8 +54,8 @@
 
     </div>
     <div id="editorElem" ></div>
-    <button v-if="!is_check" class="btn btn-success center-block mt15 btn-lg" @click="add_article">添加</button>
-    <button v-if="is_check" class="btn btn-success center-block mt15 btn-lg" @click="change_article">修改</button>
+    <button v-if="!is_check" class="btn btn-success center-block mt15" @click="add_article">添加</button>
+    <button v-if="is_check" class="btn btn-success center-block mt15" @click="change_article">修改</button>
   </div>
 </template>
 
@@ -121,7 +118,7 @@
            });
       },
       /**
-       * 获取单个文章，进行修改
+       * 获取单个文章
        */
       get_an_article:function(a_id)
       {

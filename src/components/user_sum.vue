@@ -1,7 +1,7 @@
 <template>
 
-    <div style="margin-left:10px;margin-top:10px;">
-      <h4 style="margin-top: 8px;margin-bottom: 14px;width: 1100px;">
+    <div style="margin-left:20px;margin-top:10px;">
+      <h4 style="margin-top:30px;margin-bottom:30px;width:100%;">
         用户名：<span class="label label-default">{{user.username}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         状态：<span class="label" :class="user.status==1?'label-success':'label-danger'">{{user.status==1?'启用':'禁用'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
         类型：{{user.type == 0?'会员':(user.type == 1?'代理':(user.type==2?'推广':(user.type == 3?'管理':'')))}}
@@ -19,12 +19,12 @@
       <table class="table table-bordered">
         <thead>
         <tr>
-          <td>日期</td>
-          <td>下注条数</td>
-          <td>下注总金额</td>
-          <td>盈亏</td>
-          <td>返水</td>
-          <td>退水后盈亏</td>
+          <th>日期</th>
+          <th>下注条数</th>
+          <th>下注总金额</th>
+          <th>盈亏</th>
+          <th>返水</th>
+          <th>退水后盈亏</th>
         </tr>
         </thead>
         <tbody>
@@ -47,16 +47,19 @@
       </table>
 
 
-      <table border="1" class="table table-bordered table-hover table-striped text-center" v-show="details_show" style="font-size:12px;">
+      <table border="1" class="table table-bordered table-hover table-striped text-center" v-show="details_show" style="font-size:14px;">
+        <thead>
         <tr >
-          <td>彩种</td>
-          <td>期数</td>
-          <td>注单号</td>
-          <td>时间</td>
-          <td>下注内容</td>
-          <td>下注金额</td>
-          <td>中奖结果</td>
+          <th>彩种</th>
+          <th>期数</th>
+          <th>注单号</th>
+          <th>时间</th>
+          <th>下注内容</th>
+          <th>下注金额</th>
+          <th>中奖结果</th>
         </tr>
+        </thead>
+        <tbody>
         <tr v-for="v in details_data">
           <td>{{v.lty_name}}</td>
           <td>{{v.expect}}</td>
@@ -66,6 +69,7 @@
           <td>{{v.money}}</td>
           <td >{{v.open_ret==1?'中奖':'未中奖'}}</td>
         </tr>
+        </tbody>
       </table>
 
       <div class="page-xy" v-show="details_show">
@@ -228,19 +232,22 @@
 
 
 <style scoped>
+  .xy-list{
+    padding:10px 0;
+  }
   .xy-list>.active
   {
     font-size: 18px;
     font-weight: 700;
   }
   .page-xy{
-
     margin-left:600px;
   }
   .page-xy>input
   {
     width: 40px;
-    height: 20px;
+    height: 25px;
+    text-align: center;
 
   }
   /*.table {*/
@@ -248,7 +255,12 @@
     /*font-size: 12px!important;*/
   /*}*/
   table{
-    width:1200px;
+    width:100%;
+  }
+  table thead th{
+    padding:10px;
+    font-weight:600;
+    font-size: 16px;
   }
   table tr td
   {

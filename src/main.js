@@ -9,6 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import './assets/js/jquery.min.js';
 import './assets/js/bootstrap';
+import './common/iconfont.css';
 
 /*使用ElementUI插件*/
 Vue.use(ElementUI)
@@ -52,9 +53,9 @@ var store = new vuex.Store(
 });
 
 //配置请求的uri
-   Vue.prototype.api = `http://lty-main.com`;  //母盘
-//  Vue.prototype.api = `http://lty-sub.com`;  //子盘
-//   Vue.prototype.api = ``;
+//     Vue.prototype.api = `http://lty-main.com`;  //母盘
+//   Vue.prototype.api = `http://lty-sub.com`;  //子盘
+     Vue.prototype.api = ``;
 
 Vue.prototype.toUp = (str)=>
 {
