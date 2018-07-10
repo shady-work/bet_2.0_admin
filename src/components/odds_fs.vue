@@ -26,29 +26,29 @@
           <div class="save" @click="save()">保存修改</div>
         </nav>
         <section>
-          <!-- 统一 流水、返点table-->
-          <table class="table table-hover table-bordered table-striped text-center">
-            <thead class="bg-warning">
-            <tr >
-              <td width="180">级别</td>
-              <td>返点</td>
-              <td>流水</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="(v,k) in odds_detail_list" v-if="k<4">
-              <td>{{v.mark_b}}</td>
-              <td>
-                <input type="text" class="form-control text-center" v-model="odds_detail_list[k].A">
-              </td>
-              <td>
-                <input type="text" class="form-control text-center" v-model="odds_detail_list[k].B">
-              </td>
-            </tr>
-            </tbody>
-          </table>
           <!--时时彩table群-->
           <div class="" v-if="which_type_one == 'ssc'">
+            <!-- 统一 流水、返点table-->
+            <table class="table table-hover table-bordered table-striped text-center">
+              <thead class="bg-warning">
+              <tr >
+                <td width="180">级别</td>
+                <td>返点</td>
+                <td>流水</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="(v,k) in odds_detail_list" v-if="k<4">
+                <td>{{v.mark_b}}</td>
+                <td>
+                  <input type="text" class="form-control text-center" v-model="odds_detail_list[k].A">
+                </td>
+                <td>
+                  <input type="text" class="form-control text-center" v-model="odds_detail_list[k].B">
+                </td>
+              </tr>
+              </tbody>
+            </table>
             <!--球序table-->
             <table class="table table-hover table-bordered text-center table-striped">
               <thead class="bg-primary">
@@ -256,6 +256,27 @@
           </div>
           <!--pk10 table群-->
           <div class="table_box" v-else-if="which_type_one == 'pk10'">
+            <!-- 统一 流水、返点table-->
+            <table class="table table-hover table-bordered table-striped text-center">
+              <thead class="bg-warning">
+              <tr >
+                <td width="180">级别</td>
+                <td>返点</td>
+                <td>流水</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="(v,k) in odds_detail_list" v-if="k<4">
+                <td>{{v.mark_b}}</td>
+                <td>
+                  <input type="text" class="form-control text-center" v-model="odds_detail_list[k].A">
+                </td>
+                <td>
+                  <input type="text" class="form-control text-center" v-model="odds_detail_list[k].B">
+                </td>
+              </tr>
+              </tbody>
+            </table>
             <!--球序table-->
             <table class="table table-hovor table-bordered table-striped text-center">
               <thead class="bg-primary">
@@ -499,48 +520,72 @@
           </div>
           <!--PC蛋蛋 table群-->
           <div class="table_box" v-else-if="which_type_one == 'egg'">
+            <!-- 统一 流水、返点table-->
+            <table class="table table-hovor table-bordered table-striped text-center">
+              <thead class="bg-warning">
+              <tr class="h4">
+                <td>级别</td>
+                <td>返点</td>
+                <td>流水</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="(v,k) in odds_detail_list" v-if=' k < 4'>
+                <td>
+                  {{v.mark_b}}
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[k].e1">
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[k].e2">
+                </td>
+              </tr>
+              </tbody>
+            </table>
             <!--球序特码 0-9 table-->
             <table class="table table-hovor table-bordered table-striped text-center" style="margin-bottom:0;">
               <thead class="bg-primary">
               <tr>
                 <td width="80">特码/球序</td>
-                <td v-for="(v,k,index) in list[4]" v-if='index<10'>特码{{index}}</td>
+                <td v-for="(v,k,index) in odds_detail_list[4]" v-if='index<10'>特码{{index}}</td>
 
               </tr>
               </thead>
               <tbody>
               <tr>
                 <td>赔率</td>
-                <td v-for="(v,k,index) in list[4]" v-if='index<10'>
-                  <input type="text" class="form-control" v-model="list[4]['e' + (index+1)]">
+                <td v-for="(v,k,index) in odds_detail_list[4]" v-if='index<10'>
+                  <input type="text" class="form-control" v-model="odds_detail_list[4]['e' + (index+1)]">
                 </td>
 
               </tr>
               </tbody>
+            </table>
+            <!--球序特码 10-19 table-->
+            <table style="margin-bottom: 0" class="table table-hover table-bordered table-striped text-center">
               <thead class="bg-primary">
               <tr >
                 <td width="80">特码/球序</td>
-                <td v-for="(v,k,index) in list[4]" v-if='index>=10&&index<20'>特码{{index}}</td>
+                <td v-for="(v,k,index) in odds_detail_list[4]" v-if='index>=10&&index<20'>特码{{index}}</td>
 
               </tr>
               </thead>
               <tbody>
               <tr>
                 <td>赔率</td>
-                <td v-for="(v,k,index) in list[4]" v-if='index>=10&&index<20'>
-                  <input type="text" class="form-control" v-model="list[4]['e' + (index+1)]">
+                <td v-for="(v,k,index) in odds_detail_list[4]" v-if='index>=10&&index<20'>
+                  <input type="text" class="form-control" v-model="odds_detail_list[4]['e' + (index+1)]">
                 </td>
               </tr>
               </tbody>
             </table>
-            <table class="table table-hover table-bordered table-striped text-center">
-
-            </table>
+            <!--球序特码 20-27 及下单限额 table-->
             <table class="table table-hovor table-bordered table-striped text-center">
               <thead class="bg-primary">
               <tr >
                 <td width="80">特码/球序</td>
-                <td v-for="(v,k,index) in list[4]" v-if='index>=20&&index<28'>特码{{index}}</td>
+                <td v-for="(v,k,index) in odds_detail_list[4]" v-if='index>=20&&index<28'>特码{{index}}</td>
                 <td>单注最小限额</td>
                 <td>单注最大限额</td>
                 <td>单期限额</td>
@@ -551,40 +596,40 @@
               <tbody>
               <tr>
                 <td>赔率</td>
-                <td v-for="(v,k,index) in list[4]" v-if='index>=20&&index<28'>
-                  <input type="text" class="form-control" v-model="list[4]['e' + (index+1)]">
+                <td v-for="(v,k,index) in odds_detail_list[4]" v-if='index>=20&&index<28'>
+                  <input type="text" class="form-control" v-model="odds_detail_list[4]['e' + (index+1)]">
 
                 </td>
                 <td>
-                  <input type="text" class="form-control" v-model="list[4].bet_limit.order_limit_min">
+                  <input type="text" class="form-control" v-model="odds_detail_list[4].bet_limit.order_limit_min">
 
                 </td>
                 <td>
-                  <input type="text" class="form-control" v-model="list[4].bet_limit.order_limit_max">
+                  <input type="text" class="form-control" v-model="odds_detail_list[4].bet_limit.order_limit_max">
                 </td>
                 <td>
-                  <input type="text" class="form-control" v-model="list[4].bet_limit.expect_limit">
+                  <input type="text" class="form-control" v-model="odds_detail_list[4].bet_limit.expect_limit">
                 </td>
                 <td v-if="$store.state.son_off">
                   <input type="text" class="form-control text-center"
-                         v-model="list[4].dec_odds[0].limit">
+                         v-model="odds_detail_list[4].dec_odds[0].limit">
                 </td>
                 <td v-if="$store.state.son_off">
                   <input type="text" class="form-control text-center"
-                         v-model="list[4].dec_odds[0].dec_odds">
+                         v-model="odds_detail_list[4].dec_odds[0].dec_odds">
                 </td>
                 <td v-if="$store.state.son_off">
                   <input type="text" class="form-control text-center"
-                         v-model="list[4].dec_odds[1].limit">
+                         v-model="odds_detail_list[4].dec_odds[1].limit">
                 </td>
                 <td v-if="$store.state.son_off">
                   <input type="text" class="form-control text-center"
-                         v-model="list[4].dec_odds[1].dec_odds">
+                         v-model="odds_detail_list[4].dec_odds[1].dec_odds">
                 </td>
               </tr>
               </tbody>
             </table>
-
+            <!--单双 table -->
             <table class="table table-hovor table-bordered table-striped text-center">
               <thead class="bg-primary">
               <tr >
@@ -610,45 +655,42 @@
               <tbody>
               <tr>
                 <td>赔率</td>
-                <td v-for="(v,k,index) in list[5]" v-if='index<10'>
-                  <input type="text" class="form-control" v-model="list[5]['e' + (index+1)]">
+                <td v-for="(v,k,index) in odds_detail_list[5]" v-if='index<10'>
+                  <input type="text" class="form-control" v-model="odds_detail_list[5]['e' + (index+1)]">
                 </td>
                 <td>
-                  <input type="text" class="form-control" v-model="list[7]['e1']">
+                  <input type="text" class="form-control" v-model="odds_detail_list[7]['e1']">
                 </td>
                 <td>
-                  <input type="text" class="form-control" v-model="list[5].bet_limit.order_limit_min">
+                  <input type="text" class="form-control" v-model="odds_detail_list[5].bet_limit.order_limit_min">
 
                 </td>
                 <td>
-                  <input type="text" class="form-control" v-model="list[5].bet_limit.order_limit_max">
+                  <input type="text" class="form-control" v-model="odds_detail_list[5].bet_limit.order_limit_max">
                 </td>
                 <td>
-                  <input type="text" class="form-control" v-model="list[5].bet_limit.expect_limit">
+                  <input type="text" class="form-control" v-model="odds_detail_list[5].bet_limit.expect_limit">
                 </td>
                 <td v-if="$store.state.son_off">
                   <input type="text" class="form-control text-center"
-                         v-model="list[5].dec_odds[0].limit">
+                         v-model="odds_detail_list[5].dec_odds[0].limit">
                 </td>
                 <td v-if="$store.state.son_off">
                   <input type="text" class="form-control text-center"
-                         v-model="list[5].dec_odds[0].dec_odds">
+                         v-model="odds_detail_list[5].dec_odds[0].dec_odds">
                 </td>
                 <td v-if="$store.state.son_off">
                   <input type="text" class="form-control text-center"
-                         v-model="list[5].dec_odds[1].limit">
+                         v-model="odds_detail_list[5].dec_odds[1].limit">
                 </td>
                 <td v-if="$store.state.son_off">
                   <input type="text" class="form-control text-center"
-                         v-model="list[5].dec_odds[1].dec_odds">
+                         v-model="odds_detail_list[5].dec_odds[1].dec_odds">
                 </td>
-
-
               </tr>
               </tbody>
             </table>
-
-
+            <!--波色  table-->
             <table class="table table-hovor table-bordered table-striped text-center">
               <thead class="bg-primary">
               <tr >
@@ -666,34 +708,256 @@
               <tbody>
               <tr>
                 <td>赔率</td>
-                <td v-for="(v,k,index) in list[6]" v-if='index<3'>
-                  <input type="text" class="form-control" v-model="list[6]['e' + (index+1)]">
+                <td v-for="(v,k,index) in odds_detail_list[6]" v-if='index<3'>
+                  <input type="text" class="form-control" v-model="odds_detail_list[6]['e' + (index+1)]">
                 </td>
                 <td>
-                  <input type="text" class="form-control" v-model="list[6].bet_limit.order_limit_min">
+                  <input type="text" class="form-control" v-model="odds_detail_list[6].bet_limit.order_limit_min">
 
                 </td>
                 <td>
-                  <input type="text" class="form-control" v-model="list[6].bet_limit.order_limit_max">
+                  <input type="text" class="form-control" v-model="odds_detail_list[6].bet_limit.order_limit_max">
                 </td>
                 <td>
-                  <input type="text" class="form-control" v-model="list[6].bet_limit.expect_limit">
+                  <input type="text" class="form-control" v-model="odds_detail_list[6].bet_limit.expect_limit">
                 </td>
                 <td v-if="$store.state.son_off">
                   <input type="text" class="form-control text-center"
-                         v-model="list[6].dec_odds[0].limit">
+                         v-model="odds_detail_list[6].dec_odds[0].limit">
                 </td>
                 <td v-if="$store.state.son_off">
                   <input type="text" class="form-control text-center"
-                         v-model="list[6].dec_odds[0].dec_odds">
+                         v-model="odds_detail_list[6].dec_odds[0].dec_odds">
                 </td>
                 <td v-if="$store.state.son_off">
                   <input type="text" class="form-control text-center"
-                         v-model="list[6].dec_odds[1].limit">
+                         v-model="odds_detail_list[6].dec_odds[1].limit">
                 </td>
                 <td v-if="$store.state.son_off">
                   <input type="text" class="form-control text-center"
-                         v-model="list[6].dec_odds[1].dec_odds">
+                         v-model="odds_detail_list[6].dec_odds[1].dec_odds">
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <!--加拿大28 table 群-->
+          <div class="table_box" v-else-if="which_type_one == 'cake'">
+            <!-- 统一 流水、返点table-->
+            <table class="table table-hovor table-bordered table-striped text-center">
+              <thead class="bg-warning">
+              <tr class="h4">
+                <td>级别</td>
+                <td>返点</td>
+                <td>流水</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="(v,k) in odds_detail_list" v-if=' k < 4'>
+                <td>
+                  {{v.mark_b}}
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[k].e1">
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[k].e2">
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <!--0-9-->
+            <table class="table table-hovor table-bordered table-striped text-center" style="margin-bottom:0;">
+              <thead class="bg-primary">
+              <tr>
+                <td width="150">选项/球序</td>
+                <td v-for="(v,k,index) in odds_detail_list[4]" v-if='index<10'>特码{{index}}</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>赔率</td>
+                <td v-for="(v,k,index) in odds_detail_list[4]" v-if='index<10'>
+                  <input type="text" class="form-control" v-model="odds_detail_list[4]['e' + (index+1)]">
+                </td>
+              </tr>
+              </tbody>
+
+
+            </table>
+            <!--10-19-->
+            <table class="table table-hovor table-bordered table-striped text-center" style="margin-bottom:0;">
+              <thead class="bg-primary">
+              <tr>
+                <td width="80">选项/球序</td>
+                <td v-for="(v,k,index) in odds_detail_list[4]" v-if='index<20 && index>=10'>特码{{index}}</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>赔率</td>
+                <td v-for="(v,k,index) in odds_detail_list[4]" v-if='index<20 && index>=10'>
+                  <input type="text" class="form-control" v-model="odds_detail_list[4]['e' + (index+1)]">
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <!--20-27  下单限额-->
+            <table class="table table-hovor table-bordered table-striped text-center">
+              <thead class="bg-primary">
+              <tr >
+                <td width="80">选项/球序</td>
+                <td v-for="(v,k,index) in odds_detail_list[4]" v-if='index>=20 && index<28'>特码{{index}}</td>
+                <td>单注最小限额</td>
+                <td>单注最大限额</td>
+                <td>单期限额</td>
+                <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+                <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>赔率</td>
+                <td v-for="(v,k,index) in odds_detail_list[4]" v-if='index>=20 && index<28'>
+                  <input type="text" class="form-control" v-model="odds_detail_list[4]['e' + (index+1)]">
+
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[4].bet_limit.order_limit_min">
+
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[4].bet_limit.order_limit_max">
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[4].bet_limit.expect_limit">
+                </td>
+                <td v-if="$store.state.son_off">
+                  <input type="text" class="form-control text-center"
+                         v-model="odds_detail_list[4].dec_odds[0].limit">
+                </td>
+                <td v-if="$store.state.son_off">
+                  <input type="text" class="form-control text-center"
+                         v-model="odds_detail_list[4].dec_odds[0].dec_odds">
+                </td>
+                <td v-if="$store.state.son_off">
+                  <input type="text" class="form-control text-center"
+                         v-model="odds_detail_list[4].dec_odds[1].limit">
+                </td>
+                <td v-if="$store.state.son_off">
+                  <input type="text" class="form-control text-center"
+                         v-model="odds_detail_list[4].dec_odds[1].dec_odds">
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <!--大小  单双  豹子-->
+            <table class="table table-hovor table-bordered table-striped text-center">
+              <thead class="bg-primary">
+              <tr >
+                <td width="80">选项/球序</td>
+                <td>大</td>
+                <td>小</td>
+                <td>单</td>
+                <td>双</td>
+                <td>大单</td>
+                <td>大双</td>
+                <td>小单</td>
+                <td>小双</td>
+                <td>极大</td>
+                <td>极小</td>
+                <td>豹子</td>
+                <td>单注最小限额</td>
+                <td>单注最大限额</td>
+                <td>单期限额</td>
+                <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+                <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>赔率</td>
+                <td v-for="(v,k,index) in odds_detail_list[5]" v-if='index<10'>
+                  <input type="text" class="form-control" v-model="odds_detail_list[5]['e' + (index+1)]">
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[7]['e1']">
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[5].bet_limit.order_limit_min">
+
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[5].bet_limit.order_limit_max">
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[5].bet_limit.expect_limit">
+                </td>
+                <td v-if="$store.state.son_off">
+                  <input type="text" class="form-control text-center"
+                         v-model="odds_detail_list[5].dec_odds[0].limit">
+                </td>
+                <td v-if="$store.state.son_off">
+                  <input type="text" class="form-control text-center"
+                         v-model="odds_detail_list[5].dec_odds[0].dec_odds">
+                </td>
+                <td v-if="$store.state.son_off">
+                  <input type="text" class="form-control text-center"
+                         v-model="odds_detail_list[5].dec_odds[1].limit">
+                </td>
+                <td v-if="$store.state.son_off">
+                  <input type="text" class="form-control text-center"
+                         v-model="odds_detail_list[5].dec_odds[1].dec_odds">
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <!--波色-->
+            <table class="table table-hovor table-bordered table-striped text-center">
+              <thead class="bg-primary">
+              <tr >
+                <td width="80">波色</td>
+                <td>红波</td>
+                <td>绿波</td>
+                <td>蓝波</td>
+                <td>单注最小限额</td>
+                <td>单注最大限额</td>
+                <td>单期限额</td>
+                <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+                <td colspan="2" v-if="$store.state.son_off">金额/跌倍</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>赔率</td>
+                <td v-for="(v,k,index) in odds_detail_list[6]" v-if='index<3'>
+                  <input type="text" class="form-control" v-model="odds_detail_list[6]['e' + (index+1)]">
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[6].bet_limit.order_limit_min">
+
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[6].bet_limit.order_limit_max">
+                </td>
+                <td>
+                  <input type="text" class="form-control" v-model="odds_detail_list[6].bet_limit.expect_limit">
+                </td>
+                <td v-if="$store.state.son_off">
+                  <input type="text" class="form-control text-center"
+                         v-model="odds_detail_list[6].dec_odds[0].limit">
+                </td>
+                <td v-if="$store.state.son_off">
+                  <input type="text" class="form-control text-center"
+                         v-model="odds_detail_list[6].dec_odds[0].dec_odds">
+                </td>
+                <td v-if="$store.state.son_off">
+                  <input type="text" class="form-control text-center"
+                         v-model="odds_detail_list[6].dec_odds[1].limit">
+                </td>
+                <td v-if="$store.state.son_off">
+                  <input type="text" class="form-control text-center"
+                         v-model="odds_detail_list[5].dec_odds[1].dec_odds">
                 </td>
               </tr>
               </tbody>
@@ -1159,7 +1423,7 @@
           //首次进入初始化数据 默认重庆时时彩
           get_all_data:function(){
             this.$http.get(this.api + '/admin/'+ this.which_type_one + '/odds').then(function(res){
-              // console.log(res);
+              console.log(res);
               if(res.status == 200){
                 this.all_odds = res.data.data.odds_list;
                 this.odds_detail_list =this.all_odds[0].odds;
@@ -1322,7 +1586,7 @@
   }
   div.section nav div.list div .icon{
     position:absolute;
-    top:11px;
+    top:5px;
     right:8px;
   }
   div.section nav div.list div:last-child{

@@ -2,7 +2,8 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-import vuex from 'vuex';
+
+import vuex from 'vuex';//
 import VueResource from 'vue-resource';/*引入资源请求插件*/
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -12,7 +13,7 @@ import './assets/js/bootstrap';
 import './common/iconfont.css';
 
 /*使用ElementUI插件*/
-Vue.use(ElementUI)
+Vue.use(ElementUI);
 
 /*使用VueResource插件*/
 Vue.use(VueResource);
@@ -53,9 +54,9 @@ var store = new vuex.Store(
 });
 
 //配置请求的uri
-//     Vue.prototype.api = `http://lty-main.com`;  //母盘
+    Vue.prototype.api = `http://lty-main.com`;  //母盘
 //   Vue.prototype.api = `http://lty-sub.com`;  //子盘
-     Vue.prototype.api = ``;
+//      Vue.prototype.api = ``;
 
 Vue.prototype.toUp = (str)=>
 {
